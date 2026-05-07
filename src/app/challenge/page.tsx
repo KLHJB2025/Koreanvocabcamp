@@ -1,232 +1,309 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Heart, Trophy, Zap, Shield, ChevronRight, X, AlertTriangle } from 'lucide-react';
+import { useAuth } from '@/hooks/use-auth';
+import { useTranslation } from '@/hooks/use-translation';
+import { MOCK_VOCABULARY, Word } from '@/lib/vocabulary-data';
+import { Timer, Zap, Home, Ticket, Loader2, XCircle } from 'lucide-react';
+import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import confetti from 'canvas-confetti';
+import { CertificateCard } from '@/components/rewards/CertificateCard';
+import { db } from '@/lib/firebase';
+import { doc, updateDoc, arrayUnion } from 'firebase/firestore';
 
-const CHALLENGE_WORDS = [
-    { kr: "사랑하다", options: ["To hate", "To love", "To walk", "To read"], correct: 1 },
-    { kr: "공부하다", options: ["To play", "To study", "To sleep", "To eat"], correct: 1 },
-    { kr: "노래하다", options: ["To sing", "To dance", "To clean", "To talk"], correct: 0 },
-    // ... more words would normally be here
-];
-
-export default function FinalChallengePage() {
-    const [index, setIndex] = useState(0);
-    const [hearts, setHearts] = useState(3);
-    const [combo, setCombo] = useState(0);
-    const [isGameOver, setIsGameOver] = useState(false);
-    const [isCleared, setIsCleared] = useState(false);
-    const [selectedOption, setSelectedOption] = useState<number | null>(null);
-    const [isCorrect, setIsCorrect] = useState<boolean | null>(null);
+export default function ChallengePage() {
+    const { profile, loading: authLoading } = useAuth();
+    const { language } = useTranslation();
     const router = useRouter();
 
-    const currentQuestion = CHALLENGE_WORDS[index];
+    const [gameState, setGameState] = useState<'intro' | 'playing' | 'result'>('intro');
+    const [questions, setQuestions] = useState<Word[]>([]);
+    const [currentIndex, setCurrentIndex] = useState(0);
+    const [answers, setAnswers] = useState<boolean[]>([]);
+    const [timeLeft, setTimeLeft] = useState(90);
+    const [options, setOptions] = useState<string[]>([]);
+    const [score, setScore] = useState(0);
 
-    const handleAnswer = (idx: number) => {
-        if (selectedOption !== null) return;
+    const startChallenge = useCallback(() => {
+        const cycleId = profile?.currentCycleId || 'beginner_cycle_1';
+        const allWords = MOCK_VOCABULARY[cycleId] || MOCK_VOCABULARY['beginner_cycle_1'];
 
-        setSelectedOption(idx);
-        const correct = idx === currentQuestion.correct;
-        setIsCorrect(correct);
+        // Shuffle and pick 30
+        const shuffled = [...allWords].sort(() => Math.random() - 0.5).slice(0, Math.min(30, allWords.length));
+        setQuestions(shuffled);
+        setAnswers([]);
+        setCurrentIndex(0);
+        setScore(0);
+        setTimeLeft(90);
+        setGameState('playing');
+    }, [profile]);
 
-        if (correct) {
-            setCombo(prev => prev + 1);
-            // Small success flash or sound would go here
-        } else {
-            setHearts(prev => prev - 1);
-            setCombo(0);
-            if (hearts <= 1) {
-                setIsGameOver(true);
-            }
+    const handleFinishedChallenge = useCallback(async (finalScore?: number) => {
+        const actualScore = finalScore !== undefined ? finalScore : score;
+        const accuracy = (actualScore / (questions.length || 1)) * 100;
+
+        if (accuracy === 100) {
+            confetti({
+                particleCount: 150,
+                spread: 70,
+                origin: { y: 0.6 },
+                colors: ['#FF4E8D', '#4ADE80', '#FBBF24']
+            });
         }
 
-        setTimeout(() => {
-            if (index < CHALLENGE_WORDS.length - 1) {
-                setIndex(prev => prev + 1);
-                setSelectedOption(null);
-                setIsCorrect(null);
-            } else {
-                if (hearts > 0) {
-                    setIsCleared(true);
-                    confetti({
-                        particleCount: 200,
-                        spread: 90,
-                        origin: { y: 0.5 },
-                        colors: ['#FFD700', '#C0C0C0', '#CD7F32']
-                    });
-                }
+        if (profile?.uid) {
+            const userRef = doc(db, 'users', profile.uid);
+            const xpGained = actualScore * 10 + (accuracy === 100 ? 500 : accuracy >= 80 ? 200 : 0);
+
+            await updateDoc(userRef, {
+                totalXp: (profile.totalXp || 0) + xpGained
+            });
+
+            if (accuracy === 100) {
+                await updateDoc(userRef, {
+                    vouchers: arrayUnion({
+                        code: 'BOSS10-' + Math.random().toString(36).substring(7).toUpperCase(),
+                        validUntil: new Date(Date.now() + 30 * 24 * 60 * 60 * 1000).toISOString(),
+                        value: 'RM10'
+                    })
+                });
             }
-        }, 1500);
+        }
+    }, [profile, score, questions.length]);
+
+    useEffect(() => {
+        if (gameState === 'playing' && currentIndex < questions.length) {
+            const currentWord = questions[currentIndex];
+            const cycleId = profile?.currentCycleId || 'beginner_cycle_1';
+            const allWords = MOCK_VOCABULARY[cycleId] || MOCK_VOCABULARY['beginner_cycle_1'];
+
+            const wrongOptions = allWords
+                .filter(w => w.kr !== currentWord.kr)
+                .sort(() => Math.random() - 0.5)
+                .slice(0, 3)
+                .map(w => language === 'zh' ? w.zh : w.en);
+
+            const correctOption = language === 'zh' ? currentWord.zh : currentWord.en;
+            setOptions([...wrongOptions, correctOption].sort(() => Math.random() - 0.5));
+        }
+    }, [currentIndex, gameState, questions, language, profile]);
+
+    useEffect(() => {
+        let timer: any;
+        if (gameState === 'playing' && timeLeft > 0) {
+            timer = setInterval(() => setTimeLeft(prev => prev - 1), 1000);
+        } else if (timeLeft === 0 && gameState === 'playing') {
+            setGameState('result');
+            handleFinishedChallenge();
+        }
+        return () => clearInterval(timer);
+    }, [gameState, timeLeft, handleFinishedChallenge]);
+
+    const handleAnswer = (selected: string) => {
+        const currentWord = questions[currentIndex];
+        const correct = language === 'zh' ? currentWord.zh : currentWord.en;
+        const isCorrect = selected === correct;
+
+        const newScore = isCorrect ? score + 1 : score;
+        setAnswers(prev => [...prev, isCorrect]);
+        setScore(newScore);
+
+        if (currentIndex < questions.length - 1) {
+            setCurrentIndex(prev => prev + 1);
+        } else {
+            setGameState('result');
+            handleFinishedChallenge(newScore);
+        }
     };
 
-    if (isGameOver) {
-        return (
-            <ChallengeResultScreen
-                title="Challenge Failed"
-                subtitle="The boss was too strong this time. Review your words and try again!"
-                icon={<AlertTriangle size={64} className="text-red-500" />}
-                status="failed"
-            />
-        );
-    }
+    const accuracy = Math.round((score / (questions.length || 1)) * 100);
+    const tier = accuracy === 100 ? 'Legendary' : accuracy >= 90 ? 'Gold' : accuracy >= 80 ? 'Silver' : 'Bronze';
 
-    if (isCleared) {
-        return (
-            <ChallengeResultScreen
-                title="Epic Victory!"
-                subtitle="You've mastered the 14-day TOPIK Bootcamp. You are now a TOPIK Legend!"
-                icon={<Trophy size={64} className="text-amber-500" />}
-                status="cleared"
-                xp={500}
-            />
-        );
-    }
-
-    return (
-        <div className="min-h-screen bg-slate text-white flex flex-col font-sans">
-            {/* Boss HUD */}
-            <header className="p-8 flex items-center justify-between">
-                <div className="flex items-center gap-4">
-                    <button onClick={() => router.push('/dashboard')} className="p-2 bg-white/5 rounded-full hover:bg-white/10">
-                        <X size={20} />
-                    </button>
-                    <div className="h-10 w-px bg-white/10" />
-                    <div>
-                        <p className="text-[10px] font-bold uppercase tracking-widest text-white/40">Final Boss</p>
-                        <h1 className="text-lg font-bold">Vocabulary Overlord</h1>
-                    </div>
-                </div>
-
-                <div className="flex items-center gap-8">
-                    <div className="flex gap-2">
-                        {[...Array(3)].map((_, i) => (
-                            <Heart
-                                key={i}
-                                size={24}
-                                className={i < hearts ? "text-rose-500 fill-rose-500 animate-pulse" : "text-white/10"}
-                            />
-                        ))}
-                    </div>
-                    <div className="flex items-center gap-2 px-6 py-2 bg-white/5 rounded-full border border-white/10">
-                        <Zap size={20} className="text-amber-400 fill-amber-400" />
-                        <span className="font-bold text-xl">{combo}x</span>
-                    </div>
-                </div>
-            </header>
-
-            <main className="flex-1 flex flex-col items-center justify-center p-8">
-                <div className="max-w-2xl w-full">
-                    <div className="text-center mb-16">
-                        <motion.div
-                            key={index}
-                            initial={{ scale: 0.5, opacity: 0 }}
-                            animate={{ scale: 1, opacity: 1 }}
-                            className="inline-block px-12 py-8 bg-white/5 rounded-[40px] border border-white/10 mb-8"
-                        >
-                            <span className="text-7xl font-bold font-noto-kr">{currentQuestion.kr}</span>
-                        </motion.div>
-                        <p className="text-white/40 font-medium tracking-widest uppercase text-sm">Select the correct meaning</p>
-                    </div>
-
-                    <div className="grid md:grid-cols-2 gap-4">
-                        {currentQuestion.options.map((opt, i) => {
-                            const isSelected = selectedOption === i;
-                            const isThisCorrect = i === currentQuestion.correct;
-
-                            let bgColor = "bg-white/5 border-white/10 hover:border-white/30";
-                            if (isSelected) {
-                                bgColor = isThisCorrect ? "bg-emerald-500/20 border-emerald-500 shadow-[0_0_20px_rgba(16,185,129,0.3)]" : "bg-red-500/20 border-red-500";
-                            } else if (selectedOption !== null && isThisCorrect) {
-                                bgColor = "bg-emerald-500/20 border-emerald-500/50";
-                            }
-
-                            return (
-                                <button
-                                    key={i}
-                                    onClick={() => handleAnswer(i)}
-                                    disabled={selectedOption !== null}
-                                    className={`relative p-6 rounded-3xl border-2 transition-all text-left group overflow-hidden ${bgColor}`}
-                                >
-                                    <span className="text-xl font-bold relative z-10">{opt}</span>
-                                    {isSelected && isThisCorrect && (
-                                        <motion.div
-                                            initial={{ scale: 0 }}
-                                            animate={{ scale: 1.5 }}
-                                            className="absolute right-4 top-1/2 -translate-y-1/2 text-emerald-500 opacity-20"
-                                        >
-                                            <Trophy size={100} />
-                                        </motion.div>
-                                    )}
-                                </button>
-                            );
-                        })}
-                    </div>
-                </div>
-            </main>
-
-            <footer className="p-12">
-                <div className="max-w-xl mx-auto flex items-center gap-4">
-                    <span className="text-xs font-bold text-white/20 uppercase whitespace-nowrap">Battle Progress</span>
-                    <div className="flex-1 h-2 bg-white/5 rounded-full overflow-hidden">
-                        <motion.div
-                            className="h-full bg-gradient-to-r from-amber-500 to-rose-500"
-                            animate={{ width: `${(index / CHALLENGE_WORDS.length) * 100}%` }}
-                        />
-                    </div>
-                </div>
-            </footer>
+    if (authLoading) return (
+        <div className="min-h-screen flex items-center justify-center bg-charcoal">
+            <Loader2 className="w-12 h-12 text-primary animate-spin" />
         </div>
     );
-}
 
-function ChallengeResultScreen({ title, subtitle, icon, status, xp = 0 }: any) {
-    const router = useRouter();
     return (
-        <div className="min-h-screen bg-slate text-white flex flex-col items-center justify-center p-8 text-center">
-            <motion.div
-                initial={{ scale: 0.9, opacity: 0 }}
-                animate={{ scale: 1, opacity: 1 }}
-                className="max-w-md w-full"
-            >
-                <div className={`w-24 h-24 rounded-full flex items-center justify-center mx-auto mb-8 ${status === 'cleared' ? 'bg-amber-500/20' : 'bg-red-500/20'}`}>
-                    {icon}
-                </div>
-                <h1 className="text-4xl font-bold mb-4">{title}</h1>
-                <p className="text-white/40 text-lg mb-12">{subtitle}</p>
+        <div className="min-h-screen bg-charcoal text-white selection:bg-primary/30">
+            <AnimatePresence mode="wait">
+                {gameState === 'intro' && (
+                    <motion.div
+                        key="intro"
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
+                        exit={{ opacity: 0 }}
+                        className="min-h-screen flex flex-col items-center justify-center p-8 text-center"
+                    >
+                        <motion.div
+                            animate={{ rotate: [0, -2, 2, 0], scale: [1, 1.05, 1] }}
+                            transition={{ repeat: Infinity, duration: 4 }}
+                            className="w-32 h-32 bg-primary rounded-[40px] flex items-center justify-center shadow-[0_0_50px_rgba(255,78,141,0.4)] mb-10 border-b-8 border-black/20"
+                        >
+                            <Zap size={60} fill="currentColor" />
+                        </motion.div>
 
-                {status === 'cleared' && (
-                    <div className="grid grid-cols-2 gap-4 mb-12">
-                        <div className="bg-white/5 p-6 rounded-3xl border border-white/10">
-                            <p className="text-3xl font-bold text-amber-500">+{xp}</p>
-                            <p className="text-[10px] font-bold text-white/20 uppercase tracking-widest">XP Reward</p>
+                        <h1 className="text-[120px] font-black italic tracking-tighter leading-none mb-4 uppercase drop-shadow-2xl">
+                            BATTLE<br /><span className="text-primary italic">BREACH</span>
+                        </h1>
+                        <p className="text-white/40 font-bold uppercase tracking-[0.5em] mb-12 text-sm">Target: 30 Words | Time: 90s</p>
+
+                        <div className="flex flex-col gap-6 w-full max-w-sm">
+                            <button onClick={startChallenge} className="btn-primary-cute text-xl py-6 rounded-[32px] bg-white text-charcoal hover:bg-primary hover:text-white transition-all border-none shadow-2xl">
+                                COMMENCE ASSAULT
+                            </button>
+                            <Link href="/dashboard" className="text-white/20 hover:text-white transition-colors font-black uppercase tracking-widest text-xs">
+                                Abandon Mission
+                            </Link>
                         </div>
-                        <div className="bg-white/5 p-6 rounded-3xl border border-white/10">
-                            <p className="text-3xl font-bold text-primary italic">S</p>
-                            <p className="text-[10px] font-bold text-white/20 uppercase tracking-widest">Rank Tier</p>
-                        </div>
-                    </div>
+                    </motion.div>
                 )}
 
-                <div className="space-y-4">
-                    <button
-                        onClick={() => router.push(status === 'cleared' ? '/certificate' : '/dashboard')}
-                        className={`w-full py-5 rounded-full font-bold text-xl transition-all ${status === 'cleared' ? 'bg-amber-500 hover:bg-amber-400 text-slate' : 'bg-white/10 hover:bg-white/20'}`}
+                {gameState === 'playing' && (
+                    <motion.div
+                        key="playing"
+                        initial={{ opacity: 0, scale: 0.9 }}
+                        animate={{ opacity: 1, scale: 1 }}
+                        className="max-w-4xl mx-auto px-8 py-20 min-h-screen flex flex-col"
                     >
-                        {status === 'cleared' ? 'Claim Certificate' : 'Back to Dashboard'}
-                    </button>
-                    {status === 'failed' && (
-                        <button
-                            onClick={() => window.location.reload()}
-                            className="w-full py-5 rounded-full font-bold text-xl bg-white text-slate hover:bg-white/90"
-                        >
-                            Try Again
-                        </button>
-                    )}
-                </div>
-            </motion.div>
+                        <div className="flex justify-between items-center mb-20">
+                            <div className="flex items-center gap-4">
+                                <div className="w-12 h-12 bg-white/5 rounded-2xl flex items-center justify-center text-primary border border-white/10">
+                                    <Timer size={24} />
+                                </div>
+                                <div>
+                                    <p className="text-[10px] font-black uppercase text-white/20 tracking-widest">Time Remaining</p>
+                                    <p className={`text-2xl font-black italic ${timeLeft < 10 ? 'text-rose-500 animate-pulse' : 'text-white'}`}>{timeLeft}s</p>
+                                </div>
+                            </div>
+
+                            <div className="flex gap-2">
+                                {questions.map((_, i) => (
+                                    <div key={i} className={`w-2 h-2 rounded-full ${i < currentIndex ? (answers[i] ? 'bg-emerald-400' : 'bg-rose-500') : i === currentIndex ? 'bg-primary animate-pulse' : 'bg-white/10'}`} />
+                                ))}
+                            </div>
+
+                            <div className="text-right">
+                                <p className="text-[10px] font-black uppercase text-white/20 tracking-widest">Progress</p>
+                                <p className="text-2xl font-black italic">{currentIndex + 1} / {questions.length}</p>
+                            </div>
+                        </div>
+
+                        <div className="flex-1 flex flex-col items-center justify-center">
+                            <motion.div
+                                key={currentIndex}
+                                initial={{ opacity: 0, y: 20 }}
+                                animate={{ opacity: 1, y: 0 }}
+                                className="text-center mb-20"
+                            >
+                                <h2 className="text-8xl font-black italic tracking-tighter uppercase leading-none mb-4 drop-shadow-2xl">{questions[currentIndex]?.kr}</h2>
+                                <div className="w-20 h-2 bg-primary mx-auto rounded-full" />
+                            </motion.div>
+
+                            <div className="grid grid-cols-2 gap-6 w-full">
+                                {options.map((opt, i) => (
+                                    <motion.button
+                                        key={opt}
+                                        whileHover={{ scale: 1.02, backgroundColor: 'rgba(255, 78, 141, 0.1)' }}
+                                        whileTap={{ scale: 0.98 }}
+                                        onClick={() => handleAnswer(opt)}
+                                        className="p-8 rounded-[32px] border-2 border-white/10 bg-white/5 text-2xl font-black italic hover:border-primary transition-all text-left flex justify-between items-center group"
+                                    >
+                                        <span>{opt}</span>
+                                        <div className="w-10 h-10 rounded-xl bg-white/5 flex items-center justify-center group-hover:bg-primary group-hover:text-white text-white/20 font-mono transition-all">
+                                            {i + 1}
+                                        </div>
+                                    </motion.button>
+                                ))}
+                            </div>
+                        </div>
+                    </motion.div>
+                )}
+
+                {gameState === 'result' && (
+                    <motion.div
+                        key="result"
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
+                        className="min-h-screen py-20 px-8 flex flex-col items-center bg-gradient-to-b from-charcoal to-black overflow-y-auto"
+                    >
+                        <div className="text-center mb-12">
+                            <h2 className="text-6xl font-black italic tracking-tighter uppercase mb-2">MISSION COMPLETE</h2>
+                            <p className="text-white/40 font-bold uppercase tracking-widest">Combat Accuracy: {accuracy}%</p>
+                        </div>
+
+                        {accuracy >= 60 ? (
+                            <div className="w-full max-w-4xl space-y-12 mb-20">
+                                <CertificateCard
+                                    userName={profile?.displayName || 'Alpha Agent'}
+                                    campTitle={profile?.currentCycleId?.replace(/_/g, ' ').toUpperCase() || 'TOP SECRET CAMP'}
+                                    date={new Date().toLocaleDateString()}
+                                    score={accuracy}
+                                    tier={tier as any}
+                                />
+
+                                {accuracy === 100 && (
+                                    <motion.div
+                                        initial={{ scale: 0.8, opacity: 0 }}
+                                        animate={{ scale: 1, opacity: 1 }}
+                                        transition={{ delay: 0.5 }}
+                                        className="puffy-card p-10 bg-amber-400 text-charcoal border-none flex flex-col md:flex-row items-center gap-8 text-left shadow-[0_0_60px_rgba(251,191,36,0.5)]"
+                                    >
+                                        <div className="w-24 h-24 bg-white/20 rounded-[32px] flex items-center justify-center shrink-0 border border-white/30">
+                                            <Ticket size={48} className="rotate-12" />
+                                        </div>
+                                        <div className="flex-1">
+                                            <div className="inline-block px-3 py-1 bg-charcoal text-white rounded-full text-[8px] font-black uppercase tracking-widest mb-3">Legendary Reward</div>
+                                            <h3 className="text-3xl font-black italic uppercase leading-none mb-2">SCHOLARSHIP UNLOCKED</h3>
+                                            <p className="text-sm font-bold opacity-60 uppercase tracking-widest leading-relaxed">
+                                                Use code <span className="underline font-black bg-white/40 px-2 py-0.5 rounded">BOSS10-VICTORY</span> for RM10 off your next camp expansion.
+                                            </p>
+                                        </div>
+                                        <button
+                                            onClick={() => {
+                                                navigator.clipboard.writeText('BOSS10-VICTORY');
+                                                alert('Voucher copied to clipboard!');
+                                            }}
+                                            className="px-8 py-4 bg-charcoal text-white rounded-full font-black text-xs uppercase tracking-widest hover:scale-105 transition-transform"
+                                        >
+                                            Copy Code
+                                        </button>
+                                    </motion.div>
+                                )}
+                            </div>
+                        ) : (
+                            <div className="flex flex-col items-center gap-8 mb-20">
+                                <div className="w-40 h-40 bg-rose-500/10 rounded-[48px] flex items-center justify-center text-rose-500 border-2 border-rose-500/20">
+                                    <XCircle size={80} />
+                                </div>
+                                <div className="text-center max-w-md">
+                                    <h3 className="text-3xl font-black italic uppercase mb-2 text-rose-500">RETRAINING REQUIRED</h3>
+                                    <p className="text-white/40 font-medium italic">You need at least 60% accuracy to earn a certificate. Don't give up, Agent!</p>
+                                </div>
+                            </div>
+                        )}
+
+                        <div className="flex gap-4 w-full max-w-sm">
+                            <button onClick={() => setGameState('intro')} className="btn-secondary-cute flex-1 flex items-center justify-center gap-2 bg-transparent text-white border-white/10 hover:bg-white/5">
+                                Retry
+                            </button>
+                            <Link href="/dashboard" className="btn-primary-cute flex-1 flex items-center justify-center gap-2">
+                                <Home size={20} />
+                                HQ
+                            </Link>
+                        </div>
+                    </motion.div>
+                )}
+            </AnimatePresence>
+
+            <style jsx>{`
+                .puffy-card {
+                    border-radius: 32px;
+                }
+            `}</style>
         </div>
     );
 }
