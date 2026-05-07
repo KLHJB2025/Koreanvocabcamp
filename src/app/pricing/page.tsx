@@ -4,6 +4,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { Check, Crown, Zap, Shield, Loader2, Home, Package, Layers, Gift, Ticket } from 'lucide-react';
 import Link from 'next/link';
 import { useAuth } from '@/hooks/use-auth';
+import { useTranslation } from '@/hooks/use-translation';
 import { db } from '@/lib/firebase';
 import { doc, updateDoc, increment } from 'firebase/firestore';
 import { useState } from 'react';
@@ -11,6 +12,7 @@ import { useRouter } from 'next/navigation';
 
 export default function PricingPage() {
     const { profile } = useAuth();
+    const { language } = useTranslation();
     const [loading, setLoading] = useState<string | null>(null);
     const [voucherCode, setVoucherCode] = useState('');
     const [discount, setDiscount] = useState(0);
@@ -23,7 +25,7 @@ export default function PricingPage() {
             setDiscount(10);
             setIsVoucherApplied(true);
         } else {
-            alert(profile?.language === 'zh' ? '无效的代码' : 'Invalid Voucher Code');
+            alert(language === 'zh' ? '无效的代码' : 'Invalid Voucher Code');
         }
     };
 

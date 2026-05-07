@@ -86,7 +86,7 @@ export default function CampsPage() {
                         <Star size={14} className="text-amber-400 fill-amber-400" />
                         {campCredits} Credits
                     </div>
-                    {!profile.role === 'admin' && (
+                    {profile.role !== 'admin' && (
                         <Link href="/pricing" className="hidden sm:flex items-center gap-2 px-4 py-2 bg-emerald-500 text-white rounded-full font-black text-[10px] uppercase tracking-widest shadow-lg shadow-emerald-500/20 hover:scale-105 transition-transform">
                             <Sparkles size={14} fill="currentColor" />
                             Buy Credits
