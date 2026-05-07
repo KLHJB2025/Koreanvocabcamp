@@ -1,0 +1,31 @@
+{
+  "common": {
+    "welcome": "Welcome to TOPIK Bootcamp",
+    "getStarted": "Get Started",
+    "login": "Login",
+    "signup": "Sign Up",
+    "logout": "Logout",
+    "dashboard": "Dashboard",
+    "profile": "Profile"
+  },
+  "learning": {
+    "mission": "Mission",
+    "finalChallenge": "Final Challenge",
+    "memoryTraining": "Memory Training",
+    "rankProgress": "Rank Progress",
+    "xp": "XP",
+    "streak": "Streak",
+    "days": "Days",
+    "completed": "Completed"
+  },
+  "ranks": {
+    "1": "Hangeul Survivor",
+    "2": "Beginner Conqueror",
+    "3": "TOPIK Challenger",
+    "4": "Grammar Hunter",
+    "5": "Vocab Master",
+    "6": "TOPIK Warrior",
+    "7": "Korean Conqueror",
+    "8": "TOPIK LEGEND"
+  }
+}

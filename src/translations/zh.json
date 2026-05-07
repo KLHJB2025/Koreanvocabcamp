@@ -1,0 +1,31 @@
+{
+    "common": {
+        "welcome": "欢迎来到 TOPIK 单词训练营",
+        "getStarted": "开始学习",
+        "login": "登录",
+        "signup": "注册",
+        "logout": "退出登录",
+        "dashboard": "仪表盘",
+        "profile": "个人资料"
+    },
+    "learning": {
+        "mission": "任务",
+        "finalChallenge": "终极挑战",
+        "memoryTraining": "记忆训练",
+        "rankProgress": "等级进度",
+        "xp": "经验值",
+        "streak": "连续天数",
+        "days": "天",
+        "completed": "已完成"
+    },
+    "ranks": {
+        "1": "韩语幸存者",
+        "2": "初级征服者",
+        "3": "TOPIK 挑战者",
+        "4": "语法猎人",
+        "5": "词汇大师",
+        "6": "TOPIK 战士",
+        "7": "韩语征服者",
+        "8": "TOPIK 传奇"
+    }
+}

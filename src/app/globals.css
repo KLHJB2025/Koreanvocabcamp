@@ -1,0 +1,93 @@
+@import "tailwindcss";
+
+@theme {
+  --color-lavender: oklch(0.85 0.1 270);
+  --color-mint: oklch(0.9 0.1 160);
+  --color-slate: oklch(0.3 0.05 250);
+  --color-premium: oklch(0.95 0.02 250);
+
+  --font-sans: "Outfit", "Noto Sans KR", "Noto Sans SC", sans-serif;
+}
+
+:root {
+  --background: oklch(0.98 0.01 250);
+  --foreground: oklch(0.2 0.04 250);
+  --card: oklch(1 0 0);
+  --card-foreground: oklch(0.2 0.04 250);
+  --primary: oklch(0.7 0.15 270);
+  --primary-foreground: oklch(1 0 0);
+  --secondary: oklch(0.9 0.05 270);
+  --secondary-foreground: oklch(0.3 0.1 270);
+  --accent: oklch(0.8 0.12 160);
+  --accent-foreground: oklch(0.2 0.05 160);
+  --destructive: oklch(0.6 0.2 20);
+  --destructive-foreground: oklch(1 0 0);
+  --border: oklch(0.9 0.02 250);
+  --input: oklch(0.9 0.02 250);
+  --ring: oklch(0.7 0.15 270);
+  --radius: 1.25rem;
+}
+
+.dark {
+  --background: oklch(0.15 0.02 250);
+  --foreground: oklch(0.95 0.01 250);
+  --card: oklch(0.18 0.02 250);
+  --card-foreground: oklch(0.95 0.01 250);
+  --primary: oklch(0.75 0.12 270);
+  --primary-foreground: oklch(0.15 0.02 250);
+  --secondary: oklch(0.25 0.04 270);
+  --secondary-foreground: oklch(0.85 0.05 270);
+  --accent: oklch(0.7 0.1 160);
+  --accent-foreground: oklch(0.15 0.05 160);
+  --destructive: oklch(0.5 0.2 20);
+  --destructive-foreground: oklch(0.95 0.01 250);
+  --border: oklch(0.25 0.03 250);
+  --input: oklch(0.25 0.03 250);
+  --ring: oklch(0.75 0.12 270);
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring;
+  }
+
+  body {
+    @apply bg-background text-foreground font-sans antialiased;
+  }
+}
+
+@layer components {
+  .glass-card {
+    @apply bg-white/70 backdrop-blur-md border border-white/20 shadow-xl;
+  }
+
+  .premium-gradient {
+    @apply bg-gradient-to-br from-lavender via-white to-mint;
+  }
+
+  .btn-premium {
+    @apply relative overflow-hidden bg-primary text-primary-foreground px-6 py-3 rounded-full font-bold transition-all duration-300 hover:scale-[1.02] hover:shadow-lg active:scale-95;
+  }
+
+  .btn-outline {
+    @apply border-2 border-primary text-primary px-6 py-3 rounded-full font-bold transition-all duration-300 hover:bg-primary/10;
+  }
+}
+
+@keyframes float {
+  0% {
+    transform: translateY(0px);
+  }
+
+  50% {
+    transform: translateY(-10px);
+  }
+
+  100% {
+    transform: translateY(0px);
+  }
+}
+
+.animate-float {
+  animation: float 3s ease-in-out infinite;
+}
