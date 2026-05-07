@@ -144,11 +144,11 @@ export default function MissionPage() {
             <main className="max-w-6xl mx-auto px-8">
                 <VocabCard
                     word={currentWord.kr}
-                    pos="Noun" // This should ideally come from data
+                    pos={currentWord.pos || 'Noun'}
                     meaningZh={currentWord.zh}
                     meaningEn={currentWord.en}
-                    sentenceKr={currentWord.sentenceKr || "이것은 예문입니다."}
-                    sentenceMeaning={currentWord.sentenceMeaning || "This is an example sentence."}
+                    sentenceKr={currentWord.sentenceKr || '이것은 예문입니다.'}
+                    sentenceMeaning={currentWord.sentenceMeaning || 'This is an example sentence.'}
                     onNext={handleNext}
                     onPrev={handlePrev}
                 />

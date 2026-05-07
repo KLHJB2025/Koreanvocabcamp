@@ -12,18 +12,28 @@ jobs:
 
     steps:
     - uses: actions/checkout@v4
-    
+
     - name: Set up Node.js
       uses: actions/setup-node@v4
       with:
-        node-version: '20'
+        node-version: '22'
         cache: 'npm'
 
     - name: Install dependencies
-      run: npm install
+      run: npm ci
+
+    - name: Type check
+      run: npx tsc --noEmit
+      continue-on-error: true
 
     - name: Build
       run: npm run build
       env:
-        # Add any public env variables if needed for build
-        NEXT_PUBLIC_FIREBASE_API_KEY: ${{ secrets.FIREBASE_API_KEY }}
+        NEXT_PUBLIC_FIREBASE_API_KEY: placeholder
+        NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN: placeholder
+        NEXT_PUBLIC_FIREBASE_PROJECT_ID: placeholder
+        NEXT_PUBLIC_FIREBASE_STORAGE_BUCKET: placeholder
+        NEXT_PUBLIC_FIREBASE_MESSAGING_SENDER_ID: placeholder
+        NEXT_PUBLIC_FIREBASE_APP_ID: placeholder
+        NEXT_PUBLIC_SUPABASE_URL: https://placeholder.supabase.co
+        NEXT_PUBLIC_SUPABASE_ANON_KEY: placeholder
