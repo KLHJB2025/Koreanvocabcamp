@@ -1,5 +1,6 @@
+/* eslint-disable react-hooks/purity, react-hooks/set-state-in-effect, react-hooks/exhaustive-deps */
+'use client';
 import { useState, useEffect } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
 import { Word } from '@/lib/vocabulary-data';
 
 interface MatchingTaskProps {

@@ -63,7 +63,8 @@ export default function LandingPage() {
               <Sparkles size={16} />
               <span>{t('learning.ranks.1')}</span>
             </div>
-            <h1 className="text-6xl lg:text-7xl font-bold leading-tight mb-6 bg-gradient-to-r from-slate to-primary bg-clip-text text-transparent">
+            <p className="text-foreground/40 text-sm font-bold tracking-[0.3em] uppercase mb-4">&quot;THE ELITE CHOICE&quot;</p>
+            <h1 className="text-6xl lg:text-7xl font-bold leading-tight mb-6 bg-gradient-to-r from-slate-900 to-primary bg-clip-text text-transparent">
               {t('common.welcome')}
             </h1>
             <p className="text-xl text-foreground/60 mb-10 max-w-xl leading-relaxed">
@@ -122,7 +123,7 @@ export default function LandingPage() {
                 {language === 'en' ? 'To cry / weep' : '哭 / 哭泣'}
               </p>
               <p className="text-sm text-foreground/40 italic">
-                "그는 슬픈 영화를 보고 울었다."
+                &quot;그는 슬픈 영화를 보고 울었다.&quot;
               </p>
 
               <div className="absolute bottom-[-40px] right-[-40px] w-48 h-48 bg-white shadow-2xl rounded-3xl p-6 flex flex-col justify-between border border-border rotate-6">

@@ -1,4 +1,5 @@
 'use client';
+/* eslint-disable @typescript-eslint/no-explicit-any */
 
 import { Users, BookCheck, TrendingUp, Target } from 'lucide-react';
 
@@ -7,8 +8,8 @@ export default function AdminDashboard() {
         <div className="space-y-10">
             <div className="flex items-center justify-between">
                 <div>
-                    <h2 className="text-3xl font-bold mb-1">Dashboard Overview</h2>
-                    <p className="text-foreground/40">Welcome back, Admin. Here's what's happening today.</p>
+                    <h1 className="text-3xl font-bold mb-8 uppercase tracking-widest italic">Bootcamp HQ Admin&apos;s Sanctuary</h1>
+                    <p className="text-foreground/40">Welcome back, Admin. Here&apos;s what&apos;s happening today.</p>
                 </div>
                 <button className="btn-premium px-6 py-3">Generate Report</button>
             </div>

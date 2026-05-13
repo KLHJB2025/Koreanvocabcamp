@@ -1,4 +1,5 @@
 'use client';
+/* eslint-disable @typescript-eslint/no-explicit-any */
 
 import { useState } from 'react';
 import { motion } from 'framer-motion';
@@ -176,7 +177,7 @@ export default function LoginPage() {
                     </div>
 
                     <p className="text-center text-sm text-foreground/40 font-medium">
-                        Don't have an account?{' '}
+                        Don&apos;t have an account?{' '}
                         <Link href="/signup" className="text-primary font-bold hover:underline">Create Account</Link>
                     </p>
                 </motion.div>

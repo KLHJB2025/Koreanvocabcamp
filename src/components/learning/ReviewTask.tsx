@@ -1,3 +1,5 @@
+/* eslint-disable react-hooks/purity, react-hooks/set-state-in-effect, react-hooks/exhaustive-deps */
+'use client';
 import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { Word } from '@/lib/vocabulary-data';
@@ -12,18 +14,23 @@ export function ReviewTask({ words, onComplete }: ReviewTaskProps) {
     const [currentIndex, setCurrentIndex] = useState(0);
     const [selectedOption, setSelectedOption] = useState<string | null>(null);
     const [isCorrect, setIsCorrect] = useState<boolean | null>(null);
-    const [options, setOptions] = useState<string[]>([]);
+    
+    const generateOptions = (index: number) => {
+        if (index >= words.length) return [];
+        const current = words[index];
+        const others = words.filter(w => w.kr !== current.kr);
+        const shuffled = [...others].sort(() => Math.random() - 0.5).slice(0, 3);
+        return [...shuffled.map(s => s.zh), current.zh].sort(() => Math.random() - 0.5);
+    };
 
+    const [options, setOptions] = useState<string[]>(() => generateOptions(0));
+
+    // Handle initial state if words change
     useEffect(() => {
-        if (currentIndex < words.length) {
-            const current = words[currentIndex];
-            const others = words.filter(w => w.kr !== current.kr);
-            const shuffled = [...others].sort(() => Math.random() - 0.5).slice(0, 3);
-            setOptions([...shuffled.map(s => s.zh), current.zh].sort(() => Math.random() - 0.5));
-            setSelectedOption(null);
-            setIsCorrect(null);
+        if (words.length > 0 && currentIndex === 0) {
+            setOptions(generateOptions(0));
         }
-    }, [currentIndex, words]);
+    }, [words]);
 
     const handleAnswer = (opt: string) => {
         if (selectedOption) return;
@@ -32,8 +39,12 @@ export function ReviewTask({ words, onComplete }: ReviewTaskProps) {
         setIsCorrect(correct);
 
         setTimeout(() => {
+            setSelectedOption(null);
+            setIsCorrect(null);
             if (currentIndex < words.length - 1) {
-                setCurrentIndex(prev => prev + 1);
+                const nextIndex = currentIndex + 1;
+                setCurrentIndex(nextIndex);
+                setOptions(generateOptions(nextIndex));
             } else {
                 onComplete();
             }

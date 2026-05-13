@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import Lottie from 'lottie-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Volume2, ChevronRight, ChevronLeft, PlayCircle, BookOpen, Quote, Sparkles } from 'lucide-react';

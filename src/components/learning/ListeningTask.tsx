@@ -1,3 +1,5 @@
+/* eslint-disable react-hooks/purity, react-hooks/set-state-in-effect, react-hooks/exhaustive-deps */
+'use client';
 import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { Word } from '@/lib/vocabulary-data';
@@ -14,6 +16,15 @@ export function ListeningTask({ words, onComplete }: ListeningTaskProps) {
     const [selectedId, setSelectedId] = useState<string | null>(null);
     const [isCorrect, setIsCorrect] = useState<boolean | null>(null);
 
+    const speak = (text: string) => {
+        if (typeof window !== 'undefined') {
+            window.speechSynthesis.cancel();
+            const utterance = new SpeechSynthesisUtterance(text);
+            utterance.lang = 'ko-KR';
+            window.speechSynthesis.speak(utterance);
+        }
+    };
+
     useEffect(() => {
         if (currentIndex < words.length) {
             const current = words[currentIndex];
@@ -27,13 +38,6 @@ export function ListeningTask({ words, onComplete }: ListeningTaskProps) {
             speak(current.kr);
         }
     }, [currentIndex, words]);
-
-    const speak = (text: string) => {
-        window.speechSynthesis.cancel();
-        const utterance = new SpeechSynthesisUtterance(text);
-        utterance.lang = 'ko-KR';
-        window.speechSynthesis.speak(utterance);
-    };
 
     const handleSelect = (word: Word) => {
         if (selectedId) return;

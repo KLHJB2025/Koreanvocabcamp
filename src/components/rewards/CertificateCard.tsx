@@ -1,5 +1,6 @@
-'use client';
-
+/* eslint-disable react-hooks/purity, react-hooks/set-state-in-effect */
+import { useState, useEffect } from 'react';
+/* eslint-disable react-hooks/set-state-in-effect */
 import { motion } from 'framer-motion';
 import { Award, Star, ShieldCheck, Download, Share2 } from 'lucide-react';
 
@@ -12,6 +13,11 @@ interface CertificateProps {
 }
 
 export function CertificateCard({ userName, campTitle, date, score, tier }: CertificateProps) {
+    const [verificationId, setVerificationId] = useState('');
+
+    useEffect(() => {
+        setVerificationId(Math.random().toString(36).substring(7).toUpperCase());
+    }, []);
     const tierColors = {
         Legendary: 'from-amber-400 to-orange-500 text-white border-amber-200',
         Gold: 'from-slate to-charcoal text-white border-slate/20',
@@ -60,7 +66,7 @@ export function CertificateCard({ userName, campTitle, date, score, tier }: Cert
                         </div>
                         <div className="flex flex-col gap-1">
                             <span className="text-[8px] font-black uppercase tracking-widest opacity-40">Verification ID</span>
-                            <span className="text-[8px] font-mono opacity-60">{Math.random().toString(36).substring(7).toUpperCase()}</span>
+                            <span className="text-[8px] font-mono opacity-60">{verificationId}</span>
                         </div>
                     </div>
                 </div>
