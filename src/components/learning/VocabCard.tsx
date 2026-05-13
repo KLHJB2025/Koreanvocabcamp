@@ -11,6 +11,8 @@ interface VocabCardProps {
     sentenceKr: string;
     sentenceMeaning: string;
     illustrationUrl?: string;
+    animationUrl?: string;
+    animationData?: any;
     onNext?: () => void;
     onPrev?: () => void;
 }
@@ -32,6 +34,7 @@ export function VocabCard({
     sentenceKr,
     sentenceMeaning,
     animationData,
+    animationUrl,
     illustrationUrl,
     onNext,
     onPrev

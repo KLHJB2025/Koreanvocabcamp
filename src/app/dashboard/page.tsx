@@ -185,6 +185,9 @@ export default function Dashboard() {
                         </div>
                     </motion.div>
                 </div>
+
+                {/* Main Content Grid */}
+                <div className="grid lg:grid-cols-12 gap-12">
                     {/* Roadmap & Daily Mission */}
                     <div className="lg:col-span-8 space-y-12">
 
