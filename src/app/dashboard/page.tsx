@@ -10,6 +10,8 @@ import { auth } from '@/lib/firebase';
 import { signOut } from 'firebase/auth';
 import { MissionRoadmap } from '@/components/learning/MissionRoadmap';
 import { getRankInfo } from '@/lib/ranks';
+import { getDailyEncouragement } from '@/lib/encouragement';
+import { MOCK_VOCABULARY } from '@/lib/vocabulary-data';
 
 export default function Dashboard() {
     const { t, language } = useTranslation();
@@ -107,7 +109,82 @@ export default function Dashboard() {
                     </motion.div>
                 )}
 
-                <div className="grid lg:grid-cols-12 gap-12">
+                {/* Mascot & Progress Header */}
+                <div className="grid md:grid-cols-12 gap-8 items-stretch">
+                    <motion.div
+                        initial={{ opacity: 0, x: -20 }}
+                        animate={{ opacity: 1, x: 0 }}
+                        className="md:col-span-4 bg-white rounded-[48px] p-10 flex flex-col items-center justify-center text-center shadow-xl border-2 border-strawberry/5 relative group"
+                    >
+                        <div className="absolute top-4 right-4 px-3 py-1 bg-strawberry/10 rounded-full text-[8px] font-black uppercase tracking-widest text-primary group-hover:scale-110 transition-transform">
+                            Active Companion
+                        </div>
+                        <motion.img 
+                            src="/illustrations/mascot.png" 
+                            alt="Mascot" 
+                            className="w-40 h-40 object-contain mb-6"
+                            animate={{ y: [0, -8, 0] }}
+                            transition={{ repeat: Infinity, duration: 3, ease: "easeInOut" }}
+                        />
+                        <div className="space-y-2">
+                            <p className="text-[10px] font-black uppercase tracking-widest text-charcoal/30 italic">Daily Encouragement</p>
+                            <h3 className="text-xl font-black italic text-primary leading-tight">
+                                {getDailyEncouragement(profile.displayName || 'Agent', profile.dayOfCamp || 1)}
+                            </h3>
+                        </div>
+                    </motion.div>
+
+                    <motion.div
+                        initial={{ opacity: 0, x: 20 }}
+                        animate={{ opacity: 1, x: 0 }}
+                        className="md:col-span-8 bg-charcoal rounded-[48px] p-12 text-white shadow-2xl relative overflow-hidden flex flex-col justify-between"
+                    >
+                        <div className="absolute top-0 right-0 w-64 h-64 bg-primary/10 rounded-full blur-[100px] -mr-32 -mt-32" />
+                        
+                        <div className="relative z-10">
+                            <h3 className="text-xl font-black uppercase italic tracking-widest text-primary mb-10 flex items-center gap-3">
+                                <GraduationCap size={24} />
+                                Vocabulary Mastery
+                            </h3>
+                            
+                            <div className="grid grid-cols-2 md:grid-cols-3 gap-12 mb-10">
+                                <div>
+                                    <p className="text-5xl font-black italic tracking-tighter mb-2">
+                                        {(() => {
+                                            const cycleKeys = Object.keys(MOCK_VOCABULARY);
+                                            const currentCycleIndex = cycleKeys.indexOf(profile.currentCycleId || 'beginner_cycle_1');
+                                            const masteredInPrevCycles = currentCycleIndex * 100;
+                                            const currentDay = profile.dayOfCamp || 1;
+                                            const masteredInCurrentCycle = Math.min(100, Math.floor(((currentDay - 1) / 14) * 100));
+                                            return masteredInPrevCycles + masteredInCurrentCycle;
+                                        })()}
+                                    </p>
+                                    <p className="text-[10px] font-bold uppercase tracking-widest text-white/40 leading-tight">Words Mastered<br/>Total Intelligence</p>
+                                </div>
+                                <div>
+                                    <p className="text-5xl font-black italic tracking-tighter mb-2">
+                                        {profile.streakCount || 0}
+                                    </p>
+                                    <p className="text-[10px] font-bold uppercase tracking-widest text-white/40 leading-tight">Active Streak<br/>Consistent Training</p>
+                                </div>
+                                <div className="hidden md:block">
+                                    <p className="text-5xl font-black italic tracking-tighter mb-2 text-primary">
+                                        {profile.currentCycleId?.split('_').pop() || '1'}
+                                    </p>
+                                    <p className="text-[10px] font-bold uppercase tracking-widest text-white/40 leading-tight">Current Cycle<br/>Learning Path</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div className="relative z-10 w-full bg-white/5 h-4 rounded-full overflow-hidden border border-white/5">
+                            <motion.div 
+                                initial={{ width: 0 }}
+                                animate={{ width: `${Math.min(100, ((profile.dayOfCamp || 1) / 14) * 100)}%` }}
+                                className="h-full bg-gradient-to-r from-primary to-rose-400"
+                            />
+                        </div>
+                    </motion.div>
+                </div>
                     {/* Roadmap & Daily Mission */}
                     <div className="lg:col-span-8 space-y-12">
 

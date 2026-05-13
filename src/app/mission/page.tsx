@@ -1,185 +1,181 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import { VocabCard } from '@/components/learning/VocabCard';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Home, Settings, Trophy, HelpCircle, CheckCircle2, Star, ArrowRight, Loader2 } from 'lucide-react';
-import Link from 'next/link';
 import { useAuth } from '@/hooks/use-auth';
-import { getDailyWords } from '@/lib/vocabulary';
+import { getDailyWords, getReviewWords } from '@/lib/vocabulary';
 import { Word } from '@/lib/vocabulary-data';
 import { addXp, completeDay } from '@/lib/user';
 import { useRouter } from 'next/navigation';
 import confetti from 'canvas-confetti';
+import { Home, CheckCircle2, Star, Trophy, ArrowRight, Loader2, BookOpen, Volume2, Search, Type } from 'lucide-react';
+import Link from 'next/link';
+
+// Components
+import { VocabCard } from '@/components/learning/VocabCard';
+import { ReviewTask } from '@/components/learning/ReviewTask';
+import { ListeningTask } from '@/components/learning/ListeningTask';
+import { MatchingTask } from '@/components/learning/MatchingTask';
+import { SpellingTask } from '@/components/learning/SpellingTask';
+
+type MissionStep = 'intro' | 'review' | 'learn' | 'listen' | 'match' | 'spell' | 'complete';
 
 export default function MissionPage() {
     const { profile, loading: authLoading } = useAuth();
     const router = useRouter();
-    const [currentIndex, setCurrentIndex] = useState(0);
-    const [isFinished, setIsFinished] = useState(false);
+    
+    const [step, setStep] = useState<MissionStep>('intro');
     const [words, setWords] = useState<Word[]>([]);
+    const [prevWords, setPrevWords] = useState<Word[]>([]);
     const [isLoading, setIsLoading] = useState(true);
+    const [currentIndex, setCurrentIndex] = useState(0);
 
     useEffect(() => {
-        const fetchWords = async () => {
+        const load = async () => {
             if (profile) {
                 const day = profile.dayOfCamp || 1;
                 const cycle = profile.currentCycleId || 'beginner_cycle_1';
-                const dailyWords = await getDailyWords(cycle, day);
-                setWords(dailyWords);
+                
+                const [daily, review] = await Promise.all([
+                    getDailyWords(cycle, day),
+                    getReviewWords(cycle, day)
+                ]);
+                
+                setWords(daily);
+                setPrevWords(review);
                 setIsLoading(false);
             }
         };
 
-        if (!authLoading) {
-            fetchWords();
-        }
+        if (!authLoading) load();
     }, [profile, authLoading]);
 
-    const handleNext = async () => {
-        if (currentIndex < words.length - 1) {
-            setCurrentIndex(prev => prev + 1);
-        } else {
-            setIsFinished(true);
-            confetti({
-                particleCount: 100,
-                spread: 70,
-                origin: { y: 0.6 },
-                colors: ['#FF4E8D', '#4ADE80', '#FBBF24']
-            });
+    const handleNextStep = () => {
+        if (step === 'intro') setStep(prevWords.length > 0 ? 'review' : 'learn');
+        else if (step === 'review') setStep('learn');
+        else if (step === 'learn') setStep('listen');
+        else if (step === 'listen') setStep('match');
+        else if (step === 'match') setStep('spell');
+        else if (step === 'spell') finalizeMission();
+    };
 
-            if (profile?.uid) {
-                await addXp(profile.uid, 50); // Mission base XP
-                await completeDay(profile.uid);
-            }
+    const finalizeMission = async () => {
+        setStep('complete');
+        confetti({
+            particleCount: 150,
+            spread: 70,
+            origin: { y: 0.6 },
+            colors: ['#FF4E8D', '#4ADE80', '#FBBF24']
+        });
+
+        if (profile?.uid) {
+            await addXp(profile.uid, 150); // Daily mission XP
+            await completeDay(profile.uid);
         }
     };
 
-    const handlePrev = () => {
-        if (currentIndex > 0) {
-            setCurrentIndex(prev => prev - 1);
-        }
-    };
-
-    if (authLoading || words.length === 0) {
-        return (
-            <div className="min-h-screen flex items-center justify-center bg-[#FEFAFB]">
-                <Loader2 className="w-12 h-12 text-primary animate-spin" />
-            </div>
-        );
-    }
-
-    if (isFinished) {
-        return (
-            <div className="min-h-screen bg-white flex flex-col items-center justify-center p-8 text-center">
-                <motion.div
-                    initial={{ scale: 0 }}
-                    animate={{ scale: 1 }}
-                    className="w-32 h-32 bg-mint rounded-[40px] flex items-center justify-center text-white mb-8 shadow-2xl shadow-mint/20"
-                >
-                    <CheckCircle2 size={64} fill="currentColor" className="text-white" />
-                </motion.div>
-
-                <h1 className="text-5xl font-black italic tracking-tighter uppercase mb-2">Mission Cleared!</h1>
-                <p className="text-charcoal/40 font-medium italic mb-12">You've mastered today's target vocabulary.</p>
-
-                <div className="grid grid-cols-2 gap-4 w-full max-w-sm mb-12">
-                    <div className="puffy-card p-6 bg-strawberry/5 border-none">
-                        <Star className="text-amber-500 mx-auto mb-2" size={24} fill="currentColor" />
-                        <p className="text-2xl font-black italic">+50 XP</p>
-                        <p className="text-[10px] font-bold text-charcoal/30 uppercase tracking-widest">Training Bonus</p>
-                    </div>
-                    <div className="puffy-card p-6 bg-strawberry/5 border-none">
-                        <Trophy className="text-primary mx-auto mb-2" size={24} />
-                        <p className="text-2xl font-black italic">Day {profile?.dayOfCamp}</p>
-                        <p className="text-[10px] font-bold text-charcoal/30 uppercase tracking-widest">Streak Intact</p>
-                    </div>
-                </div>
-
-                <Link href="/dashboard" className="btn-primary-cute flex items-center gap-2 px-12">
-                    Return to Base
-                    <ArrowRight size={20} />
-                </Link>
-            </div>
-        );
-    }
-
-    const currentWord = words[currentIndex];
+    if (authLoading || isLoading) return (
+        <div className="min-h-screen flex items-center justify-center bg-[#FEFAFB]">
+            <Loader2 className="w-12 h-12 text-primary animate-spin" />
+        </div>
+    );
 
     return (
         <div className="min-h-screen bg-[#FEF9FA] pb-20">
-            {/* Side HUD Left */}
-            <div className="fixed left-8 top-1/2 -translate-y-1/2 hidden lg:flex flex-col gap-6 z-10">
-                <Link href="/dashboard" className="hud-btn"><Home size={20} /></Link>
-                <button className="hud-btn"><Settings size={20} /></button>
-            </div>
-
-            {/* Side HUD Right */}
-            <div className="fixed right-8 top-1/2 -translate-y-1/2 hidden lg:flex flex-col gap-6 z-10">
-                <button className="hud-btn"><Trophy size={20} /></button>
-                <button className="hud-btn"><HelpCircle size={20} /></button>
-            </div>
-
+            {/* Header Progress */}
             <header className="max-w-4xl mx-auto px-8 pt-12 text-center pb-12">
-                <motion.div
-                    key={currentIndex}
-                    initial={{ opacity: 0, y: -20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    className="inline-flex items-center gap-4 px-6 py-2 bg-white rounded-full shadow-sm border border-strawberry/5 mb-8"
-                >
-                    <div className="w-2.5 h-2.5 bg-primary rounded-full animate-pulse" />
-                    <span className="text-[10px] font-black uppercase tracking-[0.2em] text-primary">Day {profile?.dayOfCamp}: Operation Learning</span>
-                    <div className="w-1.5 h-1.5 bg-secondary rounded-full" />
-                    <span className="text-[10px] font-black uppercase tracking-[0.2em] text-charcoal/30">Word {currentIndex + 1} of {words.length}</span>
-                </motion.div>
-
-                <div className="w-full max-w-md mx-auto h-2 bg-secondary rounded-full overflow-hidden">
-                    <motion.div
-                        animate={{ width: `${((currentIndex + 1) / words.length) * 100}%` }}
-                        className="h-full bg-primary"
-                    />
+                <div className="flex justify-center gap-4 mb-8">
+                    <StepIndicator active={step === 'review'} completed={['learn', 'listen', 'match', 'spell', 'complete'].includes(step)} icon={<Search size={14} />} label="Review" />
+                    <StepIndicator active={step === 'learn'} completed={['listen', 'match', 'spell', 'complete'].includes(step)} icon={<BookOpen size={14} />} label="Learn" />
+                    <StepIndicator active={step === 'listen'} completed={['match', 'spell', 'complete'].includes(step)} icon={<Volume2 size={14} />} label="Listen" />
+                    <StepIndicator active={step === 'match'} completed={['spell', 'complete'].includes(step)} icon={<Trophy size={14} />} label="Match" />
+                    <StepIndicator active={step === 'spell'} completed={['complete'].includes(step)} icon={<Type size={14} />} label="Spell" />
                 </div>
             </header>
 
             <main className="max-w-6xl mx-auto px-8">
-                <VocabCard
-                    word={currentWord.kr}
-                    pos={currentWord.pos || 'Noun'}
-                    meaningZh={currentWord.zh}
-                    meaningEn={currentWord.en}
-                    sentenceKr={currentWord.sentenceKr || '이것은 예문입니다.'}
-                    sentenceMeaning={currentWord.sentenceMeaning || 'This is an example sentence.'}
-                    onNext={handleNext}
-                    onPrev={handlePrev}
-                />
+                <AnimatePresence mode="wait">
+                    {step === 'intro' && (
+                        <motion.div key="intro" initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0 }} className="text-center py-20">
+                            <div className="w-40 h-40 bg-white rounded-[48px] shadow-2xl flex items-center justify-center mx-auto mb-10 border-4 border-strawberry/10">
+                                <motion.img src="/illustrations/mascot.png" animate={{ y: [0, -10, 0] }} transition={{ repeat: Infinity, duration: 2 }} className="w-32 h-32" />
+                            </div>
+                            <h1 className="text-6xl font-black italic tracking-tighter uppercase mb-4">Daily Operation</h1>
+                            <p className="text-charcoal/40 font-bold mb-12 uppercase tracking-widest">Master {words.length} new targets today</p>
+                            <button onClick={handleNextStep} className="btn-primary-cute text-2xl px-12 py-6">Begin Mission</button>
+                        </motion.div>
+                    )}
+
+                    {step === 'review' && <ReviewTask key="review" words={prevWords} onComplete={handleNextStep} />}
+                    
+                    {step === 'learn' && (
+                        <div key="learn" className="space-y-12">
+                            <VocabCard 
+                                word={words[currentIndex].kr} 
+                                pos={words[currentIndex].pos} 
+                                meaningZh={words[currentIndex].zh} 
+                                meaningEn={words[currentIndex].en} 
+                                sentenceKr={words[currentIndex].sentenceKr} 
+                                sentenceMeaning={words[currentIndex].sentenceMeaning}
+                                illustrationUrl={words[currentIndex].illustrationUrl}
+                                onNext={() => currentIndex < words.length - 1 ? setCurrentIndex(prev => prev + 1) : handleNextStep()}
+                                onPrev={() => setCurrentIndex(prev => Math.max(0, prev - 1))}
+                            />
+                            <div className="text-center">
+                                <p className="text-[10px] font-black text-charcoal/20 uppercase tracking-widest italic">
+                                    Card {currentIndex + 1} of {words.length} • Swipe to Learn
+                                </p>
+                            </div>
+                        </div>
+                    )}
+
+                    {step === 'listen' && <ListeningTask key="listen" words={words} onComplete={handleNextStep} />}
+                    {step === 'match' && <MatchingTask key="match" words={words} onComplete={handleNextStep} />}
+                    {step === 'spell' && <SpellingTask key="spell" words={words} onComplete={handleNextStep} />}
+
+                    {step === 'complete' && (
+                        <motion.div key="complete" initial={{ scale: 0.8, opacity: 0 }} animate={{ scale: 1, opacity: 1 }} className="text-center py-20">
+                            <div className="w-40 h-40 bg-emerald-400 rounded-[48px] shadow-2xl flex items-center justify-center mx-auto mb-10 text-white">
+                                <CheckCircle2 size={80} />
+                            </div>
+                            <h2 className="text-7xl font-black italic tracking-tighter uppercase mb-2">🎉 今天任务完成！</h2>
+                            <p className="text-charcoal/40 font-bold mb-12 uppercase tracking-widest">🔥 连续学习 {profile?.streakCount || 1} 天 | 🏆 Vocabulary Strength Increased</p>
+                            
+                            <div className="grid grid-cols-2 gap-6 max-w-md mx-auto mb-12">
+                                <div className="puffy-card p-8 bg-strawberry/5 border-none">
+                                    <Star className="text-amber-500 mx-auto mb-2" size={32} fill="currentColor" />
+                                    <p className="text-4xl font-black italic">+150 XP</p>
+                                    <p className="text-[10px] font-bold text-charcoal/30 uppercase tracking-widest">Operation Reward</p>
+                                </div>
+                                <div className="puffy-card p-8 bg-strawberry/5 border-none">
+                                    <Trophy className="text-primary mx-auto mb-2" size={32} />
+                                    <p className="text-4xl font-black italic">ELITE</p>
+                                    <p className="text-[10px] font-bold text-charcoal/30 uppercase tracking-widest">Performance Tier</p>
+                                </div>
+                            </div>
+
+                            <Link href="/dashboard" className="btn-primary-cute flex items-center justify-center gap-3 px-12 mx-auto w-fit">
+                                Return to Base
+                                <ArrowRight size={24} />
+                            </Link>
+                        </motion.div>
+                    )}
+                </AnimatePresence>
             </main>
+        </div>
+    );
+}
 
-            <footer className="text-center mt-12">
-                <p className="text-[10px] font-black uppercase tracking-[0.3em] text-charcoal/20">
-                    Hold [S] to speak • Press [H] for hint
-                </p>
-            </footer>
-
-            <style jsx>{`
-        .hud-btn {
-           width: 56px;
-           height: 56px;
-           background: white;
-           border-radius: 20px;
-           display: flex;
-           align-items: center;
-           justify-content: center;
-           color: #FF4E8D;
-           box-shadow: 0 10px 25px -5px rgba(0,0,0,0.05);
-           border: 1.5px solid rgba(255, 78, 141, 0.05);
-           transition: all 0.3s;
-        }
-        .hud-btn:hover {
-           transform: translateX(5px);
-           background: #FF4E8D;
-           color: white;
-        }
-      `}</style>
+function StepIndicator({ active, completed, icon, label }: any) {
+    return (
+        <div className={`flex flex-col items-center gap-2 transition-all duration-500 ${active ? 'scale-110' : 'opacity-40'}`}>
+            <div className={`w-10 h-10 rounded-2xl flex items-center justify-center shadow-sm border-2 ${
+                completed ? 'bg-emerald-400 border-emerald-400 text-white' : 
+                active ? 'bg-primary border-primary text-white shadow-primary/20' : 'bg-white border-strawberry/5 text-charcoal'
+            }`}>
+                {completed ? <CheckCircle2 size={16} /> : icon}
+            </div>
+            <span className={`text-[8px] font-black uppercase tracking-tighter ${active ? 'text-primary' : 'text-charcoal/40'}`}>{label}</span>
         </div>
     );
 }

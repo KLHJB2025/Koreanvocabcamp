@@ -37,3 +37,28 @@ export async function getDailyWords(cycleId: string, day: number): Promise<Word[
     const end = start + wordsPerDay;
     return mockCycle.slice(start, end);
 }
+
+export async function getReviewWords(cycleId: string, day: number): Promise<Word[]> {
+    const mockCycle = MOCK_VOCABULARY[cycleId] || MOCK_VOCABULARY['beginner_cycle_1'];
+    const wordsPerDay = Math.ceil(mockCycle.length / 14);
+    
+    // SRS Timeline: 1st(Day+1), 2nd(Day+3), 3rd(Day+6), 4th(Day+13)
+    // We check which previous days' words are due for review TODAY.
+    const dueDays = [
+        day - 1,  // 1st Review (Day 2 if learned on Day 1)
+        day - 3,  // 2nd Review (Day 4 if learned on Day 1)
+        day - 6,  // 3rd Review (Day 7 if learned on Day 1)
+        day - 13, // 4th Review (Day 14 if learned on Day 1)
+        day - 29  // 5th Review (Day 30 if learned on Day 1)
+    ].filter(d => d >= 1);
+
+    let reviewWords: Word[] = [];
+    
+    dueDays.forEach(d => {
+        const start = (d - 1) * wordsPerDay;
+        const end = Math.min(start + wordsPerDay, mockCycle.length);
+        reviewWords = [...reviewWords, ...mockCycle.slice(start, end)];
+    });
+
+    return reviewWords;
+}

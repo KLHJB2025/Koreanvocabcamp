@@ -25,6 +25,9 @@ export default function ChallengePage() {
     const [timeLeft, setTimeLeft] = useState(90);
     const [options, setOptions] = useState<string[]>([]);
     const [score, setScore] = useState(0);
+    const [wrongWords, setWrongWords] = useState<Word[]>([]);
+    const [combo, setCombo] = useState(0);
+    const [feedback, setFeedback] = useState<{ type: 'correct' | 'wrong', combo: number } | null>(null);
 
     const startChallenge = useCallback(() => {
         const cycleId = profile?.currentCycleId || 'beginner_cycle_1';
@@ -36,6 +39,8 @@ export default function ChallengePage() {
         setAnswers([]);
         setCurrentIndex(0);
         setScore(0);
+        setCombo(0);
+        setWrongWords([]);
         setTimeLeft(90);
         setGameState('playing');
     }, [profile]);
@@ -70,8 +75,15 @@ export default function ChallengePage() {
                     })
                 });
             }
+
+            // Save frequently mistaken words
+            if (wrongWords.length > 0) {
+                await updateDoc(userRef, {
+                    mistakes: arrayUnion(...wrongWords.map(w => w.kr))
+                });
+            }
         }
-    }, [profile, score, questions.length]);
+    }, [profile, score, questions.length, wrongWords]);
 
     useEffect(() => {
         if (gameState === 'playing' && currentIndex < questions.length) {
@@ -102,20 +114,32 @@ export default function ChallengePage() {
     }, [gameState, timeLeft, handleFinishedChallenge]);
 
     const handleAnswer = (selected: string) => {
+        if (feedback) return; // Prevent spam
+
         const currentWord = questions[currentIndex];
         const correct = language === 'zh' ? currentWord.zh : currentWord.en;
         const isCorrect = selected === correct;
 
-        const newScore = isCorrect ? score + 1 : score;
-        setAnswers(prev => [...prev, isCorrect]);
-        setScore(newScore);
-
-        if (currentIndex < questions.length - 1) {
-            setCurrentIndex(prev => prev + 1);
+        if (isCorrect) {
+            const newCombo = combo + 1;
+            setCombo(newCombo);
+            setScore(prev => prev + 1);
+            setFeedback({ type: 'correct', combo: newCombo });
         } else {
-            setGameState('result');
-            handleFinishedChallenge(newScore);
+            setCombo(0);
+            setWrongWords(prev => [...prev, currentWord]);
+            setFeedback({ type: 'wrong', combo: 0 });
         }
+
+        setTimeout(() => {
+            setFeedback(null);
+            if (currentIndex < questions.length - 1) {
+                setCurrentIndex(prev => prev + 1);
+            } else {
+                setGameState('result');
+                handleFinishedChallenge(isCorrect ? score + 1 : score);
+            }
+        }, 800);
     };
 
     const accuracy = Math.round((score / (questions.length || 1)) * 100);
@@ -192,7 +216,34 @@ export default function ChallengePage() {
                             </div>
                         </div>
 
-                        <div className="flex-1 flex flex-col items-center justify-center">
+                        <div className="flex-1 flex flex-col items-center justify-center relative">
+                            <AnimatePresence>
+                                {feedback && (
+                                    <motion.div
+                                        initial={{ opacity: 0, scale: 0.5, y: 20 }}
+                                        animate={{ opacity: 1, scale: 1, y: 0 }}
+                                        exit={{ opacity: 0, scale: 1.5, y: -20 }}
+                                        className="absolute z-50 pointer-events-none"
+                                    >
+                                        {feedback.type === 'correct' ? (
+                                            <div className="text-center">
+                                                <h3 className="text-6xl font-black italic text-primary drop-shadow-[0_0_20px_rgba(255,78,141,0.6)] mb-2">✨ PERFECT!</h3>
+                                                {feedback.combo >= 3 && (
+                                                    <p className="text-3xl font-black italic text-amber-400">🔥 COMBO x{feedback.combo}</p>
+                                                )}
+                                                <p className="text-sm font-bold uppercase tracking-[0.3em] text-emerald-400 mt-2">🧠 MEMORY INCREASED</p>
+                                                <p className="text-xl font-black italic text-white/60">+20 XP</p>
+                                            </div>
+                                        ) : (
+                                            <div className="text-center">
+                                                <h3 className="text-5xl font-black italic text-rose-500 mb-2 uppercase">Almost!</h3>
+                                                <p className="text-sm font-bold uppercase tracking-widest text-white/40">Training Required</p>
+                                            </div>
+                                        )}
+                                    </motion.div>
+                                )}
+                            </AnimatePresence>
+
                             <motion.div
                                 key={currentIndex}
                                 initial={{ opacity: 0, y: 20 }}
@@ -210,7 +261,10 @@ export default function ChallengePage() {
                                         whileHover={{ scale: 1.02, backgroundColor: 'rgba(255, 78, 141, 0.1)' }}
                                         whileTap={{ scale: 0.98 }}
                                         onClick={() => handleAnswer(opt)}
-                                        className="p-8 rounded-[32px] border-2 border-white/10 bg-white/5 text-2xl font-black italic hover:border-primary transition-all text-left flex justify-between items-center group"
+                                        className={`p-8 rounded-[32px] border-2 bg-white/5 text-2xl font-black italic transition-all text-left flex justify-between items-center group ${
+                                            feedback?.type === 'correct' && language === 'zh' ? (opt === questions[currentIndex].zh ? 'border-emerald-400 bg-emerald-400/20' : 'border-white/10 opacity-30') :
+                                            feedback?.type === 'wrong' && language === 'zh' ? (opt === questions[currentIndex].zh ? 'border-emerald-400' : 'border-rose-400 bg-rose-400/20') : 'border-white/10 hover:border-primary'
+                                        }`}
                                     >
                                         <span>{opt}</span>
                                         <div className="w-10 h-10 rounded-xl bg-white/5 flex items-center justify-center group-hover:bg-primary group-hover:text-white text-white/20 font-mono transition-all">
