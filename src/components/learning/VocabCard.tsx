@@ -99,7 +99,7 @@ export function VocabCard({
                                 className="w-56 h-56 bg-gradient-to-br from-strawberry/5 to-cloud/20 rounded-[60px] flex items-center justify-center relative shadow-inner group"
                             >
                                 {illustrationUrl ? (
-                                    <img src={illustrationUrl} alt={word} className="w-44 h-44 object-contain rounded-3xl" />
+                                    <img src={illustrationUrl} alt={word} className="w-44 h-44 object-contain rounded-3xl border-2 border-primary/20 bg-white/50" />
                                 ) : animationData ? (
                                     <Lottie
                                         animationData={animationData}
