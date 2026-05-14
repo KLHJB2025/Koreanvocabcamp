@@ -66,20 +66,20 @@ function MissionNode({ day, status, titleEn, titleZh, language }: MissionNodePro
 
 export function MissionRoadmap({ currentDay, language }: { currentDay: number, language: 'en' | 'zh' }) {
     const missions = [
-        { en: "Survival Kit", zh: "生存工具包" },
-        { en: "Self Intro", zh: "自我介绍" },
-        { en: "Foodie KR", zh: "美食韩语" },
-        { en: "Directions", zh: "问路指南" },
-        { en: "Daily Routine", zh: "日常琐事" },
-        { en: "Shopping", zh: "购物清单" },
-        { en: "Emotions", zh: "情感表达" },
-        { en: "Weather", zh: "天气变化" },
-        { en: "Travel", zh: "旅行计划" },
-        { en: "Hobbies", zh: "兴趣爱好" },
-        { en: "Health", zh: "健康生活" },
-        { en: "Socialize", zh: "社交用语" },
-        { en: "Review I", zh: "复习 I" },
-        { en: "Final Prep", zh: "终极预备" },
+        { en: "Operation: Genesis", zh: "初始入境" },
+        { en: "System Check", zh: "系统自检" },
+        { en: "Daily Pulse", zh: "日常节律" },
+        { en: "Social Bridge", zh: "社交桥梁" },
+        { en: "Action Flow", zh: "行为流动" },
+        { en: "Object Matrix", zh: "物体矩阵" },
+        { en: "Feeling Waves", zh: "情感波动" },
+        { en: "World View", zh: "世界视点" },
+        { en: "Wayfinder", zh: "轨迹追踪" },
+        { en: "Lifestyle", zh: "生活方式" },
+        { en: "Wellness", zh: "身心守护" },
+        { en: "Connection", zh: "联络中心" },
+        { en: "Recall Phase", zh: "回溯阶段" },
+        { en: "Overdrive", zh: "超限预备" },
     ];
 
     return (
