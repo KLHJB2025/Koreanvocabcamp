@@ -167,7 +167,14 @@ export default function MissionPage() {
     );
 }
 
-function StepIndicator({ active, completed, icon, label }: any) {
+interface StepIndicatorProps {
+    active: boolean;
+    completed: boolean;
+    icon: React.ReactNode;
+    label: string;
+}
+
+function StepIndicator({ active, completed, icon, label }: StepIndicatorProps) {
     return (
         <div className={`flex flex-col items-center gap-2 transition-all duration-500 ${active ? 'scale-110' : 'opacity-40'}`}>
             <div className={`w-10 h-10 rounded-2xl flex items-center justify-center shadow-sm border-2 ${

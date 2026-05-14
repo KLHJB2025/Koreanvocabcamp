@@ -266,6 +266,7 @@ export default function Dashboard() {
                                 icon={<Target size={24} />}
                                 badge="12 Ready"
                                 color="bg-mint"
+                                href="/mission"
                             />
                             <ActionCard
                                 title="Academy Store"
@@ -359,9 +360,19 @@ function StatBadge({ icon, value, color }: { icon: React.ReactNode, value: numbe
     );
 }
 
-function ActionCard({ title, desc, icon, badge, color, locked = false }: any) {
-    return (
-        <div className={`puffy-card p-8 flex flex-col group ${locked ? 'opacity-50 cursor-not-allowed' : 'cursor-pointer hover:border-primary'}`}>
+interface ActionCardProps {
+    title: string;
+    desc: string;
+    icon: React.ReactNode;
+    badge: string;
+    color: string;
+    locked?: boolean;
+    href?: string;
+}
+
+function ActionCard({ title, desc, icon, badge, color, locked = false, href }: ActionCardProps) {
+    const content = (
+        <div className={`puffy-card p-8 flex flex-col group h-full transition-all ${locked ? 'opacity-50 cursor-not-allowed' : 'cursor-pointer hover:border-primary'}`}>
             <div className={`w-14 h-14 ${color}/20 rounded-[24px] flex items-center justify-center ${color.replace('bg-', 'text-')} mb-6 group-hover:scale-110 transition-transform shadow-inner`}>
                 {icon}
             </div>
@@ -369,10 +380,20 @@ function ActionCard({ title, desc, icon, badge, color, locked = false }: any) {
             <p className="text-sm font-medium text-charcoal/40 mb-8 leading-relaxed">{desc}</p>
             <div className="mt-auto flex items-center justify-between">
                 <span className={`pill-badge ${color}/10 ${color.replace('bg-', 'text-')}`}>{badge}</span>
-                <div className="w-10 h-10 rounded-full bg-secondary flex items-center justify-center group-hover:translate-x-2 transition-transform shadow-sm">
-                    <ChevronRight size={18} />
-                </div>
+                {!locked && (
+                    <div className="w-10 h-10 rounded-full bg-secondary flex items-center justify-center group-hover:translate-x-2 transition-transform shadow-sm text-primary">
+                        <ChevronRight size={18} />
+                    </div>
+                )}
             </div>
         </div>
+    );
+
+    if (locked || !href) return content;
+
+    return (
+        <Link href={href} className="block h-full">
+            {content}
+        </Link>
     );
 }
