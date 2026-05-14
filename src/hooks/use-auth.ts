@@ -10,6 +10,8 @@ export interface UserProfile {
     email: string | null;
     displayName: string | null;
     role: 'admin' | 'student';
+    status: 'pending' | 'approved' | 'rejected';
+    phoneNumber?: string;
     totalXp: number;
     currentRank: string;
     streakCount: number;
@@ -43,6 +45,7 @@ export function useAuth() {
                         email: firebaseUser.email,
                         displayName: firebaseUser.displayName,
                         role: 'student',
+                        status: 'pending',
                         totalXp: 0,
                         currentRank: 'Hangeul Survivor',
                         streakCount: 0,

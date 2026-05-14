@@ -30,37 +30,34 @@ export default function CampsPage() {
     const campCredits = profile.campCredits || 0;
     const unlockedCycles = profile.unlockedCycles || [];
 
-    const handleSelectCycle = async (id: string, isLocked: boolean, isStarter: boolean) => {
+    const handleSelectCycle = async (id: string, isLocked: boolean, isStarter: boolean, isPrevCompleted: boolean) => {
         if (!profile.uid) return;
-        const userRef = doc(db, 'users', profile.uid);
-
+        
         if (isLocked) {
-            if (campCredits > 0) {
-                // Spend a credit
-                await updateDoc(userRef, {
-                    campCredits: increment(-1),
-                    unlockedCycles: arrayUnion(id),
-                    currentCycleId: id,
-                    dayOfCamp: 1
-                });
-            } else {
-                router.push('/pricing');
-                return;
-            }
-        } else {
-            // Already unlocked or starter
-            await updateDoc(userRef, {
-                currentCycleId: id,
-                dayOfCamp: 1
-            });
+            alert("This cycle is locked. Please contact your instructor/admin to unlock the next level.");
+            return;
         }
+
+        const userRef = doc(db, 'users', profile.uid);
+        await updateDoc(userRef, {
+            currentCycleId: id,
+            dayOfCamp: 1
+        });
+        
         router.push('/dashboard');
     };
 
+    const completedCycles = profile.completedCycles || [];
+
     const cycles = Array.from({ length: cycleCount }, (_, i) => {
         const id = `${level}_cycle_${i + 1}`;
+        const prevId = i > 0 ? `${level}_cycle_${i}` : null;
+        
         const isStarter = i === 0;
-        const isUnlocked = unlockedCycles.includes(id) || isStarter || profile.role === 'admin';
+        const isPurchased = unlockedCycles.includes(id) || isStarter || profile.role === 'admin';
+        const isPrevCompleted = i === 0 || completedCycles.includes(prevId!);
+        
+        const isUnlocked = isPurchased && isPrevCompleted;
 
         return {
             id,
@@ -68,6 +65,8 @@ export default function CampsPage() {
             titleZh: `词汇训练营 #${i + 1}`,
             wordCount: i === cycleCount - 1 ? (level === 'beginner' ? 47 : 100) : 100,
             locked: !isUnlocked,
+            isPurchased,
+            isPrevCompleted,
             isStarter
         };
     });
@@ -98,19 +97,8 @@ export default function CampsPage() {
             <main className="max-w-6xl mx-auto px-10 py-12">
                 <div className="mb-12 flex flex-col md:flex-row md:items-end justify-between gap-8">
                     <div>
-                        <h2 className="text-5xl font-black italic tracking-tighter uppercase mb-4">Training Base</h2>
-                        <p className="text-charcoal/40 font-medium italic">Select your mission. Score 100% on the final exam to earn a free Voucher!</p>
-                    </div>
-                    <div className={`p-6 rounded-[32px] border-2 border-dashed flex items-center gap-6 ${campCredits > 0 ? 'bg-amber-50 border-amber-200' : 'bg-white border-strawberry/20'}`}>
-                        <div className={`w-12 h-12 rounded-2xl flex items-center justify-center ${campCredits > 0 ? 'bg-amber-100 text-amber-600' : 'bg-strawberry/5 text-primary'}`}>
-                            <CreditCard size={24} />
-                        </div>
-                        <div>
-                            <h4 className="font-black italic text-lg leading-none mb-1">{campCredits > 0 ? 'Elite Resources Ready' : 'Depleted Resources'}</h4>
-                            <p className="text-[10px] font-bold text-charcoal/30 uppercase tracking-widest leading-none">
-                                {campCredits} Voucher Transfers available
-                            </p>
-                        </div>
+                        <h1 className="text-5xl font-black italic tracking-tighter uppercase mb-4 leading-none text-slate">Operation Selection</h1>
+                        <p className="text-xl text-foreground/40 font-medium italic tracking-tight uppercase">Authorized cycles only. Contact Admin to expand reach.</p>
                     </div>
                 </div>
 
@@ -121,7 +109,7 @@ export default function CampsPage() {
                             initial={{ opacity: 0, scale: 0.95 }}
                             animate={{ opacity: 1, scale: 1 }}
                             transition={{ delay: i * 0.03 }}
-                            onClick={() => handleSelectCycle(cycle.id, cycle.locked, cycle.isStarter)}
+                            onClick={() => handleSelectCycle(cycle.id, cycle.locked, cycle.isStarter, cycle.isPrevCompleted)}
                             className={`puffy-card p-8 group relative overflow-hidden transition-all duration-300 ${cycle.locked ? 'bg-secondary/20 grayscale-[1]' : 'cursor-pointer hover:border-primary active:scale-95'}`}
                         >
                             <div className="flex items-center justify-between mb-6 relative z-10">
@@ -145,8 +133,11 @@ export default function CampsPage() {
                                 </p>
 
                                 <div className="flex items-center justify-between">
-                                    <span className={`pill-badge ${cycle.locked ? 'bg-charcoal text-white' : 'bg-primary text-white shadow-lg shadow-primary/20'}`}>
-                                        {cycle.locked ? (campCredits > 0 ? 'SPEND 1 CREDIT' : 'BUY CREDIT') : (profile.currentCycleId === cycle.id ? 'ACTIVE' : 'DEPLOYY AGAIN')}
+                                    <span className={`pill-badge ${cycle.locked ? 'bg-charcoal/40 text-white/60' : 'bg-primary text-white shadow-lg shadow-primary/20'}`}>
+                                        {cycle.locked 
+                                            ? 'LOCKED (ADMIN)' 
+                                            : (profile.currentCycleId === cycle.id ? 'ACTIVE' : 'DEPLOY AGAIN')
+                                        }
                                     </span>
                                     {cycle.locked && campCredits > 0 && (
                                         <div className="flex items-center gap-1 text-amber-500 animate-pulse">

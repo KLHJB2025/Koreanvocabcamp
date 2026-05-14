@@ -13,9 +13,9 @@ export interface Word {
 
 export const MOCK_VOCABULARY: Record<string, Word[]> = {
     "beginner_cycle_1": [
-        { kr: "가게", en: "Store", zh: "商店", pos: "Noun", sentenceKr: "가게에서 우유를 사요.", sentenceMeaning: "I buy milk at the store." },
-        { kr: "가격", en: "Price", zh: "价格", pos: "Noun", sentenceKr: "이 물건은 가격이 비싸요.", sentenceMeaning: "This item's price is expensive." },
-        { kr: "가구", en: "Furniture", zh: "家具", pos: "Noun", sentenceKr: "새 집의 가구를 골라요.", sentenceMeaning: "I'm choosing furniture for the new house." },
+        { kr: "가게", en: "Store", zh: "商店", pos: "Noun", sentenceKr: "가게에서 우유를 사요.", sentenceMeaning: "I buy milk at the store.", illustrationUrl: "/illustrations/store.png" },
+        { kr: "가격", en: "Price", zh: "价格", pos: "Noun", sentenceKr: "이 물건은 가격이 비싸요.", sentenceMeaning: "This item's price is expensive.", illustrationUrl: "/illustrations/price.png" },
+        { kr: "가구", en: "Furniture", zh: "家具", pos: "Noun", sentenceKr: "새 집의 가구를 골라요.", sentenceMeaning: "I'm choosing furniture for the new house.", illustrationUrl: "/illustrations/furniture.png" },
         { kr: "가깝다", en: "Near", zh: "近", pos: "Adjective", sentenceKr: "학교가 집에서 아주 가까워요.", sentenceMeaning: "The school is very near the house." },
         { kr: "가끔", en: "Sometimes", zh: "有时", pos: "Adverb", sentenceKr: "가끔 한국 음식을 먹어요.", sentenceMeaning: "I sometimes eat Korean food." },
         { kr: "가난", en: "Poverty", zh: "贫穷", pos: "Noun", sentenceKr: "그는 가난을 이겨냈어요.", sentenceMeaning: "He overcame poverty." },

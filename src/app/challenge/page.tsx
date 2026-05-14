@@ -77,6 +77,13 @@ export default function ChallengePage() {
                 });
             }
 
+            // Mark cycle as completed if accuracy is at least 60%
+            if (accuracy >= 60) {
+                await updateDoc(userRef, {
+                    completedCycles: arrayUnion(profile.currentCycleId || 'beginner_cycle_1')
+                });
+            }
+
             // Save frequently mistaken words
             if (wrongWords.length > 0) {
                 await updateDoc(userRef, {

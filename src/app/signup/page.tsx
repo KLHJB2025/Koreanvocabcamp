@@ -23,6 +23,8 @@ export default function SignupPage() {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [fullName, setFullName] = useState('');
+    const [phoneNumber, setPhoneNumber] = useState('');
+    const [purpose, setPurpose] = useState('');
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState<string | null>(null);
 
@@ -43,13 +45,18 @@ export default function SignupPage() {
                 uid: user.uid,
                 email: user.email,
                 displayName: fullName,
+                phoneNumber: phoneNumber,
+                purpose: purpose,
                 totalXp: 0,
                 currentRank: 'Hangeul Survivor',
                 streakCount: 0,
+                status: 'pending', // Requires admin approval
+                role: 'student',
+                unlockedCycles: ['beginner_cycle_1'], // Everyone gets the first cycle
                 createdAt: new Date().toISOString(),
             });
 
-            router.push('/onboarding');
+            router.push('/pending-approval');
         } catch (err: any) {
             setError(err.message || 'Signup failed');
         } finally {
@@ -74,10 +81,13 @@ export default function SignupPage() {
                 totalXp: 0,
                 currentRank: 'Hangeul Survivor',
                 streakCount: 0,
+                status: 'pending',
+                role: 'student',
+                unlockedCycles: ['beginner_cycle_1'],
                 createdAt: new Date().toISOString(),
             }, { merge: true });
 
-            router.push('/onboarding');
+            router.push('/pending-approval');
         } catch (err: any) {
             setError(err.message || 'Google signup failed');
         } finally {
@@ -195,6 +205,35 @@ export default function SignupPage() {
                                         onChange={(e) => setPassword(e.target.value)}
                                         className="w-full pl-12 pr-4 py-4 rounded-2xl bg-secondary/30 border border-transparent focus:border-primary focus:bg-white outline-none transition-all font-medium"
                                         placeholder="••••••••"
+                                        required
+                                        disabled={loading}
+                                    />
+                                </div>
+                            </div>
+
+                            <div className="space-y-2">
+                                <label className="text-xs font-bold text-foreground/40 uppercase tracking-widest ml-1">Phone Number</label>
+                                <div className="relative">
+                                    <input
+                                        type="tel"
+                                        value={phoneNumber}
+                                        onChange={(e) => setPhoneNumber(e.target.value)}
+                                        className="w-full px-6 py-4 rounded-2xl bg-secondary/30 border border-transparent focus:border-primary focus:bg-white outline-none transition-all font-medium"
+                                        placeholder="+60 12-345 6789"
+                                        required
+                                        disabled={loading}
+                                    />
+                                </div>
+                            </div>
+
+                            <div className="space-y-2">
+                                <label className="text-xs font-bold text-foreground/40 uppercase tracking-widest ml-1">Purpose of Joining</label>
+                                <div className="relative">
+                                    <textarea
+                                        value={purpose}
+                                        onChange={(e) => setPurpose(e.target.value)}
+                                        className="w-full px-6 py-4 rounded-2xl bg-secondary/30 border border-transparent focus:border-primary focus:bg-white outline-none transition-all font-medium min-h-[100px]"
+                                        placeholder="Tell us why you want to join the bootcamp..."
                                         required
                                         disabled={loading}
                                     />
