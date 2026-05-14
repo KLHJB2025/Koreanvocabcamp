@@ -20,6 +20,7 @@ export interface UserProfile {
     level: 'beginner' | 'intermediate';
     campCredits: number;
     unlockedCycles: string[];
+    completedCycles: string[];
 }
 
 export function useAuth() {
@@ -53,7 +54,8 @@ export function useAuth() {
                         currentCycleId: null,
                         level: 'beginner',
                         campCredits: 0,
-                        unlockedCycles: []
+                        unlockedCycles: [],
+                        completedCycles: []
                     });
                 }
             } else {
