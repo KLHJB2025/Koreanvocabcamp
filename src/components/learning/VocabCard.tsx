@@ -93,10 +93,10 @@ export function VocabCard({
                     <motion.div
                         animate={{ y: [0, -10, 0] }}
                         transition={{ repeat: Infinity, duration: 4, ease: "easeInOut" }}
-                        className="w-56 h-56 bg-gradient-to-br from-strawberry/5 to-cloud/20 rounded-[60px] flex items-center justify-center relative shadow-inner group"
+                        className="w-72 h-72 bg-gradient-to-br from-strawberry/5 to-cloud/20 rounded-[80px] flex items-center justify-center relative shadow-inner group"
                     >
                         {illustrationUrl ? (
-                            <img src={illustrationUrl} alt={word} className="w-44 h-44 object-contain rounded-3xl border-2 border-primary/20 bg-white/50" />
+                            <img src={illustrationUrl} alt={word} className="w-60 h-60 object-contain rounded-[40px] border-2 border-primary/20 bg-white/50" />
                         ) : animationData ? (
                             <Lottie
                                 animationData={animationData}
