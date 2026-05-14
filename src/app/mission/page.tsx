@@ -118,6 +118,7 @@ export default function MissionPage() {
                                 meaningEn={words[currentIndex].en} 
                                 sentenceKr={words[currentIndex].sentenceKr} 
                                 sentenceMeaning={words[currentIndex].sentenceMeaning}
+                                sentenceZh={words[currentIndex].sentenceZh}
                                 illustrationUrl={words[currentIndex].illustrationUrl}
                                 onNext={() => currentIndex < words.length - 1 ? setCurrentIndex(prev => prev + 1) : handleNextStep()}
                                 onPrev={() => setCurrentIndex(prev => Math.max(0, prev - 1))}
