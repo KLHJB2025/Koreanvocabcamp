@@ -38,6 +38,7 @@ export function VocabCard({
     sentenceZh,
     animationData,
     animationUrl,
+    illustrationUrl,
     onNext,
     onPrev
 }: VocabCardProps) {
