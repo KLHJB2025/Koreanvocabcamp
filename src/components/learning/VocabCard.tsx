@@ -9,8 +9,8 @@ interface VocabCardProps {
     pos: string;
     meaningZh: string;
     meaningEn: string;
-    sentenceKr: string;
-    sentenceMeaning: string;
+    sentenceKr?: string;
+    sentenceMeaning?: string;
     sentenceZh?: string;
     illustrationUrl?: string;
     animationUrl?: string;
@@ -44,7 +44,8 @@ export function VocabCard({
 }: VocabCardProps) {
     const { t, language } = useTranslation();
 
-    const speak = (text: string, speed: 'normal' | 'slow' = 'normal') => {
+    const speak = (text?: string, speed: 'normal' | 'slow' = 'normal') => {
+        if (!text) return;
         if ('speechSynthesis' in window) {
             window.speechSynthesis.cancel();
             const utterance = new SpeechSynthesisUtterance(text);
@@ -119,27 +120,29 @@ export function VocabCard({
                         <p className="text-4xl font-black text-primary italic leading-tight">{displayedMeaning}</p>
                     </div>
 
-                    {/* Example Sentence Section (Directly visible) */}
+                    {/* Example Sentence Section */}
                     <div className="w-full pt-8 border-t border-strawberry/5">
-                        <div className="flex items-start gap-4 bg-cloud/10 p-6 rounded-[32px] mb-8">
-                            <div className="w-10 h-10 rounded-full bg-white flex items-center justify-center text-primary shadow-sm shrink-0">
-                                <Quote size={18} fill="currentColor" />
+                        {sentenceKr && (
+                            <div className="flex items-start gap-4 bg-cloud/10 p-6 rounded-[32px] mb-8">
+                                <div className="w-10 h-10 rounded-full bg-white flex items-center justify-center text-primary shadow-sm shrink-0">
+                                    <Quote size={18} fill="currentColor" />
+                                </div>
+                                <div className="space-y-2 text-left">
+                                    <p className="text-2xl font-bold text-charcoal leading-snug">
+                                        {sentenceKr}
+                                        <button 
+                                            onClick={() => speak(sentenceKr)}
+                                            className="inline-flex ml-2 align-middle text-primary/40 hover:text-primary transition-colors"
+                                        >
+                                            <Volume2 size={16} />
+                                        </button>
+                                    </p>
+                                    <p className="text-lg font-bold text-charcoal/40 italic">
+                                        {displayedSentenceMeaning}
+                                    </p>
+                                </div>
                             </div>
-                            <div className="space-y-2 text-left">
-                                <p className="text-2xl font-bold text-charcoal leading-snug">
-                                    {sentenceKr}
-                                    <button 
-                                        onClick={() => speak(sentenceKr)}
-                                        className="inline-flex ml-2 align-middle text-primary/40 hover:text-primary transition-colors"
-                                    >
-                                        <Volume2 size={16} />
-                                    </button>
-                                </p>
-                                <p className="text-lg font-bold text-charcoal/40 italic">
-                                    {displayedSentenceMeaning}
-                                </p>
-                            </div>
-                        </div>
+                        )}
 
                         {/* Navigation Buttons */}
                         <div className="flex gap-4">

@@ -9,7 +9,7 @@ import { Word } from '@/lib/vocabulary-data';
 import { addXp, completeDay, recordLearnedWords } from '@/lib/user';
 import { useRouter } from 'next/navigation';
 import confetti from 'canvas-confetti';
-import { Home, CheckCircle2, Star, Trophy, ArrowRight, Loader2, BookOpen, Volume2, Search, Type } from 'lucide-react';
+import { Home, CheckCircle2, Star, Trophy, ArrowRight, Loader2, BookOpen, Volume2, Search, Type, Sparkles, AlertCircle } from 'lucide-react';
 import Link from 'next/link';
 import { useTranslation } from '@/hooks/use-translation';
 

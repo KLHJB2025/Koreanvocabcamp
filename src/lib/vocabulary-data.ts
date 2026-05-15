@@ -4,13 +4,13 @@ export interface Word {
     en: string;
     zh: string;
     pos: string;
-    sentenceKr: string;
-    sentenceMeaning: string;
+    sentenceKr?: string;
+    sentenceMeaning?: string;
     sentenceZh?: string;
     illustrationUrl?: string;
     animationData?: any;
     animationUrl?: string;
-    category?: 'place' | 'action' | 'object' | 'person' | 'feeling' | 'description';
+    category?: string;
 }
 
 export const MOCK_VOCABULARY: Record<string, Word[]> = {
