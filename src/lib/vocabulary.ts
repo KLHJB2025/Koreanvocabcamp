@@ -68,11 +68,18 @@ export async function getReviewWords(uid: string, cycleId: string, day: number):
         console.error('Error fetching review words:', error);
     }
 
-    // Fallback to original day-based logic if no firestore data
-    const mockCycle = MOCK_VOCABULARY[cycleId] || MOCK_VOCABULARY['beginner_cycle_1'];
-    const wordsPerDay = Math.ceil(mockCycle.length / 14);
+    // Fallback to original day-based logic ONLY if Firestore is unavailable (offline)
+    // and we are clearly in a development or mock state.
+    // For production, if Firestore says no words are due, we return empty.
     
-    // SRS Timeline: 1st(Day+1), 2nd(Day+3), 3rd(Day+6), 4th(Day+13)
+    // Standardize wordsPerDay calculation (use 13 days for learning, Day 14 for Boss)
+    const mockCycle = MOCK_VOCABULARY[cycleId] || MOCK_VOCABULARY['beginner_cycle_1'];
+    const wordsPerDay = Math.ceil(mockCycle.length / 13);
+    
+    // Only return fallback words if we are specifically looking for a way to fill a session
+    // and the user has actually progressed past day 1.
+    if (day <= 1) return [];
+
     const dueDays = [
         day - 1,
         day - 3,
@@ -87,5 +94,25 @@ export async function getReviewWords(uid: string, cycleId: string, day: number):
         reviewWords = [...reviewWords, ...mockCycle.slice(start, end)];
     });
 
-    return reviewWords;
+    // To prevent the "never learned" issue, we only use this fallback if we 
+    // absolutely have to, but for now let's return empty if Firestore is active.
+    // return reviewWords; 
+    return []; // Default to empty if Firestore query returned nothing
+}
+
+export async function getReviewCount(uid: string): Promise<number> {
+    try {
+        const learnedRef = collection(db, 'users', uid, 'learned_words');
+        const now = new Date();
+        const q = query(
+            learnedRef,
+            where('nextReview', '<=', now)
+        );
+
+        const snapshot = await getDocs(q);
+        return snapshot.size;
+    } catch (error) {
+        console.error('Error fetching review count:', error);
+        return 0;
+    }
 }

@@ -3,10 +3,10 @@ import { Word } from './vocabulary-data';
 export interface ScenarioTemplate {
     id: string;
     name: string;
-    intro: (lang: 'en' | 'zh') => string;
+    intro: (lang: 'en' | 'zh', mascotName?: string) => string;
     dialogue: {
         speaker: 'Mascot' | 'Friend' | 'Shopkeeper';
-        text: (lang: 'en' | 'zh', words: Record<string, string>) => string;
+        text: (lang: 'en' | 'zh', words: Record<string, string>, mascotName?: string) => string;
         missingWordCategory: string;
         correctWord: string;
     }[];
@@ -16,11 +16,11 @@ export const SCENARIO_TEMPLATES: ScenarioTemplate[] = [
     {
         id: 'daily_errand',
         name: 'The Daily Errand',
-        intro: (lang) => lang === 'zh' ? '今天有很多事情要做！' : 'There are many things to do today!',
+        intro: (lang, mascotName) => lang === 'zh' ? `今天${mascotName || '小步'}有很多事情要做！` : `There are many things for ${mascotName || 'Boopi'} to do today!`,
         dialogue: [
             {
                 speaker: 'Mascot',
-                text: (lang, words) => lang === 'zh' 
+                text: (lang, words, mascotName) => lang === 'zh' 
                     ? `我们需要去一个${words.place || '___'}买点东西。` 
                     : `We need to go to a ${words.place || '___'} to buy some things.`,
                 missingWordCategory: 'place',
@@ -28,10 +28,10 @@ export const SCENARIO_TEMPLATES: ScenarioTemplate[] = [
             },
             {
                 speaker: 'Mascot',
-                text: (lang, words) => lang === 'zh' 
-                    ? `看看这个，它的${words.object || '___'}是多少？` 
-                    : `Look at this, what is its ${words.object || '___'}?`,
-                missingWordCategory: 'object',
+                text: (lang, words, mascotName) => lang === 'zh' 
+                    ? `这个${words.object || '物品'}的${words.property || '价格'}是多少？` 
+                    : `How much is the ${words.property || 'price'} of this ${words.object || 'item'}?`,
+                missingWordCategory: 'property',
                 correctWord: ''
             }
         ]
@@ -39,19 +39,19 @@ export const SCENARIO_TEMPLATES: ScenarioTemplate[] = [
     {
         id: 'express_feeling',
         name: 'Sharing Feelings',
-        intro: (lang) => lang === 'zh' ? '和好朋友聊聊感受。' : 'Talking about feelings with a friend.',
+        intro: (lang, mascotName) => lang === 'zh' ? `和好朋友聊聊感受。` : `Talking about feelings with a friend.`,
         dialogue: [
             {
                 speaker: 'Friend',
-                text: (lang, words) => lang === 'zh'
-                    ? `你今天感觉怎么样？`
-                    : `How are you feeling today?`,
+                text: (lang, words, mascotName) => lang === 'zh'
+                    ? `${mascotName || '朋友'}，你今天感觉怎么样？`
+                    : `${mascotName || 'Friend'}, how are you feeling today?`,
                 missingWordCategory: '',
                 correctWord: 'skip'
             },
             {
                 speaker: 'Mascot',
-                text: (lang, words) => lang === 'zh'
+                text: (lang, words, mascotName) => lang === 'zh'
                     ? `我觉得非常${words.feeling || '___'}。`
                     : `I feel very ${words.feeling || '___'}.`,
                 missingWordCategory: 'feeling',
@@ -59,7 +59,7 @@ export const SCENARIO_TEMPLATES: ScenarioTemplate[] = [
             },
             {
                 speaker: 'Friend',
-                text: (lang, words) => lang === 'zh'
+                text: (lang, words, mascotName) => lang === 'zh'
                     ? `为什么呢？`
                     : `Why is that?`,
                 missingWordCategory: '',
@@ -67,7 +67,7 @@ export const SCENARIO_TEMPLATES: ScenarioTemplate[] = [
             },
             {
                 speaker: 'Mascot',
-                text: (lang, words) => lang === 'zh'
+                text: (lang, words, mascotName) => lang === 'zh'
                     ? `因为这个${words.object || '___'}太漂亮了！`
                     : `Because this ${words.object || '___'} is so beautiful!`,
                 missingWordCategory: 'object',
@@ -78,11 +78,11 @@ export const SCENARIO_TEMPLATES: ScenarioTemplate[] = [
     {
         id: 'action_day',
         name: 'A Busy Day',
-        intro: (lang) => lang === 'zh' ? '繁忙的一天开始了！' : 'A busy day begins!',
+        intro: (lang, mascotName) => lang === 'zh' ? `繁忙的一天开始了！` : `A busy day begins!`,
         dialogue: [
             {
                 speaker: 'Mascot',
-                text: (lang, words) => lang === 'zh'
+                text: (lang, words, mascotName) => lang === 'zh'
                     ? `我打算今天${words.action || '___'}。`
                     : `I plan to ${words.action || '___'} today.`,
                 missingWordCategory: 'action',
@@ -90,7 +90,7 @@ export const SCENARIO_TEMPLATES: ScenarioTemplate[] = [
             },
             {
                 speaker: 'Mascot',
-                text: (lang, words) => lang === 'zh'
+                text: (lang, words, mascotName) => lang === 'zh'
                     ? `那里真的很${words.description || '___'}。`
                     : `It is really ${words.description || '___'} there.`,
                 missingWordCategory: 'description',
@@ -100,7 +100,7 @@ export const SCENARIO_TEMPLATES: ScenarioTemplate[] = [
     }
 ];
 
-export function buildScenario(words: Word[], lang: 'en' | 'zh') {
+export function buildScenario(words: Word[], lang: 'en' | 'zh', mascotName?: string) {
     // Pick words by category or POS fallback
     const categoryMap: Record<string, Word> = {};
     
@@ -118,6 +118,12 @@ export function buildScenario(words: Word[], lang: 'en' | 'zh') {
         }
     });
 
+    // Create a simplified words map for the text function
+    const wordsForTemplate: Record<string, string> = {};
+    Object.entries(categoryMap).forEach(([cat, word]) => {
+        wordsForTemplate[cat] = lang === 'zh' ? word.zh : word.en;
+    });
+
     // Pick a template that has at least one matching word, or pick a random one
     let template = SCENARIO_TEMPLATES[0];
     const suitableTemplates = SCENARIO_TEMPLATES.filter(t => 
@@ -129,11 +135,21 @@ export function buildScenario(words: Word[], lang: 'en' | 'zh') {
     }
     
     const dialogue = template.dialogue.map(d => {
-        if (d.correctWord === 'skip') return { ...d, isSkip: true };
+        if (d.correctWord === 'skip') {
+            return { ...d, isSkip: true, renderedText: d.text(lang, wordsForTemplate, mascotName) };
+        }
         
         const matchingWord = categoryMap[d.missingWordCategory] || words[Math.floor(Math.random() * words.length)];
+        
+        // Update the template words with the chosen matching word so the text and hint align
+        const currentWordsForTemplate = { ...wordsForTemplate };
+        currentWordsForTemplate[d.missingWordCategory] = lang === 'zh' ? matchingWord.zh : matchingWord.en;
+        
+        const renderedText = d.text(lang, currentWordsForTemplate, mascotName);
+        
         return {
             ...d,
+            renderedText,
             correctWord: matchingWord.kr,
             hint: lang === 'zh' ? matchingWord.zh : matchingWord.en,
             isSkip: false
@@ -143,6 +159,6 @@ export function buildScenario(words: Word[], lang: 'en' | 'zh') {
     return {
         ...template,
         dialogue,
-        introText: template.intro(lang)
+        introText: template.intro(lang, mascotName)
     };
 }

@@ -9,7 +9,7 @@ import { doc, updateDoc } from 'firebase/firestore';
 import { useAuth } from '@/hooks/use-auth';
 import { CheckCircle2, Globe, GraduationCap, ChevronRight, Loader2, Sparkles } from 'lucide-react';
 
-type Step = 'language' | 'level';
+type Step = 'language' | 'level' | 'mascot';
 
 export default function OnboardingPage() {
     const router = useRouter();
@@ -18,6 +18,7 @@ export default function OnboardingPage() {
     const [step, setStep] = useState<Step>('language');
     const [language, setLanguage] = useState<'zh' | 'en' | null>(null);
     const [level, setLevel] = useState<'beginner' | 'intermediate' | null>(null);
+    const [mascotName, setMascotName] = useState('');
     const [loading, setLoading] = useState(false);
 
     const handleFinish = async () => {
@@ -29,6 +30,7 @@ export default function OnboardingPage() {
             await updateDoc(userRef, {
                 language,
                 level,
+                mascotName: mascotName.trim() || (language === 'zh' ? '小步' : 'Boopi'),
                 currentCycleId: level === 'beginner' ? 'beginner_cycle_1' : 'intermediate_cycle_1',
                 dayOfCamp: 1
             });
@@ -61,6 +63,7 @@ export default function OnboardingPage() {
                     <div className="flex items-center gap-2">
                         <div className={`w-3 h-3 rounded-full transition-all duration-500 ${step === 'language' ? 'bg-primary w-8' : 'bg-strawberry/20'}`} />
                         <div className={`w-3 h-3 rounded-full transition-all duration-500 ${step === 'level' ? 'bg-primary w-8' : 'bg-strawberry/20'}`} />
+                        <div className={`w-3 h-3 rounded-full transition-all duration-500 ${step === 'mascot' ? 'bg-primary w-8' : 'bg-strawberry/20'}`} />
                     </div>
                 </div>
 
@@ -150,11 +153,49 @@ export default function OnboardingPage() {
                             <div className="flex gap-4">
                                 <button onClick={() => setStep('language')} className="btn-secondary-cute flex-1">Back</button>
                                 <button
-                                    onClick={handleFinish}
-                                    disabled={!level || loading}
+                                    onClick={() => setStep('mascot')}
+                                    disabled={!level}
                                     className="btn-primary-cute flex-1 flex items-center justify-center gap-2"
                                 >
-                                    {loading ? <Loader2 className="animate-spin" /> : 'Ready to Deploy'}
+                                    Next
+                                    <ChevronRight size={20} />
+                                </button>
+                            </div>
+                        </motion.div>
+                    ) : (
+                        <motion.div
+                            key="mascot"
+                            initial={{ opacity: 0, x: 20 }}
+                            animate={{ opacity: 1, x: 0 }}
+                            exit={{ opacity: 0, x: -20 }}
+                            className="space-y-10"
+                        >
+                            <div className="text-center">
+                                <div className="w-20 h-20 bg-white rounded-3xl flex items-center justify-center text-primary shadow-xl mx-auto mb-6 rotate-6 overflow-hidden">
+                                    <img src="/illustrations/mascot.png" alt="Mascot" className="w-full h-full object-cover" />
+                                </div>
+                                <h1 className="text-4xl font-black italic tracking-tighter uppercase mb-2">Name Your Buddy</h1>
+                                <p className="text-charcoal/40 font-medium italic">Give your learning companion a special name!</p>
+                            </div>
+
+                            <div className="puffy-card p-8 bg-white shadow-xl">
+                                <input
+                                    type="text"
+                                    value={mascotName}
+                                    onChange={(e) => setMascotName(e.target.value)}
+                                    placeholder="Enter mascot name..."
+                                    className="w-full p-6 rounded-2xl border-4 border-secondary/20 bg-secondary/10 text-3xl font-black italic text-center outline-none focus:border-primary transition-all text-charcoal"
+                                />
+                            </div>
+
+                            <div className="flex gap-4">
+                                <button onClick={() => setStep('level')} className="btn-secondary-cute flex-1">Back</button>
+                                <button
+                                    onClick={handleFinish}
+                                    disabled={loading}
+                                    className="btn-primary-cute flex-1 flex items-center justify-center gap-2"
+                                >
+                                    {loading ? <Loader2 className="animate-spin" /> : 'Start Camp'}
                                     {!loading && <ChevronRight size={20} />}
                                 </button>
                             </div>

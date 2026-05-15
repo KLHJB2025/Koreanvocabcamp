@@ -11,18 +11,13 @@ interface ErrorReviewTaskProps {
 }
 
 export function ErrorReviewTask({ words, onComplete }: ErrorReviewTaskProps) {
-    const [currentIndex, setCurrentIndex] = useState(0);
-    const [input, setInput] = useState('');
-    const [isCorrect, setIsCorrect] = useState<boolean | null>(null);
-    const [showCorrection, setShowCorrection] = useState(false);
-    const { t, language } = useTranslation();
-
-    const currentWord = words[currentIndex];
+    const [localWords, setLocalWords] = useState<Word[]>(words);
+    const currentWord = localWords[currentIndex];
 
     const handleSubmit = (e: React.FormEvent) => {
         e.preventDefault();
         if (showCorrection) {
-            handleNext();
+            handleNext(false); // Move to next, but word was wrong
             return;
         }
 
@@ -30,17 +25,23 @@ export function ErrorReviewTask({ words, onComplete }: ErrorReviewTaskProps) {
         setIsCorrect(correct);
 
         if (correct) {
-            setTimeout(handleNext, 1000);
+            setTimeout(() => handleNext(true), 1000);
         } else {
             setShowCorrection(true);
         }
     };
 
-    const handleNext = () => {
+    const handleNext = (wasCorrect: boolean) => {
         setIsCorrect(null);
         setShowCorrection(false);
         setInput('');
-        if (currentIndex < words.length - 1) {
+        
+        if (!wasCorrect) {
+            // Add the word to the end of the list to try again later
+            setLocalWords(prev => [...prev, currentWord]);
+        }
+
+        if (currentIndex < localWords.length - 1) {
             setCurrentIndex(prev => prev + 1);
         } else {
             onComplete();

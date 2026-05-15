@@ -13,11 +13,20 @@ import { MissionRoadmap } from '@/components/learning/MissionRoadmap';
 import { getRankInfo } from '@/lib/ranks';
 import { getDailyEncouragement } from '@/lib/encouragement';
 import { MOCK_VOCABULARY } from '@/lib/vocabulary-data';
+import { getReviewCount } from '@/lib/vocabulary';
+import { useState, useEffect } from 'react';
 
 export default function Dashboard() {
     const { t, language } = useTranslation();
     const { profile, loading } = useAuth();
     const router = useRouter();
+    const [reviewCount, setReviewCount] = useState(0);
+
+    useEffect(() => {
+        if (profile?.uid) {
+            getReviewCount(profile.uid).then(setReviewCount);
+        }
+    }, [profile]);
 
     const handleLogout = async () => {
         await signOut(auth);
@@ -286,7 +295,7 @@ export default function Dashboard() {
                                 title={t('dashboard.actions.memoryLab.title')}
                                 desc={t('dashboard.actions.memoryLab.desc')}
                                 icon={<Target size={24} />}
-                                badge={t('dashboard.actions.memoryLab.badge', { count: 12 })}
+                                badge={t('dashboard.actions.memoryLab.badge', { count: reviewCount })}
                                 color="bg-mint"
                                 href="/mission"
                             />

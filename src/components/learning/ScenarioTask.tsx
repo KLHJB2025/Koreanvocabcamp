@@ -10,9 +10,10 @@ import { Sparkles, MessageCircle, ArrowRight, CheckCircle2 } from 'lucide-react'
 interface ScenarioTaskProps {
     words: Word[];
     onComplete: () => void;
+    mascotName?: string;
 }
 
-export function ScenarioTask({ words, onComplete }: ScenarioTaskProps) {
+export function ScenarioTask({ words, onComplete, mascotName }: ScenarioTaskProps) {
     const { language, t } = useTranslation();
     const [scenario, setScenario] = useState<any>(null);
     const [currentDialogueIndex, setCurrentDialogueIndex] = useState(0);
@@ -22,9 +23,9 @@ export function ScenarioTask({ words, onComplete }: ScenarioTaskProps) {
     const [showHint, setShowHint] = useState(false);
 
     useEffect(() => {
-        const built = buildScenario(words, language as any);
+        const built = buildScenario(words, language as any, mascotName);
         setScenario(built);
-    }, [words, language]);
+    }, [words, language, mascotName]);
 
     const currentStep = scenario?.dialogue[currentDialogueIndex];
 
@@ -108,10 +109,10 @@ export function ScenarioTask({ words, onComplete }: ScenarioTaskProps) {
                                 : 'bg-primary/10 rounded-br-none'
                             }`}>
                                 <p className="text-sm font-black uppercase tracking-widest text-charcoal/40 mb-2">
-                                    {currentStep.speaker}
+                                    {currentStep.speaker === 'Mascot' ? (mascotName || 'Mascot') : currentStep.speaker}
                                 </p>
-                                <p className="text-2xl font-bold text-charcoal leading-relaxed">
-                                    {currentStep.text(language, { [currentStep.missingWordCategory]: '???' })}
+                                <p className="text-3xl font-bold text-charcoal leading-relaxed">
+                                    {currentStep.renderedText || currentStep.text(language, { [currentStep.missingWordCategory]: '???' })}
                                 </p>
                             </div>
                         </div>

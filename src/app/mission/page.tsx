@@ -158,9 +158,12 @@ export default function MissionPage() {
                 <AnimatePresence mode="wait">
                     {step === 'intro' && (
                         <motion.div key="intro" initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0 }} className="text-center py-20">
-                            <div className="w-40 h-40 bg-white rounded-[48px] shadow-2xl flex items-center justify-center mx-auto mb-10 border-4 border-strawberry/10">
+                            <div className="w-40 h-40 bg-white rounded-[48px] shadow-2xl flex items-center justify-center mx-auto mb-4 border-4 border-strawberry/10 overflow-hidden">
                                 <motion.img src="/illustrations/mascot.png" animate={{ y: [0, -10, 0] }} transition={{ repeat: Infinity, duration: 2 }} className="w-32 h-32" />
                             </div>
+                            <p className="text-strawberry font-black italic uppercase tracking-widest text-sm mb-6">
+                                {profile?.mascotName || 'Boopi'}
+                            </p>
                             <h1 className="text-6xl font-black italic tracking-tighter uppercase mb-4">{t('mission.dailyOperation')}</h1>
                             <p className="text-charcoal/40 font-bold mb-12 uppercase tracking-widest">
                                 {t('mission.masterTargets', { count: words.length })}
@@ -197,7 +200,7 @@ export default function MissionPage() {
                     {step === 'match' && <MatchingTask key="match" words={words} onComplete={handleNextStep} onMiss={handleMiss} />}
                     {step === 'spell' && <SpellingTask key="spell" words={words} onComplete={handleNextStep} onMiss={handleMiss} />}
                     {step === 'errorReview' && <ErrorReviewTask key="errorReview" words={missedWords} onComplete={handleNextStep} />}
-                    {step === 'scenario' && <ScenarioTask key="scenario" words={words} onComplete={finalizeMission} />}
+                    {step === 'scenario' && <ScenarioTask key="scenario" words={words} onComplete={finalizeMission} mascotName={profile?.mascotName} />}
 
                     {step === 'complete' && (
                         <motion.div key="complete" initial={{ scale: 0.8, opacity: 0 }} animate={{ scale: 1, opacity: 1 }} className="text-center py-20">

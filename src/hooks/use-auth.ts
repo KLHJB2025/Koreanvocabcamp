@@ -21,6 +21,7 @@ export interface UserProfile {
     campCredits: number;
     unlockedCycles: string[];
     completedCycles: string[];
+    mascotName?: string;
 }
 
 export function useAuth() {
