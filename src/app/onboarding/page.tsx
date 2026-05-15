@@ -108,7 +108,7 @@ export default function OnboardingPage() {
                                 ))}
                             </div>
                         </motion.div>
-                    ) : (
+                    ) : step === 'level' ? (
                         <motion.div
                             key="level"
                             initial={{ opacity: 0, x: 20 }}
