@@ -2,16 +2,17 @@
 
 import { motion } from 'framer-motion';
 import { Lock, CheckCircle2, Trophy, Star } from 'lucide-react';
+import { useTranslation } from '@/hooks/use-translation';
 
 interface MissionNodeProps {
     day: number;
     status: 'locked' | 'current' | 'completed';
     titleEn: string;
     titleZh: string;
-    language: 'en' | 'zh';
 }
 
-function MissionNode({ day, status, titleEn, titleZh, language }: MissionNodeProps) {
+function MissionNode({ day, status, titleEn, titleZh }: MissionNodeProps) {
+    const { t, language } = useTranslation();
     const isLocked = status === 'locked';
     const isCurrent = status === 'current';
     const isCompleted = status === 'completed';
@@ -54,7 +55,7 @@ function MissionNode({ day, status, titleEn, titleZh, language }: MissionNodePro
 
             <div className="mt-6 text-center">
                 <p className={`text-[9px] font-black uppercase tracking-[0.2em] mb-1 ${isCurrent ? 'text-primary' : 'text-charcoal/20'}`}>
-                    Mission {day}
+                    {t('dashboard.roadmap.missionLabel', { day })}
                 </p>
                 <p className={`text-sm font-black italic tracking-tighter ${isLocked ? 'text-charcoal/10' : 'text-charcoal/70'}`}>
                     {language === 'en' ? titleEn : titleZh}
@@ -64,7 +65,8 @@ function MissionNode({ day, status, titleEn, titleZh, language }: MissionNodePro
     );
 }
 
-export function MissionRoadmap({ currentDay, language }: { currentDay: number, language: 'en' | 'zh' }) {
+export function MissionRoadmap({ currentDay }: { currentDay: number, language: 'en' | 'zh' }) {
+    const { t } = useTranslation();
     const missions = [
         { en: "Operation: Genesis", zh: "初始入境" },
         { en: "System Check", zh: "系统自检" },
@@ -96,7 +98,6 @@ export function MissionRoadmap({ currentDay, language }: { currentDay: number, l
                                 status={status}
                                 titleEn={m.en}
                                 titleZh={m.zh}
-                                language={language}
                             />
 
                             {i < missions.length - 1 && (
@@ -113,8 +114,12 @@ export function MissionRoadmap({ currentDay, language }: { currentDay: number, l
                         <div className="absolute inset-0 bg-gradient-to-t from-primary/30 to-transparent" />
                     </div>
                     <div className="mt-6 text-center">
-                        <p className="text-[10px] font-black uppercase tracking-widest text-amber-600 italic">Boss Arena</p>
-                        <p className="text-sm font-black text-charcoal/30 italic">Clear Day 15</p>
+                        <p className="text-[10px] font-black uppercase tracking-widest text-amber-600 italic">
+                            {t('dashboard.roadmap.bossArena')}
+                        </p>
+                        <p className="text-sm font-black text-charcoal/30 italic">
+                            {t('dashboard.roadmap.clearDay15')}
+                        </p>
                     </div>
                 </div>
             </div>

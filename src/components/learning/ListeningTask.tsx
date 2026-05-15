@@ -1,9 +1,9 @@
 /* eslint-disable react-hooks/purity, react-hooks/set-state-in-effect, react-hooks/exhaustive-deps */
 'use client';
 import { useState, useEffect } from 'react';
-import { motion } from 'framer-motion';
 import { Word } from '@/lib/vocabulary-data';
-import { Volume2, Play } from 'lucide-react';
+import { Volume2 } from 'lucide-react';
+import { useTranslation } from '@/hooks/use-translation';
 
 interface ListeningTaskProps {
     words: Word[];
@@ -15,6 +15,7 @@ export function ListeningTask({ words, onComplete }: ListeningTaskProps) {
     const [options, setOptions] = useState<Word[]>([]);
     const [selectedId, setSelectedId] = useState<string | null>(null);
     const [isCorrect, setIsCorrect] = useState<boolean | null>(null);
+    const { t } = useTranslation();
 
     const speak = (text: string) => {
         if (typeof window !== 'undefined') {
@@ -56,7 +57,9 @@ export function ListeningTask({ words, onComplete }: ListeningTaskProps) {
 
     return (
         <div className="max-w-2xl mx-auto p-10 bg-white rounded-[48px] shadow-2xl border-2 border-strawberry/5 text-center">
-            <span className="pill-badge bg-primary/10 text-primary mb-8 inline-block italic">Listening Challenge</span>
+            <span className="pill-badge bg-primary/10 text-primary mb-8 inline-block italic">
+                {t('tasks.listening.title')}
+            </span>
             
             <button 
                 onClick={() => speak(words[currentIndex].kr)}
@@ -65,7 +68,9 @@ export function ListeningTask({ words, onComplete }: ListeningTaskProps) {
                 <Volume2 size={60} />
             </button>
 
-            <h3 className="text-xl font-black italic uppercase tracking-widest text-charcoal/30 mb-8">What word was spoken?</h3>
+            <h3 className="text-xl font-black italic uppercase tracking-widest text-charcoal/30 mb-8">
+                {t('tasks.listening.instruction')}
+            </h3>
 
             <div className="grid grid-cols-2 gap-6">
                 {options.map((opt) => (

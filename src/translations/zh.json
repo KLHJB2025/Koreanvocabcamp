@@ -6,7 +6,135 @@
         "signup": "注册",
         "logout": "退出登录",
         "dashboard": "仪表盘",
-        "profile": "个人资料"
+        "profile": "个人资料",
+        "back": "返回",
+        "continue": "继续"
+    },
+    "landing": {
+        "heroTitle": "开启你的韩语巅峰之旅",
+        "heroSubtitle": "14天掌握500+核心TOPIK词汇。游戏化课程、间隔重复记忆、以及真实的奖励机制。",
+        "tryDemo": "在线试用",
+        "toMastery": "通往精通",
+        "coreWords": "核心词汇",
+        "activeLearners": "活跃学员",
+        "firstWordMastered": "首个单词达成！",
+        "achievement": "成就",
+        "multiLangUI": "多语言界面",
+        "eliteChoice": "精英之选",
+        "features": {
+            "srs": {
+                "title": "SRS 记忆引擎",
+                "desc": "我们的算法会预测你即将遗忘的时间点，精准复习。"
+            },
+            "gamified": {
+                "title": "等级体系",
+                "desc": "从「韩语幸存者」晋升至「TOPIK 传奇」。"
+            },
+            "camp": {
+                "title": "14天特训营",
+                "desc": "结构化的每日任务，让你保持专注不掉队。"
+            },
+            "visual": {
+                "title": "视觉化学习",
+                "desc": "生动的动画卡片，让记忆更深刻、更有趣。"
+            }
+        }
+    },
+    "auth": {
+        "welcomeBack": "欢迎回到特训营",
+        "loginDesc": "通过游戏化平台持续掌握你的韩语词汇。你的14天任务正在等待开启。",
+        "pickUp": "从上次离开的地方继续",
+        "checkRank": "查看你的排名状态",
+        "accountLogin": "账号登录",
+        "credentialsDesc": "请输入你的凭据以访问仪表盘",
+        "googleSignIn": "使用 Google 登录",
+        "emailLogin": "或使用邮箱登录",
+        "emailLabel": "邮箱地址",
+        "passwordLabel": "密码",
+        "forgot": "忘记密码？",
+        "signInNow": "立即登录",
+        "authenticating": "正在验证...",
+        "noAccount": "还没有账号？",
+        "createAccount": "创建账号",
+        "startMission": "开始你的14天任务",
+        "joinCircle": "加入韩语学习的精英圈子。掌握核心词汇并通过训练营挑战。",
+        "features": {
+            "srs": "个性化 SRS 记忆引擎",
+            "daily": "每日任务与奖励",
+            "leaderboard": "全球排行榜",
+            "cert": "掌握程度认证"
+        },
+        "onboarding": "开启你的韩语精通之旅",
+        "googleSignUp": "使用 Google 注册",
+        "emailSignUp": "或使用邮箱注册",
+        "fullName": "全名",
+        "phone": "电话号码",
+        "purpose": "加入目的",
+        "purposePlaceholder": "告诉我们你为什么要加入特训营...",
+        "creating": "正在创建账号...",
+        "haveAccount": "已经有账号了？",
+        "signIn": "登录"
+    },
+    "dashboard": {
+        "wakingUp": "正在唤醒营地...",
+        "hq": "训练营总部",
+        "adminCommander": "最高指挥官",
+        "challenger": "挑战者",
+        "commandCenter": {
+            "title": "指挥中心",
+            "desc": "实时管理任务并监控学员状态",
+            "launch": "开启门户"
+        },
+        "activeCompanion": "活跃伙伴",
+        "vocabMastery": "词汇掌控力",
+        "stats": {
+            "mastered": "已掌握单词",
+            "totalIntel": "情报总量",
+            "streak": "活跃天数",
+            "training": "持续训练",
+            "cycle": "当前周期",
+            "path": "学习路径"
+        },
+        "roadmap": {
+            "switch": "切换行动",
+            "camp": "特训营",
+            "missionLabel": "任务 {{day}}",
+            "bossArena": "最终战场",
+            "clearDay15": "通过第15天"
+        },
+        "dailyMission": {
+            "finalBreach": "终极突破",
+            "objectives": "第 {{day}} 天目标",
+            "deployBoss": "开启终极决战",
+            "deployToday": "开启今日作战",
+            "bossDesc": "随机30词突击。全对即可获得 RM 10 代金券和精英证书。",
+            "todayDesc": "准确掌握今天的词汇目标，赢取巨额经验奖励！",
+            "beginBattle": "开始战斗",
+            "commenceTraining": "开始训练",
+            "targetScore": "目标得分",
+            "missionXp": "任务经验"
+        },
+        "actions": {
+            "memoryLab": {
+                "title": "记忆实验室",
+                "desc": "在记忆模糊前复习单词。",
+                "badge": "{{count}} 准备就绪"
+            },
+            "store": {
+                "title": "学院商店",
+                "desc": "用经验值兑换贴纸、勋章和道具。",
+                "locked": "未解锁"
+            }
+        },
+        "intelReport": {
+            "title": "情报报告",
+            "nextObjective": "下一级目标进度",
+            "collectMore": "还需收集 {{count}} XP 即可升级"
+        },
+        "rankings": {
+            "title": "基地排行",
+            "activeMember": "活跃成员"
+        }
     },
     "learning": {
         "mission": "任务",
@@ -16,7 +144,9 @@
         "xp": "经验值",
         "streak": "连续天数",
         "days": "天",
-        "completed": "已完成"
+        "completed": "已完成",
+        "slow": "慢速",
+        "normal": "正常"
     },
     "ranks": {
         "1": "韩语幸存者",
@@ -27,5 +157,87 @@
         "6": "TOPIK 战士",
         "7": "韩语征服者",
         "8": "TOPIK 传奇"
+    },
+    "tasks": {
+        "spelling": {
+            "title": "精英拼写特训",
+            "placeholder": "请输入韩文...",
+            "confirm": "确认拼写",
+            "tip": "提示：拼写必须完全一致！",
+            "clue": "线索"
+        },
+        "matching": {
+            "title": "词义匹配挑战",
+            "instruction": "点击单词及其对应的意思进行配对"
+        },
+        "listening": {
+            "title": "听力强化训练",
+            "instruction": "仔细听音频并选择正确的单词"
+        },
+        "review": { "label": "复习" },
+        "learn": { "label": "学习" },
+        "listen": { "label": "听力" },
+        "match": { "label": "匹配" },
+        "spell": { "label": "拼写" },
+        "scenario": { "label": "场景" }
+    },
+    "mission": {
+        "start": "开始训练",
+        "next": "下一个单词",
+        "prev": "上一个单词",
+        "complete": "任务完成",
+        "backToRoadmap": "返回关卡地图",
+        "dailyOperation": "每日行动",
+        "masterTargets": "今天掌握 {{count}} 个新目标",
+        "beginMission": "开始执行任务",
+        "scenarioMission": "情境作战",
+        "cardProgress": "第 {{current}} / {{total}} 张卡片 • 左右滑动切换",
+        "congrats": "🎉 任务大获全胜！",
+        "scenarioSuccess": "你成功运用新词汇完成了情境对话。干得漂亮！",
+        "streakInfo": "🔥 已连续奋战 {{count}} 天 | 🏆 词汇战力提升",
+        "reward": "行动奖励",
+        "performance": "表现等级",
+        "returnToBase": "返回基地"
+    },
+    "challenge": {
+        "title": "决战突破",
+        "commence": "开始突击",
+        "abandon": "放弃任务",
+        "timeRemaining": "剩余时间",
+        "progress": "进度",
+        "perfect": "✨ 太完美了！",
+        "combo": "🔥 连击 x{{count}}",
+        "memoryIncreased": "🧠 记忆力提升",
+        "almost": "差点就对了！",
+        "retrainingRequired": "需要强化训练",
+        "complete": "决战结束",
+        "accuracy": "战斗准确度",
+        "legendaryReward": "传奇奖励",
+        "scholarshipUnlocked": "奖学金已解锁",
+        "voucherInstruction": "使用代码 BOSS10-VICTORY 即可在下次扩展营地时获得 RM 10 优惠。",
+        "copied": "优惠码已复制到剪贴板！",
+        "copyCode": "复制优惠码",
+        "retry": "重试",
+        "hq": "总部"
+    },
+    "pendingApproval": {
+        "title": "申请",
+        "underReview": "审核中",
+        "description": "我们已收到你加入 TOPIK 单词训练营的申请。我们的团队正在审核你的资料，以确保最佳的学习环境。",
+        "identityTitle": "身份已确认",
+        "identityDesc": "你的基本账户信息已安全存储。",
+        "emailTitle": "邮件通知",
+        "emailDesc": "一旦审核状态变更，我们会立即通过邮件通知你。",
+        "checkBack": "请在 24-48 小时内再次查看",
+        "signOut": "退出并稍后查看"
+    },
+    "pos": {
+        "Noun": "名词",
+        "Verb": "动词",
+        "Adjective": "形容词",
+        "Adverb": "副词",
+        "Pronoun": "代词",
+        "Particle": "助词",
+        "Exclamation": "感叹词"
     }
 }

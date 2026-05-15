@@ -6,11 +6,12 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { useAuth } from '@/hooks/use-auth';
 import { getDailyWords, getReviewWords } from '@/lib/vocabulary';
 import { Word } from '@/lib/vocabulary-data';
-import { addXp, completeDay } from '@/lib/user';
+import { addXp, completeDay, recordLearnedWords } from '@/lib/user';
 import { useRouter } from 'next/navigation';
 import confetti from 'canvas-confetti';
 import { Home, CheckCircle2, Star, Trophy, ArrowRight, Loader2, BookOpen, Volume2, Search, Type } from 'lucide-react';
 import Link from 'next/link';
+import { useTranslation } from '@/hooks/use-translation';
 
 // Components
 import { VocabCard } from '@/components/learning/VocabCard';
@@ -19,10 +20,11 @@ import { ListeningTask } from '@/components/learning/ListeningTask';
 import { MatchingTask } from '@/components/learning/MatchingTask';
 import { SpellingTask } from '@/components/learning/SpellingTask';
 
-type MissionStep = 'intro' | 'review' | 'learn' | 'listen' | 'match' | 'spell' | 'complete';
+type MissionStep = 'intro' | 'review' | 'learn' | 'listen' | 'match' | 'spell' | 'scenario' | 'complete';
 
 export default function MissionPage() {
     const { profile, loading: authLoading } = useAuth();
+    const { t } = useTranslation();
     const router = useRouter();
     
     const [step, setStep] = useState<MissionStep>('intro');
@@ -39,7 +41,7 @@ export default function MissionPage() {
                 
                 const [daily, review] = await Promise.all([
                     getDailyWords(cycle, day),
-                    getReviewWords(cycle, day)
+                    getReviewWords(profile.uid, cycle, day)
                 ]);
                 
                 setWords(daily);
@@ -57,7 +59,8 @@ export default function MissionPage() {
         else if (step === 'learn') setStep('listen');
         else if (step === 'listen') setStep('match');
         else if (step === 'match') setStep('spell');
-        else if (step === 'spell') finalizeMission();
+        else if (step === 'spell') setStep('scenario');
+        else if (step === 'scenario') finalizeMission();
     };
 
     const finalizeMission = async () => {
@@ -70,8 +73,12 @@ export default function MissionPage() {
         });
 
         if (profile?.uid) {
-            await addXp(profile.uid, 150); // Daily mission XP
-            await completeDay(profile.uid);
+            const wordIds = words.map(w => w.kr);
+            await Promise.all([
+                addXp(profile.uid, 150),
+                completeDay(profile.uid),
+                recordLearnedWords(profile.uid, wordIds)
+            ]);
         }
     };
 
@@ -86,11 +93,12 @@ export default function MissionPage() {
             {/* Header Progress */}
             <header className="max-w-4xl mx-auto px-8 pt-12 text-center pb-12">
                 <div className="flex justify-center gap-4 mb-8">
-                    <StepIndicator active={step === 'review'} completed={['learn', 'listen', 'match', 'spell', 'complete'].includes(step)} icon={<Search size={14} />} label="Review" />
-                    <StepIndicator active={step === 'learn'} completed={['listen', 'match', 'spell', 'complete'].includes(step)} icon={<BookOpen size={14} />} label="Learn" />
-                    <StepIndicator active={step === 'listen'} completed={['match', 'spell', 'complete'].includes(step)} icon={<Volume2 size={14} />} label="Listen" />
-                    <StepIndicator active={step === 'match'} completed={['spell', 'complete'].includes(step)} icon={<Trophy size={14} />} label="Match" />
-                    <StepIndicator active={step === 'spell'} completed={['complete'].includes(step)} icon={<Type size={14} />} label="Spell" />
+                    <StepIndicator active={step === 'review'} completed={['learn', 'listen', 'match', 'spell', 'complete'].includes(step)} icon={<Search size={14} />} label={t('tasks.review.label')} />
+                    <StepIndicator active={step === 'learn'} completed={['listen', 'match', 'spell', 'complete'].includes(step)} icon={<BookOpen size={14} />} label={t('tasks.learn.label')} />
+                    <StepIndicator active={step === 'listen'} completed={['match', 'spell', 'complete'].includes(step)} icon={<Volume2 size={14} />} label={t('tasks.listen.label')} />
+                    <StepIndicator active={step === 'match'} completed={['spell', 'scenario', 'complete'].includes(step)} icon={<Trophy size={14} />} label={t('tasks.match.label')} />
+                    <StepIndicator active={step === 'spell'} completed={['scenario', 'complete'].includes(step)} icon={<Type size={14} />} label={t('tasks.spell.label')} />
+                    <StepIndicator active={step === 'scenario'} completed={['complete'].includes(step)} icon={<Sparkles size={14} />} label={t('mission.scenarioMission') || 'Scenario'} />
                 </div>
             </header>
 
@@ -101,9 +109,11 @@ export default function MissionPage() {
                             <div className="w-40 h-40 bg-white rounded-[48px] shadow-2xl flex items-center justify-center mx-auto mb-10 border-4 border-strawberry/10">
                                 <motion.img src="/illustrations/mascot.png" animate={{ y: [0, -10, 0] }} transition={{ repeat: Infinity, duration: 2 }} className="w-32 h-32" />
                             </div>
-                            <h1 className="text-6xl font-black italic tracking-tighter uppercase mb-4">Daily Operation</h1>
-                            <p className="text-charcoal/40 font-bold mb-12 uppercase tracking-widest">Master {words.length} new targets today</p>
-                            <button onClick={handleNextStep} className="btn-primary-cute text-2xl px-12 py-6">Begin Mission</button>
+                            <h1 className="text-6xl font-black italic tracking-tighter uppercase mb-4">{t('mission.dailyOperation')}</h1>
+                            <p className="text-charcoal/40 font-bold mb-12 uppercase tracking-widest">
+                                {t('mission.masterTargets', { count: words.length })}
+                            </p>
+                            <button onClick={handleNextStep} className="btn-primary-cute text-2xl px-12 py-6">{t('mission.beginMission')}</button>
                         </motion.div>
                     )}
 
@@ -125,7 +135,7 @@ export default function MissionPage() {
                             />
                             <div className="text-center">
                                 <p className="text-[10px] font-black text-charcoal/20 uppercase tracking-widest italic">
-                                    Card {currentIndex + 1} of {words.length} • Swipe to Learn
+                                    {t('mission.cardProgress', { current: currentIndex + 1, total: words.length })}
                                 </p>
                             </div>
                         </div>
@@ -133,31 +143,34 @@ export default function MissionPage() {
 
                     {step === 'listen' && <ListeningTask key="listen" words={words} onComplete={handleNextStep} />}
                     {step === 'match' && <MatchingTask key="match" words={words} onComplete={handleNextStep} />}
-                    {step === 'spell' && <SpellingTask key="spell" words={words} onComplete={handleNextStep} />}
+                    {step === 'spell' && <SpellingTask key="spell" words={words} onComplete={() => setStep('scenario')} />}
+                    {step === 'scenario' && <ScenarioTask key="scenario" words={words} onComplete={finalizeMission} />}
 
                     {step === 'complete' && (
                         <motion.div key="complete" initial={{ scale: 0.8, opacity: 0 }} animate={{ scale: 1, opacity: 1 }} className="text-center py-20">
                             <div className="w-40 h-40 bg-emerald-400 rounded-[48px] shadow-2xl flex items-center justify-center mx-auto mb-10 text-white">
                                 <CheckCircle2 size={80} />
                             </div>
-                            <h2 className="text-7xl font-black italic tracking-tighter uppercase mb-2">🎉 今天任务完成！</h2>
-                            <p className="text-charcoal/40 font-bold mb-12 uppercase tracking-widest">🔥 连续学习 {profile?.streakCount || 1} 天 | 🏆 Vocabulary Strength Increased</p>
+                            <h2 className="text-7xl font-black italic tracking-tighter uppercase mb-2">{t('mission.congrats')}</h2>
+                            <p className="text-charcoal/40 font-bold mb-12 uppercase tracking-widest">
+                                {t('mission.streakInfo', { count: profile?.streakCount || 1 })}
+                            </p>
                             
                             <div className="grid grid-cols-2 gap-6 max-w-md mx-auto mb-12">
                                 <div className="puffy-card p-8 bg-strawberry/5 border-none">
                                     <Star className="text-amber-500 mx-auto mb-2" size={32} fill="currentColor" />
                                     <p className="text-4xl font-black italic">+150 XP</p>
-                                    <p className="text-[10px] font-bold text-charcoal/30 uppercase tracking-widest">Operation Reward</p>
+                                    <p className="text-[10px] font-bold text-charcoal/30 uppercase tracking-widest">{t('mission.reward')}</p>
                                 </div>
                                 <div className="puffy-card p-8 bg-strawberry/5 border-none">
                                     <Trophy className="text-primary mx-auto mb-2" size={32} />
                                     <p className="text-4xl font-black italic">ELITE</p>
-                                    <p className="text-[10px] font-bold text-charcoal/30 uppercase tracking-widest">Performance Tier</p>
+                                    <p className="text-[10px] font-bold text-charcoal/30 uppercase tracking-widest">{t('mission.performance')}</p>
                                 </div>
                             </div>
 
                             <Link href="/dashboard" className="btn-primary-cute flex items-center justify-center gap-3 px-12 mx-auto w-fit">
-                                Return to Base
+                                {t('mission.returnToBase')}
                                 <ArrowRight size={24} />
                             </Link>
                         </motion.div>

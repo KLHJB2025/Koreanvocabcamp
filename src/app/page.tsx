@@ -61,14 +61,14 @@ export default function LandingPage() {
           >
             <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 text-primary font-bold text-sm mb-6 border border-primary/20">
               <Sparkles size={16} />
-              <span>{t('learning.ranks.1')}</span>
+              <span>{t('landing.eliteChoice')}</span>
             </div>
-            <p className="text-foreground/40 text-sm font-bold tracking-[0.3em] uppercase mb-4">&quot;THE ELITE CHOICE&quot;</p>
+            <p className="text-foreground/40 text-sm font-bold tracking-[0.3em] uppercase mb-4">&quot;{t('ranks.1')}&quot;</p>
             <h1 className="text-6xl lg:text-7xl font-bold leading-tight mb-6 bg-gradient-to-r from-slate-900 to-primary bg-clip-text text-transparent">
-              {t('common.welcome')}
+              {t('landing.heroTitle')}
             </h1>
             <p className="text-xl text-foreground/60 mb-10 max-w-xl leading-relaxed">
-              Master 500+ TOPIK vocabulary words in just 14 days. Gamified lessons, spaced repetition, and real rewards.
+              {t('landing.heroSubtitle')}
             </p>
             <div className="flex flex-wrap gap-4">
               <Link href="/signup" className="btn-premium text-lg px-8 py-4">
@@ -76,22 +76,22 @@ export default function LandingPage() {
               </Link>
               <Link href="/demo" className="btn-outline text-lg px-8 py-4 flex items-center gap-2">
                 <Rocket size={20} />
-                Try Live Demo
+                {t('landing.tryDemo')}
               </Link>
             </div>
 
             <div className="mt-12 grid grid-cols-3 gap-6">
               <div className="flex flex-col gap-1">
-                <span className="text-2xl font-bold italic text-primary">14 Days</span>
-                <span className="text-sm text-foreground/40 font-medium">To Mastery</span>
+                <span className="text-2xl font-bold italic text-primary">14 {t('learning.days')}</span>
+                <span className="text-sm text-foreground/40 font-medium">{t('landing.toMastery')}</span>
               </div>
               <div className="flex flex-col gap-1">
                 <span className="text-2xl font-bold italic text-primary">500+</span>
-                <span className="text-sm text-foreground/40 font-medium">Core Words</span>
+                <span className="text-sm text-foreground/40 font-medium">{t('landing.coreWords')}</span>
               </div>
               <div className="flex flex-col gap-1">
                 <span className="text-2xl font-bold italic text-primary">10k+</span>
-                <span className="text-sm text-foreground/40 font-medium">Active Learners</span>
+                <span className="text-sm text-foreground/40 font-medium">{t('landing.activeLearners')}</span>
               </div>
             </div>
           </motion.div>
@@ -129,9 +129,9 @@ export default function LandingPage() {
               <div className="absolute bottom-[-40px] right-[-40px] w-48 h-48 bg-white shadow-2xl rounded-3xl p-6 flex flex-col justify-between border border-border rotate-6">
                 <div className="flex items-center justify-between">
                   <Trophy className="text-amber-500" />
-                  <span className="text-xs font-bold text-foreground/40">ACHIEVEMENT</span>
+                  <span className="text-xs font-bold text-foreground/40">{t('landing.achievement')}</span>
                 </div>
-                <div className="text-sm font-bold">First Word Mastered!</div>
+                <div className="text-sm font-bold">{t('landing.firstWordMastered')}</div>
                 <div className="w-full bg-secondary h-2 rounded-full overflow-hidden">
                   <div className="w-2/3 h-full bg-primary" />
                 </div>
@@ -141,7 +141,7 @@ export default function LandingPage() {
                 <div className="w-8 h-8 bg-emerald-100 rounded-full flex items-center justify-center text-emerald-600">
                   <Languages size={18} />
                 </div>
-                <span className="text-sm font-bold">Multi-lang UI</span>
+                <span className="text-sm font-bold">{t('landing.multiLangUI')}</span>
               </div>
             </div>
           </motion.div>
@@ -153,23 +153,23 @@ export default function LandingPage() {
         <div className="max-w-7xl mx-auto grid md:grid-cols-4 gap-8">
           <FeatureCard
             icon={<Brain className="text-primary" />}
-            title="SRS Engine"
-            desc="Our algorithm predicts when you're about to forget."
+            title={t('landing.features.srs.title')}
+            desc={t('landing.features.srs.desc')}
           />
           <FeatureCard
             icon={<Trophy className="text-amber-500" />}
-            title="Gamified Rank"
-            desc="Climb from Survivor to TOPIK Legend."
+            title={t('landing.features.gamified.title')}
+            desc={t('landing.features.gamified.desc')}
           />
           <FeatureCard
             icon={<Rocket className="text-emerald-500" />}
-            title="14-Day Camp"
-            desc="Structured daily missions to keep you focused."
+            title={t('landing.features.camp.title')}
+            desc={t('landing.features.camp.desc')}
           />
           <FeatureCard
             icon={<Sparkles className="text-purple-500" />}
-            title="Visual-First"
-            desc="Animated cards make learning memorable."
+            title={t('landing.features.visual.title')}
+            desc={t('landing.features.visual.desc')}
           />
         </div>
       </footer>

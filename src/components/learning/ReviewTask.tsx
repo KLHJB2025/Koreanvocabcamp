@@ -3,7 +3,10 @@
 import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { Word } from '@/lib/vocabulary-data';
-import { Volume2, CheckCircle2, XCircle } from 'lucide-react';
+import { CheckCircle2, XCircle } from 'lucide-react';
+import { useTranslation } from '@/hooks/use-translation';
+import { useAuth } from '@/hooks/use-auth';
+import { updateWordProgress } from '@/lib/user';
 
 interface ReviewTaskProps {
     words: Word[];
@@ -11,16 +14,22 @@ interface ReviewTaskProps {
 }
 
 export function ReviewTask({ words, onComplete }: ReviewTaskProps) {
+    const { profile } = useAuth();
     const [currentIndex, setCurrentIndex] = useState(0);
     const [selectedOption, setSelectedOption] = useState<string | null>(null);
     const [isCorrect, setIsCorrect] = useState<boolean | null>(null);
+    const { t, language } = useTranslation();
     
     const generateOptions = (index: number) => {
         if (index >= words.length) return [];
         const current = words[index];
         const others = words.filter(w => w.kr !== current.kr);
         const shuffled = [...others].sort(() => Math.random() - 0.5).slice(0, 3);
-        return [...shuffled.map(s => s.zh), current.zh].sort(() => Math.random() - 0.5);
+        
+        const currentMeaning = language === 'zh' ? current.zh : current.en;
+        const otherMeanings = shuffled.map(s => language === 'zh' ? s.zh : s.en);
+        
+        return [...otherMeanings, currentMeaning].sort(() => Math.random() - 0.5);
     };
 
     const [options, setOptions] = useState<string[]>(() => generateOptions(0));
@@ -30,13 +39,19 @@ export function ReviewTask({ words, onComplete }: ReviewTaskProps) {
         if (words.length > 0 && currentIndex === 0) {
             setOptions(generateOptions(0));
         }
-    }, [words]);
+    }, [words, language]);
 
-    const handleAnswer = (opt: string) => {
+    const handleAnswer = async (opt: string) => {
         if (selectedOption) return;
         setSelectedOption(opt);
-        const correct = opt === words[currentIndex].zh;
+        const currentMeaning = language === 'zh' ? words[currentIndex].zh : words[currentIndex].en;
+        const correct = opt === currentMeaning;
         setIsCorrect(correct);
+
+        // Sync to backend
+        if (profile?.uid) {
+            await updateWordProgress(profile.uid, words[currentIndex].kr, correct);
+        }
 
         setTimeout(() => {
             setSelectedOption(null);
@@ -54,8 +69,12 @@ export function ReviewTask({ words, onComplete }: ReviewTaskProps) {
     return (
         <div className="max-w-2xl mx-auto p-10 bg-white rounded-[48px] shadow-2xl border-2 border-strawberry/5">
             <div className="text-center mb-10">
-                <span className="pill-badge bg-primary/10 text-primary mb-4 inline-block italic">Memory Review</span>
-                <h2 className="text-6xl font-black italic tracking-tighter uppercase text-charcoal">{words[currentIndex]?.kr}</h2>
+                <span className="pill-badge bg-primary/10 text-primary mb-4 inline-block italic">
+                    {t('learning.memoryTraining')}
+                </span>
+                <h2 className="text-6xl font-black italic tracking-tighter uppercase text-charcoal">
+                    {words[currentIndex]?.kr}
+                </h2>
             </div>
 
             <div className="grid grid-cols-1 gap-4">
@@ -78,7 +97,7 @@ export function ReviewTask({ words, onComplete }: ReviewTaskProps) {
             </div>
             
             <p className="text-center mt-8 text-[10px] font-black uppercase tracking-widest text-charcoal/20 italic">
-                {currentIndex + 1} / {words.length} Words Reviewed
+                {currentIndex + 1} / {words.length} {t('learning.completed')}
             </p>
         </div>
     );

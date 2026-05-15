@@ -6,7 +6,135 @@
     "signup": "Sign Up",
     "logout": "Logout",
     "dashboard": "Dashboard",
-    "profile": "Profile"
+    "profile": "Profile",
+    "back": "Back",
+    "continue": "Continue"
+  },
+  "landing": {
+    "heroTitle": "Master TOPIK at Lightning Speed",
+    "heroSubtitle": "Learn 500+ core TOPIK words in just 14 days. Gamified lessons, SRS memorization, and real rewards.",
+    "tryDemo": "Try Live Demo",
+    "toMastery": "To Mastery",
+    "coreWords": "Core Words",
+    "activeLearners": "Active Learners",
+    "firstWordMastered": "First Word Mastered!",
+    "achievement": "ACHIEVEMENT",
+    "multiLangUI": "Multi-lang UI",
+    "eliteChoice": "ELITE CHOICE",
+    "features": {
+      "srs": {
+        "title": "SRS Engine",
+        "desc": "Our algorithm predicts when you're about to forget, ensuring perfect retention."
+      },
+      "gamified": {
+        "title": "Gamified Rank",
+        "desc": "Climb from 'Hangeul Survivor' to the legendary 'TOPIK Legend'."
+      },
+      "camp": {
+        "title": "14-Day Camp",
+        "desc": "Structured daily missions and challenges to keep your focus razor-sharp."
+      },
+      "visual": {
+        "title": "Visual-First",
+        "desc": "Stunning animated cards and illustrations make every word memorable."
+      }
+    }
+  },
+  "auth": {
+    "welcomeBack": "Welcome back to the Bootcamp.",
+    "loginDesc": "Continuously master your Korean vocabulary with our gamified platform. Your 14-day mission is waiting.",
+    "pickUp": "Pick up where you left off",
+    "checkRank": "Check your ranking status",
+    "accountLogin": "Account Login",
+    "credentialsDesc": "Enter your credentials to access your dashboard",
+    "googleSignIn": "Sign in with Google",
+    "emailLogin": "or email login",
+    "emailLabel": "Email Address",
+    "passwordLabel": "Password",
+    "forgot": "Forgot?",
+    "signInNow": "Sign In Now",
+    "authenticating": "Authenticating...",
+    "noAccount": "Don't have an account?",
+    "createAccount": "Create Account",
+    "startMission": "Start your 14-day mission.",
+    "joinCircle": "Join the elite circle of Korean learners. Master core vocabulary and clear the bootcamp challenges.",
+    "features": {
+      "srs": "Personalized SRS Engine",
+      "daily": "Daily Missions & Rewards",
+      "leaderboard": "Global Leaderboard",
+      "cert": "Certification of Mastery"
+    },
+    "onboarding": "Begin your Korean mastery journey today",
+    "googleSignUp": "Sign up with Google",
+    "emailSignUp": "or email signup",
+    "fullName": "Full Name",
+    "phone": "Phone Number",
+    "purpose": "Purpose of Joining",
+    "purposePlaceholder": "Tell us why you want to join the bootcamp...",
+    "creating": "Creating Account...",
+    "haveAccount": "Already have an account?",
+    "signIn": "Sign In"
+  },
+  "dashboard": {
+    "wakingUp": "Waking up the camp...",
+    "hq": "Bootcamp HQ",
+    "adminCommander": "ADMIN COMMANDER",
+    "challenger": "CHALLENGER",
+    "commandCenter": {
+      "title": "Command Center",
+      "desc": "Manage missions and monitor agents in real-time",
+      "launch": "Launch Portal"
+    },
+    "activeCompanion": "Active Companion",
+    "vocabMastery": "Vocabulary Mastery",
+    "stats": {
+      "mastered": "Words Mastered",
+      "totalIntel": "Total Intelligence",
+      "streak": "Active Streak",
+      "training": "Consistent Training",
+      "cycle": "Current Cycle",
+      "path": "Learning Path"
+    },
+    "roadmap": {
+      "switch": "Switch Campaign",
+      "camp": "Camp",
+      "missionLabel": "Mission {{day}}",
+      "bossArena": "Boss Arena",
+      "clearDay 15": "Clear Day 15"
+    },
+    "dailyMission": {
+      "finalBreach": "FINAL BREACH",
+      "objectives": "Day {{day}} Objectives",
+      "deployBoss": "Deploy Boss Battle",
+      "deployToday": "Deploy Today's Operation",
+      "bossDesc": "Random 30 words assault. Score 100% to earn RM 10 Voucher and Elite Certificate.",
+      "todayDesc": "Master your vocabulary targets correctly to earn massive XP bonuses!",
+      "beginBattle": "BEGIN BATTLE",
+      "commenceTraining": "Commence Training",
+      "targetScore": "TARGET SCORE",
+      "missionXp": "Mission XP"
+    },
+    "actions": {
+      "memoryLab": {
+        "title": "Memory Lab",
+        "desc": "Review your current word list before the memory fades.",
+        "badge": "{{count}} Ready"
+      },
+      "store": {
+        "title": "Academy Store",
+        "desc": "Spend your XP on stickers, badges and power-ups.",
+        "locked": "Locked"
+      }
+    },
+    "intelReport": {
+      "title": "Intelligence Report",
+      "nextObjective": "Next Objective Progress",
+      "collectMore": "Collect {{count}} more XP to Rank Up"
+    },
+    "rankings": {
+      "title": "Basecamp Rankings",
+      "activeMember": "Active Member"
+    }
   },
   "learning": {
     "mission": "Mission",
@@ -16,7 +144,9 @@
     "xp": "XP",
     "streak": "Streak",
     "days": "Days",
-    "completed": "Completed"
+    "completed": "Completed",
+    "slow": "Slow",
+    "normal": "Normal"
   },
   "ranks": {
     "1": "Hangeul Survivor",
@@ -27,5 +157,84 @@
     "6": "TOPIK Warrior",
     "7": "Korean Conqueror",
     "8": "TOPIK LEGEND"
+  },
+  "tasks": {
+    "spelling": {
+      "title": "Elite Spelling Challenge",
+      "placeholder": "Type in Korean...",
+      "confirm": "Confirm Spelling",
+      "tip": "Tip: Spelling must be exact!",
+      "clue": "Clue"
+    },
+    "matching": {
+      "title": "Meaning Match Challenge",
+      "instruction": "Tap a word and its corresponding meaning"
+    },
+    "listening": {
+      "title": "Listening Intensive",
+      "instruction": "Listen carefully and select the word"
+    },
+    "review": { "label": "Review" },
+    "learn": { "label": "Learn" },
+    "listen": { "label": "Listen" },
+    "match": { "label": "Match" },
+    "spell": { "label": "Spell" }
+  },
+  "mission": {
+    "start": "Start Training",
+    "next": "Next Word",
+    "prev": "Previous Word",
+    "complete": "Mission Complete",
+    "backToRoadmap": "Back to Roadmap",
+    "dailyOperation": "Daily Operation",
+    "masterTargets": "Master {{count}} new targets today",
+    "beginMission": "Begin Mission",
+    "cardProgress": "Card {{current}} of {{total}} • Swipe to Learn",
+    "congrats": "🎉 Mission Accomplished!",
+    "streakInfo": "🔥 {{count}} Day Streak | 🏆 Vocab Strength Increased",
+    "reward": "Operation Reward",
+    "performance": "Performance Tier",
+    "returnToBase": "Return to Base"
+  },
+  "challenge": {
+    "title": "BATTLE BREACH",
+    "commence": "COMMENCE ASSAULT",
+    "abandon": "Abandon Mission",
+    "timeRemaining": "Time Remaining",
+    "progress": "Progress",
+    "perfect": "✨ PERFECT!",
+    "combo": "🔥 COMBO x{{count}}",
+    "memoryIncreased": "🧠 MEMORY INCREASED",
+    "almost": "Almost!",
+    "retrainingRequired": "RETRAINING REQUIRED",
+    "complete": "MISSION COMPLETE",
+    "accuracy": "Combat Accuracy",
+    "legendaryReward": "Legendary Reward",
+    "scholarshipUnlocked": "SCHOLARSHIP UNLOCKED",
+    "voucherInstruction": "Use code BOSS10-VICTORY for RM10 off your next camp expansion.",
+    "copied": "Voucher copied to clipboard!",
+    "copyCode": "Copy Code",
+    "retry": "Retry",
+    "hq": "HQ"
+  },
+  "pendingApproval": {
+    "title": "Application",
+    "underReview": "Under Review",
+    "description": "We've received your application to join the TOPIK Vocabulary Bootcamp. Our team is currently reviewing your profile to ensure the best learning environment.",
+    "identityTitle": "Identity Verified",
+    "identityDesc": "Your basic account info is secured.",
+    "emailTitle": "Email Notification",
+    "emailDesc": "We'll email you once your status changes.",
+    "checkBack": "Check back in 24-48 hours",
+    "signOut": "Sign out and check later"
+  },
+  "pos": {
+    "Noun": "Noun",
+    "Verb": "Verb",
+    "Adjective": "Adjective",
+    "Adverb": "Adverb",
+    "Pronoun": "Pronoun",
+    "Particle": "Particle",
+    "Exclamation": "Exclamation"
   }
 }

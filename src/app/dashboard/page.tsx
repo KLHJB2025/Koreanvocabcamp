@@ -35,7 +35,9 @@ export default function Dashboard() {
                     >
                         <Heart size={40} fill="currentColor" />
                     </motion.div>
-                    <p className="font-black text-primary/40 uppercase tracking-[0.3em] text-xs">Waking up the camp</p>
+                    <p className="font-black text-primary/40 uppercase tracking-[0.3em] text-xs">
+                        {t('dashboard.wakingUp')}
+                    </p>
                 </div>
             </div>
         );
@@ -62,7 +64,9 @@ export default function Dashboard() {
                     </motion.div>
                     <div className="hidden sm:block">
                         <h1 className="font-black text-2xl leading-none tracking-tighter italic uppercase text-primary">TOPIK</h1>
-                        <p className="text-[10px] font-bold uppercase tracking-widest text-charcoal/30">Bootcamp HQ</p>
+                        <p className="text-[10px] font-bold uppercase tracking-widest text-charcoal/30">
+                            {t('dashboard.hq')}
+                        </p>
                     </div>
                 </div>
 
@@ -77,7 +81,7 @@ export default function Dashboard() {
                         <div className="hidden md:block">
                             <p className="text-sm font-black tracking-tight">{profile.displayName}</p>
                             <p className="text-[8px] font-black uppercase text-primary/40 tracking-wider">
-                                {isAdmin ? 'ADMIN COMMANDER' : 'CHALLENGER'}
+                                {isAdmin ? t('dashboard.adminCommander') : t('dashboard.challenger')}
                             </p>
                         </div>
                         <button onClick={handleLogout} className="ml-2 p-2 hover:bg-red-50 hover:text-red-500 rounded-full transition-colors">
@@ -100,12 +104,16 @@ export default function Dashboard() {
                                 <ShieldCheck size={32} />
                             </div>
                             <div>
-                                <h2 className="text-3xl font-black italic uppercase leading-none mb-2">Command Center</h2>
-                                <p className="text-white/40 text-xs font-bold tracking-widest uppercase">Manage missions and monitor agents in real-time</p>
+                                <h2 className="text-3xl font-black italic uppercase leading-none mb-2">
+                                    {t('dashboard.commandCenter.title')}
+                                </h2>
+                                <p className="text-white/40 text-xs font-bold tracking-widest uppercase">
+                                    {t('dashboard.commandCenter.desc')}
+                                </p>
                             </div>
                         </div>
                         <Link href="/admin" className="btn-primary-cute bg-white text-charcoal border-white relative z-10">
-                            Launch Portal
+                            {t('dashboard.commandCenter.launch')}
                         </Link>
                     </motion.div>
                 )}
@@ -118,7 +126,7 @@ export default function Dashboard() {
                         className="md:col-span-4 bg-white rounded-[48px] p-10 flex flex-col items-center justify-center text-center shadow-xl border-2 border-strawberry/5 relative group"
                     >
                         <div className="absolute top-4 right-4 px-3 py-1 bg-strawberry/10 rounded-full text-[8px] font-black uppercase tracking-widest text-primary group-hover:scale-110 transition-transform">
-                            Active Companion
+                            {t('dashboard.activeCompanion')}
                         </div>
                         <motion.img 
                             src="/illustrations/mascot.png" 
@@ -128,9 +136,11 @@ export default function Dashboard() {
                             transition={{ repeat: Infinity, duration: 3, ease: "easeInOut" }}
                         />
                         <div className="space-y-2">
-                            <p className="text-[10px] font-black uppercase tracking-widest text-charcoal/30 italic">Daily Encouragement</p>
+                            <p className="text-[10px] font-black uppercase tracking-widest text-charcoal/30 italic">
+                                {t('learning.memoryTraining')}
+                            </p>
                             <h3 className="text-xl font-black italic text-primary leading-tight">
-                                {getDailyEncouragement(profile.displayName || 'Agent', profile.dayOfCamp || 1)}
+                                {getDailyEncouragement(profile.displayName || 'Agent', profile.dayOfCamp || 1, language)}
                             </h3>
                         </div>
                     </motion.div>
@@ -145,7 +155,7 @@ export default function Dashboard() {
                         <div className="relative z-10">
                             <h3 className="text-xl font-black uppercase italic tracking-widest text-primary mb-10 flex items-center gap-3">
                                 <GraduationCap size={24} />
-                                Vocabulary Mastery
+                                {t('dashboard.vocabMastery')}
                             </h3>
                             
                             <div className="grid grid-cols-2 md:grid-cols-3 gap-12 mb-10">
@@ -160,19 +170,25 @@ export default function Dashboard() {
                                             return masteredInPrevCycles + masteredInCurrentCycle;
                                         })()}
                                     </p>
-                                    <p className="text-[10px] font-bold uppercase tracking-widest text-white/40 leading-tight">Words Mastered<br/>Total Intelligence</p>
+                                    <p className="text-[10px] font-bold uppercase tracking-widest text-white/40 leading-tight">
+                                        {t('dashboard.stats.mastered')}<br/>{t('dashboard.stats.totalIntel')}
+                                    </p>
                                 </div>
                                 <div>
                                     <p className="text-5xl font-black italic tracking-tighter mb-2">
                                         {profile.streakCount || 0}
                                     </p>
-                                    <p className="text-[10px] font-bold uppercase tracking-widest text-white/40 leading-tight">Active Streak<br/>Consistent Training</p>
+                                    <p className="text-[10px] font-bold uppercase tracking-widest text-white/40 leading-tight">
+                                        {t('dashboard.stats.streak')}<br/>{t('dashboard.stats.training')}
+                                    </p>
                                 </div>
                                 <div className="hidden md:block">
                                     <p className="text-5xl font-black italic tracking-tighter mb-2 text-primary">
                                         {profile.currentCycleId?.split('_').pop() || '1'}
                                     </p>
-                                    <p className="text-[10px] font-bold uppercase tracking-widest text-white/40 leading-tight">Current Cycle<br/>Learning Path</p>
+                                    <p className="text-[10px] font-bold uppercase tracking-widest text-white/40 leading-tight">
+                                        {t('dashboard.stats.cycle')}<br/>{t('dashboard.stats.path')}
+                                    </p>
                                 </div>
                             </div>
                         </div>
@@ -200,11 +216,11 @@ export default function Dashboard() {
                                         <MapIcon size={20} />
                                     </div>
                                     <h3 className="text-xl font-black uppercase italic tracking-tight">
-                                        {profile.level === 'beginner' ? 'Beginner' : 'Intermediate'} Camp: {profile.currentCycleId?.split('_').pop() || '1'}
+                                        {profile.level === 'beginner' ? 'Beginner' : 'Intermediate'} {t('dashboard.roadmap.camp')}: {profile.currentCycleId?.split('_').pop() || '1'}
                                     </h3>
                                 </div>
                                 <Link href="/camps" className="px-4 py-1.5 bg-strawberry/10 rounded-full text-[10px] font-black uppercase tracking-widest text-primary hover:bg-strawberry/20 transition-all">
-                                    Switch Campaign
+                                    {t('dashboard.roadmap.switch')}
                                 </Link>
                             </div>
                             <MissionRoadmap currentDay={profile.dayOfCamp || 1} language={language} />
@@ -217,24 +233,28 @@ export default function Dashboard() {
                         >
                             <div className="relative z-10 flex-1">
                                 <span className={`pill-badge mb-6 inline-block ${profile.dayOfCamp === 15 ? 'bg-primary text-white' : 'bg-primary/10 text-primary'}`}>
-                                    {profile.dayOfCamp === 15 ? 'FINAL BREACH' : `Day ${profile.dayOfCamp || 1} Objectives`}
+                                    {profile.dayOfCamp === 15 
+                                        ? t('dashboard.dailyMission.finalBreach') 
+                                        : t('dashboard.dailyMission.objectives', { day: profile.dayOfCamp || 1 })}
                                 </span>
                                 <h2 className={`text-5xl font-black italic mb-6 tracking-tighter uppercase leading-none ${profile.dayOfCamp === 15 ? 'text-white' : 'text-charcoal'}`}>
                                     {profile.dayOfCamp === 15
-                                        ? (language === 'zh' ? '开启终极决战' : 'Deploy Boss Battle')
-                                        : (language === 'zh' ? '开启今日作战' : 'Deploy Today\'s Operation')}
+                                        ? t('dashboard.dailyMission.deployBoss')
+                                        : t('dashboard.dailyMission.deployToday')}
                                 </h2>
                                 <p className={`text-lg font-medium mb-10 leading-relaxed max-w-sm ${profile.dayOfCamp === 15 ? 'text-white/60' : 'text-charcoal/40'}`}>
                                     {profile.dayOfCamp === 15
-                                        ? 'Random 30 words assault. Score 100% to earn a legendary RM 10 Voucher and Elite Certificate.'
-                                        : `Master your Day ${profile.dayOfCamp || 1} vocabulary targets correctly to earn massive XP bonuses!`}
+                                        ? t('dashboard.dailyMission.bossDesc')
+                                        : t('dashboard.dailyMission.todayDesc')}
                                 </p>
                                 <Link
                                     href={profile.dayOfCamp === 15 ? "/challenge" : "/mission"}
                                     className={`btn-primary-cute flex items-center gap-3 w-fit ${profile.dayOfCamp === 15 ? 'bg-white text-charcoal border-none' : ''}`}
                                 >
                                     <Play size={20} fill="currentColor" />
-                                    {profile.dayOfCamp === 15 ? 'BEGIN BATTLE' : 'Commence Training'}
+                                    {profile.dayOfCamp === 15 
+                                        ? t('dashboard.dailyMission.beginBattle') 
+                                        : t('dashboard.dailyMission.commenceTraining')}
                                 </Link>
                             </div>
 
@@ -248,7 +268,9 @@ export default function Dashboard() {
                                         {profile.dayOfCamp === 15 ? '100%' : '+150'}
                                     </span>
                                     <span className={`text-[10px] font-black uppercase tracking-widest mt-2 ${profile.dayOfCamp === 15 ? 'text-white/40' : 'text-primary/40'}`}>
-                                        {profile.dayOfCamp === 15 ? 'TARGET SCORE' : 'Mission XP'}
+                                        {profile.dayOfCamp === 15 
+                                            ? t('dashboard.dailyMission.targetScore') 
+                                            : t('dashboard.dailyMission.missionXp')}
                                     </span>
                                 </motion.div>
 
@@ -261,18 +283,18 @@ export default function Dashboard() {
                         {/* Sub-Actions */}
                         <div className="grid md:grid-cols-2 gap-8">
                             <ActionCard
-                                title="Memory Lab"
-                                desc="Review your current word list before the memory fades."
+                                title={t('dashboard.actions.memoryLab.title')}
+                                desc={t('dashboard.actions.memoryLab.desc')}
                                 icon={<Target size={24} />}
-                                badge="12 Ready"
+                                badge={t('dashboard.actions.memoryLab.badge', { count: 12 })}
                                 color="bg-mint"
                                 href="/mission"
                             />
                             <ActionCard
-                                title="Academy Store"
-                                desc="Spend your XP on stickers, badges and power-ups."
+                                title={t('dashboard.actions.store.title')}
+                                desc={t('dashboard.actions.store.desc')}
                                 icon={<Trophy size={24} />}
-                                badge="Locked"
+                                badge={t('dashboard.actions.store.locked')}
                                 color="bg-lavender"
                                 locked
                             />
@@ -284,7 +306,9 @@ export default function Dashboard() {
                         {/* Rank Progress */}
                         <div className="puffy-card p-8">
                             <div className="flex items-center justify-between mb-8">
-                                <p className="text-[10px] font-black uppercase tracking-widest text-charcoal/30">Intelligence Report</p>
+                                <p className="text-[10px] font-black uppercase tracking-widest text-charcoal/30">
+                                    {t('dashboard.intelReport.title')}
+                                </p>
                                 <Trophy size={16} className="text-amber-500" />
                             </div>
 
@@ -295,7 +319,9 @@ export default function Dashboard() {
 
                             <div className="space-y-6">
                                 <div className="flex justify-between items-end">
-                                    <span className="text-[10px] font-black uppercase tracking-widest text-charcoal/30">Next Objective Progress</span>
+                                    <span className="text-[10px] font-black uppercase tracking-widest text-charcoal/30">
+                                        {t('dashboard.intelReport.nextObjective')}
+                                    </span>
                                     <span className="text-2xl font-black italic">{Math.round(rankInfo.progress)}%</span>
                                 </div>
                                 <div className="w-full h-10 bg-secondary rounded-[20px] p-2 overflow-hidden shadow-inner">
@@ -309,14 +335,16 @@ export default function Dashboard() {
                                     </motion.div>
                                 </div>
                                 <p className="text-[10px] font-black text-center text-charcoal/20 uppercase tracking-tight italic">
-                                    Collect {rankInfo.nextThreshold - (profile.totalXp || 0)} more XP to Rank Up
+                                    {t('dashboard.intelReport.collectMore', { count: rankInfo.nextThreshold - (profile.totalXp || 0) })}
                                 </p>
                             </div>
                         </div>
 
                         {/* Mini Leaderboard */}
                         <div className="puffy-card p-8">
-                            <h4 className="text-xl font-black italic uppercase tracking-tight mb-8">Basecamp Rankings</h4>
+                            <h4 className="text-xl font-black italic uppercase tracking-tight mb-8">
+                                {t('dashboard.rankings.title')}
+                            </h4>
                             <div className="space-y-6">
                                 {[
                                     { name: "Suji", xp: 1240, avatar: "S" },
@@ -329,7 +357,9 @@ export default function Dashboard() {
                                             </div>
                                             <div>
                                                 <p className={`text-xs font-black italic ${user.isMe ? 'text-primary' : 'text-charcoal'}`}>{user.name}</p>
-                                                <p className="text-[8px] font-black text-charcoal/30 uppercase tracking-widest">Active Member</p>
+                                                <p className="text-[8px] font-black text-charcoal/30 uppercase tracking-widest">
+                                                    {t('dashboard.rankings.activeMember')}
+                                                </p>
                                             </div>
                                         </div>
                                         <span className="text-xs font-black italic">{user.xp} XP</span>

@@ -5,8 +5,10 @@ import { Clock, ShieldCheck, Mail, LogOut } from 'lucide-react';
 import { useRouter } from 'next/navigation';
 import { auth } from '@/lib/firebase';
 import { signOut } from 'firebase/auth';
+import { useTranslation } from '@/hooks/use-translation';
 
 export default function PendingApprovalPage() {
+    const { t } = useTranslation();
     const router = useRouter();
 
     const handleSignOut = async () => {
@@ -39,18 +41,25 @@ export default function PendingApprovalPage() {
 
                 <div className="space-y-4">
                     <h1 className="text-4xl font-black tracking-tight text-slate">
-                        Application <span className="text-primary">Under Review</span>
+                        {t('pendingApproval.title')} <span className="text-primary">{t('pendingApproval.underReview')}</span>
                     </h1>
                     <p className="text-lg text-foreground/50 font-medium leading-relaxed">
-                        We've received your application to join the TOPIK Vocabulary Bootcamp. 
-                        Our team is currently reviewing your profile to ensure the best learning environment.
+                        {t('pendingApproval.description')}
                     </p>
                 </div>
 
                 <div className="grid gap-4 py-8">
                     {[
-                        { icon: <ShieldCheck className="text-emerald-500" />, title: "Identity Verified", desc: "Your basic account info is secured." },
-                        { icon: <Mail className="text-blue-500" />, title: "Email Notification", desc: "We'll email you once your status changes." },
+                        { 
+                            icon: <ShieldCheck className="text-emerald-500" />, 
+                            title: t('pendingApproval.identityTitle'), 
+                            desc: t('pendingApproval.identityDesc') 
+                        },
+                        { 
+                            icon: <Mail className="text-blue-500" />, 
+                            title: t('pendingApproval.emailTitle'), 
+                            desc: t('pendingApproval.emailDesc') 
+                        },
                     ].map((item, i) => (
                         <div key={i} className="flex items-start gap-4 p-4 bg-secondary/20 rounded-2xl text-left border border-transparent hover:border-primary/10 transition-colors">
                             <div className="mt-1">{item.icon}</div>
@@ -64,14 +73,14 @@ export default function PendingApprovalPage() {
 
                 <div className="pt-4 space-y-4">
                     <p className="text-sm text-foreground/30 font-bold uppercase tracking-widest">
-                        Check back in 24-48 hours
+                        {t('pendingApproval.checkBack')}
                     </p>
                     <button 
                         onClick={handleSignOut}
                         className="flex items-center justify-center gap-2 mx-auto text-foreground/40 hover:text-primary font-bold transition-colors group"
                     >
                         <LogOut size={18} className="group-hover:-translate-x-1 transition-transform" />
-                        Sign out and check later
+                        {t('pendingApproval.signOut')}
                     </button>
                 </div>
             </motion.div>

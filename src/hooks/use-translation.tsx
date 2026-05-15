@@ -10,7 +10,7 @@ type Translations = typeof en;
 interface TranslationContextType {
   language: Language;
   setLanguage: (lang: Language) => void;
-  t: (path: string) => string;
+  t: (path: string, params?: Record<string, string | number>) => string;
 }
 
 const translations: Record<Language, Translations> = { en, zh };
@@ -31,7 +31,7 @@ export function TranslationProvider({ children }: { children: React.ReactNode })
     localStorage.setItem('language', lang);
   };
 
-  const t = (path: string): string => {
+  const t = (path: string, params?: Record<string, string | number>): string => {
     const keys = path.split('.');
     let current: any = translations[language];
     for (const key of keys) {
@@ -41,7 +41,13 @@ export function TranslationProvider({ children }: { children: React.ReactNode })
         return path;
       }
     }
-    return current as string;
+    let result = current as string;
+    if (params) {
+      Object.entries(params).forEach(([key, value]) => {
+        result = result.replace(`{{${key}}}`, String(value));
+      });
+    }
+    return result;
   };
 
   return (

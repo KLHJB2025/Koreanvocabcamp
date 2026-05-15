@@ -16,7 +16,7 @@ import { doc, updateDoc, arrayUnion } from 'firebase/firestore';
 
 export default function ChallengePage() {
     const { profile, loading: authLoading } = useAuth();
-    const { language } = useTranslation();
+    const { t, language } = useTranslation();
     const router = useRouter();
 
     const [gameState, setGameState] = useState<'intro' | 'playing' | 'result'>('intro');
@@ -178,17 +178,17 @@ export default function ChallengePage() {
                             <Zap size={60} fill="currentColor" />
                         </motion.div>
 
-                        <h1 className="text-[120px] font-black italic tracking-tighter leading-none mb-4 uppercase drop-shadow-2xl">
-                            BATTLE<br /><span className="text-primary italic">BREACH</span>
+                        <h1 className="text-[100px] font-black italic tracking-tighter leading-none mb-4 uppercase drop-shadow-2xl">
+                            {t('challenge.title').split(' ')[0]}<br /><span className="text-primary italic">{t('challenge.title').split(' ')[1]}</span>
                         </h1>
                         <p className="text-white/40 font-bold uppercase tracking-[0.5em] mb-12 text-sm">Target: 30 Words | Time: 90s</p>
 
                         <div className="flex flex-col gap-6 w-full max-w-sm">
                             <button onClick={startChallenge} className="btn-primary-cute text-xl py-6 rounded-[32px] bg-white text-charcoal hover:bg-primary hover:text-white transition-all border-none shadow-2xl">
-                                COMMENCE ASSAULT
+                                {t('challenge.commence')}
                             </button>
                             <Link href="/dashboard" className="text-white/20 hover:text-white transition-colors font-black uppercase tracking-widest text-xs">
-                                Abandon Mission
+                                {t('challenge.abandon')}
                             </Link>
                         </div>
                     </motion.div>
@@ -207,7 +207,9 @@ export default function ChallengePage() {
                                     <Timer size={24} />
                                 </div>
                                 <div>
-                                    <p className="text-[10px] font-black uppercase text-white/20 tracking-widest">Time Remaining</p>
+                                    <p className="text-[10px] font-black uppercase text-white/20 tracking-widest">
+                                        {t('challenge.timeRemaining')}
+                                    </p>
                                     <p className={`text-2xl font-black italic ${timeLeft < 10 ? 'text-rose-500 animate-pulse' : 'text-white'}`}>{timeLeft}s</p>
                                 </div>
                             </div>
@@ -219,7 +221,9 @@ export default function ChallengePage() {
                             </div>
 
                             <div className="text-right">
-                                <p className="text-[10px] font-black uppercase text-white/20 tracking-widest">Progress</p>
+                                <p className="text-[10px] font-black uppercase text-white/20 tracking-widest">
+                                    {t('challenge.progress')}
+                                </p>
                                 <p className="text-2xl font-black italic">{currentIndex + 1} / {questions.length}</p>
                             </div>
                         </div>
@@ -235,17 +239,27 @@ export default function ChallengePage() {
                                     >
                                         {feedback.type === 'correct' ? (
                                             <div className="text-center">
-                                                <h3 className="text-6xl font-black italic text-primary drop-shadow-[0_0_20px_rgba(255,78,141,0.6)] mb-2">✨ PERFECT!</h3>
+                                                <h3 className="text-6xl font-black italic text-primary drop-shadow-[0_0_20px_rgba(255,78,141,0.6)] mb-2">
+                                                    {t('challenge.perfect')}
+                                                </h3>
                                                 {feedback.combo >= 3 && (
-                                                    <p className="text-3xl font-black italic text-amber-400">🔥 COMBO x{feedback.combo}</p>
+                                                    <p className="text-3xl font-black italic text-amber-400">
+                                                        {t('challenge.combo', { count: feedback.combo })}
+                                                    </p>
                                                 )}
-                                                <p className="text-sm font-bold uppercase tracking-[0.3em] text-emerald-400 mt-2">🧠 MEMORY INCREASED</p>
+                                                <p className="text-sm font-bold uppercase tracking-[0.3em] text-emerald-400 mt-2">
+                                                    {t('challenge.memoryIncreased')}
+                                                </p>
                                                 <p className="text-xl font-black italic text-white/60">+20 XP</p>
                                             </div>
                                         ) : (
                                             <div className="text-center">
-                                                <h3 className="text-5xl font-black italic text-rose-500 mb-2 uppercase">Almost!</h3>
-                                                <p className="text-sm font-bold uppercase tracking-widest text-white/40">Training Required</p>
+                                                <h3 className="text-5xl font-black italic text-rose-500 mb-2 uppercase">
+                                                    {t('challenge.almost')}
+                                                </h3>
+                                                <p className="text-sm font-bold uppercase tracking-widest text-white/40">
+                                                    {t('challenge.retrainingRequired')}
+                                                </p>
                                             </div>
                                         )}
                                     </motion.div>
@@ -293,8 +307,12 @@ export default function ChallengePage() {
                         className="min-h-screen py-20 px-8 flex flex-col items-center bg-gradient-to-b from-charcoal to-black overflow-y-auto"
                     >
                         <div className="text-center mb-12">
-                            <h2 className="text-6xl font-black italic tracking-tighter uppercase mb-2">MISSION COMPLETE</h2>
-                            <p className="text-white/40 font-bold uppercase tracking-widest">Combat Accuracy: {accuracy}%</p>
+                            <h2 className="text-6xl font-black italic tracking-tighter uppercase mb-2">
+                                {t('challenge.complete')}
+                            </h2>
+                            <p className="text-white/40 font-bold uppercase tracking-widest">
+                                {t('challenge.accuracy')}: {accuracy}%
+                            </p>
                         </div>
 
                         {accuracy >= 60 ? (
@@ -318,20 +336,24 @@ export default function ChallengePage() {
                                             <Ticket size={48} className="rotate-12" />
                                         </div>
                                         <div className="flex-1">
-                                            <div className="inline-block px-3 py-1 bg-charcoal text-white rounded-full text-[8px] font-black uppercase tracking-widest mb-3">Legendary Reward</div>
-                                            <h3 className="text-3xl font-black italic uppercase leading-none mb-2">SCHOLARSHIP UNLOCKED</h3>
+                                            <div className="inline-block px-3 py-1 bg-charcoal text-white rounded-full text-[8px] font-black uppercase tracking-widest mb-3">
+                                                {t('challenge.legendaryReward')}
+                                            </div>
+                                            <h3 className="text-3xl font-black italic uppercase leading-none mb-2">
+                                                {t('challenge.scholarshipUnlocked')}
+                                            </h3>
                                             <p className="text-sm font-bold opacity-60 uppercase tracking-widest leading-relaxed">
-                                                Use code <span className="underline font-black bg-white/40 px-2 py-0.5 rounded">BOSS10-VICTORY</span> for RM10 off your next camp expansion.
+                                                {t('challenge.voucherInstruction')}
                                             </p>
                                         </div>
                                         <button
                                             onClick={() => {
                                                 navigator.clipboard.writeText('BOSS10-VICTORY');
-                                                alert('Voucher copied to clipboard!');
+                                                alert(t('challenge.copied'));
                                             }}
                                             className="px-8 py-4 bg-charcoal text-white rounded-full font-black text-xs uppercase tracking-widest hover:scale-105 transition-transform"
                                         >
-                                            Copy Code
+                                            {t('challenge.copyCode')}
                                         </button>
                                     </motion.div>
                                 )}
@@ -342,7 +364,9 @@ export default function ChallengePage() {
                                     <XCircle size={80} />
                                 </div>
                                 <div className="text-center max-w-md">
-                                    <h3 className="text-3xl font-black italic uppercase mb-2 text-rose-500">RETRAINING REQUIRED</h3>
+                                    <h3 className="text-3xl font-black italic uppercase mb-2 text-rose-500">
+                                        {t('challenge.retrainingRequired')}
+                                    </h3>
                                     <p className="text-white/40 font-medium italic">You need at least 60% accuracy to earn a certificate. Don&apos;t give up, Agent!</p>
                                 </div>
                             </div>
@@ -350,11 +374,11 @@ export default function ChallengePage() {
 
                         <div className="flex gap-4 w-full max-w-sm">
                             <button onClick={() => setGameState('intro')} className="btn-secondary-cute flex-1 flex items-center justify-center gap-2 bg-transparent text-white border-white/10 hover:bg-white/5">
-                                Retry
+                                {t('challenge.retry')}
                             </button>
                             <Link href="/dashboard" className="btn-primary-cute flex-1 flex items-center justify-center gap-2">
                                 <Home size={20} />
-                                HQ
+                                {t('challenge.hq')}
                             </Link>
                         </div>
                     </motion.div>

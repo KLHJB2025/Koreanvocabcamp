@@ -42,7 +42,7 @@ export function VocabCard({
     onNext,
     onPrev
 }: VocabCardProps) {
-    const { language } = useTranslation();
+    const { t, language } = useTranslation();
 
     const speak = (text: string, speed: 'normal' | 'slow' = 'normal') => {
         if ('speechSynthesis' in window) {
@@ -66,21 +66,19 @@ export function VocabCard({
 
                 <div className="w-full flex justify-between items-center relative z-10 mb-8">
                     <span className={`pill-badge ${posStyle.bg} ${posStyle.text} border ${posStyle.border} font-black`}>
-                        {pos}
+                        {t(`pos.${pos}`)}
                     </span>
                     <div className="flex gap-2">
                         <button
                             onClick={() => speak(word, 'slow')}
                             className="px-3 py-1.5 bg-white rounded-xl flex items-center gap-1.5 text-[10px] font-black uppercase tracking-widest text-charcoal/40 hover:text-primary transition-colors border border-charcoal/5 shadow-sm"
-                            title="Slow Pronunciation"
                         >
                             <Volume2 size={14} />
-                            Slow
+                            {t('learning.slow')}
                         </button>
                         <button
                             onClick={() => speak(word, 'normal')}
                             className="w-10 h-10 bg-primary rounded-xl flex items-center justify-center text-white hover:scale-110 active:scale-95 transition-all shadow-md"
-                            title="Normal Pronunciation"
                         >
                             <Volume2 size={20} />
                         </button>
@@ -150,13 +148,13 @@ export function VocabCard({
                                 className="flex-1 btn-primary-cute bg-white text-charcoal border-2 border-strawberry/10 py-5 text-lg flex items-center justify-center gap-2"
                             >
                                 <ChevronLeft size={24} />
-                                Previous
+                                {t('mission.prev')}
                             </button>
                             <button
                                 onClick={onNext}
                                 className="flex-[2] btn-primary-cute py-5 text-lg flex items-center justify-center gap-2"
                             >
-                                Next Word
+                                {t('mission.next')}
                                 <ChevronRight size={24} />
                             </button>
                         </div>
