@@ -54,14 +54,19 @@ export function ReviewTask({ words, onComplete }: ReviewTaskProps) {
         }
 
         setTimeout(() => {
-            setSelectedOption(null);
-            setIsCorrect(null);
-            if (currentIndex < words.length - 1) {
-                const nextIndex = currentIndex + 1;
-                setCurrentIndex(nextIndex);
-                setOptions(generateOptions(nextIndex));
+            if (correct) {
+                setSelectedOption(null);
+                setIsCorrect(null);
+                if (currentIndex < words.length - 1) {
+                    const nextIndex = currentIndex + 1;
+                    setCurrentIndex(nextIndex);
+                    setOptions(generateOptions(nextIndex));
+                } else {
+                    onComplete();
+                }
             } else {
-                onComplete();
+                setSelectedOption(null);
+                setIsCorrect(null);
             }
         }, 1500);
     };
