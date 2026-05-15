@@ -20,15 +20,15 @@ export async function getDailyWords(cycleId: string, day: number): Promise<Word[
         const allWords = snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() } as any));
 
         if (allWords.length > 0) {
-            // Logic: 100 words per cycle, split into 14 days. 
-            // Day 14 is reserved for the Boss Battle.
-            // We split words across Days 1-13.
+            // Logic: 100 words per cycle, split into 15 days. 
+            // Day 15 is reserved for the Boss Battle.
+            // We split words across Days 1-14.
             const totalWords = allWords.length;
-            const wordsPerDay = Math.ceil(totalWords / 13); 
+            const wordsPerDay = Math.ceil(totalWords / 14); 
             const start = (day - 1) * wordsPerDay;
             const end = Math.min(start + wordsPerDay, totalWords);
             
-            if (day >= 14) return []; // Day 14 is challenge day, no new words
+            if (day >= 15) return []; // Day 15 is challenge day, no new words
             return allWords.slice(start, end);
         }
     } catch (error) {
@@ -38,11 +38,11 @@ export async function getDailyWords(cycleId: string, day: number): Promise<Word[
     // Fallback to mock data
     const mockCycle = MOCK_VOCABULARY[cycleId] || MOCK_VOCABULARY['beginner_cycle_1'];
     const totalWords = mockCycle.length;
-    const wordsPerDay = Math.ceil(totalWords / 13);
+    const wordsPerDay = Math.ceil(totalWords / 14);
     const start = (day - 1) * wordsPerDay;
     const end = Math.min(start + wordsPerDay, totalWords);
     
-    if (day >= 14) return []; // Day 14 is challenge day
+    if (day >= 15) return []; // Day 15 is challenge day
     return mockCycle.slice(start, end);
 }
 
@@ -72,9 +72,9 @@ export async function getReviewWords(uid: string, cycleId: string, day: number):
     // and we are clearly in a development or mock state.
     // For production, if Firestore says no words are due, we return empty.
     
-    // Standardize wordsPerDay calculation (use 13 days for learning, Day 14 for Boss)
+    // Standardize wordsPerDay calculation (use 14 days for learning, Day 15 for Boss)
     const mockCycle = MOCK_VOCABULARY[cycleId] || MOCK_VOCABULARY['beginner_cycle_1'];
-    const wordsPerDay = Math.ceil(mockCycle.length / 13);
+    const wordsPerDay = Math.ceil(mockCycle.length / 14);
     
     // Only return fallback words if we are specifically looking for a way to fill a session
     // and the user has actually progressed past day 1.

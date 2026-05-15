@@ -166,9 +166,13 @@ export default function MissionPage() {
                             </p>
                             <h1 className="text-6xl font-black italic tracking-tighter uppercase mb-4">{t('mission.dailyOperation')}</h1>
                             <p className="text-charcoal/40 font-bold mb-12 uppercase tracking-widest">
-                                {t('mission.masterTargets', { count: words.length })}
+                                {words.length > 0 ? t('mission.masterTargets', { count: words.length }) : "No targets available"}
                             </p>
-                            <button onClick={handleNextStep} className="btn-primary-cute text-2xl px-12 py-6">{t('mission.beginMission')}</button>
+                            {words.length > 0 ? (
+                                <button onClick={handleNextStep} className="btn-primary-cute text-2xl px-12 py-6">{t('mission.beginMission')}</button>
+                            ) : (
+                                <button onClick={() => router.push('/dashboard')} className="btn-primary-cute text-2xl px-12 py-6">Return to Base</button>
+                            )}
                         </motion.div>
                     )}
 
