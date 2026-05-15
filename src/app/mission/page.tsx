@@ -57,7 +57,11 @@ export default function MissionPage() {
                 try {
                     const parsed = JSON.parse(saved);
                     if (parsed.day === profile.dayOfCamp) {
-                        setStep(parsed.step);
+                        if (parsed.step === 'review' && prevWords.length === 0) {
+                            setStep('learn');
+                        } else {
+                            setStep(parsed.step);
+                        }
                         setCurrentIndex(parsed.currentIndex);
                         setMissedWords(parsed.missedWords || []);
                     } else {
@@ -68,7 +72,7 @@ export default function MissionPage() {
                 }
             }
         }
-    }, [words, profile, step]);
+    }, [words, prevWords, profile, step]);
 
     const handleMiss = (word: Word) => {
         setMissedWords(prev => {

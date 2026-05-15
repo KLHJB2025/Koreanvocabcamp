@@ -38,8 +38,10 @@ export function ReviewTask({ words, onComplete }: ReviewTaskProps) {
     useEffect(() => {
         if (words.length > 0 && currentIndex === 0) {
             setOptions(generateOptions(0));
+        } else if (words.length === 0) {
+            onComplete();
         }
-    }, [words, language]);
+    }, [words, language, currentIndex, onComplete]);
 
     const handleAnswer = async (opt: string) => {
         if (selectedOption) return;
