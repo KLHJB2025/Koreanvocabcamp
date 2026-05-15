@@ -18,11 +18,12 @@ export function ListeningTask({ words, onComplete, onMiss }: ListeningTaskProps)
     const [isCorrect, setIsCorrect] = useState<boolean | null>(null);
     const { t } = useTranslation();
 
-    const speak = (text: string) => {
+    const speak = (text: string, rate: number = 1.0) => {
         if (typeof window !== 'undefined') {
             window.speechSynthesis.cancel();
             const utterance = new SpeechSynthesisUtterance(text);
             utterance.lang = 'ko-KR';
+            utterance.rate = rate;
             window.speechSynthesis.speak(utterance);
         }
     };
@@ -66,12 +67,21 @@ export function ListeningTask({ words, onComplete, onMiss }: ListeningTaskProps)
                 {t('tasks.listening.title')}
             </span>
             
-            <button 
-                onClick={() => speak(words[currentIndex].kr)}
-                className="w-32 h-32 bg-primary rounded-[40px] flex items-center justify-center text-white shadow-2xl shadow-primary/40 mx-auto mb-12 hover:scale-110 active:scale-95 transition-all"
-            >
-                <Volume2 size={60} />
-            </button>
+            <div className="flex flex-col items-center gap-4 mb-12">
+                <button 
+                    onClick={() => speak(words[currentIndex].kr)}
+                    className="w-32 h-32 bg-primary rounded-[40px] flex items-center justify-center text-white shadow-2xl shadow-primary/40 hover:scale-110 active:scale-95 transition-all"
+                >
+                    <Volume2 size={60} />
+                </button>
+                <button
+                    onClick={() => speak(words[currentIndex].kr, 0.6)}
+                    className="px-6 py-2 bg-cloud/20 rounded-2xl flex items-center gap-2 text-sm font-black uppercase tracking-widest text-charcoal/40 hover:text-primary transition-colors border border-charcoal/5 shadow-sm"
+                >
+                    <Volume2 size={16} />
+                    {t('learning.slow')}
+                </button>
+            </div>
 
             <h3 className="text-xl font-black italic uppercase tracking-widest text-charcoal/30 mb-8">
                 {t('tasks.listening.instruction')}

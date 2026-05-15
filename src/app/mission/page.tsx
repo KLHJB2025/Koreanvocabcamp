@@ -36,6 +36,40 @@ export default function MissionPage() {
     const [isLoading, setIsLoading] = useState(true);
     const [currentIndex, setCurrentIndex] = useState(0);
 
+    // Save progress to localStorage
+    useEffect(() => {
+        if (step !== 'intro' && step !== 'complete' && words.length > 0) {
+            const progress = {
+                step,
+                currentIndex,
+                missedWords,
+                day: profile?.dayOfCamp
+            };
+            localStorage.setItem('mission_progress', JSON.stringify(progress));
+        }
+    }, [step, currentIndex, missedWords, words, profile]);
+
+    // Load progress from localStorage
+    useEffect(() => {
+        if (words.length > 0 && profile && step === 'intro') {
+            const saved = localStorage.getItem('mission_progress');
+            if (saved) {
+                try {
+                    const parsed = JSON.parse(saved);
+                    if (parsed.day === profile.dayOfCamp) {
+                        setStep(parsed.step);
+                        setCurrentIndex(parsed.currentIndex);
+                        setMissedWords(parsed.missedWords || []);
+                    } else {
+                        localStorage.removeItem('mission_progress');
+                    }
+                } catch (e) {
+                    console.error("Failed to parse saved progress", e);
+                }
+            }
+        }
+    }, [words, profile, step]);
+
     const handleMiss = (word: Word) => {
         setMissedWords(prev => {
             if (prev.find(w => w.kr === word.kr)) return prev;
@@ -82,6 +116,7 @@ export default function MissionPage() {
 
     const finalizeMission = async () => {
         setStep('complete');
+        localStorage.removeItem('mission_progress'); // Clear saved progress on completion
         confetti({
             particleCount: 150,
             spread: 70,
