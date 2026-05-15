@@ -57,7 +57,7 @@ export function VocabCard({
 
     const posStyle = POS_COLORS[pos] || POS_COLORS.default;
     const displayedMeaning = language === 'zh' ? meaningZh : meaningEn;
-    const displayedSentenceMeaning = language === 'zh' ? (sentenceZh || sentenceMeaning) : sentenceMeaning;
+    const displayedSentenceMeaning = language === 'zh' ? sentenceZh : sentenceMeaning;
 
     return (
         <div className="w-full max-w-lg mx-auto">
@@ -137,9 +137,11 @@ export function VocabCard({
                                             <Volume2 size={16} />
                                         </button>
                                     </p>
-                                    <p className="text-lg font-bold text-charcoal/40 italic">
-                                        {displayedSentenceMeaning}
-                                    </p>
+                                    {displayedSentenceMeaning && (
+                                        <p className="text-lg font-bold text-charcoal/40 italic">
+                                            {displayedSentenceMeaning}
+                                        </p>
+                                    )}
                                 </div>
                             </div>
                         )}
