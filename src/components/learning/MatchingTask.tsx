@@ -7,9 +7,10 @@ import { useTranslation } from '@/hooks/use-translation';
 interface MatchingTaskProps {
     words: Word[];
     onComplete: () => void;
+    onMiss: (word: Word) => void;
 }
 
-export function MatchingTask({ words, onComplete }: MatchingTaskProps) {
+export function MatchingTask({ words, onComplete, onMiss }: MatchingTaskProps) {
     const [koreanWords, setKoreanWords] = useState<string[]>([]);
     const [meanings, setMeanings] = useState<string[]>([]);
     const [selectedKr, setSelectedKr] = useState<string | null>(null);
@@ -37,6 +38,7 @@ export function MatchingTask({ words, onComplete }: MatchingTaskProps) {
                     setTimeout(onComplete, 1000);
                 }
             } else {
+                if (correctWord) onMiss(correctWord);
                 setWrongMatch(true);
                 setTimeout(() => {
                     setWrongMatch(false);

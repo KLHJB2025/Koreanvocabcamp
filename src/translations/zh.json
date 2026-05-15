@@ -179,6 +179,13 @@
         "listen": { "label": "听力" },
         "match": { "label": "匹配" },
         "spell": { "label": "拼写" },
+        "errorReview": {
+            "title": "错题巩固",
+            "instruction": "消灭薄弱环节！",
+            "subtitle": "改正刚才的错误，离终点更近一步",
+            "correctAnswer": "正确拼写",
+            "gotIt": "我学会了！"
+        },
         "scenario": { "label": "场景" }
     },
     "mission": {

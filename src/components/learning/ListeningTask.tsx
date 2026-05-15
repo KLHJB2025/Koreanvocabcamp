@@ -8,9 +8,10 @@ import { useTranslation } from '@/hooks/use-translation';
 interface ListeningTaskProps {
     words: Word[];
     onComplete: () => void;
+    onMiss: (word: Word) => void;
 }
 
-export function ListeningTask({ words, onComplete }: ListeningTaskProps) {
+export function ListeningTask({ words, onComplete, onMiss }: ListeningTaskProps) {
     const [currentIndex, setCurrentIndex] = useState(0);
     const [options, setOptions] = useState<Word[]>([]);
     const [selectedId, setSelectedId] = useState<string | null>(null);
@@ -45,6 +46,10 @@ export function ListeningTask({ words, onComplete }: ListeningTaskProps) {
         setSelectedId(word.kr);
         const correct = word.kr === words[currentIndex].kr;
         setIsCorrect(correct);
+
+        if (!correct) {
+            onMiss(words[currentIndex]);
+        }
 
         setTimeout(() => {
             if (currentIndex < words.length - 1) {

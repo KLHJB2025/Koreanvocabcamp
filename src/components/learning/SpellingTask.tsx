@@ -7,9 +7,10 @@ import { useTranslation } from '@/hooks/use-translation';
 interface SpellingTaskProps {
     words: Word[];
     onComplete: () => void;
+    onMiss: (word: Word) => void;
 }
 
-export function SpellingTask({ words, onComplete }: SpellingTaskProps) {
+export function SpellingTask({ words, onComplete, onMiss }: SpellingTaskProps) {
     const [currentIndex, setCurrentIndex] = useState(0);
     const [input, setInput] = useState('');
     const [isCorrect, setIsCorrect] = useState<boolean | null>(null);
@@ -33,6 +34,7 @@ export function SpellingTask({ words, onComplete }: SpellingTaskProps) {
                 }
             }, 1000);
         } else {
+            onMiss(currentWord);
             setTimeout(() => setIsCorrect(null), 1500);
         }
     };

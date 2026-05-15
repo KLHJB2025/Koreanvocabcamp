@@ -178,7 +178,14 @@
     "learn": { "label": "Learn" },
     "listen": { "label": "Listen" },
     "match": { "label": "Match" },
-    "spell": { "label": "Spell" }
+    "spell": { "label": "Spell" },
+    "errorReview": {
+      "title": "Error Review",
+      "instruction": "Let's master the tricky ones!",
+      "subtitle": "Correct your mistakes to move forward",
+      "correctAnswer": "Correct Spelling",
+      "gotIt": "I got it!"
+    }
   },
   "mission": {
     "start": "Start Training",

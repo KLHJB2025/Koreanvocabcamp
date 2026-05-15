@@ -1,8 +1,8 @@
 import { db } from './firebase';
 import { doc, updateDoc, increment, setDoc, collection, serverTimestamp, getDoc } from 'firebase/firestore';
 
-// SRS Intervals (in days) based on Level
-const SRS_INTERVALS = [1, 3, 7, 14, 30, 90, 180];
+// SRS Intervals (in days) adjusted for a 14-day camp cycle
+const SRS_INTERVALS = [1, 2, 4, 7, 12];
 
 export async function addXp(uid: string, amount: number) {
     const userRef = doc(db, 'users', uid);

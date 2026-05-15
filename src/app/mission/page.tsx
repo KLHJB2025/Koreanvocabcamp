@@ -19,8 +19,10 @@ import { ReviewTask } from '@/components/learning/ReviewTask';
 import { ListeningTask } from '@/components/learning/ListeningTask';
 import { MatchingTask } from '@/components/learning/MatchingTask';
 import { SpellingTask } from '@/components/learning/SpellingTask';
+import { ScenarioTask } from '@/components/learning/ScenarioTask';
+import { ErrorReviewTask } from '@/components/learning/ErrorReviewTask';
 
-type MissionStep = 'intro' | 'review' | 'learn' | 'listen' | 'match' | 'spell' | 'scenario' | 'complete';
+type MissionStep = 'intro' | 'review' | 'learn' | 'listen' | 'match' | 'spell' | 'errorReview' | 'scenario' | 'complete';
 
 export default function MissionPage() {
     const { profile, loading: authLoading } = useAuth();
@@ -30,8 +32,16 @@ export default function MissionPage() {
     const [step, setStep] = useState<MissionStep>('intro');
     const [words, setWords] = useState<Word[]>([]);
     const [prevWords, setPrevWords] = useState<Word[]>([]);
+    const [missedWords, setMissedWords] = useState<Word[]>([]);
     const [isLoading, setIsLoading] = useState(true);
     const [currentIndex, setCurrentIndex] = useState(0);
+
+    const handleMiss = (word: Word) => {
+        setMissedWords(prev => {
+            if (prev.find(w => w.kr === word.kr)) return prev;
+            return [...prev, word];
+        });
+    };
 
     useEffect(() => {
         const load = async () => {
@@ -59,7 +69,14 @@ export default function MissionPage() {
         else if (step === 'learn') setStep('listen');
         else if (step === 'listen') setStep('match');
         else if (step === 'match') setStep('spell');
-        else if (step === 'spell') setStep('scenario');
+        else if (step === 'spell') {
+            if (missedWords.length > 0) setStep('errorReview');
+            else setStep('scenario');
+        }
+        else if (step === 'errorReview') {
+            setMissedWords([]); // Clear errors once mastered
+            setStep('scenario');
+        }
         else if (step === 'scenario') finalizeMission();
     };
 
@@ -141,9 +158,10 @@ export default function MissionPage() {
                         </div>
                     )}
 
-                    {step === 'listen' && <ListeningTask key="listen" words={words} onComplete={handleNextStep} />}
-                    {step === 'match' && <MatchingTask key="match" words={words} onComplete={handleNextStep} />}
-                    {step === 'spell' && <SpellingTask key="spell" words={words} onComplete={() => setStep('scenario')} />}
+                    {step === 'listen' && <ListeningTask key="listen" words={words} onComplete={handleNextStep} onMiss={handleMiss} />}
+                    {step === 'match' && <MatchingTask key="match" words={words} onComplete={handleNextStep} onMiss={handleMiss} />}
+                    {step === 'spell' && <SpellingTask key="spell" words={words} onComplete={handleNextStep} onMiss={handleMiss} />}
+                    {step === 'errorReview' && <ErrorReviewTask key="errorReview" words={missedWords} onComplete={handleNextStep} />}
                     {step === 'scenario' && <ScenarioTask key="scenario" words={words} onComplete={finalizeMission} />}
 
                     {step === 'complete' && (
