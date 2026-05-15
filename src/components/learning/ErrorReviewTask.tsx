@@ -11,7 +11,12 @@ interface ErrorReviewTaskProps {
 }
 
 export function ErrorReviewTask({ words, onComplete }: ErrorReviewTaskProps) {
+    const { language, t } = useTranslation();
     const [localWords, setLocalWords] = useState<Word[]>(words);
+    const [currentIndex, setCurrentIndex] = useState(0);
+    const [input, setInput] = useState('');
+    const [isCorrect, setIsCorrect] = useState<boolean | null>(null);
+    const [showCorrection, setShowCorrection] = useState(false);
     const currentWord = localWords[currentIndex];
 
     const handleSubmit = (e: React.FormEvent) => {
