@@ -295,12 +295,12 @@ export const MOCK_VOCABULARY: Record<string, Word[]> = {
         },
         {
             kr: "간단히",
-            en: "TBD",
-            zh: "TBD",
+            en: "simply, briefly",
+            zh: "简单地",
             pos: "부사",
             sentenceKr: "간단히 간단히 끝내다",
-            sentenceMeaning: "TBD",
-            sentenceZh: "TBD"
+            sentenceMeaning: "Please explain it simply.",
+            sentenceZh: "请简单地解释一下。"
         },
         {
             kr: "간식",
@@ -315,12 +315,12 @@ export const MOCK_VOCABULARY: Record<string, Word[]> = {
         },
         {
             kr: "간장",
-            en: "TBD",
-            zh: "TBD",
+            en: "soy sauce",
+            zh: "酱油",
             pos: "명사",
             sentenceKr: "간장 을 넣다",
-            sentenceMeaning: "TBD",
-            sentenceZh: "TBD"
+            sentenceMeaning: "Please give me some soy sauce.",
+            sentenceZh: "请给我一点酱油。"
         },
         {
             kr: "간호사",
@@ -405,30 +405,30 @@ export const MOCK_VOCABULARY: Record<string, Word[]> = {
         },
         {
             kr: "감기약",
-            en: "TBD",
-            zh: "TBD",
+            en: "cold medicine",
+            zh: "感冒药",
             pos: "명사",
             sentenceKr: "감기약 을 먹다",
-            sentenceMeaning: "TBD",
-            sentenceZh: "TBD"
+            sentenceMeaning: "I took cold medicine.",
+            sentenceZh: "我吃了感冒药。"
         },
         {
             kr: "감다",
-            en: "TBD",
-            zh: "TBD",
+            en: "to close (eyes) / to wash (hair)",
+            zh: "闭(眼) / 洗(头)",
             pos: "동사",
             sentenceKr: "감다 눈을",
-            sentenceMeaning: "TBD",
-            sentenceZh: "TBD"
+            sentenceMeaning: "I close my eyes.",
+            sentenceZh: "我闭上眼睛。"
         },
         {
             kr: "감다",
-            en: "TBD",
-            zh: "TBD",
+            en: "to close (eyes) / to wash (hair)",
+            zh: "闭(眼) / 洗(头)",
             pos: "동사",
             sentenceKr: "감다 머리를",
-            sentenceMeaning: "TBD",
-            sentenceZh: "TBD"
+            sentenceMeaning: "I close my eyes.",
+            sentenceZh: "我闭上眼睛。"
         },
         {
             kr: "감사",
@@ -442,12 +442,12 @@ export const MOCK_VOCABULARY: Record<string, Word[]> = {
         },
         {
             kr: "감자",
-            en: "TBD",
-            zh: "TBD",
+            en: "potato",
+            zh: "土豆",
             pos: "명사",
             sentenceKr: "감자 채소",
-            sentenceMeaning: "TBD",
-            sentenceZh: "TBD"
+            sentenceMeaning: "I like potatoes.",
+            sentenceZh: "我喜欢土豆。"
         },
         {
             kr: "갑자기",
@@ -563,12 +563,12 @@ export const MOCK_VOCABULARY: Record<string, Word[]> = {
         },
         {
             kr: "개월",
-            en: "TBD",
-            zh: "TBD",
+            en: "months (duration)",
+            zh: "个月",
             pos: "의존명사",
             sentenceKr: "개월 삼 개월",
-            sentenceMeaning: "TBD",
-            sentenceZh: "TBD"
+            sentenceMeaning: "I learned Korean for 3 months.",
+            sentenceZh: "我学了三个月韩语。"
         },
         {
             kr: "거",
@@ -708,12 +708,12 @@ export const MOCK_VOCABULARY: Record<string, Word[]> = {
         },
         {
             kr: "걸리다",
-            en: "TBD",
-            zh: "TBD",
+            en: "to take (time) / to catch (a cold)",
+            zh: "花费(时间) / 得(病)",
             pos: "동사",
             sentenceKr: "걸리다 그림이",
-            sentenceMeaning: "TBD",
-            sentenceZh: "TBD"
+            sentenceMeaning: "It takes 10 minutes.",
+            sentenceZh: "需要10分钟。"
         },
         {
             kr: "걸어가다",
@@ -741,30 +741,30 @@ export const MOCK_VOCABULARY: Record<string, Word[]> = {
         },
         {
             kr: "검사",
-            en: "TBD",
-            zh: "TBD",
+            en: "examination, test",
+            zh: "检查",
             pos: "명사",
             sentenceKr: "검사 숙제 검사",
-            sentenceMeaning: "TBD",
-            sentenceZh: "TBD"
+            sentenceMeaning: "I got a medical examination.",
+            sentenceZh: "我做了一个身体检查。"
         },
         {
             kr: "검은색",
-            en: "TBD",
-            zh: "TBD",
+            en: "black color",
+            zh: "黑色",
             pos: "명사",
             sentenceKr: "검은색 색깔",
-            sentenceMeaning: "TBD",
-            sentenceZh: "TBD"
+            sentenceMeaning: "I bought a black shirt.",
+            sentenceZh: "我买了一件黑色的衬衫。"
         },
         {
             kr: "검정",
-            en: "TBD",
-            zh: "TBD",
+            en: "black",
+            zh: "黑色",
             pos: "명사",
             sentenceKr: "검정 색깔",
-            sentenceMeaning: "TBD",
-            sentenceZh: "TBD"
+            sentenceMeaning: "I like black.",
+            sentenceZh: "我喜欢黑色。"
         },
         {
             kr: "것",
@@ -776,12 +776,12 @@ export const MOCK_VOCABULARY: Record<string, Word[]> = {
         },
         {
             kr: "겉",
-            en: "TBD",
-            zh: "TBD",
+            en: "surface, outside",
+            zh: "表面",
             pos: "명사",
             sentenceKr: "겉 안과 겉",
-            sentenceMeaning: "TBD",
-            sentenceZh: "TBD"
+            sentenceMeaning: "The outside is hard.",
+            sentenceZh: "表面很硬。"
         },
         {
             kr: "게으르다",
@@ -793,12 +793,12 @@ export const MOCK_VOCABULARY: Record<string, Word[]> = {
         },
         {
             kr: "게임",
-            en: "TBD",
-            zh: "TBD",
+            en: "game",
+            zh: "游戏",
             pos: "명사",
             sentenceKr: "게임 컴퓨터 게임",
-            sentenceMeaning: "TBD",
-            sentenceZh: "TBD"
+            sentenceMeaning: "I play computer games.",
+            sentenceZh: "我玩电脑游戏。"
         },
         {
             kr: "겨울",
@@ -818,12 +818,12 @@ export const MOCK_VOCABULARY: Record<string, Word[]> = {
         },
         {
             kr: "결석",
-            en: "TBD",
-            zh: "TBD",
+            en: "absence",
+            zh: "缺席",
             pos: "명사",
             sentenceKr: "결석 을 하다",
-            sentenceMeaning: "TBD",
-            sentenceZh: "TBD"
+            sentenceMeaning: "I was absent from class.",
+            sentenceZh: "我上课缺席了。"
         },
         {
             kr: "결심",
@@ -955,12 +955,12 @@ export const MOCK_VOCABULARY: Record<string, Word[]> = {
         },
         {
             kr: "고개",
-            en: "TBD",
-            zh: "TBD",
+            en: "head / hill",
+            zh: "头 / 山岭",
             pos: "명사",
             sentenceKr: "고개 를 들다",
-            sentenceMeaning: "TBD",
-            sentenceZh: "TBD"
+            sentenceMeaning: "I nodded my head.",
+            sentenceZh: "我点了点头。"
         },
         {
             kr: "고기",
@@ -980,21 +980,21 @@ export const MOCK_VOCABULARY: Record<string, Word[]> = {
         },
         {
             kr: "고등학생",
-            en: "TBD",
-            zh: "TBD",
+            en: "high school student",
+            zh: "高中生",
             pos: "명사",
             sentenceKr: "고등학생 이 되다",
-            sentenceMeaning: "TBD",
-            sentenceZh: "TBD"
+            sentenceMeaning: "My younger brother is a high school student.",
+            sentenceZh: "我弟弟是高中生。"
         },
         {
             kr: "고르다",
-            en: "TBD",
-            zh: "TBD",
+            en: "to choose, pick",
+            zh: "挑选",
             pos: "동사",
             sentenceKr: "고르다 선물을",
-            sentenceMeaning: "TBD",
-            sentenceZh: "TBD"
+            sentenceMeaning: "Please choose a present.",
+            sentenceZh: "请挑选一个礼物。"
         },
         {
             kr: "고맙다",
@@ -1006,30 +1006,30 @@ export const MOCK_VOCABULARY: Record<string, Word[]> = {
         },
         {
             kr: "고모",
-            en: "TBD",
-            zh: "TBD",
+            en: "aunt (father's side)",
+            zh: "姑姑",
             pos: "명사",
             sentenceKr: "고모 친척",
-            sentenceMeaning: "TBD",
-            sentenceZh: "TBD"
+            sentenceMeaning: "My aunt lives in Seoul.",
+            sentenceZh: "我姑姑住在首尔。"
         },
         {
             kr: "고민",
-            en: "TBD",
-            zh: "TBD",
+            en: "worry, trouble",
+            zh: "苦恼",
             pos: "명사",
             sentenceKr: "고민 을 나누다",
-            sentenceMeaning: "TBD",
-            sentenceZh: "TBD"
+            sentenceMeaning: "I have a lot of worries.",
+            sentenceZh: "我有很多烦恼。"
         },
         {
             kr: "고속버스",
-            en: "TBD",
-            zh: "TBD",
+            en: "express bus",
+            zh: "高速巴士",
             pos: "명사",
             sentenceKr: "고속버스 를 타다",
-            sentenceMeaning: "TBD",
-            sentenceZh: "TBD"
+            sentenceMeaning: "I took the express bus.",
+            sentenceZh: "我坐了高速巴士。"
         },
         {
             kr: "고양이",
@@ -1042,23 +1042,23 @@ export const MOCK_VOCABULARY: Record<string, Word[]> = {
         },
         {
             kr: "고장",
-            en: "TBD",
-            zh: "TBD",
+            en: "breakdown",
+            zh: "故障",
             pos: "명사",
             sentenceKr: "고장 이 나다",
-            sentenceMeaning: "TBD",
-            sentenceZh: "TBD"
+            sentenceMeaning: "The computer is broken.",
+            sentenceZh: "电脑出故障了。"
         }
     ],
     beginner_cycle_2: [
         {
             kr: "고추장",
-            en: "TBD",
-            zh: "TBD",
+            en: "gochujang (red pepper paste)",
+            zh: "辣椒酱",
             pos: "명사",
             sentenceKr: "고추장 을 넣다",
-            sentenceMeaning: "TBD",
-            sentenceZh: "TBD"
+            sentenceMeaning: "Please give me some gochujang.",
+            sentenceZh: "请给我一点辣椒酱。"
         },
         {
             kr: "고치다",
@@ -1070,12 +1070,12 @@ export const MOCK_VOCABULARY: Record<string, Word[]> = {
         },
         {
             kr: "고프다",
-            en: "TBD",
-            zh: "TBD",
+            en: "to be hungry",
+            zh: "饿",
             pos: "형용사",
             sentenceKr: "고프다 배가",
-            sentenceMeaning: "TBD",
-            sentenceZh: "TBD"
+            sentenceMeaning: "I am hungry.",
+            sentenceZh: "我肚子饿了。"
         },
         {
             kr: "고향",
@@ -1103,12 +1103,12 @@ export const MOCK_VOCABULARY: Record<string, Word[]> = {
         },
         {
             kr: "공",
-            en: "TBD",
-            zh: "TBD",
+            en: "ball",
+            zh: "球",
             pos: "명사",
             sentenceKr: "공 을 굴리다",
-            sentenceMeaning: "TBD",
-            sentenceZh: "TBD"
+            sentenceMeaning: "Let's play with a ball.",
+            sentenceZh: "我们玩球吧。"
         },
         {
             kr: "공무원",
@@ -1144,21 +1144,21 @@ export const MOCK_VOCABULARY: Record<string, Word[]> = {
         },
         {
             kr: "공짜",
-            en: "TBD",
-            zh: "TBD",
+            en: "free of charge",
+            zh: "免费",
             pos: "명사",
             sentenceKr: "공짜 로 주다",
-            sentenceMeaning: "TBD",
-            sentenceZh: "TBD"
+            sentenceMeaning: "This is free.",
+            sentenceZh: "这个是免费的。"
         },
         {
             kr: "공책",
-            en: "TBD",
-            zh: "TBD",
+            en: "notebook",
+            zh: "笔记本",
             pos: "명사",
             sentenceKr: "공책 에 쓰다",
-            sentenceMeaning: "TBD",
-            sentenceZh: "TBD"
+            sentenceMeaning: "I bought a notebook.",
+            sentenceZh: "我买了一个笔记本。"
         },
         {
             kr: "공항",
@@ -1170,12 +1170,12 @@ export const MOCK_VOCABULARY: Record<string, Word[]> = {
         },
         {
             kr: "공휴일",
-            en: "TBD",
-            zh: "TBD",
+            en: "public holiday",
+            zh: "公休日",
             pos: "명사",
             sentenceKr: "공휴일 로 정하다",
-            sentenceMeaning: "TBD",
-            sentenceZh: "TBD"
+            sentenceMeaning: "Tomorrow is a public holiday.",
+            sentenceZh: "明天是公休日。"
         },
         {
             kr: "과거",
@@ -1203,39 +1203,39 @@ export const MOCK_VOCABULARY: Record<string, Word[]> = {
         },
         {
             kr: "관계",
-            en: "TBD",
-            zh: "TBD",
+            en: "relationship",
+            zh: "关系",
             pos: "명사",
             sentenceKr: "관계 를 맺다",
-            sentenceMeaning: "TBD",
-            sentenceZh: "TBD"
+            sentenceMeaning: "We have a good relationship.",
+            sentenceZh: "我们关系很好。"
         },
         {
             kr: "관광",
-            en: "TBD",
-            zh: "TBD",
+            en: "sightseeing",
+            zh: "观光",
             pos: "명사",
             sentenceKr: "관광 국내 관광",
-            sentenceMeaning: "TBD",
-            sentenceZh: "TBD"
+            sentenceMeaning: "I went sightseeing.",
+            sentenceZh: "我去观光了。"
         },
         {
             kr: "관광객",
-            en: "TBD",
-            zh: "TBD",
+            en: "tourist",
+            zh: "游客",
             pos: "명사",
             sentenceKr: "관광객 외국인 관광객",
-            sentenceMeaning: "TBD",
-            sentenceZh: "TBD"
+            sentenceMeaning: "There are many tourists.",
+            sentenceZh: "有很多游客。"
         },
         {
             kr: "관광지",
-            en: "TBD",
-            zh: "TBD",
+            en: "tourist attraction",
+            zh: "旅游胜地",
             pos: "명사",
             sentenceKr: "관광지 국내 관광지",
-            sentenceMeaning: "TBD",
-            sentenceZh: "TBD"
+            sentenceMeaning: "It's a famous tourist attraction.",
+            sentenceZh: "这是一个著名的旅游胜地。"
         },
         {
             kr: "관심",
@@ -1255,12 +1255,12 @@ export const MOCK_VOCABULARY: Record<string, Word[]> = {
         },
         {
             kr: "광주",
-            en: "TBD",
-            zh: "TBD",
+            en: "Gwangju (city)",
+            zh: "光州",
             pos: "명사",
             sentenceKr: "광주 지명",
-            sentenceMeaning: "TBD",
-            sentenceZh: "TBD"
+            sentenceMeaning: "I live in Gwangju.",
+            sentenceZh: "我住在光州。"
         },
         {
             kr: "괜찮다",
@@ -1272,30 +1272,30 @@ export const MOCK_VOCABULARY: Record<string, Word[]> = {
         },
         {
             kr: "괴로워하다",
-            en: "TBD",
-            zh: "TBD",
+            en: "to suffer, be tormented",
+            zh: "感到痛苦",
             pos: "동사",
             sentenceKr: "괴로워하다 통증으로",
-            sentenceMeaning: "TBD",
-            sentenceZh: "TBD"
+            sentenceMeaning: "He is suffering a lot.",
+            sentenceZh: "他感到非常痛苦。"
         },
         {
             kr: "교과서",
-            en: "TBD",
-            zh: "TBD",
+            en: "textbook",
+            zh: "教科书",
             pos: "명사",
             sentenceKr: "교과서 에서 배우다",
-            sentenceMeaning: "TBD",
-            sentenceZh: "TBD"
+            sentenceMeaning: "Please open your textbook.",
+            sentenceZh: "请打开教科书。"
         },
         {
             kr: "교사",
-            en: "TBD",
-            zh: "TBD",
+            en: "teacher",
+            zh: "教师",
             pos: "명사",
             sentenceKr: "교사 수학 교사",
-            sentenceMeaning: "TBD",
-            sentenceZh: "TBD"
+            sentenceMeaning: "My dream is to be a teacher.",
+            sentenceZh: "我的梦想是当一名教师。"
         },
         {
             kr: "교수",
@@ -1315,12 +1315,12 @@ export const MOCK_VOCABULARY: Record<string, Word[]> = {
         },
         {
             kr: "교육",
-            en: "TBD",
-            zh: "TBD",
+            en: "education",
+            zh: "教育",
             pos: "명사",
             sentenceKr: "교육 을 받다",
-            sentenceMeaning: "TBD",
-            sentenceZh: "TBD"
+            sentenceMeaning: "Education is important.",
+            sentenceZh: "教育很重要。"
         },
         {
             kr: "교통",
@@ -1332,12 +1332,12 @@ export const MOCK_VOCABULARY: Record<string, Word[]> = {
         },
         {
             kr: "교통비",
-            en: "TBD",
-            zh: "TBD",
+            en: "transportation fee",
+            zh: "交通费",
             pos: "명사",
             sentenceKr: "교통비 가 들다",
-            sentenceMeaning: "TBD",
-            sentenceZh: "TBD"
+            sentenceMeaning: "Transportation fee is expensive.",
+            sentenceZh: "交通费很贵。"
         },
         {
             kr: "교통사고",
@@ -1349,12 +1349,12 @@ export const MOCK_VOCABULARY: Record<string, Word[]> = {
         },
         {
             kr: "교환",
-            en: "TBD",
-            zh: "TBD",
+            en: "exchange",
+            zh: "交换",
             pos: "명사",
             sentenceKr: "교환 을 하다",
-            sentenceMeaning: "TBD",
-            sentenceZh: "TBD"
+            sentenceMeaning: "I want to exchange this.",
+            sentenceZh: "我想把这个换一下。"
         },
         {
             kr: "교회",
@@ -1366,12 +1366,12 @@ export const MOCK_VOCABULARY: Record<string, Word[]> = {
         },
         {
             kr: "구",
-            en: "TBD",
-            zh: "TBD",
+            en: "nine / district",
+            zh: "九 / 区",
             pos: "수사/관형사",
             sentenceKr: "구 숫자",
-            sentenceMeaning: "TBD",
-            sentenceZh: "TBD"
+            sentenceMeaning: "I live in this district.",
+            sentenceZh: "我住在这个区。"
         },
         {
             kr: "구경",
@@ -1439,12 +1439,12 @@ export const MOCK_VOCABULARY: Record<string, Word[]> = {
         },
         {
             kr: "국적",
-            en: "TBD",
-            zh: "TBD",
+            en: "nationality",
+            zh: "国籍",
             pos: "명사",
             sentenceKr: "국적 대한민국 국적",
-            sentenceMeaning: "TBD",
-            sentenceZh: "TBD"
+            sentenceMeaning: "What is your nationality?",
+            sentenceZh: "你的国籍是什么？"
         },
         {
             kr: "국제",
@@ -1464,21 +1464,21 @@ export const MOCK_VOCABULARY: Record<string, Word[]> = {
         },
         {
             kr: "굳다",
-            en: "TBD",
-            zh: "TBD",
+            en: "to harden",
+            zh: "坚硬",
             pos: "동사/형용사",
             sentenceKr: "굳다 땅이",
-            sentenceMeaning: "TBD",
-            sentenceZh: "TBD"
+            sentenceMeaning: "The bread became hard.",
+            sentenceZh: "面包变硬了。"
         },
         {
             kr: "굵다",
-            en: "TBD",
-            zh: "TBD",
+            en: "thick",
+            zh: "粗",
             pos: "형용사",
             sentenceKr: "굵다 손가락이",
-            sentenceMeaning: "TBD",
-            sentenceZh: "TBD"
+            sentenceMeaning: "The tree trunk is thick.",
+            sentenceZh: "树干很粗。"
         },
         {
             kr: "굽다",
@@ -1490,12 +1490,12 @@ export const MOCK_VOCABULARY: Record<string, Word[]> = {
         },
         {
             kr: "궁금하다",
-            en: "TBD",
-            zh: "TBD",
+            en: "to be curious",
+            zh: "好奇",
             pos: "형용사",
             sentenceKr: "궁금하다 소식이",
-            sentenceMeaning: "TBD",
-            sentenceZh: "TBD"
+            sentenceMeaning: "I am curious about the result.",
+            sentenceZh: "我对结果感到好奇。"
         },
         {
             kr: "권",
@@ -1515,21 +1515,21 @@ export const MOCK_VOCABULARY: Record<string, Word[]> = {
         },
         {
             kr: "귀걸이",
-            en: "TBD",
-            zh: "TBD",
+            en: "earrings",
+            zh: "耳环",
             pos: "명사",
             sentenceKr: "귀걸이 를  달다",
-            sentenceMeaning: "TBD",
-            sentenceZh: "TBD"
+            sentenceMeaning: "I bought earrings.",
+            sentenceZh: "我买了一副耳环。"
         },
         {
             kr: "귀여워하다",
-            en: "TBD",
-            zh: "TBD",
+            en: "to adore, dote on",
+            zh: "疼爱",
             pos: "동사",
             sentenceKr: "귀여워하다 강아지를",
-            sentenceMeaning: "TBD",
-            sentenceZh: "TBD"
+            sentenceMeaning: "He adores the puppy.",
+            sentenceZh: "他很疼爱那只小狗。"
         },
         {
             kr: "귀엽다",
@@ -1541,12 +1541,12 @@ export const MOCK_VOCABULARY: Record<string, Word[]> = {
         },
         {
             kr: "귀찮다",
-            en: "TBD",
-            zh: "TBD",
+            en: "to be annoying, bothersome",
+            zh: "麻烦",
             pos: "형용사",
             sentenceKr: "귀찮다 일이",
-            sentenceMeaning: "TBD",
-            sentenceZh: "TBD"
+            sentenceMeaning: "It's annoying to clean up.",
+            sentenceZh: "打扫卫生很麻烦。"
         },
         {
             kr: "규칙",
@@ -1574,12 +1574,12 @@ export const MOCK_VOCABULARY: Record<string, Word[]> = {
         },
         {
             kr: "그거",
-            en: "TBD",
-            zh: "TBD",
+            en: "that thing",
+            zh: "那个",
             pos: "대명사",
             sentenceKr: "그거 그것",
-            sentenceMeaning: "TBD",
-            sentenceZh: "TBD"
+            sentenceMeaning: "What is that?",
+            sentenceZh: "那是什么？"
         },
         {
             kr: "그것",
@@ -1655,12 +1655,12 @@ export const MOCK_VOCABULARY: Record<string, Word[]> = {
         },
         {
             kr: "그러나",
-            en: "TBD",
-            zh: "TBD",
+            en: "but, however",
+            zh: "但是",
             pos: "부사",
             sentenceKr: "그러나 −",
-            sentenceMeaning: "TBD",
-            sentenceZh: "TBD"
+            sentenceMeaning: "It rained, but I went out.",
+            sentenceZh: "虽然下雨了，但是我还是出门了。"
         },
         {
             kr: "그러니까",
@@ -1704,21 +1704,21 @@ export const MOCK_VOCABULARY: Record<string, Word[]> = {
         },
         {
             kr: "그럼",
-            en: "TBD",
-            zh: "TBD",
+            en: "then, in that case",
+            zh: "那么",
             pos: "부사",
             sentenceKr: "그럼 그러면",
-            sentenceMeaning: "TBD",
-            sentenceZh: "TBD"
+            sentenceMeaning: "Then I will go first.",
+            sentenceZh: "那么我先走了。"
         },
         {
             kr: "그럼",
-            en: "TBD",
-            zh: "TBD",
+            en: "then, in that case",
+            zh: "那么",
             pos: "당연하지\"",
             sentenceKr: "그럼 \"그럼",
-            sentenceMeaning: "TBD",
-            sentenceZh: "TBD"
+            sentenceMeaning: "Then I will go first.",
+            sentenceZh: "那么我先走了。"
         },
         {
             kr: "그렇다",
@@ -1762,12 +1762,12 @@ export const MOCK_VOCABULARY: Record<string, Word[]> = {
         },
         {
             kr: "그림",
-            en: "TBD",
-            zh: "TBD",
+            en: "picture, painting",
+            zh: "画",
             pos: "명사",
             sentenceKr: "그림 을 그리다",
-            sentenceMeaning: "TBD",
-            sentenceZh: "TBD"
+            sentenceMeaning: "I draw a picture.",
+            sentenceZh: "我画画。"
         },
         {
             kr: "그립다",
@@ -1868,21 +1868,21 @@ export const MOCK_VOCABULARY: Record<string, Word[]> = {
         },
         {
             kr: "글씨",
-            en: "TBD",
-            zh: "TBD",
+            en: "handwriting",
+            zh: "字迹",
             pos: "명사",
             sentenceKr: "글씨 를 쓰다",
-            sentenceMeaning: "TBD",
-            sentenceZh: "TBD"
+            sentenceMeaning: "Your handwriting is pretty.",
+            sentenceZh: "你的字写得很好看。"
         },
         {
             kr: "글자",
-            en: "TBD",
-            zh: "TBD",
+            en: "letter, character",
+            zh: "文字",
             pos: "명사",
             sentenceKr: "글자 를 쓰다",
-            sentenceMeaning: "TBD",
-            sentenceZh: "TBD"
+            sentenceMeaning: "Please write the letters.",
+            sentenceZh: "请写下这些字。"
         },
         {
             kr: "금방",
@@ -2112,12 +2112,12 @@ export const MOCK_VOCABULARY: Record<string, Word[]> = {
         },
         {
             kr: "김",
-            en: "TBD",
-            zh: "TBD",
+            en: "seaweed / steam",
+            zh: "紫菜 / 蒸汽",
             pos: "명사",
             sentenceKr: "김 을 먹다",
-            sentenceMeaning: "TBD",
-            sentenceZh: "TBD"
+            sentenceMeaning: "I eat rice with seaweed.",
+            sentenceZh: "我用紫菜包饭吃。"
         },
         {
             kr: "김밥",
@@ -2153,48 +2153,48 @@ export const MOCK_VOCABULARY: Record<string, Word[]> = {
         },
         {
             kr: "깊이",
-            en: "TBD",
-            zh: "TBD",
+            en: "deeply",
+            zh: "深",
             pos: "부사",
             sentenceKr: "깊이 깊이 묻다",
-            sentenceMeaning: "TBD",
-            sentenceZh: "TBD"
+            sentenceMeaning: "I thought deeply.",
+            sentenceZh: "我深深地思考了。"
         },
         {
             kr: "까만색",
-            en: "TBD",
-            zh: "TBD",
+            en: "black color",
+            zh: "黑色",
             pos: "명사",
             sentenceKr: "까만색 색깔",
-            sentenceMeaning: "TBD",
-            sentenceZh: "TBD"
+            sentenceMeaning: "I wear black shoes.",
+            sentenceZh: "我穿黑色的鞋子。"
         },
         {
             kr: "까맣다",
-            en: "TBD",
-            zh: "TBD",
+            en: "to be black",
+            zh: "黑",
             pos: "형용사",
             sentenceKr: "까맣다 밤하늘이",
-            sentenceMeaning: "TBD",
-            sentenceZh: "TBD"
+            sentenceMeaning: "The night sky is black.",
+            sentenceZh: "夜空很黑。"
         },
         {
             kr: "깎다",
-            en: "TBD",
-            zh: "TBD",
+            en: "to peel / to discount",
+            zh: "削 / 讲价",
             pos: "동사",
             sentenceKr: "깎다 사과를",
-            sentenceMeaning: "TBD",
-            sentenceZh: "TBD"
+            sentenceMeaning: "Please give me a discount.",
+            sentenceZh: "请给我便宜点吧。"
         },
         {
             kr: "깜짝",
-            en: "TBD",
-            zh: "TBD",
+            en: "startlingly, surprisingly",
+            zh: "吓一跳",
             pos: "부사",
             sentenceKr: "깜짝 깜짝 놀라다",
-            sentenceMeaning: "TBD",
-            sentenceZh: "TBD"
+            sentenceMeaning: "I was really surprised.",
+            sentenceZh: "我吓了一大跳。"
         },
         {
             kr: "깨끗이",
@@ -2214,12 +2214,12 @@ export const MOCK_VOCABULARY: Record<string, Word[]> = {
         },
         {
             kr: "깨다",
-            en: "TBD",
-            zh: "TBD",
+            en: "to break / to wake up",
+            zh: "打破 / 醒",
             pos: "동사",
             sentenceKr: "깨다 잠이",
-            sentenceMeaning: "TBD",
-            sentenceZh: "TBD"
+            sentenceMeaning: "I broke the glass.",
+            sentenceZh: "我打破了玻璃杯。"
         },
         {
             kr: "꺼내다",
@@ -2255,12 +2255,12 @@ export const MOCK_VOCABULARY: Record<string, Word[]> = {
         },
         {
             kr: "꽃다발",
-            en: "TBD",
-            zh: "TBD",
+            en: "flower bouquet",
+            zh: "花束",
             pos: "명사",
             sentenceKr: "꽃다발 을 선물하다",
-            sentenceMeaning: "TBD",
-            sentenceZh: "TBD"
+            sentenceMeaning: "I received a bouquet.",
+            sentenceZh: "我收到了一束花。"
         },
         {
             kr: "꽃병",
@@ -2288,12 +2288,12 @@ export const MOCK_VOCABULARY: Record<string, Word[]> = {
         },
         {
             kr: "꿈",
-            en: "TBD",
-            zh: "TBD",
+            en: "dream",
+            zh: "梦",
             pos: "명사",
             sentenceKr: "꿈 을 꾸다",
-            sentenceMeaning: "TBD",
-            sentenceZh: "TBD"
+            sentenceMeaning: "I had a good dream.",
+            sentenceZh: "我做了一个好梦。"
         },
         {
             kr: "끄다",
@@ -2609,30 +2609,30 @@ export const MOCK_VOCABULARY: Record<string, Word[]> = {
         },
         {
             kr: "남학생",
-            en: "TBD",
-            zh: "TBD",
+            en: "male student",
+            zh: "男学生",
             pos: "명사",
             sentenceKr: "남학생 여학생",
-            sentenceMeaning: "TBD",
-            sentenceZh: "TBD"
+            sentenceMeaning: "He is a male student.",
+            sentenceZh: "他是个男学生。"
         },
         {
             kr: "낫다",
-            en: "TBD",
-            zh: "TBD",
+            en: "to be better / to recover",
+            zh: "更好 / 痊愈",
             pos: "동사",
             sentenceKr: "낫다 병이",
-            sentenceMeaning: "TBD",
-            sentenceZh: "TBD"
+            sentenceMeaning: "My cold got better.",
+            sentenceZh: "我的感冒好了。"
         },
         {
             kr: "낫다",
-            en: "TBD",
-            zh: "TBD",
+            en: "to be better / to recover",
+            zh: "更好 / 痊愈",
             pos: "형용사",
             sentenceKr: "낫다 더 낫다",
-            sentenceMeaning: "TBD",
-            sentenceZh: "TBD"
+            sentenceMeaning: "My cold got better.",
+            sentenceZh: "我的感冒好了。"
         },
         {
             kr: "낮",
@@ -3230,12 +3230,12 @@ export const MOCK_VOCABULARY: Record<string, Word[]> = {
         },
         {
             kr: "늙다",
-            en: "TBD",
-            zh: "TBD",
+            en: "to grow old",
+            zh: "老",
             pos: "동사",
             sentenceKr: "늙다 사람이",
-            sentenceMeaning: "TBD",
-            sentenceZh: "TBD"
+            sentenceMeaning: "My dog is old.",
+            sentenceZh: "我的狗老了。"
         },
         {
             kr: "능력",
@@ -3459,12 +3459,12 @@ export const MOCK_VOCABULARY: Record<string, Word[]> = {
         },
         {
             kr: "단추",
-            en: "TBD",
-            zh: "TBD",
+            en: "button",
+            zh: "纽扣",
             pos: "명사",
             sentenceKr: "단추 가 떨어지다",
-            sentenceMeaning: "TBD",
-            sentenceZh: "TBD"
+            sentenceMeaning: "I buttoned up my shirt.",
+            sentenceZh: "我扣上了衬衫的扣子。"
         },
         {
             kr: "단풍",
@@ -3678,12 +3678,12 @@ export const MOCK_VOCABULARY: Record<string, Word[]> = {
         },
         {
             kr: "대학",
-            en: "TBD",
-            zh: "TBD",
+            en: "university",
+            zh: "大学",
             pos: "명사",
             sentenceKr: "대학 에 들어가다",
-            sentenceMeaning: "TBD",
-            sentenceZh: "TBD"
+            sentenceMeaning: "I go to university.",
+            sentenceZh: "我上大学。"
         },
         {
             kr: "대학교",
@@ -4069,12 +4069,12 @@ export const MOCK_VOCABULARY: Record<string, Word[]> = {
         },
         {
             kr: "동시",
-            en: "TBD",
-            zh: "TBD",
+            en: "same time",
+            zh: "同时",
             pos: "명사",
             sentenceKr: "동시 에 일어나다",
-            sentenceMeaning: "TBD",
-            sentenceZh: "TBD"
+            sentenceMeaning: "We arrived at the same time.",
+            sentenceZh: "我们同时到达了。"
         },
         {
             kr: "동안",
@@ -4138,12 +4138,12 @@ export const MOCK_VOCABULARY: Record<string, Word[]> = {
         },
         {
             kr: "-되다",
-            en: "TBD",
-            zh: "TBD",
+            en: "to become",
+            zh: "成为",
             pos: "접사",
             sentenceKr: "-되다 취소되다",
-            sentenceMeaning: "TBD",
-            sentenceZh: "TBD"
+            sentenceMeaning: "I want to become a doctor.",
+            sentenceZh: "我想成为一名医生。"
         },
         {
             kr: "된장",
@@ -4217,12 +4217,12 @@ export const MOCK_VOCABULARY: Record<string, Word[]> = {
         },
         {
             kr: "두통",
-            en: "TBD",
-            zh: "TBD",
+            en: "headache",
+            zh: "头痛",
             pos: "명사",
             sentenceKr: "두통 을 앓다",
-            sentenceMeaning: "TBD",
-            sentenceZh: "TBD"
+            sentenceMeaning: "I have a headache.",
+            sentenceZh: "我头痛。"
         },
         {
             kr: "둘",
@@ -4236,12 +4236,12 @@ export const MOCK_VOCABULARY: Record<string, Word[]> = {
         },
         {
             kr: "둘째",
-            en: "TBD",
-            zh: "TBD",
+            en: "second",
+            zh: "第二",
             pos: "수사·관형사/명사",
             sentenceKr: "둘째 둘째 딸",
-            sentenceMeaning: "TBD",
-            sentenceZh: "TBD"
+            sentenceMeaning: "This is my second child.",
+            sentenceZh: "这是我的第二个孩子。"
         },
         {
             kr: "뒤",
@@ -4255,12 +4255,12 @@ export const MOCK_VOCABULARY: Record<string, Word[]> = {
         },
         {
             kr: "뒤쪽",
-            en: "TBD",
-            zh: "TBD",
+            en: "back side",
+            zh: "后面",
             pos: "명사",
             sentenceKr: "뒤쪽 방향",
-            sentenceMeaning: "TBD",
-            sentenceZh: "TBD"
+            sentenceMeaning: "Please go to the back.",
+            sentenceZh: "请走到后面。"
         },
         {
             kr: "드디어",
@@ -4434,12 +4434,12 @@ export const MOCK_VOCABULARY: Record<string, Word[]> = {
         },
         {
             kr: "땀",
-            en: "TBD",
-            zh: "TBD",
+            en: "sweat",
+            zh: "汗",
             pos: "명사",
             sentenceKr: "땀 이 나다",
-            sentenceMeaning: "TBD",
-            sentenceZh: "TBD"
+            sentenceMeaning: "I sweat a lot.",
+            sentenceZh: "我流了很多汗。"
         },
         {
             kr: "땅",
@@ -4743,12 +4743,12 @@ export const MOCK_VOCABULARY: Record<string, Word[]> = {
         },
         {
             kr: "마중",
-            en: "TBD",
-            zh: "TBD",
+            en: "meeting, picking up",
+            zh: "迎接",
             pos: "명사",
             sentenceKr: "마중 을 가다",
-            sentenceMeaning: "TBD",
-            sentenceZh: "TBD"
+            sentenceMeaning: "I went to pick up my friend.",
+            sentenceZh: "我去接朋友了。"
         },
         {
             kr: "마지막",
@@ -4772,12 +4772,12 @@ export const MOCK_VOCABULARY: Record<string, Word[]> = {
         },
         {
             kr: "마트",
-            en: "TBD",
-            zh: "TBD",
+            en: "mart, supermarket",
+            zh: "超市",
             pos: "명사",
             sentenceKr: "마트 에서 사다",
-            sentenceMeaning: "TBD",
-            sentenceZh: "TBD"
+            sentenceMeaning: "I went to the mart.",
+            sentenceZh: "我去了超市。"
         },
         {
             kr: "마흔",
@@ -5253,12 +5253,12 @@ export const MOCK_VOCABULARY: Record<string, Word[]> = {
         },
         {
             kr: "메일",
-            en: "TBD",
-            zh: "TBD",
+            en: "email",
+            zh: "邮件",
             pos: "명사",
             sentenceKr: "메일 을 쓰다",
-            sentenceMeaning: "TBD",
-            sentenceZh: "TBD"
+            sentenceMeaning: "I sent an email.",
+            sentenceZh: "我发了一封邮件。"
         },
         {
             kr: "며칠",
@@ -5542,12 +5542,12 @@ export const MOCK_VOCABULARY: Record<string, Word[]> = {
         },
         {
             kr: "못하다",
-            en: "TBD",
-            zh: "TBD",
+            en: "cannot do, to be poor at",
+            zh: "做不到",
             pos: "동사/형용사",
             sentenceKr: "못하다 노래를",
-            sentenceMeaning: "TBD",
-            sentenceZh: "TBD"
+            sentenceMeaning: "I cannot speak English well.",
+            sentenceZh: "我英语说得不好。"
         },
         {
             kr: "몽골",
@@ -6201,21 +6201,21 @@ export const MOCK_VOCABULARY: Record<string, Word[]> = {
         },
         {
             kr: "발바닥",
-            en: "TBD",
-            zh: "TBD",
+            en: "sole of the foot",
+            zh: "脚底",
             pos: "명사",
             sentenceKr: "발바닥 신체",
-            sentenceMeaning: "TBD",
-            sentenceZh: "TBD"
+            sentenceMeaning: "My foot sole hurts.",
+            sentenceZh: "我的脚底疼。"
         },
         {
             kr: "밝다",
-            en: "TBD",
-            zh: "TBD",
+            en: "to be bright",
+            zh: "明亮",
             pos: "동사/형용사",
             sentenceKr: "밝다 불빛이",
-            sentenceMeaning: "TBD",
-            sentenceZh: "TBD"
+            sentenceMeaning: "The moon is bright.",
+            sentenceZh: "月亮很亮。"
         },
         {
             kr: "밤",
@@ -6249,12 +6249,12 @@ export const MOCK_VOCABULARY: Record<string, Word[]> = {
         },
         {
             kr: "방금",
-            en: "TBD",
-            zh: "TBD",
+            en: "just now",
+            zh: "刚刚",
             pos: "명사/부사",
             sentenceKr: "방금 방금 가다",
-            sentenceMeaning: "TBD",
-            sentenceZh: "TBD"
+            sentenceMeaning: "He just left.",
+            sentenceZh: "他刚刚离开。"
         },
         {
             kr: "방문",
@@ -6310,12 +6310,12 @@ export const MOCK_VOCABULARY: Record<string, Word[]> = {
         },
         {
             kr: "방학",
-            en: "TBD",
-            zh: "TBD",
+            en: "school vacation",
+            zh: "假期",
             pos: "명사",
             sentenceKr: "방학 겨울 방학",
-            sentenceMeaning: "TBD",
-            sentenceZh: "TBD"
+            sentenceMeaning: "Summer vacation started.",
+            sentenceZh: "放暑假了。"
         },
         {
             kr: "방향",
@@ -6369,12 +6369,12 @@ export const MOCK_VOCABULARY: Record<string, Word[]> = {
         },
         {
             kr: "배달",
-            en: "TBD",
-            zh: "TBD",
+            en: "delivery",
+            zh: "外卖，配送",
             pos: "명사",
             sentenceKr: "배달 을 시키다",
-            sentenceMeaning: "TBD",
-            sentenceZh: "TBD"
+            sentenceMeaning: "I ordered delivery food.",
+            sentenceZh: "我点了外卖。"
         },
         {
             kr: "배드민턴",
@@ -6408,21 +6408,21 @@ export const MOCK_VOCABULARY: Record<string, Word[]> = {
         },
         {
             kr: "배추",
-            en: "TBD",
-            zh: "TBD",
+            en: "napa cabbage",
+            zh: "白菜",
             pos: "명사",
             sentenceKr: "배추 를 다듬다",
-            sentenceMeaning: "TBD",
-            sentenceZh: "TBD"
+            sentenceMeaning: "I bought cabbage to make kimchi.",
+            sentenceZh: "我买了白菜做泡菜。"
         },
         {
             kr: "배탈",
-            en: "TBD",
-            zh: "TBD",
+            en: "stomachache",
+            zh: "拉肚子，胃痛",
             pos: "명사",
             sentenceKr: "배탈 이 나다",
-            sentenceMeaning: "TBD",
-            sentenceZh: "TBD"
+            sentenceMeaning: "I have a stomachache.",
+            sentenceZh: "我吃坏肚子了。"
         },
         {
             kr: "백",
@@ -7024,12 +7024,12 @@ export const MOCK_VOCABULARY: Record<string, Word[]> = {
         },
         {
             kr: "분식",
-            en: "TBD",
-            zh: "TBD",
+            en: "flour-based food, snack",
+            zh: "面食，小吃",
             pos: "명사",
             sentenceKr: "분식 을 먹다",
-            sentenceMeaning: "TBD",
-            sentenceZh: "TBD"
+            sentenceMeaning: "I like snack food like tteokbokki.",
+            sentenceZh: "我喜欢炒年糕等小吃。"
         },
         {
             kr: "분위기",
@@ -7373,12 +7373,12 @@ export const MOCK_VOCABULARY: Record<string, Word[]> = {
         },
         {
             kr: "뽑다",
-            en: "TBD",
-            zh: "TBD",
+            en: "to pull out, to select",
+            zh: "拔，挑选",
             pos: "동사",
             sentenceKr: "뽑다 이를",
-            sentenceMeaning: "TBD",
-            sentenceZh: "TBD"
+            sentenceMeaning: "I pulled a tooth.",
+            sentenceZh: "我拔了一颗牙。"
         },
         {
             kr: "사",
@@ -7484,12 +7484,12 @@ export const MOCK_VOCABULARY: Record<string, Word[]> = {
         },
         {
             kr: "사실",
-            en: "TBD",
-            zh: "TBD",
+            en: "fact, truth",
+            zh: "事实",
             pos: "명사/부사",
             sentenceKr: "사실 을 밝히다",
-            sentenceMeaning: "TBD",
-            sentenceZh: "TBD"
+            sentenceMeaning: "To tell the truth, I am sorry.",
+            sentenceZh: "事实上，我很抱歉。"
         },
         {
             kr: "사십",
@@ -10423,12 +10423,12 @@ export const MOCK_VOCABULARY: Record<string, Word[]> = {
         },
         {
             kr: "여쭙다",
-            en: "TBD",
-            zh: "TBD",
+            en: "to ask (honorific)",
+            zh: "请教，询问",
             pos: "동사",
             sentenceKr: "여쭙다 선생님께",
-            sentenceMeaning: "TBD",
-            sentenceZh: "TBD"
+            sentenceMeaning: "I asked the teacher a question.",
+            sentenceZh: "我向老师请教了一个问题。"
         },
         {
             kr: "여학생",
@@ -12140,723 +12140,723 @@ export const MOCK_VOCABULARY: Record<string, Word[]> = {
         },
         {
             kr: "입",
-            en: "TBD",
-            zh: "TBD",
+            en: "mouth",
+            zh: "嘴巴",
             pos: "명사",
             sentenceKr: "입 을 열다",
-            sentenceMeaning: "TBD",
-            sentenceZh: "TBD"
+            sentenceMeaning: "Open your mouth.",
+            sentenceZh: "张开嘴巴。"
         },
         {
             kr: "입구",
-            en: "TBD",
-            zh: "TBD",
+            en: "entrance",
+            zh: "入口",
             pos: "명사",
             sentenceKr: "입구 지하철",
-            sentenceMeaning: "TBD",
-            sentenceZh: "TBD"
+            sentenceMeaning: "Let's meet at the entrance.",
+            sentenceZh: "我们在入口处见吧。"
         },
         {
             kr: "입다",
-            en: "TBD",
-            zh: "TBD",
+            en: "to wear",
+            zh: "穿",
             pos: "동사",
             sentenceKr: "입다 옷을",
-            sentenceMeaning: "TBD",
-            sentenceZh: "TBD"
+            sentenceMeaning: "I wore a new dress.",
+            sentenceZh: "我穿了一件新裙子。"
         },
         {
             kr: "입술",
-            en: "TBD",
-            zh: "TBD",
+            en: "lips",
+            zh: "嘴唇",
             pos: "명사",
             sentenceKr: "입술 신체",
-            sentenceMeaning: "TBD",
-            sentenceZh: "TBD"
+            sentenceMeaning: "My lips are dry.",
+            sentenceZh: "我的嘴唇很干。"
         },
         {
             kr: "입원",
-            en: "TBD",
-            zh: "TBD",
+            en: "hospitalization",
+            zh: "住院",
             pos: "명사",
             sentenceKr: "입원 입원 환자",
-            sentenceMeaning: "TBD",
-            sentenceZh: "TBD"
+            sentenceMeaning: "My friend is hospitalized.",
+            sentenceZh: "我朋友住院了。"
         },
         {
             kr: "입장권",
-            en: "TBD",
-            zh: "TBD",
+            en: "admission ticket",
+            zh: "入场券",
             pos: "명사",
             sentenceKr: "입장권 을 사다",
-            sentenceMeaning: "TBD",
-            sentenceZh: "TBD"
+            sentenceMeaning: "I bought an admission ticket.",
+            sentenceZh: "我买了一张入场券。"
         },
         {
             kr: "입학",
-            en: "TBD",
-            zh: "TBD",
+            en: "admission to school",
+            zh: "入学",
             pos: "명사",
             sentenceKr: "입학 대학 입학",
-            sentenceMeaning: "TBD",
-            sentenceZh: "TBD"
+            sentenceMeaning: "Congratulations on your school admission.",
+            sentenceZh: "祝贺你入学。"
         },
         {
             kr: "입학시험",
-            en: "TBD",
-            zh: "TBD",
+            en: "entrance exam",
+            zh: "入学考试",
             pos: "명사",
             sentenceKr: "입학시험 에 합격하다",
-            sentenceMeaning: "TBD",
-            sentenceZh: "TBD"
+            sentenceMeaning: "I am studying for the entrance exam.",
+            sentenceZh: "我正在准备入学考试。"
         },
         {
             kr: "있다",
-            en: "TBD",
-            zh: "TBD",
+            en: "to be, to exist, to have",
+            zh: "有，在",
             pos: "동사/형용사",
             sentenceKr: "있다 집에",
-            sentenceMeaning: "TBD",
-            sentenceZh: "TBD"
+            sentenceMeaning: "I have an apple.",
+            sentenceZh: "我有一个苹果。"
         },
         {
             kr: "잊다",
-            en: "TBD",
-            zh: "TBD",
+            en: "to forget",
+            zh: "忘记",
             pos: "동사",
             sentenceKr: "잊다 번호를",
-            sentenceMeaning: "TBD",
-            sentenceZh: "TBD"
+            sentenceMeaning: "I forgot his name.",
+            sentenceZh: "我忘记他的名字了。"
         },
         {
             kr: "잊어버리다",
-            en: "TBD",
-            zh: "TBD",
+            en: "to completely forget",
+            zh: "忘掉",
             pos: "동사",
             sentenceKr: "잊어버리다 번호를",
-            sentenceMeaning: "TBD",
-            sentenceZh: "TBD"
+            sentenceMeaning: "I completely forgot my password.",
+            sentenceZh: "我彻底把密码忘了。"
         },
         {
             kr: "잎",
-            en: "TBD",
-            zh: "TBD",
+            en: "leaf",
+            zh: "叶子",
             pos: "명사",
             sentenceKr: "잎 이 떨어지다",
-            sentenceMeaning: "TBD",
-            sentenceZh: "TBD"
+            sentenceMeaning: "The leaves are falling.",
+            sentenceZh: "叶子正在掉落。"
         },
         {
             kr: "자기소개",
-            en: "TBD",
-            zh: "TBD",
+            en: "self-introduction",
+            zh: "自我介绍",
             pos: "명사",
             sentenceKr: "자기소개 를 하다",
-            sentenceMeaning: "TBD",
-            sentenceZh: "TBD"
+            sentenceMeaning: "Please give a self-introduction.",
+            sentenceZh: "请做一下自我介绍。"
         },
         {
             kr: "자꾸",
-            en: "TBD",
-            zh: "TBD",
+            en: "repeatedly, constantly",
+            zh: "总是",
             pos: "부사",
             sentenceKr: "자꾸 자꾸 반복하다",
-            sentenceMeaning: "TBD",
-            sentenceZh: "TBD"
+            sentenceMeaning: "You keep making mistakes.",
+            sentenceZh: "你总是犯错。"
         },
         {
             kr: "자다",
-            en: "TBD",
-            zh: "TBD",
+            en: "to sleep",
+            zh: "睡觉",
             pos: "동사",
             sentenceKr: "자다 잠을",
-            sentenceMeaning: "TBD",
-            sentenceZh: "TBD"
+            sentenceMeaning: "I want to sleep.",
+            sentenceZh: "我想睡觉。"
         },
         {
             kr: "자동차",
-            en: "TBD",
-            zh: "TBD",
+            en: "car",
+            zh: "汽车",
             pos: "명사",
             sentenceKr: "자동차 를 운전하다",
-            sentenceMeaning: "TBD",
-            sentenceZh: "TBD"
+            sentenceMeaning: "I bought a new car.",
+            sentenceZh: "我买了一辆新车。"
         },
         {
             kr: "자동판매기",
-            en: "TBD",
-            zh: "TBD",
+            en: "vending machine",
+            zh: "自动售货机",
             pos: "명사",
             sentenceKr: "자동판매기 를 누르다",
-            sentenceMeaning: "TBD",
-            sentenceZh: "TBD"
+            sentenceMeaning: "I bought coffee from the vending machine.",
+            sentenceZh: "我从自动售货机买了咖啡。"
         },
         {
             kr: "자라다",
-            en: "TBD",
-            zh: "TBD",
+            en: "to grow",
+            zh: "生长",
             pos: "동사",
             sentenceKr: "자라다 나무가",
-            sentenceMeaning: "TBD",
-            sentenceZh: "TBD"
+            sentenceMeaning: "The child grew up fast.",
+            sentenceZh: "孩子长得很快。"
         },
         {
             kr: "자랑",
-            en: "TBD",
-            zh: "TBD",
+            en: "boast, pride",
+            zh: "炫耀，骄傲",
             pos: "명사",
             sentenceKr: "자랑 을 하다",
-            sentenceMeaning: "TBD",
-            sentenceZh: "TBD"
+            sentenceMeaning: "I am proud of my son.",
+            sentenceZh: "我为我的儿子感到骄傲。"
         },
         {
             kr: "자르다",
-            en: "TBD",
-            zh: "TBD",
+            en: "to cut",
+            zh: "剪，切",
             pos: "동사",
             sentenceKr: "자르다 머리를",
-            sentenceMeaning: "TBD",
-            sentenceZh: "TBD"
+            sentenceMeaning: "I cut my hair.",
+            sentenceZh: "我剪头发了。"
         },
         {
             kr: "자리",
-            en: "TBD",
-            zh: "TBD",
+            en: "seat",
+            zh: "座位",
             pos: "명사",
             sentenceKr: "자리 에 앉다",
-            sentenceMeaning: "TBD",
-            sentenceZh: "TBD"
+            sentenceMeaning: "Is this seat taken?",
+            sentenceZh: "这个座位有人吗？"
         },
         {
             kr: "자세히",
-            en: "TBD",
-            zh: "TBD",
+            en: "in detail",
+            zh: "仔细地",
             pos: "부사",
             sentenceKr: "자세히 자세히 알다",
-            sentenceMeaning: "TBD",
-            sentenceZh: "TBD"
+            sentenceMeaning: "Please explain in detail.",
+            sentenceZh: "请仔细说明一下。"
         },
         {
             kr: "자식",
-            en: "TBD",
-            zh: "TBD",
+            en: "children, offspring",
+            zh: "子女",
             pos: "명사",
             sentenceKr: "자식 을 기르다",
-            sentenceMeaning: "TBD",
-            sentenceZh: "TBD"
+            sentenceMeaning: "Parents love their children.",
+            sentenceZh: "父母爱他们的子女。"
         },
         {
             kr: "자신",
-            en: "TBD",
-            zh: "TBD",
+            en: "self, confidence",
+            zh: "自信，自己",
             pos: "명사",
             sentenceKr: "자신 나 자신",
-            sentenceMeaning: "TBD",
-            sentenceZh: "TBD"
+            sentenceMeaning: "Have confidence in yourself.",
+            sentenceZh: "对自己要有自信。"
         },
         {
             kr: "자연",
-            en: "TBD",
-            zh: "TBD",
+            en: "nature",
+            zh: "自然",
             pos: "명사/부사",
             sentenceKr: "자연 으로 돌아가다",
-            sentenceMeaning: "TBD",
-            sentenceZh: "TBD"
+            sentenceMeaning: "Nature is beautiful.",
+            sentenceZh: "自然很美。"
         },
         {
             kr: "자유",
-            en: "TBD",
-            zh: "TBD",
+            en: "freedom",
+            zh: "自由",
             pos: "명사",
             sentenceKr: "자유 를 누리다",
-            sentenceMeaning: "TBD",
-            sentenceZh: "TBD"
+            sentenceMeaning: "I want freedom.",
+            sentenceZh: "我想要自由。"
         },
         {
             kr: "자장면",
-            en: "TBD",
-            zh: "TBD",
+            en: "jajangmyeon (black bean noodles)",
+            zh: "炸酱面",
             pos: "명사",
             sentenceKr: "자장면 음식",
-            sentenceMeaning: "TBD",
-            sentenceZh: "TBD"
+            sentenceMeaning: "I ate jajangmyeon.",
+            sentenceZh: "我吃了炸酱面。"
         },
         {
             kr: "자전거",
-            en: "TBD",
-            zh: "TBD",
+            en: "bicycle",
+            zh: "自行车",
             pos: "명사",
             sentenceKr: "자전거 를 타다",
-            sentenceMeaning: "TBD",
-            sentenceZh: "TBD"
+            sentenceMeaning: "I ride a bicycle.",
+            sentenceZh: "我骑自行车。"
         },
         {
             kr: "자주",
-            en: "TBD",
-            zh: "TBD",
+            en: "often",
+            zh: "经常",
             pos: "부사",
             sentenceKr: "자주 자주 만나다",
-            sentenceMeaning: "TBD",
-            sentenceZh: "TBD"
+            sentenceMeaning: "I often go to the library.",
+            sentenceZh: "我经常去图书馆。"
         },
         {
             kr: "자판기",
-            en: "TBD",
-            zh: "TBD",
+            en: "vending machine",
+            zh: "自动售货机",
             pos: "명사",
             sentenceKr: "자판기 커피 자판기",
-            sentenceMeaning: "TBD",
-            sentenceZh: "TBD"
+            sentenceMeaning: "The vending machine is broken.",
+            sentenceZh: "自动售货机坏了。"
         },
         {
             kr: "작년",
-            en: "TBD",
-            zh: "TBD",
+            en: "last year",
+            zh: "去年",
             pos: "명사",
             sentenceKr: "작년 시간",
-            sentenceMeaning: "TBD",
-            sentenceZh: "TBD"
+            sentenceMeaning: "I met him last year.",
+            sentenceZh: "我去年遇见了他。"
         },
         {
             kr: "작다",
-            en: "TBD",
-            zh: "TBD",
+            en: "to be small",
+            zh: "小",
             pos: "형용사",
             sentenceKr: "작다 얼굴이",
-            sentenceMeaning: "TBD",
-            sentenceZh: "TBD"
+            sentenceMeaning: "The shoes are too small.",
+            sentenceZh: "鞋子太小了。"
         },
         {
             kr: "잔",
-            en: "TBD",
-            zh: "TBD",
+            en: "cup, glass",
+            zh: "杯",
             pos: "명사",
             sentenceKr: "잔 커피 잔",
-            sentenceMeaning: "TBD",
-            sentenceZh: "TBD"
+            sentenceMeaning: "Give me a cup of coffee.",
+            sentenceZh: "请给我一杯咖啡。"
         },
         {
             kr: "잔치",
-            en: "TBD",
-            zh: "TBD",
+            en: "feast, party",
+            zh: "宴会",
             pos: "명사",
             sentenceKr: "잔치 생일 잔치",
-            sentenceMeaning: "TBD",
-            sentenceZh: "TBD"
+            sentenceMeaning: "We threw a party.",
+            sentenceZh: "我们举办了一个宴会。"
         },
         {
             kr: "잘",
-            en: "TBD",
-            zh: "TBD",
+            en: "well",
+            zh: "好",
             pos: "부사",
             sentenceKr: "잘 잘 알다",
-            sentenceMeaning: "TBD",
-            sentenceZh: "TBD"
+            sentenceMeaning: "Sleep well.",
+            sentenceZh: "好好睡觉。"
         },
         {
             kr: "잘되다",
-            en: "TBD",
-            zh: "TBD",
+            en: "to go well",
+            zh: "顺利",
             pos: "동사",
             sentenceKr: "잘되다 일이",
-            sentenceMeaning: "TBD",
-            sentenceZh: "TBD"
+            sentenceMeaning: "Everything will go well.",
+            sentenceZh: "一切都会顺利的。"
         },
         {
             kr: "잘못",
-            en: "TBD",
-            zh: "TBD",
+            en: "mistake",
+            zh: "错误",
             pos: "부사/명사",
             sentenceKr: "잘못 이 많다",
-            sentenceMeaning: "TBD",
-            sentenceZh: "TBD"
+            sentenceMeaning: "It's my mistake.",
+            sentenceZh: "这是我的错。"
         },
         {
             kr: "잘못되다",
-            en: "TBD",
-            zh: "TBD",
+            en: "to go wrong",
+            zh: "出问题",
             pos: "동사",
             sentenceKr: "잘못되다 순서가",
-            sentenceMeaning: "TBD",
-            sentenceZh: "TBD"
+            sentenceMeaning: "Something went wrong.",
+            sentenceZh: "出问题了。"
         },
         {
             kr: "잘못하다",
-            en: "TBD",
-            zh: "TBD",
+            en: "to do wrong, make a mistake",
+            zh: "做错",
             pos: "동사",
             sentenceKr: "잘못하다 선택을",
-            sentenceMeaning: "TBD",
-            sentenceZh: "TBD"
+            sentenceMeaning: "I did wrong.",
+            sentenceZh: "我做错了。"
         },
         {
             kr: "잘생기다",
-            en: "TBD",
-            zh: "TBD",
+            en: "to be handsome",
+            zh: "帅气",
             pos: "형용사",
             sentenceKr: "잘생기다 얼굴이",
-            sentenceMeaning: "TBD",
-            sentenceZh: "TBD"
+            sentenceMeaning: "He is very handsome.",
+            sentenceZh: "他长得很帅。"
         },
         {
             kr: "잘하다",
-            en: "TBD",
-            zh: "TBD",
+            en: "to do well",
+            zh: "做得好",
             pos: "동사",
             sentenceKr: "잘하다 외국어를",
-            sentenceMeaning: "TBD",
-            sentenceZh: "TBD"
+            sentenceMeaning: "You did a good job.",
+            sentenceZh: "你做得很好。"
         },
         {
             kr: "잠",
-            en: "TBD",
-            zh: "TBD",
+            en: "sleep",
+            zh: "觉，睡眠",
             pos: "명사",
             sentenceKr: "잠 을 자다",
-            sentenceMeaning: "TBD",
-            sentenceZh: "TBD"
+            sentenceMeaning: "I need more sleep.",
+            sentenceZh: "我需要更多的睡眠。"
         },
         {
             kr: "잠깐",
-            en: "TBD",
-            zh: "TBD",
+            en: "for a moment",
+            zh: "一会儿",
             pos: "부사/명사",
             sentenceKr: "잠깐 잠깐 기다리다",
-            sentenceMeaning: "TBD",
-            sentenceZh: "TBD"
+            sentenceMeaning: "Wait a moment.",
+            sentenceZh: "请稍等一会儿。"
         },
         {
             kr: "잠시",
-            en: "TBD",
-            zh: "TBD",
+            en: "briefly, for a while",
+            zh: "片刻",
             pos: "부사/명사",
             sentenceKr: "잠시 잠시 기다리다",
-            sentenceMeaning: "TBD",
-            sentenceZh: "TBD"
+            sentenceMeaning: "Please wait here for a while.",
+            sentenceZh: "请在这里稍等片刻。"
         },
         {
             kr: "잠자다",
-            en: "TBD",
-            zh: "TBD",
+            en: "to sleep",
+            zh: "睡觉",
             pos: "동사",
             sentenceKr: "잠자다 새근새근 잠자다",
-            sentenceMeaning: "TBD",
-            sentenceZh: "TBD"
+            sentenceMeaning: "The baby is sleeping.",
+            sentenceZh: "宝宝正在睡觉。"
         },
         {
             kr: "잡다",
-            en: "TBD",
-            zh: "TBD",
+            en: "to catch, grab",
+            zh: "抓",
             pos: "동사",
             sentenceKr: "잡다 손을",
-            sentenceMeaning: "TBD",
-            sentenceZh: "TBD"
+            sentenceMeaning: "I caught a fish.",
+            sentenceZh: "我抓到了一条鱼。"
         },
         {
             kr: "잡수시다",
-            en: "TBD",
-            zh: "TBD",
+            en: "to eat (honorific)",
+            zh: "吃 (敬语)",
             pos: "동사",
             sentenceKr: "잡수시다 진지를",
-            sentenceMeaning: "TBD",
-            sentenceZh: "TBD"
+            sentenceMeaning: "Grandfather is eating.",
+            sentenceZh: "爷爷在吃饭。"
         },
         {
             kr: "잡지",
-            en: "TBD",
-            zh: "TBD",
+            en: "magazine",
+            zh: "杂志",
             pos: "명사",
             sentenceKr: "잡지 를 보다",
-            sentenceMeaning: "TBD",
-            sentenceZh: "TBD"
+            sentenceMeaning: "I am reading a magazine.",
+            sentenceZh: "我在看杂志。"
         },
         {
             kr: "잡채",
-            en: "TBD",
-            zh: "TBD",
+            en: "japchae (glass noodles)",
+            zh: "杂菜",
             pos: "명사",
             sentenceKr: "잡채 음식",
-            sentenceMeaning: "TBD",
-            sentenceZh: "TBD"
+            sentenceMeaning: "Japchae is delicious.",
+            sentenceZh: "杂菜很好吃。"
         },
         {
             kr: "장",
-            en: "TBD",
-            zh: "TBD",
+            en: "piece, sheet (counter)",
+            zh: "张 (量词)",
             pos: "의존명사",
             sentenceKr: "장 한 장",
-            sentenceMeaning: "TBD",
-            sentenceZh: "TBD"
+            sentenceMeaning: "Two tickets, please.",
+            sentenceZh: "请给我两张票。"
         },
         {
             kr: "장갑",
-            en: "TBD",
-            zh: "TBD",
+            en: "gloves",
+            zh: "手套",
             pos: "명사",
             sentenceKr: "장갑 을 끼다",
-            sentenceMeaning: "TBD",
-            sentenceZh: "TBD"
+            sentenceMeaning: "Put on your gloves.",
+            sentenceZh: "请戴上手套。"
         },
         {
             kr: "장난감",
-            en: "TBD",
-            zh: "TBD",
+            en: "toy",
+            zh: "玩具",
             pos: "명사",
             sentenceKr: "장난감 을 가지고 놀다",
-            sentenceMeaning: "TBD",
-            sentenceZh: "TBD"
+            sentenceMeaning: "I bought a toy for my kid.",
+            sentenceZh: "我给孩子买了个玩具。"
         },
         {
             kr: "장마",
-            en: "TBD",
-            zh: "TBD",
+            en: "rainy season",
+            zh: "梅雨",
             pos: "명사",
             sentenceKr: "장마 가 오다",
-            sentenceMeaning: "TBD",
-            sentenceZh: "TBD"
+            sentenceMeaning: "The rainy season has started.",
+            sentenceZh: "梅雨季开始了。"
         },
         {
             kr: "장미",
-            en: "TBD",
-            zh: "TBD",
+            en: "rose",
+            zh: "玫瑰",
             pos: "명사",
             sentenceKr: "장미 꽃",
-            sentenceMeaning: "TBD",
-            sentenceZh: "TBD"
+            sentenceMeaning: "I bought a red rose.",
+            sentenceZh: "我买了一朵红玫瑰。"
         },
         {
             kr: "장소",
-            en: "TBD",
-            zh: "TBD",
+            en: "place, location",
+            zh: "场所",
             pos: "명사",
             sentenceKr: "장소 를 정하다",
-            sentenceMeaning: "TBD",
-            sentenceZh: "TBD"
+            sentenceMeaning: "This is a good place.",
+            sentenceZh: "这是一个好地方。"
         },
         {
             kr: "재료",
-            en: "TBD",
-            zh: "TBD",
+            en: "ingredient, material",
+            zh: "材料",
             pos: "명사",
             sentenceKr: "재료 를 준비하다",
-            sentenceMeaning: "TBD",
-            sentenceZh: "TBD"
+            sentenceMeaning: "Prepare the ingredients.",
+            sentenceZh: "请准备材料。"
         },
         {
             kr: "재미",
-            en: "TBD",
-            zh: "TBD",
+            en: "fun, interest",
+            zh: "乐趣",
             pos: "명사",
             sentenceKr: "재미 가 있다",
-            sentenceMeaning: "TBD",
-            sentenceZh: "TBD"
+            sentenceMeaning: "This game is fun.",
+            sentenceZh: "这个游戏很有趣。"
         },
         {
             kr: "재미없다",
-            en: "TBD",
-            zh: "TBD",
+            en: "to be uninteresting",
+            zh: "无趣",
             pos: "형용사",
             sentenceKr: "재미없다 이야기가",
-            sentenceMeaning: "TBD",
-            sentenceZh: "TBD"
+            sentenceMeaning: "The movie is boring.",
+            sentenceZh: "这部电影很无聊。"
         },
         {
             kr: "재미있다",
-            en: "TBD",
-            zh: "TBD",
+            en: "to be fun, interesting",
+            zh: "有趣",
             pos: "형용사",
             sentenceKr: "재미있다 이야기가",
-            sentenceMeaning: "TBD",
-            sentenceZh: "TBD"
+            sentenceMeaning: "This book is interesting.",
+            sentenceZh: "这本书很有趣。"
         },
         {
             kr: "재채기",
-            en: "TBD",
-            zh: "TBD",
+            en: "sneeze",
+            zh: "打喷嚏",
             pos: "명사",
             sentenceKr: "재채기 가 나오다",
-            sentenceMeaning: "TBD",
-            sentenceZh: "TBD"
+            sentenceMeaning: "I keep sneezing.",
+            sentenceZh: "我一直打喷嚏。"
         },
         {
             kr: "저",
-            en: "TBD",
-            zh: "TBD",
+            en: "I (humble)",
+            zh: "我 (谦词)",
             pos: "대명사",
             sentenceKr: "저 사람(1인칭)",
-            sentenceMeaning: "TBD",
-            sentenceZh: "TBD"
+            sentenceMeaning: "I am a student.",
+            sentenceZh: "我是一名学生。"
         },
         {
             kr: "저",
-            en: "TBD",
-            zh: "TBD",
+            en: "I (humble)",
+            zh: "我 (谦词)",
             pos: "대명사/관형사",
             sentenceKr: "저 이도 저도",
-            sentenceMeaning: "TBD",
-            sentenceZh: "TBD"
+            sentenceMeaning: "I am a student.",
+            sentenceZh: "我是一名学生。"
         },
         {
             kr: "저",
-            en: "TBD",
-            zh: "TBD",
+            en: "I (humble)",
+            zh: "我 (谦词)",
             pos: "있잖아요.\"",
             sentenceKr: "저 \"저",
-            sentenceMeaning: "TBD",
-            sentenceZh: "TBD"
+            sentenceMeaning: "I am a student.",
+            sentenceZh: "我是一名学生。"
         },
         {
             kr: "저거",
-            en: "TBD",
-            zh: "TBD",
+            en: "that thing over there",
+            zh: "那个",
             pos: "대명사",
             sentenceKr: "저거 저것",
-            sentenceMeaning: "TBD",
-            sentenceZh: "TBD"
+            sentenceMeaning: "Give me that one.",
+            sentenceZh: "请给我那个。"
         },
         {
             kr: "저것",
-            en: "TBD",
-            zh: "TBD",
+            en: "that thing",
+            zh: "那个",
             pos: "대명사",
             sentenceKr: "저것 −",
-            sentenceMeaning: "TBD",
-            sentenceZh: "TBD"
+            sentenceMeaning: "What is that?",
+            sentenceZh: "那是什么？"
         },
         {
             kr: "저곳",
-            en: "TBD",
-            zh: "TBD",
+            en: "that place",
+            zh: "那个地方",
             pos: "대명사",
             sentenceKr: "저곳 장소",
-            sentenceMeaning: "TBD",
-            sentenceZh: "TBD"
+            sentenceMeaning: "I want to go there.",
+            sentenceZh: "我想去那个地方。"
         },
         {
             kr: "저금",
-            en: "TBD",
-            zh: "TBD",
+            en: "savings",
+            zh: "储蓄",
             pos: "명사",
             sentenceKr: "저금 을 하다",
-            sentenceMeaning: "TBD",
-            sentenceZh: "TBD"
+            sentenceMeaning: "I save money every month.",
+            sentenceZh: "我每个月都存钱。"
         },
         {
             kr: "저기",
-            en: "TBD",
-            zh: "TBD",
+            en: "over there",
+            zh: "那里",
             pos: "대명사",
             sentenceKr: "저기 장소",
-            sentenceMeaning: "TBD",
-            sentenceZh: "TBD"
+            sentenceMeaning: "He is over there.",
+            sentenceZh: "他在那里。"
         },
         {
             kr: "저녁",
-            en: "TBD",
-            zh: "TBD",
+            en: "evening, dinner",
+            zh: "傍晚，晚饭",
             pos: "명사",
             sentenceKr: "저녁 이 되다",
-            sentenceMeaning: "TBD",
-            sentenceZh: "TBD"
+            sentenceMeaning: "Let's eat dinner.",
+            sentenceZh: "我们吃晚饭吧。"
         },
         {
             kr: "저런",
-            en: "TBD",
-            zh: "TBD",
+            en: "that kind of",
+            zh: "那种",
             pos: "관형사",
             sentenceKr: "저런 그런",
-            sentenceMeaning: "TBD",
-            sentenceZh: "TBD"
+            sentenceMeaning: "Don't say such things.",
+            sentenceZh: "别说那样的话。"
         },
         {
             kr: "저렇다",
-            en: "TBD",
-            zh: "TBD",
+            en: "to be like that",
+            zh: "那样",
             pos: "형용사",
             sentenceKr: "저렇다 −",
-            sentenceMeaning: "TBD",
-            sentenceZh: "TBD"
+            sentenceMeaning: "Why is it like that?",
+            sentenceZh: "为什么会那样？"
         },
         {
             kr: "저번",
-            en: "TBD",
-            zh: "TBD",
+            en: "last time",
+            zh: "上次",
             pos: "명사",
             sentenceKr: "저번 저번 주",
-            sentenceMeaning: "TBD",
-            sentenceZh: "TBD"
+            sentenceMeaning: "Like we did last time.",
+            sentenceZh: "就像上次那样。"
         },
         {
             kr: "저분",
-            en: "TBD",
-            zh: "TBD",
+            en: "that person (honorific)",
+            zh: "那位",
             pos: "대명사",
             sentenceKr: "저분 이분",
-            sentenceMeaning: "TBD",
-            sentenceZh: "TBD"
+            sentenceMeaning: "Who is that person?",
+            sentenceZh: "那位是谁？"
         },
         {
             kr: "저쪽",
-            en: "TBD",
-            zh: "TBD",
+            en: "that way",
+            zh: "那边",
             pos: "대명사",
             sentenceKr: "저쪽 방향",
-            sentenceMeaning: "TBD",
-            sentenceZh: "TBD"
+            sentenceMeaning: "Please go that way.",
+            sentenceZh: "请往那边走。"
         },
         {
             kr: "저희",
-            en: "TBD",
-            zh: "TBD",
+            en: "we, our (humble)",
+            zh: "我们 (谦词)",
             pos: "대명사",
             sentenceKr: "저희 저희 회사",
-            sentenceMeaning: "TBD",
-            sentenceZh: "TBD"
+            sentenceMeaning: "Please visit our company.",
+            sentenceZh: "请来我们公司。"
         },
         {
             kr: "적다",
-            en: "TBD",
-            zh: "TBD",
+            en: "to be few / to write down",
+            zh: "少 / 记下",
             pos: "동사",
             sentenceKr: "적다 이름을",
-            sentenceMeaning: "TBD",
-            sentenceZh: "TBD"
+            sentenceMeaning: "Please write down your name.",
+            sentenceZh: "请记下你的名字。"
         },
         {
             kr: "적다",
-            en: "TBD",
-            zh: "TBD",
+            en: "to be few / to write down",
+            zh: "少 / 记下",
             pos: "형용사",
             sentenceKr: "적다 양이",
-            sentenceMeaning: "TBD",
-            sentenceZh: "TBD"
+            sentenceMeaning: "Please write down your name.",
+            sentenceZh: "请记下你的名字。"
         },
         {
             kr: "적당하다",
-            en: "TBD",
-            zh: "TBD",
+            en: "to be appropriate",
+            zh: "合适",
             pos: "형용사",
             sentenceKr: "적당하다 가격이",
-            sentenceMeaning: "TBD",
-            sentenceZh: "TBD"
+            sentenceMeaning: "The price is reasonable.",
+            sentenceZh: "价格很合适。"
         },
         {
             kr: "전",
-            en: "TBD",
-            zh: "TBD",
+            en: "before",
+            zh: "之前",
             pos: "관형사",
             sentenceKr: "전 전 세계",
-            sentenceMeaning: "TBD",
-            sentenceZh: "TBD"
+            sentenceMeaning: "I met him before.",
+            sentenceZh: "我以前见过他。"
         },
         {
             kr: "전",
-            en: "TBD",
-            zh: "TBD",
+            en: "before",
+            zh: "之前",
             pos: "명사/관형사",
             sentenceKr: "전 오래 전",
-            sentenceMeaning: "TBD",
-            sentenceZh: "TBD"
+            sentenceMeaning: "I met him before.",
+            sentenceZh: "我以前见过他。"
         },
         {
             kr: "전공",
@@ -15738,12 +15738,12 @@ export const MOCK_VOCABULARY: Record<string, Word[]> = {
         },
         {
             kr: "햇빛",
-            en: "TBD",
-            zh: "TBD",
+            en: "sunlight",
+            zh: "阳光",
             pos: "명사",
             sentenceKr: "햇빛 이 비치다",
-            sentenceMeaning: "TBD",
-            sentenceZh: "TBD"
+            sentenceMeaning: "The sunlight is strong.",
+            sentenceZh: "阳光很强烈。"
         }
     ],
     beginner_cycle_17: [
@@ -15845,12 +15845,12 @@ export const MOCK_VOCABULARY: Record<string, Word[]> = {
         },
         {
             kr: "호랑이",
-            en: "TBD",
-            zh: "TBD",
+            en: "tiger",
+            zh: "老虎",
             pos: "명사",
             sentenceKr: "호랑이 동물",
-            sentenceMeaning: "TBD",
-            sentenceZh: "TBD"
+            sentenceMeaning: "Tigers are scary.",
+            sentenceZh: "老虎很可怕。"
         },
         {
             kr: "호수",
@@ -15862,12 +15862,12 @@ export const MOCK_VOCABULARY: Record<string, Word[]> = {
         },
         {
             kr: "호텔",
-            en: "TBD",
-            zh: "TBD",
+            en: "hotel",
+            zh: "酒店",
             pos: "명사",
             sentenceKr: "호텔 에 묵다",
-            sentenceMeaning: "TBD",
-            sentenceZh: "TBD"
+            sentenceMeaning: "I stayed at a hotel.",
+            sentenceZh: "我在酒店住了一晚。"
         },
         {
             kr: "혹시",
@@ -15887,12 +15887,12 @@ export const MOCK_VOCABULARY: Record<string, Word[]> = {
         },
         {
             kr: "홍차",
-            en: "TBD",
-            zh: "TBD",
+            en: "black tea",
+            zh: "红茶",
             pos: "명사",
             sentenceKr: "홍차 를 마시다",
-            sentenceMeaning: "TBD",
-            sentenceZh: "TBD"
+            sentenceMeaning: "I drink black tea.",
+            sentenceZh: "我喝红茶。"
         },
         {
             kr: "화",
@@ -15912,30 +15912,30 @@ export const MOCK_VOCABULARY: Record<string, Word[]> = {
         },
         {
             kr: "화나다",
-            en: "TBD",
-            zh: "TBD",
+            en: "to get angry",
+            zh: "生气",
             pos: "동사",
             sentenceKr: "화나다 친구가",
-            sentenceMeaning: "TBD",
-            sentenceZh: "TBD"
+            sentenceMeaning: "I am really angry.",
+            sentenceZh: "我真的很生气。"
         },
         {
             kr: "화내다",
-            en: "TBD",
-            zh: "TBD",
+            en: "to express anger",
+            zh: "发火",
             pos: "동사",
             sentenceKr: "화내다 친구에게",
-            sentenceMeaning: "TBD",
-            sentenceZh: "TBD"
+            sentenceMeaning: "Don't get angry at me.",
+            sentenceZh: "不要对我发火。"
         },
         {
             kr: "화려하다",
-            en: "TBD",
-            zh: "TBD",
+            en: "to be fancy, colorful",
+            zh: "华丽",
             pos: "형용사",
             sentenceKr: "화려하다 보석이",
-            sentenceMeaning: "TBD",
-            sentenceZh: "TBD"
+            sentenceMeaning: "Her dress is fancy.",
+            sentenceZh: "她的衣服很华丽。"
         },
         {
             kr: "화요일",
@@ -15963,21 +15963,21 @@ export const MOCK_VOCABULARY: Record<string, Word[]> = {
         },
         {
             kr: "환영",
-            en: "TBD",
-            zh: "TBD",
+            en: "welcome",
+            zh: "欢迎",
             pos: "명사",
             sentenceKr: "환영 을 받다",
-            sentenceMeaning: "TBD",
-            sentenceZh: "TBD"
+            sentenceMeaning: "Welcome to Korea.",
+            sentenceZh: "欢迎来到韩国。"
         },
         {
             kr: "환자",
-            en: "TBD",
-            zh: "TBD",
+            en: "patient",
+            zh: "患者",
             pos: "명사",
             sentenceKr: "환자 을 돌보다",
-            sentenceMeaning: "TBD",
-            sentenceZh: "TBD"
+            sentenceMeaning: "The patient is resting.",
+            sentenceZh: "患者正在休息。"
         },
         {
             kr: "환전",
@@ -15989,12 +15989,12 @@ export const MOCK_VOCABULARY: Record<string, Word[]> = {
         },
         {
             kr: "활발히",
-            en: "TBD",
-            zh: "TBD",
+            en: "actively",
+            zh: "活跃地",
             pos: "부사",
             sentenceKr: "활발히 활발히 활동하다",
-            sentenceMeaning: "TBD",
-            sentenceZh: "TBD"
+            sentenceMeaning: "They participate actively.",
+            sentenceZh: "他们积极活跃地参与。"
         },
         {
             kr: "회",

@@ -111,6 +111,13 @@ export function VocabCard({
                                 className="w-[340px] h-[340px] object-cover rounded-[40px] border-2 border-primary/20 bg-white/50 shadow-sm transition-opacity duration-500" 
                                 loading="lazy"
                             />
+                        ) : sentenceMeaning && sentenceMeaning !== 'TBD' ? (
+                            <img 
+                                src={`https://image.pollinations.ai/prompt/realistic%20photography%20representing%20the%20scene:%20${encodeURIComponent(sentenceMeaning)}?width=400&height=400&nologo=true`} 
+                                alt={word} 
+                                className="w-[340px] h-[340px] object-cover rounded-[40px] border-2 border-primary/20 bg-white/50 shadow-sm transition-opacity duration-500" 
+                                loading="lazy"
+                            />
                         ) : (
                             <div className="flex flex-col items-center gap-4">
                                 <Sparkles size={80} className="text-primary/20 animate-pulse" />
