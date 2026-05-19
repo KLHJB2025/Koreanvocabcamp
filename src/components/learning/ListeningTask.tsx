@@ -18,14 +18,13 @@ export function ListeningTask({ words, onComplete, onMiss }: ListeningTaskProps)
     const [isCorrect, setIsCorrect] = useState<boolean | null>(null);
     const { t } = useTranslation();
 
-    const speak = (text: string, rate: number = 1.0) => {
-        if (typeof window !== 'undefined') {
-            window.speechSynthesis.cancel();
-            const utterance = new SpeechSynthesisUtterance(text);
-            utterance.lang = 'ko-KR';
-            utterance.rate = rate;
-            window.speechSynthesis.speak(utterance);
-        }
+    const speak = (word: string, rate: number = 1.0) => {
+        const cleanName = word.replace(/[<>:"/\\|?*]/g, '');
+        const audioPath = `/audio/words/${cleanName}.mp3`;
+        
+        const audio = new Audio(audioPath);
+        audio.playbackRate = rate === 1.0 ? 1.0 : 0.7; // Ensure slow is 0.7
+        audio.play().catch(e => console.error("Audio playback failed:", e));
     };
 
     useEffect(() => {

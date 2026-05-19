@@ -44,15 +44,15 @@ export function VocabCard({
 }: VocabCardProps) {
     const { t, language } = useTranslation();
 
-    const speak = (text?: string, speed: 'normal' | 'slow' = 'normal') => {
-        if (!text) return;
-        if ('speechSynthesis' in window) {
-            window.speechSynthesis.cancel();
-            const utterance = new SpeechSynthesisUtterance(text);
-            utterance.lang = 'ko-KR';
-            utterance.rate = speed === 'normal' ? 1.0 : 0.6;
-            window.speechSynthesis.speak(utterance);
-        }
+    const speak = (type: 'word' | 'sentence', speed: 'normal' | 'slow' = 'normal') => {
+        const cleanName = word.replace(/[<>:"/\\|?*]/g, '');
+        const audioPath = type === 'word' 
+            ? `/audio/words/${cleanName}.mp3` 
+            : `/audio/sentences/${cleanName}.mp3`;
+        
+        const audio = new Audio(audioPath);
+        audio.playbackRate = speed === 'normal' ? 1.0 : 0.7;
+        audio.play().catch(e => console.error("Audio playback failed:", e));
     };
 
     const posStyle = POS_COLORS[pos] || POS_COLORS.default;
@@ -71,14 +71,14 @@ export function VocabCard({
                     </span>
                     <div className="flex gap-2">
                         <button
-                            onClick={() => speak(word, 'slow')}
+                            onClick={() => speak('word', 'slow')}
                             className="px-3 py-1.5 bg-white rounded-xl flex items-center gap-1.5 text-[10px] font-black uppercase tracking-widest text-charcoal/40 hover:text-primary transition-colors border border-charcoal/5 shadow-sm"
                         >
                             <Volume2 size={14} />
                             {t('learning.slow')}
                         </button>
                         <button
-                            onClick={() => speak(word, 'normal')}
+                            onClick={() => speak('word', 'normal')}
                             className="w-10 h-10 bg-primary rounded-xl flex items-center justify-center text-white hover:scale-110 active:scale-95 transition-all shadow-md"
                         >
                             <Volume2 size={20} />
@@ -95,7 +95,7 @@ export function VocabCard({
                         className="w-[380px] h-[380px] bg-gradient-to-br from-strawberry/5 to-cloud/20 rounded-[80px] flex items-center justify-center relative shadow-inner group"
                     >
                         {illustrationUrl ? (
-                            <img src={illustrationUrl} alt={word} className="w-[340px] h-[340px] object-contain rounded-[40px] border-2 border-primary/20 bg-white/50 shadow-sm" />
+                            <img src={illustrationUrl} alt={word} className="w-[340px] h-[340px] object-cover rounded-[40px] border-2 border-primary/20 bg-white/50 shadow-sm" />
                         ) : animationData ? (
                             <Lottie
                                 animationData={animationData}
@@ -104,6 +104,13 @@ export function VocabCard({
                             />
                         ) : animationUrl ? (
                             <img src={animationUrl} alt={word} className="w-40 h-40 object-contain" />
+                        ) : pos === 'Noun' ? (
+                            <img 
+                                src={`https://image.pollinations.ai/prompt/realistic%20photography%20of%20${encodeURIComponent(meaningEn)}?width=400&height=400&nologo=true`} 
+                                alt={word} 
+                                className="w-[340px] h-[340px] object-cover rounded-[40px] border-2 border-primary/20 bg-white/50 shadow-sm transition-opacity duration-500" 
+                                loading="lazy"
+                            />
                         ) : (
                             <div className="flex flex-col items-center gap-4">
                                 <Sparkles size={80} className="text-primary/20 animate-pulse" />
@@ -131,7 +138,7 @@ export function VocabCard({
                                     <p className="text-2xl font-bold text-charcoal leading-snug">
                                         {sentenceKr}
                                         <button 
-                                            onClick={() => speak(sentenceKr)}
+                                            onClick={() => speak('sentence')}
                                             className="inline-flex ml-2 align-middle text-primary/40 hover:text-primary transition-colors"
                                         >
                                             <Volume2 size={16} />
