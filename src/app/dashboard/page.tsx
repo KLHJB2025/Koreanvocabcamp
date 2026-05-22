@@ -61,9 +61,9 @@ export default function Dashboard() {
     const rankInfo = getRankInfo(profile.totalXp || 0, language);
 
     return (
-        <div className="min-h-screen bg-[#FEF9FA] text-charcoal pb-20">
+        <div className="min-h-screen bg-[#FEF9FA] text-charcoal pb-20 w-full max-w-full overflow-x-hidden">
             {/* Cuter Top Header */}
-            <header className="bg-white/80 backdrop-blur-md px-4 sm:px-10 py-4 sm:py-6 flex items-center justify-between sticky top-0 z-20 border-b border-strawberry/10">
+            <header className="bg-white/80 backdrop-blur-md px-4 sm:px-10 py-4 sm:py-6 flex items-center justify-between sticky top-0 z-20 border-b border-strawberry/10 w-full">
                 <div className="flex items-center gap-4">
                     <motion.div
                         whileHover={{ rotate: 10, scale: 1.1 }}
@@ -79,11 +79,11 @@ export default function Dashboard() {
                     </div>
                 </div>
 
-                <div className="flex items-center gap-1.5 sm:gap-4">
+                <div className="flex items-center gap-1 sm:gap-3">
                     <StatBadge icon={<Flame size={14} className="sm:w-[16px] sm:h-[16px]" />} value={profile.streakCount || 0} color="bg-orange-50 text-orange-500 border-orange-100" />
                     <StatBadge icon={<Star size={14} className="sm:w-[16px] sm:h-[16px]" />} value={profile.totalXp || 0} color="bg-amber-50 text-amber-600 border-amber-100" />
 
-                    <div className="flex items-center gap-1 sm:gap-3 ml-1 sm:ml-4 bg-white p-1 sm:p-2 pr-1.5 sm:pr-6 rounded-full border border-strawberry/10 shadow-sm">
+                    <div className="flex items-center gap-1 sm:gap-2 ml-0.5 sm:ml-3 bg-white p-1 pr-1.5 sm:p-2 sm:pr-6 rounded-full border border-strawberry/10 shadow-sm">
                         <div className="w-8 h-8 sm:w-10 sm:h-10 rounded-full bg-strawberry/10 flex items-center justify-center font-black text-primary border-2 border-white shadow-inner text-xs sm:text-base">
                             {profile.displayName?.[0] || 'Y'}
                         </div>
@@ -128,11 +128,11 @@ export default function Dashboard() {
                 )}
 
                 {/* Mascot & Progress Header */}
-                <div className="grid md:grid-cols-12 gap-6 sm:gap-8 items-stretch">
+                <div className="grid md:grid-cols-12 gap-6 sm:gap-8 items-stretch w-full">
                     <motion.div
                         initial={{ opacity: 0, x: -20 }}
                         animate={{ opacity: 1, x: 0 }}
-                        className="md:col-span-4 bg-white rounded-[32px] sm:rounded-[48px] p-6 sm:p-10 flex flex-col items-center justify-center text-center shadow-xl border-2 border-strawberry/5 relative group"
+                        className="md:col-span-4 min-w-0 bg-white rounded-[32px] sm:rounded-[48px] p-6 sm:p-10 flex flex-col items-center justify-center text-center shadow-xl border-2 border-strawberry/5 relative group"
                     >
                         <div className="absolute top-4 right-4 px-3 py-1 bg-strawberry/10 rounded-full text-[8px] font-black uppercase tracking-widest text-primary group-hover:scale-110 transition-transform">
                             {t('dashboard.activeCompanion')}
@@ -157,7 +157,7 @@ export default function Dashboard() {
                     <motion.div
                         initial={{ opacity: 0, x: 20 }}
                         animate={{ opacity: 1, x: 0 }}
-                        className="md:col-span-8 bg-charcoal rounded-[32px] sm:rounded-[48px] p-6 sm:p-12 text-white shadow-2xl relative overflow-hidden flex flex-col justify-between"
+                        className="md:col-span-8 min-w-0 bg-charcoal rounded-[32px] sm:rounded-[48px] p-6 sm:p-12 text-white shadow-2xl relative overflow-hidden flex flex-col justify-between"
                     >
                         <div className="absolute top-0 right-0 w-64 h-64 bg-primary/10 rounded-full blur-[100px] -mr-32 -mt-32" />
                         
@@ -213,12 +213,12 @@ export default function Dashboard() {
                 </div>
 
                 {/* Main Content Grid */}
-                <div className="grid lg:grid-cols-12 gap-6 lg:gap-12">
+                <div className="grid lg:grid-cols-12 gap-6 lg:gap-12 w-full">
                     {/* Roadmap & Daily Mission */}
-                    <div className="lg:col-span-8 space-y-6 sm:space-y-12">
+                    <div className="lg:col-span-8 min-w-0 space-y-6 sm:space-y-12">
 
                         {/* Roadmap */}
-                        <section className="puffy-card p-6 sm:p-10 rounded-[32px] sm:rounded-[48px]">
+                        <section className="puffy-card p-6 sm:p-10 rounded-[32px] sm:rounded-[48px] overflow-hidden">
                             <div className="flex flex-col sm:flex-row gap-4 items-start sm:items-center justify-between mb-6 sm:mb-10">
                                 <div className="flex items-center gap-3">
                                     <div className="w-10 h-10 bg-cloud rounded-2xl flex items-center justify-center text-primary shadow-inner">
@@ -311,7 +311,7 @@ export default function Dashboard() {
                     </div>
 
                     {/* Sidebar Stats */}
-                    <div className="lg:col-span-4 space-y-6 sm:space-y-12">
+                    <div className="lg:col-span-4 min-w-0 space-y-6 sm:space-y-12">
                         {/* Rank Progress */}
                         <div className="puffy-card p-6 sm:p-8 rounded-[32px] sm:rounded-[48px]">
                             <div className="flex items-center justify-between mb-8">
@@ -359,19 +359,19 @@ export default function Dashboard() {
                                     { name: "Suji", xp: 1240, avatar: "S" },
                                     { name: profile.displayName || "You", xp: profile.totalXp || 0, avatar: profile.displayName?.[0] || "Y", isMe: true },
                                 ].map((user) => (
-                                    <div key={user.name} className={`flex items-center justify-between p-4 rounded-3xl ${user.isMe ? 'bg-strawberry/10 border-2 border-primary/20 shadow-md' : 'bg-secondary/30'}`}>
-                                        <div className="flex items-center gap-4">
-                                            <div className={`w-10 h-10 rounded-2xl flex items-center justify-center font-black ${user.isMe ? 'bg-primary text-white shadow-lg' : 'bg-white text-charcoal/20 shadow-inner'}`}>
+                                    <div key={user.name} className={`flex items-center justify-between p-4 rounded-3xl gap-2 ${user.isMe ? 'bg-strawberry/10 border-2 border-primary/20 shadow-md' : 'bg-secondary/30'}`}>
+                                        <div className="flex items-center gap-4 min-w-0">
+                                            <div className={`w-10 h-10 rounded-2xl flex items-center justify-center font-black shrink-0 ${user.isMe ? 'bg-primary text-white shadow-lg' : 'bg-white text-charcoal/20 shadow-inner'}`}>
                                                 {user.avatar}
                                             </div>
-                                            <div>
-                                                <p className={`text-xs font-black italic ${user.isMe ? 'text-primary' : 'text-charcoal'}`}>{user.name}</p>
-                                                <p className="text-[8px] font-black text-charcoal/30 uppercase tracking-widest">
+                                            <div className="min-w-0">
+                                                <p className={`text-xs font-black italic truncate ${user.isMe ? 'text-primary' : 'text-charcoal'}`}>{user.name}</p>
+                                                <p className="text-[8px] font-black text-charcoal/30 uppercase tracking-widest truncate">
                                                     {t('dashboard.rankings.activeMember')}
                                                 </p>
                                             </div>
                                         </div>
-                                        <span className="text-xs font-black italic">{user.xp} XP</span>
+                                        <span className="text-xs font-black italic shrink-0">{user.xp} XP</span>
                                     </div>
                                 ))}
                             </div>
