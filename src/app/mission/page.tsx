@@ -4,7 +4,7 @@
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useAuth } from '@/hooks/use-auth';
-import { getDailyWords, getReviewWords } from '@/lib/vocabulary';
+import { getDailyWords, getReviewWords, getMissionImageUrls } from '@/lib/vocabulary';
 import { Word } from '@/lib/vocabulary-data';
 import { addXp, completeDay, recordLearnedWords } from '@/lib/user';
 import { useRouter } from 'next/navigation';
@@ -26,7 +26,7 @@ type MissionStep = 'intro' | 'review' | 'learn' | 'listen' | 'match' | 'spell' |
 
 export default function MissionPage() {
     const { profile, loading: authLoading } = useAuth();
-    const { t } = useTranslation();
+    const { t, language } = useTranslation();
     const router = useRouter();
     
     const [step, setStep] = useState<MissionStep>('intro');
@@ -35,6 +35,8 @@ export default function MissionPage() {
     const [missedWords, setMissedWords] = useState<Word[]>([]);
     const [isLoading, setIsLoading] = useState(true);
     const [currentIndex, setCurrentIndex] = useState(0);
+    const [preloadProgress, setPreloadProgress] = useState(0);
+    const [isPreloading, setIsPreloading] = useState(false);
 
     // Save progress to localStorage
     useEffect(() => {
@@ -100,6 +102,31 @@ export default function MissionPage() {
 
         if (!authLoading) load();
     }, [profile, authLoading]);
+
+    // Preload all dynamic mission images (vocab illustrations & scenario task scenes)
+    useEffect(() => {
+        if (words.length === 0) return;
+
+        const urls = getMissionImageUrls(words);
+        setIsPreloading(true);
+        let loadedCount = 0;
+
+        urls.forEach((url) => {
+            const img = new Image();
+            img.src = url;
+            
+            const handleLoad = () => {
+                loadedCount++;
+                setPreloadProgress(Math.round((loadedCount / urls.length) * 100));
+                if (loadedCount === urls.length) {
+                    setIsPreloading(false);
+                }
+            };
+
+            img.onload = handleLoad;
+            img.onerror = handleLoad; // Count errors too to avoid hanging
+        });
+    }, [words]);
 
     const handleNextStep = () => {
         if (step === 'intro') setStep(prevWords.length > 0 ? 'review' : 'learn');
@@ -173,7 +200,18 @@ export default function MissionPage() {
                                 {words.length > 0 ? t('mission.masterTargets', { count: words.length }) : "No targets available"}
                             </p>
                             {words.length > 0 ? (
-                                <button onClick={handleNextStep} className="btn-primary-cute text-2xl px-12 py-6">{t('mission.beginMission')}</button>
+                                <div className="space-y-4">
+                                    <button onClick={handleNextStep} className="btn-primary-cute text-2xl px-12 py-6">
+                                        {t('mission.beginMission')}
+                                    </button>
+                                    {isPreloading && (
+                                        <p className="text-[10px] font-black text-primary/65 uppercase tracking-widest animate-pulse">
+                                            {language === 'zh' 
+                                                ? `正在后台预缓存记忆画面 (${preloadProgress}%)` 
+                                                : `Preloading memory scenes in background (${preloadProgress}%)`}
+                                        </p>
+                                    )}
+                                </div>
                             ) : (
                                 <button onClick={() => router.push('/dashboard')} className="btn-primary-cute text-2xl px-12 py-6">Return to Base</button>
                             )}

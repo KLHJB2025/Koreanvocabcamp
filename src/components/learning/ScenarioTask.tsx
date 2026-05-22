@@ -4,7 +4,23 @@ import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Word } from '@/lib/vocabulary-data';
 import { useTranslation } from '@/hooks/use-translation';
-import { Sparkles, ArrowRight, CheckCircle2, Volume2, HelpCircle, AlertCircle, GripVertical } from 'lucide-react';
+import { Sparkles, ArrowRight, CheckCircle2, Volume2, HelpCircle, AlertCircle, GripVertical, Loader2 } from 'lucide-react';
+import { isConcreteWord, getIllustrationUrl } from '@/lib/vocabulary';
+
+const STICKER_POSITIONS = [
+    { left: '20%', top: '25%' },
+    { left: '80%', top: '20%' },
+    { left: '50%', top: '42%' },
+    { left: '20%', top: '65%' },
+    { left: '80%', top: '68%' },
+    { left: '50%', top: '75%' },
+    { left: '35%', top: '15%' },
+    { left: '65%', top: '18%' },
+    { left: '35%', top: '80%' },
+    { left: '65%', top: '82%' },
+    { left: '15%', top: '45%' },
+    { left: '85%', top: '45%' }
+];
 
 interface ScenarioTaskProps {
     words: Word[];
@@ -31,6 +47,13 @@ export function ScenarioTask({ words, onComplete, mascotName }: ScenarioTaskProp
     const [labelingErrorId, setLabelingErrorId] = useState<string | null>(null);
     const [revealedLabelHints, setRevealedLabelHints] = useState<Record<string, boolean>>({});
 
+    const [imageLoaded, setImageLoaded] = useState(false);
+
+    // Reset image loaded state when task changes
+    useEffect(() => {
+        setImageLoaded(false);
+    }, [currentTaskIndex]);
+
     const toggleLabelHint = (kr: string) => {
         setRevealedLabelHints(prev => ({ ...prev, [kr]: !prev[kr] }));
     };
@@ -43,33 +66,7 @@ export function ScenarioTask({ words, onComplete, mascotName }: ScenarioTaskProp
     // Final Completion State
     const [isFinished, setIsFinished] = useState(false);
 
-    // Helper: Determine if a word is concrete (physical object)
-    const isConcreteWord = (word: Word): boolean => {
-        const pos = word.pos || '';
-        const isNoun = pos === 'Noun' || pos === '명사';
 
-        const abstractCategories = ['property', 'feeling', 'time', 'description'];
-        const hasAbstractCategory = word.category && abstractCategories.includes(word.category);
-
-        const abstractKeywords = [
-            'price', 'value', 'health', 'worry', 'lie', 'trust', 'love', 'success', 'law',
-            'feeling', 'mood', 'weather', 'cold', 'hot', 'warm', 'cool', 'season', 'spring',
-            'summer', 'autumn', 'fall', 'winter', 'time', 'moment', 'period', 'epoch', 'era',
-            'history', 'future', 'past', 'present', 'today', 'yesterday', 'tomorrow', 'morning',
-            'afternoon', 'evening', 'night', 'midnight', 'noon', 'daytime', 'nighttime',
-            'theory', 'fact', 'reality', 'truth', 'opinion', 'view', 'belief', 'faith', 'hope',
-            'desire', 'wish', 'dream', 'nightmare', 'need', 'demand', 'supply', 'service',
-            'system', 'policy', 'rule', 'regulation', 'administration', 'management', 'leadership',
-            'direction', 'guidance', 'advice', 'suggestion', 'proposal', 'offer', 'request',
-            'command', 'instruction', 'warning', 'caution', 'notice', 'announcement', 'report',
-            'news', 'information', 'data', 'knowledge', 'wisdom', 'freedom', 'liberty', 'justice',
-            'equality', 'fairness'
-        ];
-        const enMeaning = word.en || '';
-        const hasAbstractMeaning = abstractKeywords.some(kw => enMeaning.toLowerCase().includes(kw));
-
-        return isNoun && !hasAbstractCategory && !hasAbstractMeaning;
-    };
 
     // Initialize Game Tasks
     useEffect(() => {
@@ -282,89 +279,102 @@ export function ScenarioTask({ words, onComplete, mascotName }: ScenarioTaskProp
                                 <div className="text-center max-w-xl mx-auto mb-4">
                                     <p className="text-lg font-bold text-charcoal/60">
                                         {language === 'zh' 
-                                            ? '观察左侧的场景图片，并在输入框中输入对应物品的韩语单词！' 
-                                            : 'Look at the scene on the left and type the corresponding Korean word for each object!'}
+                                            ? '观察下方的场景，直接在对应的物品气泡下方输入韩语单词！' 
+                                            : 'Look at the scene below and type the corresponding Korean word inside each object sticker!'}
                                     </p>
                                 </div>
 
-                                <div className="grid md:grid-cols-2 gap-8 items-center">
-                                    {/* Left: Generated Scene Image */}
-                                    <div className="relative rounded-[32px] overflow-hidden border-4 border-secondary/15 bg-cloud aspect-square shadow-xl group">
-                                        <img 
-                                            src={`https://image.pollinations.ai/prompt/${encodeURIComponent(currentTask.scenePrompt)}?width=500&height=500&nologo=true`} 
-                                            alt="Scene illustration" 
-                                            className="w-full h-full object-cover transition-scale duration-700 group-hover:scale-105"
-                                        />
-                                        <div className="absolute inset-0 bg-gradient-to-t from-charcoal/25 to-transparent pointer-events-none" />
-                                    </div>
+                                {/* Aspect-Ratio unified container with background scene */}
+                                <div className="relative w-full max-w-3xl mx-auto aspect-[4/3] rounded-3xl overflow-hidden border-4 border-secondary/15 bg-cloud shadow-2xl group">
+                                    {!imageLoaded && (
+                                        <div className="absolute inset-0 flex flex-col items-center justify-center bg-cloud text-charcoal/30 gap-2 z-10">
+                                            <Loader2 className="w-8 h-8 text-primary animate-spin" />
+                                            <span className="text-[10px] font-black uppercase tracking-widest">
+                                                {language === 'zh' ? '正在加载情境画面...' : 'Loading scene illustration...'}
+                                            </span>
+                                        </div>
+                                    )}
+                                    
+                                    {/* The Background Scene Image */}
+                                    <img 
+                                        src={`https://image.pollinations.ai/prompt/${encodeURIComponent(currentTask.scenePrompt)}?width=800&height=600&nologo=true`} 
+                                        alt="Scene illustration" 
+                                        className={`w-full h-full object-cover transition-all duration-750 group-hover:scale-[1.02] ${imageLoaded ? 'opacity-100 scale-100' : 'opacity-0 scale-95'}`}
+                                        onLoad={() => setImageLoaded(true)}
+                                    />
+                                    
+                                    <div className="absolute inset-0 bg-gradient-to-t from-charcoal/20 to-transparent pointer-events-none" />
 
-                                    {/* Right: Label Targets */}
-                                    <div className="space-y-4">
-                                        {labelingItems.map((item, idx) => {
-                                            const showHint = revealedLabelHints[item.correctKr];
-                                            return (
-                                                <div 
-                                                    key={item.english}
-                                                    className={`p-5 rounded-[24px] border-3 transition-all flex items-center justify-between gap-4 ${
-                                                        item.isCorrect 
-                                                            ? 'border-emerald-400 bg-emerald-50/50 shadow-inner' 
-                                                            : labelingErrorId === item.english
-                                                            ? 'border-rose-400 bg-rose-50 animate-shake'
-                                                            : 'border-secondary/15 bg-white hover:border-secondary/30'
-                                                    }`}
-                                                >
-                                                    <div className="flex-1">
-                                                        <span className="text-xs font-black text-charcoal/30 uppercase tracking-wider block mb-1">Target Object</span>
-                                                        <div className="flex flex-col">
-                                                            <span className="text-lg font-black text-charcoal leading-none">
-                                                                {language === 'zh' ? item.chinese : item.english}
-                                                            </span>
-                                                            {showHint && (
-                                                                <span className="text-xs font-extrabold text-amber-500 mt-1.5 flex items-center gap-1">
-                                                                    <Sparkles size={12} className="animate-pulse" />
-                                                                    {t('tasks.spelling.hint') || 'Hint'}: {item.correctKr[0] + '•'.repeat(Math.max(1, item.correctKr.length - 1))}
-                                                                </span>
-                                                            )}
-                                                        </div>
-                                                    </div>
-
-                                                    <div className="flex items-center gap-2">
-                                                        <input 
-                                                            type="text"
-                                                            value={item.inputValue}
-                                                            onChange={(e) => handleLabelInput(idx, e.target.value)}
-                                                            disabled={item.isCorrect}
-                                                            placeholder={item.isCorrect ? '' : (language === 'zh' ? '输入韩语...' : 'Type Korean...')}
-                                                            className={`w-36 px-4 py-2 rounded-xl text-center font-bold text-sm outline-none border transition-all ${
-                                                                item.isCorrect
-                                                                    ? 'bg-emerald-500 text-white border-transparent font-black shadow-sm'
-                                                                    : 'bg-cloud border-charcoal/10 focus:border-primary text-charcoal'
-                                                            }`}
-                                                        />
-                                                        {!item.isCorrect && (
-                                                            <button 
-                                                                type="button"
-                                                                onClick={() => toggleLabelHint(item.correctKr)}
-                                                                className={`p-2 rounded-xl border transition-colors flex-shrink-0 ${
-                                                                    showHint
-                                                                        ? 'bg-amber-100 border-amber-300 text-amber-600'
-                                                                        : 'bg-cloud border-charcoal/10 text-charcoal/40 hover:text-charcoal/60 hover:bg-cloud/85'
-                                                                }`}
-                                                                title="Show hint"
-                                                            >
-                                                                <HelpCircle size={16} />
-                                                            </button>
-                                                        )}
-                                                        {item.isCorrect && (
-                                                            <motion.div initial={{ scale: 0 }} animate={{ scale: 1 }}>
-                                                                <CheckCircle2 className="text-emerald-500 w-6 h-6 flex-shrink-0" />
-                                                            </motion.div>
-                                                        )}
-                                                    </div>
+                                    {/* Stickers overlaid on top of background */}
+                                    {imageLoaded && labelingItems.map((item, idx) => {
+                                        const pos = STICKER_POSITIONS[idx % STICKER_POSITIONS.length];
+                                        const showHint = revealedLabelHints[item.correctKr];
+                                        return (
+                                            <div 
+                                                key={item.english}
+                                                style={{ left: pos.left, top: pos.top }}
+                                                className="absolute -translate-x-1/2 -translate-y-1/2 flex flex-col items-center gap-1.5 z-20 pointer-events-auto select-none"
+                                            >
+                                                {/* Label / Meaning Badge */}
+                                                <div className="bg-charcoal/90 text-white text-[10px] sm:text-xs font-black px-2.5 py-0.5 rounded-full shadow-md whitespace-nowrap">
+                                                    {language === 'zh' ? item.chinese : item.english}
                                                 </div>
-                                            );
-                                        })}
-                                    </div>
+
+                                                {/* Circular Sticker Container */}
+                                                <div className={`relative w-12 h-12 sm:w-16 sm:h-16 rounded-full bg-white border-3 sm:border-4 transition-all flex items-center justify-center shadow-lg ${
+                                                    item.isCorrect 
+                                                        ? 'border-emerald-500 bg-emerald-50 shadow-inner' 
+                                                        : labelingErrorId === item.english
+                                                        ? 'border-rose-400 bg-rose-50 animate-shake'
+                                                        : 'border-white hover:border-primary/45 hover:scale-105 cursor-pointer'
+                                                }`}>
+                                                    <img 
+                                                        src={getIllustrationUrl(item.word)} 
+                                                        alt={item.english}
+                                                        className="w-full h-full object-cover rounded-full"
+                                                    />
+                                                    {item.isCorrect && (
+                                                        <div className="absolute -top-1 -right-1 bg-emerald-500 text-white rounded-full p-0.5 shadow-md">
+                                                            <CheckCircle2 size={12} className="stroke-[3] sm:w-[14px] sm:h-[14px]" />
+                                                        </div>
+                                                    )}
+                                                </div>
+
+                                                {/* Input / Result Box */}
+                                                <div className="relative">
+                                                    <input 
+                                                        type="text"
+                                                        value={item.inputValue}
+                                                        onChange={(e) => handleLabelInput(idx, e.target.value)}
+                                                        disabled={item.isCorrect}
+                                                        placeholder={item.isCorrect ? '' : (language === 'zh' ? '韩语...' : 'Korean...')}
+                                                        className={`w-24 sm:w-28 px-2 py-1 sm:py-1.5 pr-6 rounded-xl text-center font-bold text-[10px] sm:text-xs outline-none border transition-all shadow-md ${
+                                                            item.isCorrect
+                                                                ? 'bg-emerald-500 text-white border-transparent font-black pr-2'
+                                                                : 'bg-white/95 backdrop-blur-sm border-charcoal/15 focus:border-primary focus:ring-2 focus:ring-primary/20 text-charcoal'
+                                                        }`}
+                                                    />
+                                                    {!item.isCorrect && (
+                                                        <button 
+                                                            type="button"
+                                                            onClick={() => toggleLabelHint(item.correctKr)}
+                                                            className={`absolute right-1.5 top-1/2 -translate-y-1/2 text-charcoal/30 hover:text-charcoal/60 transition-colors`}
+                                                            title="Show hint"
+                                                        >
+                                                            <HelpCircle size={12} />
+                                                        </button>
+                                                    )}
+                                                </div>
+
+                                                {/* Hint popup */}
+                                                {showHint && !item.isCorrect && (
+                                                    <div className="bg-amber-500 text-white text-[9px] sm:text-[10px] font-black px-2 py-0.5 rounded shadow-sm whitespace-nowrap animate-bounce mt-0.5">
+                                                        {item.correctKr[0] + '•'.repeat(Math.max(1, item.correctKr.length - 1))}
+                                                    </div>
+                                                )}
+                                            </div>
+                                        );
+                                    })}
                                 </div>
                             </div>
                         )}
@@ -373,11 +383,20 @@ export function ScenarioTask({ words, onComplete, mascotName }: ScenarioTaskProp
                         {currentTask.type === 'sentence' && (
                             <div className="grid md:grid-cols-2 gap-8 items-center">
                                 {/* Left: Dynamic context image */}
-                                <div className="relative rounded-[32px] overflow-hidden border-4 border-secondary/15 bg-cloud aspect-square shadow-xl">
+                                <div className="relative rounded-[32px] overflow-hidden border-4 border-secondary/15 bg-cloud aspect-square shadow-xl flex items-center justify-center">
+                                    {!imageLoaded && (
+                                        <div className="absolute inset-0 flex flex-col items-center justify-center bg-cloud text-charcoal/30 gap-2">
+                                            <Loader2 className="w-8 h-8 text-primary animate-spin" />
+                                            <span className="text-[10px] font-black uppercase tracking-widest">
+                                                {language === 'zh' ? '正在加载情境画面...' : 'Loading scene illustration...'}
+                                            </span>
+                                        </div>
+                                    )}
                                     <img 
                                         src={`https://image.pollinations.ai/prompt/realistic%20photography%20representing%20the%20scene:%20${encodeURIComponent(currentTask.word.sentenceMeaning || '')}?width=500&height=500&nologo=true`} 
                                         alt="Context scene" 
-                                        className="w-full h-full object-cover"
+                                        className={`w-full h-full object-cover transition-all duration-500 ${imageLoaded ? 'opacity-100' : 'opacity-0'}`}
+                                        onLoad={() => setImageLoaded(true)}
                                     />
                                     <div className="absolute inset-0 bg-gradient-to-t from-charcoal/30 to-transparent pointer-events-none" />
                                 </div>

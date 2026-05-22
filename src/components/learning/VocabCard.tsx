@@ -1,7 +1,8 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
+import { useState, useEffect } from 'react';
 import Lottie from 'lottie-react';
 import { motion } from 'framer-motion';
-import { Volume2, Sparkles, Quote, ChevronLeft, ChevronRight } from 'lucide-react';
+import { Volume2, Sparkles, Quote, ChevronLeft, ChevronRight, Loader2 } from 'lucide-react';
 import { useTranslation } from '@/hooks/use-translation';
 import { getIllustrationUrl } from '@/lib/vocabulary';
 
@@ -46,6 +47,12 @@ export function VocabCard({
     onPrev
 }: VocabCardProps) {
     const { t, language } = useTranslation();
+    const [imageLoaded, setImageLoaded] = useState(false);
+
+    // Reset image loaded state when word changes
+    useEffect(() => {
+        setImageLoaded(false);
+    }, [word]);
 
     const speak = (type: 'word' | 'sentence', speed: 'normal' | 'slow' = 'normal') => {
         const cleanName = word.replace(/[<>:"/\\|?*]/g, '');
@@ -106,22 +113,32 @@ export function VocabCard({
                         ) : animationUrl ? (
                             <img src={animationUrl} alt={word} className="w-40 h-40 object-contain" />
                         ) : (
-                            <img 
-                                src={getIllustrationUrl({
-                                    kr: word,
-                                    pos,
-                                    en: meaningEn,
-                                    zh: meaningZh,
-                                    sentenceKr,
-                                    sentenceMeaning,
-                                    sentenceZh,
-                                    illustrationUrl,
-                                    category
-                                })} 
-                                alt={word} 
-                                className="w-[340px] h-[340px] object-cover rounded-[40px] border-2 border-primary/20 bg-white/50 shadow-sm transition-opacity duration-500" 
-                                loading="lazy"
-                            />
+                            <div className="w-[340px] h-[340px] relative flex items-center justify-center rounded-[40px] overflow-hidden border-2 border-primary/20 bg-white/50 shadow-sm">
+                                {!imageLoaded && (
+                                    <div className="absolute inset-0 flex flex-col items-center justify-center bg-cloud/50 text-charcoal/30 gap-2">
+                                        <Loader2 className="w-8 h-8 text-primary animate-spin" />
+                                        <span className="text-[10px] font-black uppercase tracking-widest">
+                                            {language === 'zh' ? '正在生成记忆画面...' : 'Generating memory scene...'}
+                                        </span>
+                                    </div>
+                                )}
+                                <img 
+                                    src={getIllustrationUrl({
+                                        kr: word,
+                                        pos,
+                                        en: meaningEn,
+                                        zh: meaningZh,
+                                        sentenceKr,
+                                        sentenceMeaning,
+                                        sentenceZh,
+                                        illustrationUrl,
+                                        category
+                                    })} 
+                                    alt={word} 
+                                    className={`w-full h-full object-cover transition-all duration-500 ${imageLoaded ? 'opacity-100' : 'opacity-0'}`}
+                                    onLoad={() => setImageLoaded(true)}
+                                />
+                            </div>
                         )}
 
                         {/* Glass shine effect */}
