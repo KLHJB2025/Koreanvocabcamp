@@ -174,8 +174,8 @@ export default function MissionPage() {
     return (
         <div className="min-h-screen bg-[#FEF9FA] pb-20">
             {/* Header Progress */}
-            <header className="max-w-4xl mx-auto px-8 pt-12 text-center pb-12">
-                <div className="flex justify-center gap-4 mb-8">
+            <header className="max-w-4xl mx-auto px-4 sm:px-8 pt-6 sm:pt-12 text-center pb-6 sm:pb-12">
+                <div className="flex justify-center gap-1.5 sm:gap-4 mb-4 sm:mb-8">
                     <StepIndicator active={step === 'review'} completed={['learn', 'listen', 'match', 'spell', 'complete'].includes(step)} icon={<Search size={14} />} label={t('tasks.review.label')} />
                     <StepIndicator active={step === 'learn'} completed={['listen', 'match', 'spell', 'complete'].includes(step)} icon={<BookOpen size={14} />} label={t('tasks.learn.label')} />
                     <StepIndicator active={step === 'listen'} completed={['match', 'spell', 'complete'].includes(step)} icon={<Volume2 size={14} />} label={t('tasks.listen.label')} />
@@ -293,14 +293,14 @@ interface StepIndicatorProps {
 
 function StepIndicator({ active, completed, icon, label }: StepIndicatorProps) {
     return (
-        <div className={`flex flex-col items-center gap-2 transition-all duration-500 ${active ? 'scale-110' : 'opacity-40'}`}>
-            <div className={`w-10 h-10 rounded-2xl flex items-center justify-center shadow-sm border-2 ${
+        <div className={`flex flex-col items-center gap-1.5 transition-all duration-500 ${active ? 'scale-105' : 'opacity-40'}`}>
+            <div className={`w-8 h-8 sm:w-10 sm:h-10 rounded-xl sm:rounded-2xl flex items-center justify-center shadow-sm border-2 text-xs sm:text-sm ${
                 completed ? 'bg-emerald-400 border-emerald-400 text-white' : 
                 active ? 'bg-primary border-primary text-white shadow-primary/20' : 'bg-white border-strawberry/5 text-charcoal'
             }`}>
-                {completed ? <CheckCircle2 size={16} /> : icon}
+                {completed ? <CheckCircle2 size={14} className="sm:w-[16px] sm:h-[16px]" /> : icon}
             </div>
-            <span className={`text-[8px] font-black uppercase tracking-tighter ${active ? 'text-primary' : 'text-charcoal/40'}`}>{label}</span>
+            <span className={`text-[8px] font-black uppercase tracking-tighter ${active ? 'text-primary' : 'text-charcoal/40'} ${active ? 'block' : 'hidden sm:block'}`}>{label}</span>
         </div>
     );
 }

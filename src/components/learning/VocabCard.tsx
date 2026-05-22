@@ -71,53 +71,53 @@ export function VocabCard({
 
     return (
         <div className="w-full max-w-lg mx-auto">
-            <div className="puffy-card p-10 flex flex-col items-center bg-white border-2 border-strawberry/10 overflow-hidden relative shadow-xl">
+            <div className="puffy-card p-4 sm:p-10 rounded-[32px] sm:rounded-[48px] flex flex-col items-center bg-white border-2 border-strawberry/10 overflow-hidden relative shadow-xl">
                 {/* Decorative background flair */}
                 <div className="absolute -top-20 -right-20 w-40 h-40 bg-primary/5 rounded-full blur-3xl" />
 
-                <div className="w-full flex justify-between items-center relative z-10 mb-8">
+                <div className="w-full flex justify-between items-center relative z-10 mb-6 sm:mb-8">
                     <span className={`pill-badge ${posStyle.bg} ${posStyle.text} border ${posStyle.border} font-black`}>
                         {t(`pos.${pos}`)}
                     </span>
-                    <div className="flex gap-2">
+                    <div className="flex gap-1.5 sm:gap-2">
                         <button
                             onClick={() => speak('word', 'slow')}
-                            className="px-3 py-1.5 bg-white rounded-xl flex items-center gap-1.5 text-[10px] font-black uppercase tracking-widest text-charcoal/40 hover:text-primary transition-colors border border-charcoal/5 shadow-sm"
+                            className="px-2.5 py-1.5 sm:px-3 sm:py-1.5 bg-white rounded-xl flex items-center gap-1 text-[8px] sm:text-[10px] font-black uppercase tracking-widest text-charcoal/40 hover:text-primary transition-colors border border-charcoal/5 shadow-sm"
                         >
-                            <Volume2 size={14} />
+                            <Volume2 size={12} className="sm:w-[14px] sm:h-[14px]" />
                             {t('learning.slow')}
                         </button>
                         <button
                             onClick={() => speak('word', 'normal')}
-                            className="w-10 h-10 bg-primary rounded-xl flex items-center justify-center text-white hover:scale-110 active:scale-95 transition-all shadow-md"
+                            className="w-8 h-8 sm:w-10 sm:h-10 bg-primary rounded-xl flex items-center justify-center text-white hover:scale-110 active:scale-95 transition-all shadow-md shrink-0"
                         >
-                            <Volume2 size={20} />
+                            <Volume2 size={16} className="sm:w-[20px] sm:h-[20px]" />
                         </button>
                     </div>
                 </div>
 
                 {/* Main Content Area */}
-                <div className="flex flex-col items-center space-y-10 relative z-10 w-full">
+                <div className="flex flex-col items-center space-y-6 sm:space-y-10 relative z-10 w-full">
                     {/* Illustration/Animation Container */}
                     <motion.div
                         animate={{ y: [0, -10, 0] }}
                         transition={{ repeat: Infinity, duration: 4, ease: "easeInOut" }}
-                        className="w-[380px] h-[380px] bg-gradient-to-br from-strawberry/5 to-cloud/20 rounded-[80px] flex items-center justify-center relative shadow-inner group"
+                        className="w-full max-w-[380px] aspect-square h-auto bg-gradient-to-br from-strawberry/5 to-cloud/20 rounded-[32px] sm:rounded-[80px] flex items-center justify-center relative shadow-inner group"
                     >
                         {animationData ? (
                             <Lottie
                                 animationData={animationData}
                                 loop={true}
-                                className="w-40 h-40"
+                                className="w-32 h-32 sm:w-40 sm:h-40"
                             />
                         ) : animationUrl ? (
-                            <img src={animationUrl} alt={word} className="w-40 h-40 object-contain" />
+                            <img src={animationUrl} alt={word} className="w-32 h-32 sm:w-40 sm:h-40 object-contain" />
                         ) : (
-                            <div className="w-[340px] h-[340px] relative flex items-center justify-center rounded-[40px] overflow-hidden border-2 border-primary/20 bg-white/50 shadow-sm">
+                            <div className="w-[90%] h-[90%] relative flex items-center justify-center rounded-[24px] sm:rounded-[40px] overflow-hidden border-2 border-primary/20 bg-white/50 shadow-sm">
                                 {!imageLoaded && (
-                                    <div className="absolute inset-0 flex flex-col items-center justify-center bg-cloud/50 text-charcoal/30 gap-2">
-                                        <Loader2 className="w-8 h-8 text-primary animate-spin" />
-                                        <span className="text-[10px] font-black uppercase tracking-widest">
+                                    <div className="absolute inset-0 flex flex-col items-center justify-center bg-cloud/50 text-charcoal/30 gap-2 p-4 text-center">
+                                        <Loader2 className="w-6 h-6 sm:w-8 sm:h-8 text-primary animate-spin" />
+                                        <span className="text-[8px] sm:text-[10px] font-black uppercase tracking-widest leading-normal">
                                             {language === 'zh' ? '正在生成记忆画面...' : 'Generating memory scene...'}
                                         </span>
                                     </div>
@@ -142,34 +142,34 @@ export function VocabCard({
                         )}
 
                         {/* Glass shine effect */}
-                        <div className="absolute top-0 left-0 w-full h-1/2 bg-white/30 rounded-t-[60px] blur-sm pointer-events-none" />
+                        <div className="absolute top-0 left-0 w-full h-1/2 bg-white/30 rounded-t-[24px] sm:rounded-t-[60px] blur-sm pointer-events-none" />
                     </motion.div>
 
                     {/* Word and Meaning */}
-                    <div className="text-center">
-                        <h2 className="text-8xl font-black italic tracking-tighter uppercase mb-2 text-charcoal drop-shadow-sm">{word}</h2>
-                        <p className="text-4xl font-black text-primary italic leading-tight">{displayedMeaning}</p>
+                    <div className="text-center w-full px-2">
+                        <h2 className="text-5xl sm:text-7xl md:text-8xl font-black italic tracking-tighter uppercase mb-2 text-charcoal drop-shadow-sm break-all leading-none">{word}</h2>
+                        <p className="text-2xl sm:text-4xl font-black text-primary italic leading-tight">{displayedMeaning}</p>
                     </div>
 
                     {/* Example Sentence Section */}
-                    <div className="w-full pt-8 border-t border-strawberry/5">
+                    <div className="w-full pt-6 sm:pt-8 border-t border-strawberry/5">
                         {sentenceKr && (
-                            <div className="flex items-start gap-4 bg-cloud/10 p-6 rounded-[32px] mb-8">
-                                <div className="w-10 h-10 rounded-full bg-white flex items-center justify-center text-primary shadow-sm shrink-0">
-                                    <Quote size={18} fill="currentColor" />
+                            <div className="flex items-start gap-3 sm:gap-4 bg-cloud/10 p-4 sm:p-6 rounded-[20px] sm:rounded-[32px] mb-6 sm:mb-8">
+                                <div className="w-8 h-8 sm:w-10 sm:h-10 rounded-full bg-white flex items-center justify-center text-primary shadow-sm shrink-0">
+                                    <Quote size={14} className="sm:w-[18px] sm:h-[18px]" fill="currentColor" />
                                 </div>
-                                <div className="space-y-2 text-left">
-                                    <p className="text-2xl font-bold text-charcoal leading-snug">
+                                <div className="space-y-1 sm:space-y-2 text-left">
+                                    <p className="text-lg sm:text-2xl font-bold text-charcoal leading-snug">
                                         {sentenceKr}
                                         <button 
                                             onClick={() => speak('sentence')}
                                             className="inline-flex ml-2 align-middle text-primary/40 hover:text-primary transition-colors"
                                         >
-                                            <Volume2 size={16} />
+                                            <Volume2 size={14} className="sm:w-[16px] sm:h-[16px]" />
                                         </button>
                                     </p>
                                     {displayedSentenceMeaning && (
-                                        <p className="text-lg font-bold text-charcoal/40 italic">
+                                        <p className="text-sm sm:text-lg font-bold text-charcoal/40 italic">
                                             {displayedSentenceMeaning}
                                         </p>
                                     )}
@@ -178,20 +178,20 @@ export function VocabCard({
                         )}
 
                         {/* Navigation Buttons */}
-                        <div className="flex gap-4">
+                        <div className="flex gap-3 sm:gap-4">
                             <button
                                 onClick={onPrev}
-                                className="flex-1 btn-primary-cute bg-white text-charcoal border-2 border-strawberry/10 py-5 text-lg flex items-center justify-center gap-2"
+                                className="flex-1 btn-primary-cute bg-white text-charcoal border-2 border-strawberry/10 py-3 sm:py-5 text-sm sm:text-lg flex items-center justify-center gap-1 sm:gap-2"
                             >
-                                <ChevronLeft size={24} />
+                                <ChevronLeft size={18} className="sm:w-[24px] sm:h-[24px]" />
                                 {t('mission.prev')}
                             </button>
                             <button
                                 onClick={onNext}
-                                className="flex-[2] btn-primary-cute py-5 text-lg flex items-center justify-center gap-2"
+                                className="flex-[2] btn-primary-cute py-3 sm:py-5 text-sm sm:text-lg flex items-center justify-center gap-1 sm:gap-2"
                             >
                                 {t('mission.next')}
-                                <ChevronRight size={24} />
+                                <ChevronRight size={18} className="sm:w-[24px] sm:h-[24px]" />
                             </button>
                         </div>
                     </div>
