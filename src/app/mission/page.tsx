@@ -103,29 +103,56 @@ export default function MissionPage() {
         if (!authLoading) load();
     }, [profile, authLoading]);
 
-    // Preload all dynamic mission images (vocab illustrations & scenario task scenes)
+    // Preload all dynamic mission images sequentially to avoid overloading the image API
     useEffect(() => {
         if (words.length === 0) return;
 
         const urls = getMissionImageUrls(words);
         setIsPreloading(true);
-        let loadedCount = 0;
+        setPreloadProgress(0);
 
-        urls.forEach((url) => {
-            const img = new Image();
-            img.src = url;
-            
-            const handleLoad = () => {
-                loadedCount++;
-                setPreloadProgress(Math.round((loadedCount / urls.length) * 100));
-                if (loadedCount === urls.length) {
-                    setIsPreloading(false);
+        let active = true;
+
+        const preloadSequentially = async () => {
+            let loadedCount = 0;
+            for (let i = 0; i < urls.length; i++) {
+                if (!active) break;
+                
+                const url = urls[i];
+                await new Promise<void>((resolve) => {
+                    const img = new Image();
+                    img.onload = () => {
+                        loadedCount++;
+                        if (active) {
+                            setPreloadProgress(Math.round((loadedCount / urls.length) * 100));
+                        }
+                        resolve();
+                    };
+                    img.onerror = () => {
+                        loadedCount++;
+                        if (active) {
+                            setPreloadProgress(Math.round((loadedCount / urls.length) * 100));
+                        }
+                        resolve();
+                    };
+                    img.src = url;
+                });
+                
+                // Add a small 200ms pause between requests to be gentle on the generation API
+                if (i < urls.length - 1) {
+                    await new Promise(resolve => setTimeout(resolve, 200));
                 }
-            };
+            }
+            if (active) {
+                setIsPreloading(false);
+            }
+        };
 
-            img.onload = handleLoad;
-            img.onerror = handleLoad; // Count errors too to avoid hanging
-        });
+        preloadSequentially();
+
+        return () => {
+            active = false;
+        };
     }, [words]);
 
     const handleNextStep = () => {

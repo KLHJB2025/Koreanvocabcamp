@@ -2,6 +2,7 @@ import { db } from './firebase';
 import { collection, query, where, getDocs, limit, orderBy } from 'firebase/firestore';
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { MOCK_VOCABULARY, Word } from './vocabulary-data';
+import { DOWNLOADED_ILLUSTRATIONS } from './downloaded-illustrations';
 
 /**
  * Fetches words for a specific cycle and day.
@@ -215,6 +216,11 @@ export function isConcreteWord(word: Word): boolean {
 export function getIllustrationUrl(word: Word): string {
     if (word.illustrationUrl) {
         return word.illustrationUrl;
+    }
+
+    const cleanName = word.kr.replace(/[<>:"/\\|?*]/g, '');
+    if (DOWNLOADED_ILLUSTRATIONS.has(cleanName)) {
+        return `/illustrations/words/${cleanName}.jpg`;
     }
 
     const isConcrete = isConcreteWord(word);
