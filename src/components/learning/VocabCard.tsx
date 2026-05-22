@@ -3,6 +3,7 @@ import Lottie from 'lottie-react';
 import { motion } from 'framer-motion';
 import { Volume2, Sparkles, Quote, ChevronLeft, ChevronRight } from 'lucide-react';
 import { useTranslation } from '@/hooks/use-translation';
+import { getIllustrationUrl } from '@/lib/vocabulary';
 
 interface VocabCardProps {
     word: string;
@@ -15,6 +16,7 @@ interface VocabCardProps {
     illustrationUrl?: string;
     animationUrl?: string;
     animationData?: any;
+    category?: string;
     onNext?: () => void;
     onPrev?: () => void;
 }
@@ -39,6 +41,7 @@ export function VocabCard({
     animationData,
     animationUrl,
     illustrationUrl,
+    category,
     onNext,
     onPrev
 }: VocabCardProps) {
@@ -94,9 +97,7 @@ export function VocabCard({
                         transition={{ repeat: Infinity, duration: 4, ease: "easeInOut" }}
                         className="w-[380px] h-[380px] bg-gradient-to-br from-strawberry/5 to-cloud/20 rounded-[80px] flex items-center justify-center relative shadow-inner group"
                     >
-                        {illustrationUrl ? (
-                            <img src={illustrationUrl} alt={word} className="w-[340px] h-[340px] object-cover rounded-[40px] border-2 border-primary/20 bg-white/50 shadow-sm" />
-                        ) : animationData ? (
+                        {animationData ? (
                             <Lottie
                                 animationData={animationData}
                                 loop={true}
@@ -104,24 +105,23 @@ export function VocabCard({
                             />
                         ) : animationUrl ? (
                             <img src={animationUrl} alt={word} className="w-40 h-40 object-contain" />
-                        ) : pos === 'Noun' ? (
-                            <img 
-                                src={`https://image.pollinations.ai/prompt/realistic%20photography%20of%20${encodeURIComponent(meaningEn)}?width=400&height=400&nologo=true`} 
-                                alt={word} 
-                                className="w-[340px] h-[340px] object-cover rounded-[40px] border-2 border-primary/20 bg-white/50 shadow-sm transition-opacity duration-500" 
-                                loading="lazy"
-                            />
-                        ) : sentenceMeaning && sentenceMeaning !== 'TBD' ? (
-                            <img 
-                                src={`https://image.pollinations.ai/prompt/realistic%20photography%20representing%20the%20scene:%20${encodeURIComponent(sentenceMeaning)}?width=400&height=400&nologo=true`} 
-                                alt={word} 
-                                className="w-[340px] h-[340px] object-cover rounded-[40px] border-2 border-primary/20 bg-white/50 shadow-sm transition-opacity duration-500" 
-                                loading="lazy"
-                            />
                         ) : (
-                            <div className="flex flex-col items-center gap-4">
-                                <Sparkles size={80} className="text-primary/20 animate-pulse" />
-                            </div>
+                            <img 
+                                src={getIllustrationUrl({
+                                    kr: word,
+                                    pos,
+                                    en: meaningEn,
+                                    zh: meaningZh,
+                                    sentenceKr,
+                                    sentenceMeaning,
+                                    sentenceZh,
+                                    illustrationUrl,
+                                    category
+                                })} 
+                                alt={word} 
+                                className="w-[340px] h-[340px] object-cover rounded-[40px] border-2 border-primary/20 bg-white/50 shadow-sm transition-opacity duration-500" 
+                                loading="lazy"
+                            />
                         )}
 
                         {/* Glass shine effect */}

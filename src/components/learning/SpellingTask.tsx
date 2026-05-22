@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { motion } from 'framer-motion';
 import { Word } from '@/lib/vocabulary-data';
+import { getIllustrationUrl } from '@/lib/vocabulary';
 import { Sparkles, ArrowRight } from 'lucide-react';
 import { useTranslation } from '@/hooks/use-translation';
 
@@ -46,11 +47,12 @@ export function SpellingTask({ words, onComplete, onMiss }: SpellingTaskProps) {
             </span>
             
             <div className="w-80 h-80 bg-gradient-to-br from-strawberry/5 to-cloud/20 rounded-[80px] flex items-center justify-center relative shadow-inner mx-auto mb-10 overflow-hidden border-2 border-strawberry/5">
-                {currentWord.illustrationUrl ? (
-                    <img src={currentWord.illustrationUrl} alt="Hint" className="w-72 h-72 object-contain rounded-[40px] bg-white/50 shadow-sm" />
-                ) : (
-                    <Sparkles size={100} className="text-primary/20" />
-                )}
+                <img 
+                    src={getIllustrationUrl(currentWord)} 
+                    alt="Hint" 
+                    className="w-72 h-72 object-cover rounded-[40px] bg-white/50 shadow-sm" 
+                    loading="lazy"
+                />
             </div>
 
             {/* Meaning Clue Section */}
