@@ -177,6 +177,7 @@ export function ScenarioTask({ words, onComplete, mascotName }: ScenarioTaskProp
         if (text.trim() === item.correctKr) {
             updated[targetIndex].isCorrect = true;
             setLabelingItems(updated);
+            setLabelingErrorId(null);
             playAudio(item.correctKr, 'word');
 
             if (updated.every(i => i.isCorrect)) {
@@ -184,6 +185,35 @@ export function ScenarioTask({ words, onComplete, mascotName }: ScenarioTaskProp
                     advanceTask();
                 }, 1500);
             }
+        }
+    };
+
+    // Validate labeling item on Enter keypress
+    const validateLabelItem = (idx: number) => {
+        const item = labelingItems[idx];
+        if (item.isCorrect) return;
+
+        if (item.inputValue.trim() === item.correctKr) {
+            const updated = [...labelingItems];
+            updated[idx].isCorrect = true;
+            setLabelingItems(updated);
+            setLabelingErrorId(null);
+            playAudio(item.correctKr, 'word');
+
+            if (updated.every(i => i.isCorrect)) {
+                setTimeout(() => {
+                    advanceTask();
+                }, 1500);
+            }
+        } else {
+            setLabelingErrorId(item.english);
+            // Automatically reveal hint to encourage them and provide feedback
+            setRevealedLabelHints(prev => ({ ...prev, [item.correctKr]: true }));
+            
+            // Reset error animation after 1.5s
+            setTimeout(() => {
+                setLabelingErrorId(null);
+            }, 1500);
         }
     };
 
@@ -323,9 +353,6 @@ export function ScenarioTask({ words, onComplete, mascotName }: ScenarioTaskProp
                                                             )}
                                                         </div>
                                                         <div>
-                                                            <div className="text-[10px] font-black text-charcoal/40 uppercase tracking-wide">
-                                                                {language === 'zh' ? '物品' : 'Item'}
-                                                            </div>
                                                             <div className="text-sm font-black text-charcoal leading-tight">
                                                                 {language === 'zh' ? item.chinese : item.english}
                                                             </div>
@@ -339,11 +366,18 @@ export function ScenarioTask({ words, onComplete, mascotName }: ScenarioTaskProp
                                                                 type="text"
                                                                 value={item.inputValue}
                                                                 onChange={(e) => handleLabelInput(idx, e.target.value)}
+                                                                onKeyDown={(e) => {
+                                                                    if (e.key === 'Enter') {
+                                                                        validateLabelItem(idx);
+                                                                    }
+                                                                }}
                                                                 disabled={item.isCorrect}
-                                                                placeholder={item.isCorrect ? '✓ Correct' : (language === 'zh' ? '输入韩语...' : 'Korean...')}
+                                                                placeholder={item.isCorrect ? '✓ Correct' : (language === 'zh' ? '按回车检查...' : 'Press Enter...')}
                                                                 className={`w-28 sm:w-32 px-2.5 py-1.5 pr-7 rounded-xl text-center font-bold text-xs outline-none border transition-all ${
                                                                     item.isCorrect
                                                                         ? 'bg-emerald-500 text-white border-transparent font-black pr-2.5'
+                                                                        : labelingErrorId === item.english
+                                                                        ? 'border-rose-400 bg-rose-50 text-rose-600 focus:border-rose-400 focus:ring-rose-200'
                                                                         : 'bg-white border-charcoal/15 focus:border-primary focus:ring-2 focus:ring-primary/20 text-charcoal'
                                                                 }`}
                                                             />
@@ -359,12 +393,16 @@ export function ScenarioTask({ words, onComplete, mascotName }: ScenarioTaskProp
                                                             )}
                                                         </div>
                                                         
-                                                        {/* Hint text */}
-                                                        {showHint && !item.isCorrect && (
-                                                            <span className="text-[10px] font-black text-amber-600 animate-pulse">
+                                                        {/* Feedback or Hint text */}
+                                                        {labelingErrorId === item.english ? (
+                                                            <span className="text-[9px] sm:text-[10px] font-black text-rose-500 animate-pulse">
+                                                                {language === 'zh' ? '不对哦，继续尝试！' : 'Not quite! Keep trying!'}
+                                                            </span>
+                                                        ) : showHint && !item.isCorrect ? (
+                                                            <span className="text-[9px] sm:text-[10px] font-black text-amber-600 animate-pulse">
                                                                 Hint: {item.correctKr[0] + '•'.repeat(Math.max(1, item.correctKr.length - 1))}
                                                             </span>
-                                                        )}
+                                                        ) : null}
                                                     </div>
                                                 </div>
                                             );
