@@ -80,11 +80,45 @@ export function ScenarioTask({ words, onComplete, mascotName }: ScenarioTaskProp
 
         // Task 1: Scene Labeling (if concrete nouns exist)
         if (concrete.length > 0) {
+            // Find dominant theme
+            const themeCounts: Record<string, number> = {};
+            concrete.forEach(w => {
+                const cat = w.category || 'miscellaneous';
+                themeCounts[cat] = (themeCounts[cat] || 0) + 1;
+            });
+            
+            let dominantTheme = 'miscellaneous';
+            let maxCount = 0;
+            for (const [theme, count] of Object.entries(themeCounts)) {
+                if (count > maxCount) {
+                    maxCount = count;
+                    dominantTheme = theme;
+                }
+            }
+
+            // Map theme to custom background scenery
+            let sceneHeader = 'a cheerful and clean cartoon playroom background scene';
+            if (dominantTheme === 'food_dining') {
+                sceneHeader = 'a clean, bright cartoon kitchen or restaurant dining table background scene';
+            } else if (dominantTheme === 'school_education') {
+                sceneHeader = 'a cheerful cartoon school classroom with a blackboard background scene';
+            } else if (dominantTheme === 'home_living') {
+                sceneHeader = 'a cozy and warm cartoon living room or bedroom background scene';
+            } else if (dominantTheme === 'city_travel_places') {
+                sceneHeader = 'a vibrant and friendly cartoon city street or park background scene';
+            } else if (dominantTheme === 'nature_animals_plants') {
+                sceneHeader = 'a beautiful sunny cartoon park, garden, or forest background scene';
+            } else if (dominantTheme === 'people_jobs_family') {
+                sceneHeader = 'a friendly cartoon neighborhood, office, or family home environment background scene';
+            }
+
+            const itemsList = concrete.map(w => w.en).join(', a ');
+            const scenePrompt = `high quality digital illustration of ${sceneHeader} containing a ${itemsList}. Labeled details, soft bright colors, vector graphics style.`;
+
             newTasks.push({
                 type: 'labeling',
                 words: concrete,
-                // Build a cohesive playground/room scene description based on objects
-                scenePrompt: `high quality digital illustration of a cheerful and clean cartoon background scene containing a ${concrete.map(w => w.en).join(', a ')}. Labeled details, soft bright colors, vector graphics style.`
+                scenePrompt
             });
         }
 
