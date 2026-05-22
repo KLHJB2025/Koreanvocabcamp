@@ -111,6 +111,10 @@
             "todayDesc": "准确掌握今天的词汇目标，赢取巨额经验奖励！",
             "beginBattle": "开始战斗",
             "commenceTraining": "开始训练",
+            "resumeTraining": "继续训练",
+            "resetProgress": "重置进度",
+            "materialsPreloaded": "⚡ 学习画面就绪",
+            "materialsPreloading": "⚡ 正在准备学习画面 ({{progress}}%)",
             "targetScore": "目标得分",
             "missionXp": "任务经验"
         },
@@ -204,7 +208,8 @@
         "streakInfo": "🔥 已连续奋战 {{count}} 天 | 🏆 词汇战力提升",
         "reward": "行动奖励",
         "performance": "表现等级",
-        "returnToBase": "返回基地"
+        "returnToBase": "返回基地",
+        "pauseExit": "暂停并退出"
     },
     "challenge": {
         "title": "决战突破",

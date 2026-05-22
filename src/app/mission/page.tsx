@@ -9,7 +9,7 @@ import { Word } from '@/lib/vocabulary-data';
 import { addXp, completeDay, recordLearnedWords } from '@/lib/user';
 import { useRouter } from 'next/navigation';
 import confetti from 'canvas-confetti';
-import { Home, CheckCircle2, Star, Trophy, ArrowRight, Loader2, BookOpen, Volume2, Search, Type, Sparkles, AlertCircle } from 'lucide-react';
+import { Home, CheckCircle2, Star, Trophy, ArrowRight, Loader2, BookOpen, Volume2, Search, Type, Sparkles, AlertCircle, Play } from 'lucide-react';
 import Link from 'next/link';
 import { useTranslation } from '@/hooks/use-translation';
 
@@ -37,6 +37,7 @@ export default function MissionPage() {
     const [currentIndex, setCurrentIndex] = useState(0);
     const [preloadProgress, setPreloadProgress] = useState(0);
     const [isPreloading, setIsPreloading] = useState(false);
+    const [savedProgress, setSavedProgress] = useState<any>(null);
 
     // Save progress to localStorage
     useEffect(() => {
@@ -59,13 +60,7 @@ export default function MissionPage() {
                 try {
                     const parsed = JSON.parse(saved);
                     if (parsed.day === profile.dayOfCamp) {
-                        if (parsed.step === 'review' && prevWords.length === 0) {
-                            setStep('learn');
-                        } else {
-                            setStep(parsed.step);
-                        }
-                        setCurrentIndex(parsed.currentIndex);
-                        setMissedWords(parsed.missedWords || []);
+                        setSavedProgress(parsed);
                     } else {
                         localStorage.removeItem('mission_progress');
                     }
@@ -74,7 +69,29 @@ export default function MissionPage() {
                 }
             }
         }
-    }, [words, prevWords, profile, step]);
+    }, [words, profile, step]);
+
+    const handleResume = () => {
+        if (savedProgress) {
+            if (savedProgress.step === 'review' && prevWords.length === 0) {
+                setStep('learn');
+            } else {
+                setStep(savedProgress.step);
+            }
+            setCurrentIndex(savedProgress.currentIndex || 0);
+            setMissedWords(savedProgress.missedWords || []);
+        }
+    };
+
+    const handleStartFresh = () => {
+        if (confirm(language === 'zh' ? '确定要重置并从头开始吗？' : 'Are you sure you want to reset and start fresh?')) {
+            localStorage.removeItem('mission_progress');
+            setSavedProgress(null);
+            setCurrentIndex(0);
+            setMissedWords([]);
+            setStep(prevWords.length > 0 ? 'review' : 'learn');
+        }
+    };
 
     const handleMiss = (word: Word) => {
         setMissedWords(prev => {
@@ -202,6 +219,16 @@ export default function MissionPage() {
         <div className="min-h-screen bg-[#FEF9FA] pb-20">
             {/* Header Progress */}
             <header className="max-w-4xl mx-auto px-4 sm:px-8 pt-6 sm:pt-12 text-center pb-6 sm:pb-12">
+                {step !== 'intro' && step !== 'complete' && (
+                    <div className="flex justify-end mb-4">
+                        <button
+                            onClick={() => router.push('/dashboard')}
+                            className="px-4 py-2 bg-strawberry/10 hover:bg-strawberry/20 text-primary border border-strawberry/20 rounded-full text-xs font-black uppercase tracking-wider transition-all shadow-sm"
+                        >
+                            {t('mission.pauseExit')}
+                        </button>
+                    </div>
+                )}
                 <div className="flex justify-center gap-1.5 sm:gap-4 mb-4 sm:mb-8">
                     <StepIndicator active={step === 'review'} completed={['learn', 'listen', 'match', 'spell', 'complete'].includes(step)} icon={<Search size={14} />} label={t('tasks.review.label')} />
                     <StepIndicator active={step === 'learn'} completed={['listen', 'match', 'spell', 'complete'].includes(step)} icon={<BookOpen size={14} />} label={t('tasks.learn.label')} />
@@ -227,10 +254,38 @@ export default function MissionPage() {
                                 {words.length > 0 ? t('mission.masterTargets', { count: words.length }) : "No targets available"}
                             </p>
                             {words.length > 0 ? (
-                                <div className="space-y-4">
-                                    <button onClick={handleNextStep} className="btn-primary-cute text-2xl px-12 py-6">
-                                        {t('mission.beginMission')}
-                                    </button>
+                                <div className="space-y-6">
+                                    {savedProgress ? (
+                                        <div className="flex flex-col items-center gap-4 max-w-sm mx-auto">
+                                            <button 
+                                                onClick={handleResume} 
+                                                className="btn-primary-cute text-2xl px-12 py-6 w-full flex items-center justify-center gap-3 bg-gradient-to-r from-primary to-rose-500 text-white border-none shadow-lg hover:shadow-primary/30 transition-all duration-300"
+                                            >
+                                                <Play size={24} fill="currentColor" />
+                                                {language === 'zh' ? '继续上次进度' : 'Resume Session'}
+                                            </button>
+                                            
+                                            <button 
+                                                onClick={handleStartFresh} 
+                                                className="text-sm font-black text-charcoal/40 hover:text-red-500 uppercase tracking-widest transition-colors flex items-center gap-2"
+                                            >
+                                                <span>{language === 'zh' ? '重新开始' : 'Start Fresh'}</span>
+                                            </button>
+                                            
+                                            <div className="p-4 bg-strawberry/5 border border-strawberry/10 rounded-2xl w-full text-center">
+                                                <p className="text-xs font-bold text-charcoal/50">
+                                                    {language === 'zh' 
+                                                        ? `保存的进度：步骤 [${savedProgress.step === 'learn' ? '学习' : savedProgress.step === 'listen' ? '听力' : savedProgress.step === 'match' ? '匹配' : savedProgress.step === 'spell' ? '拼写' : savedProgress.step === 'errorReview' ? '错题复习' : savedProgress.step === 'scenario' ? '情境' : '复习'}] • 单词 [${savedProgress.currentIndex + 1}/${words.length || 10}]` 
+                                                        : `Saved Progress: Step [${savedProgress.step}] • Word [${savedProgress.currentIndex + 1}/${words.length || 10}]`}
+                                                </p>
+                                            </div>
+                                        </div>
+                                    ) : (
+                                        <button onClick={handleNextStep} className="btn-primary-cute text-2xl px-12 py-6">
+                                            {t('mission.beginMission')}
+                                        </button>
+                                    )}
+                                    
                                     {isPreloading && (
                                         <p className="text-[10px] font-black text-primary/65 uppercase tracking-widest animate-pulse">
                                             {language === 'zh' 

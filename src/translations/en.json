@@ -111,6 +111,10 @@
       "todayDesc": "Master your vocabulary targets correctly to earn massive XP bonuses!",
       "beginBattle": "BEGIN BATTLE",
       "commenceTraining": "Commence Training",
+      "resumeTraining": "Resume Training",
+      "resetProgress": "Reset Progress",
+      "materialsPreloaded": "⚡ Materials Ready",
+      "materialsPreloading": "⚡ Preparing Materials ({{progress}}%)",
       "targetScore": "TARGET SCORE",
       "missionXp": "Mission XP"
     },
@@ -201,7 +205,8 @@
     "streakInfo": "🔥 {{count}} Day Streak | 🏆 Vocab Strength Increased",
     "reward": "Operation Reward",
     "performance": "Performance Tier",
-    "returnToBase": "Return to Base"
+    "returnToBase": "Return to Base",
+    "pauseExit": "Pause & Exit"
   },
   "challenge": {
     "title": "BATTLE BREACH",

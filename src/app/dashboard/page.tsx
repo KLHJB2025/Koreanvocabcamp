@@ -13,7 +13,7 @@ import { MissionRoadmap } from '@/components/learning/MissionRoadmap';
 import { getRankInfo } from '@/lib/ranks';
 import { getDailyEncouragement } from '@/lib/encouragement';
 import { MOCK_VOCABULARY } from '@/lib/vocabulary-data';
-import { getReviewCount } from '@/lib/vocabulary';
+import { getReviewCount, getDailyWords, getMissionImageUrls } from '@/lib/vocabulary';
 import { useState, useEffect } from 'react';
 
 export default function Dashboard() {
@@ -21,12 +21,110 @@ export default function Dashboard() {
     const { profile, loading } = useAuth();
     const router = useRouter();
     const [reviewCount, setReviewCount] = useState(0);
+    const [words, setWords] = useState<any[]>([]);
+    const [preloadProgress, setPreloadProgress] = useState(0);
+    const [isPreloading, setIsPreloading] = useState(false);
+    const [isPreloaded, setIsPreloaded] = useState(false);
+    const [savedProgress, setSavedProgress] = useState<any>(null);
 
     useEffect(() => {
         if (profile?.uid) {
             getReviewCount(profile.uid).then(setReviewCount);
         }
     }, [profile]);
+
+    // Save and load progress check
+    useEffect(() => {
+        if (profile) {
+            const saved = localStorage.getItem('mission_progress');
+            if (saved) {
+                try {
+                    const parsed = JSON.parse(saved);
+                    if (parsed.day === profile.dayOfCamp) {
+                        setSavedProgress(parsed);
+                    } else {
+                        localStorage.removeItem('mission_progress');
+                    }
+                } catch (e) {
+                    console.error("Failed to parse saved progress", e);
+                }
+            }
+        }
+    }, [profile]);
+
+    // Fetch daily words for preloading
+    useEffect(() => {
+        const fetchDaily = async () => {
+            if (profile) {
+                const day = profile.dayOfCamp || 1;
+                const cycle = profile.currentCycleId || 'beginner_cycle_1';
+                const daily = await getDailyWords(cycle, day);
+                setWords(daily);
+            }
+        };
+        fetchDaily();
+    }, [profile]);
+
+    // Preload all dynamic mission images sequentially to avoid overloading the image API
+    useEffect(() => {
+        if (words.length === 0) return;
+
+        const urls = getMissionImageUrls(words);
+        setIsPreloading(true);
+        setPreloadProgress(0);
+
+        let active = true;
+
+        const preloadSequentially = async () => {
+            let loadedCount = 0;
+            for (let i = 0; i < urls.length; i++) {
+                if (!active) break;
+                
+                const url = urls[i];
+                await new Promise<void>((resolve) => {
+                    const img = new Image();
+                    img.onload = () => {
+                        loadedCount++;
+                        if (active) {
+                            setPreloadProgress(Math.round((loadedCount / urls.length) * 100));
+                        }
+                        resolve();
+                    };
+                    img.onerror = () => {
+                        loadedCount++;
+                        if (active) {
+                            setPreloadProgress(Math.round((loadedCount / urls.length) * 100));
+                        }
+                        resolve();
+                    };
+                    img.src = url;
+                });
+                
+                if (i < urls.length - 1) {
+                    await new Promise(resolve => setTimeout(resolve, 100));
+                }
+            }
+            if (active) {
+                setIsPreloading(false);
+                setIsPreloaded(true);
+            }
+        };
+
+        preloadSequentially();
+
+        return () => {
+            active = false;
+        };
+    }, [words]);
+
+    const handleResetProgress = (e: React.MouseEvent) => {
+        e.preventDefault();
+        e.stopPropagation();
+        if (confirm(language === 'zh' ? '确定要重置今天的学习进度吗？' : 'Are you sure you want to reset today\'s progress?')) {
+            localStorage.removeItem('mission_progress');
+            setSavedProgress(null);
+        }
+    };
 
     const handleLogout = async () => {
         await signOut(auth);
@@ -241,11 +339,23 @@ export default function Dashboard() {
                             className={`relative overflow-hidden puffy-card p-6 sm:p-12 flex flex-col md:flex-row items-center justify-between gap-6 sm:gap-12 bg-gradient-to-br transition-all duration-500 ${profile.dayOfCamp === 15 ? 'from-charcoal to-black text-white border-primary shadow-[0_0_50px_rgba(255,78,141,0.2)]' : 'from-white to-strawberry/5'}`}
                         >
                             <div className="relative z-10 flex-1 w-full text-center md:text-left">
-                                <span className={`pill-badge mb-4 sm:mb-6 inline-block ${profile.dayOfCamp === 15 ? 'bg-primary text-white' : 'bg-primary/10 text-primary'}`}>
-                                    {profile.dayOfCamp === 15 
-                                        ? t('dashboard.dailyMission.finalBreach') 
-                                        : t('dashboard.dailyMission.objectives', { day: profile.dayOfCamp || 1 })}
-                                </span>
+                                <div className="flex flex-wrap items-center justify-center md:justify-start gap-2 mb-4 sm:mb-6">
+                                    <span className={`pill-badge inline-block ${profile.dayOfCamp === 15 ? 'bg-primary text-white' : 'bg-primary/10 text-primary'}`}>
+                                        {profile.dayOfCamp === 15 
+                                            ? t('dashboard.dailyMission.finalBreach') 
+                                            : t('dashboard.dailyMission.objectives', { day: profile.dayOfCamp || 1 })}
+                                    </span>
+                                    {profile.dayOfCamp !== 15 && isPreloading && (
+                                        <span className="bg-amber-100 text-amber-700 border border-amber-200 px-3 py-1 text-[10px] font-black uppercase rounded-full inline-block animate-pulse">
+                                            {t('dashboard.dailyMission.materialsPreloading', { progress: preloadProgress })}
+                                        </span>
+                                    )}
+                                    {profile.dayOfCamp !== 15 && isPreloaded && (
+                                        <span className="bg-emerald-100 text-emerald-700 border border-emerald-200 px-3 py-1 text-[10px] font-black uppercase rounded-full inline-block">
+                                            {t('dashboard.dailyMission.materialsPreloaded')}
+                                        </span>
+                                    )}
+                                </div>
                                 <h2 className={`text-3xl sm:text-5xl font-black italic mb-4 sm:mb-6 tracking-tighter uppercase leading-none ${profile.dayOfCamp === 15 ? 'text-white' : 'text-charcoal'}`}>
                                     {profile.dayOfCamp === 15
                                         ? t('dashboard.dailyMission.deployBoss')
@@ -256,15 +366,34 @@ export default function Dashboard() {
                                         ? t('dashboard.dailyMission.bossDesc')
                                         : t('dashboard.dailyMission.todayDesc')}
                                 </p>
-                                <Link
-                                    href={profile.dayOfCamp === 15 ? "/challenge" : "/mission"}
-                                    className={`btn-primary-cute flex items-center justify-center gap-3 w-full sm:w-fit ${profile.dayOfCamp === 15 ? 'bg-white text-charcoal border-none' : ''}`}
-                                >
-                                    <Play size={20} fill="currentColor" />
-                                    {profile.dayOfCamp === 15 
-                                        ? t('dashboard.dailyMission.beginBattle') 
-                                        : t('dashboard.dailyMission.commenceTraining')}
-                                </Link>
+                                <div className="flex flex-col sm:flex-row items-center gap-4 w-full sm:w-fit">
+                                    <Link
+                                        href={profile.dayOfCamp === 15 ? "/challenge" : "/mission"}
+                                        className={`btn-primary-cute flex items-center justify-center gap-3 w-full sm:w-fit ${profile.dayOfCamp === 15 ? 'bg-white text-charcoal border-none' : ''}`}
+                                    >
+                                        <Play size={20} fill="currentColor" />
+                                        {profile.dayOfCamp === 15 
+                                            ? t('dashboard.dailyMission.beginBattle') 
+                                            : savedProgress
+                                                ? t('dashboard.dailyMission.resumeTraining')
+                                                : t('dashboard.dailyMission.commenceTraining')}
+                                    </Link>
+                                    {savedProgress && (
+                                        <div className="text-center sm:text-left flex flex-col sm:flex-row items-center gap-2 sm:gap-4">
+                                            <span className="text-[11px] font-bold text-charcoal/50">
+                                                {language === 'zh'
+                                                    ? `进度: [${savedProgress.step === 'learn' ? '学习' : savedProgress.step === 'listen' ? '听力' : savedProgress.step === 'match' ? '匹配' : savedProgress.step === 'spell' ? '拼写' : savedProgress.step === 'errorReview' ? '错题复习' : savedProgress.step === 'scenario' ? '情境' : '复习'}] | 词 [${savedProgress.currentIndex + 1}/${words.length || 10}]`
+                                                    : `Progress: [${savedProgress.step}] | Word [${savedProgress.currentIndex + 1}/${words.length || 10}]`}
+                                            </span>
+                                            <button 
+                                                onClick={handleResetProgress}
+                                                className="text-[11px] font-black text-red-500 hover:text-red-700 underline uppercase tracking-wider"
+                                            >
+                                                {t('dashboard.dailyMission.resetProgress')}
+                                            </button>
+                                        </div>
+                                    )}
+                                </div>
                             </div>
 
                             <div className="relative shrink-0 mt-6 md:mt-0">
