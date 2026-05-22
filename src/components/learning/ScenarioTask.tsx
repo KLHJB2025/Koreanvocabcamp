@@ -287,17 +287,17 @@ export function ScenarioTask({ words, onComplete, mascotName }: ScenarioTaskProp
                                 {/* Aspect-Ratio unified container with background scene */}
                                 <div className="relative w-full max-w-3xl mx-auto aspect-[4/3] rounded-3xl overflow-hidden border-4 border-secondary/15 bg-cloud shadow-2xl group">
                                     {!imageLoaded && (
-                                        <div className="absolute inset-0 flex flex-col items-center justify-center bg-cloud text-charcoal/30 gap-2 z-10">
-                                            <Loader2 className="w-8 h-8 text-primary animate-spin" />
-                                            <span className="text-[10px] font-black uppercase tracking-widest">
-                                                {language === 'zh' ? '正在加载情境画面...' : 'Loading scene illustration...'}
+                                        <div className="absolute top-4 right-4 bg-charcoal/80 text-white backdrop-blur-sm px-3 py-1.5 rounded-full flex items-center gap-1.5 z-30 shadow-md animate-pulse">
+                                            <Loader2 className="w-3.5 h-3.5 text-primary animate-spin" />
+                                            <span className="text-[9px] font-black uppercase tracking-widest">
+                                                {language === 'zh' ? '背景生成中...' : 'Background loading...'}
                                             </span>
                                         </div>
                                     )}
                                     
                                     {/* The Background Scene Image */}
                                     <img 
-                                        src={`https://image.pollinations.ai/prompt/${encodeURIComponent(currentTask.scenePrompt)}?width=800&height=600&nologo=true`} 
+                                        src={`https://image.pollinations.ai/prompt/${encodeURIComponent(currentTask.scenePrompt)}?width=640&height=480&nologo=true`} 
                                         alt="Scene illustration" 
                                         className={`w-full h-full object-cover transition-all duration-750 group-hover:scale-[1.02] ${imageLoaded ? 'opacity-100 scale-100' : 'opacity-0 scale-95'}`}
                                         onLoad={() => setImageLoaded(true)}
@@ -305,8 +305,8 @@ export function ScenarioTask({ words, onComplete, mascotName }: ScenarioTaskProp
                                     
                                     <div className="absolute inset-0 bg-gradient-to-t from-charcoal/20 to-transparent pointer-events-none" />
 
-                                    {/* Stickers overlaid on top of background */}
-                                    {imageLoaded && labelingItems.map((item, idx) => {
+                                    {/* Stickers overlaid on top of background - Rendered immediately so user doesn't wait */}
+                                    {labelingItems.map((item, idx) => {
                                         const pos = STICKER_POSITIONS[idx % STICKER_POSITIONS.length];
                                         const showHint = revealedLabelHints[item.correctKr];
                                         return (

@@ -276,7 +276,7 @@ export function getMissionImageUrls(words: Word[]): string[] {
 
         const itemsList = concrete.map(w => w.en).join(', a ');
         const scenePrompt = `high quality digital illustration of ${sceneHeader} containing a ${itemsList}. Labeled details, soft bright colors, vector graphics style.`;
-        urls.push(`https://image.pollinations.ai/prompt/${encodeURIComponent(scenePrompt)}?width=500&height=500&nologo=true`);
+        urls.push(`https://image.pollinations.ai/prompt/${encodeURIComponent(scenePrompt)}?width=640&height=480&nologo=true`);
     }
 
     // Abstract Scenario sentence images
