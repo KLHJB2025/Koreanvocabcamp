@@ -7,20 +7,6 @@ import { useTranslation } from '@/hooks/use-translation';
 import { Sparkles, ArrowRight, CheckCircle2, Volume2, HelpCircle, AlertCircle, GripVertical, Loader2 } from 'lucide-react';
 import { isConcreteWord, getIllustrationUrl } from '@/lib/vocabulary';
 
-const STICKER_POSITIONS = [
-    { left: '20%', top: '25%' },
-    { left: '80%', top: '20%' },
-    { left: '50%', top: '42%' },
-    { left: '20%', top: '65%' },
-    { left: '80%', top: '68%' },
-    { left: '50%', top: '75%' },
-    { left: '35%', top: '15%' },
-    { left: '65%', top: '18%' },
-    { left: '35%', top: '80%' },
-    { left: '65%', top: '82%' },
-    { left: '15%', top: '45%' },
-    { left: '85%', top: '45%' }
-];
 
 interface ScenarioTaskProps {
     words: Word[];
@@ -93,24 +79,24 @@ export function ScenarioTask({ words, onComplete, mascotName }: ScenarioTaskProp
                 }
             }
 
-            // Map theme to custom background scenery
-            let sceneHeader = 'a cheerful and clean cartoon playroom background scene';
+            // Map theme to custom scenery featuring characters interactively using the words
+            let sceneHeader = 'cheerful cartoon playroom scene featuring cute kids playing and having fun, with a';
             if (dominantTheme === 'food_dining') {
-                sceneHeader = 'a clean, bright cartoon kitchen or restaurant dining table background scene';
+                sceneHeader = 'bright and cozy cartoon kitchen or restaurant dining scene featuring happy family members cooking and eating, with a';
             } else if (dominantTheme === 'school_education') {
-                sceneHeader = 'a cheerful cartoon school classroom with a blackboard background scene';
+                sceneHeader = 'cheerful cartoon school classroom scene featuring students and a teacher studying interactively, with a';
             } else if (dominantTheme === 'home_living') {
-                sceneHeader = 'a cozy and warm cartoon living room or bedroom background scene';
+                sceneHeader = 'cozy cartoon living room or bedroom scene featuring people relaxing and enjoying their time, with a';
             } else if (dominantTheme === 'city_travel_places') {
-                sceneHeader = 'a vibrant and friendly cartoon city street or park background scene';
+                sceneHeader = 'vibrant cartoon city street or park scene featuring travelers walking and exploring, with a';
             } else if (dominantTheme === 'nature_animals_plants') {
-                sceneHeader = 'a beautiful sunny cartoon park, garden, or forest background scene';
+                sceneHeader = 'sunny cartoon park or forest scene featuring happy people and cute animals, with a';
             } else if (dominantTheme === 'people_jobs_family') {
-                sceneHeader = 'a friendly cartoon neighborhood, office, or family home environment background scene';
+                sceneHeader = 'friendly cartoon neighborhood or office scene featuring diverse characters working and chatting together, with a';
             }
 
             const itemsList = concrete.map(w => w.en).join(', a ');
-            const scenePrompt = `high quality digital illustration of ${sceneHeader} containing a ${itemsList}. Labeled details, soft bright colors, vector graphics style.`;
+            const scenePrompt = `cute cartoon digital illustration of ${sceneHeader} ${itemsList}. Colorful, friendly characters, clean vector style, no text, no labels, high resolution.`;
 
             newTasks.push({
                 type: 'labeling',
@@ -235,7 +221,7 @@ export function ScenarioTask({ words, onComplete, mascotName }: ScenarioTaskProp
     if (tasks.length === 0) return null;
 
     return (
-        <div className="max-w-4xl mx-auto p-8 sm:p-12 bg-white rounded-[48px] shadow-2xl border-2 border-strawberry/5 relative overflow-hidden">
+        <div className="max-w-5xl mx-auto p-4 sm:p-8 md:p-12 bg-white rounded-[32px] sm:rounded-[48px] shadow-2xl border-2 border-strawberry/5 relative overflow-hidden">
             {/* Background Flair */}
             <div className="absolute top-0 right-0 w-80 h-80 bg-primary/5 rounded-full blur-3xl -mr-40 -mt-40" />
             <div className="absolute bottom-0 left-0 w-80 h-80 bg-secondary/5 rounded-full blur-3xl -ml-40 -mb-40" />
@@ -275,106 +261,115 @@ export function ScenarioTask({ words, onComplete, mascotName }: ScenarioTaskProp
                     >
                         {/* --------------------- CONCRETE LABELING MODE --------------------- */}
                         {currentTask.type === 'labeling' && (
-                            <div className="space-y-8">
-                                <div className="text-center max-w-xl mx-auto mb-4">
-                                    <p className="text-lg font-bold text-charcoal/60">
+                            <div className="space-y-6">
+                                <div className="text-center max-w-xl mx-auto mb-2">
+                                    <p className="text-base sm:text-lg font-bold text-charcoal/60">
                                         {language === 'zh' 
-                                            ? '观察下方的场景，直接在对应的物品气泡下方输入韩语单词！' 
-                                            : 'Look at the scene below and type the corresponding Korean word inside each object sticker!'}
+                                            ? '观察场景，在对应的单词输入框中输入韩语！' 
+                                            : 'Look at the scene and type the corresponding Korean word for each item!'}
                                     </p>
                                 </div>
 
-                                {/* Aspect-Ratio unified container with background scene */}
-                                <div className="relative w-full max-w-3xl mx-auto aspect-[4/3] rounded-3xl overflow-hidden border-4 border-secondary/15 bg-cloud shadow-2xl group">
-                                    {!imageLoaded && (
-                                        <div className="absolute top-4 right-4 bg-charcoal/80 text-white backdrop-blur-sm px-3 py-1.5 rounded-full flex items-center gap-1.5 z-30 shadow-md animate-pulse">
-                                            <Loader2 className="w-3.5 h-3.5 text-primary animate-spin" />
-                                            <span className="text-[9px] font-black uppercase tracking-widest">
-                                                {language === 'zh' ? '背景生成中...' : 'Background loading...'}
-                                            </span>
+                                <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-stretch">
+                                    {/* Left Column: Scene Illustration */}
+                                    <div className="lg:col-span-7 xl:col-span-8 flex flex-col justify-center">
+                                        <div className="relative w-full aspect-[4/3] rounded-3xl overflow-hidden border-4 border-secondary/15 bg-cloud shadow-xl group">
+                                            {!imageLoaded && (
+                                                <div className="absolute top-4 right-4 bg-charcoal/80 text-white backdrop-blur-sm px-3 py-1.5 rounded-full flex items-center gap-1.5 z-30 shadow-md animate-pulse">
+                                                    <Loader2 className="w-3.5 h-3.5 text-primary animate-spin" />
+                                                    <span className="text-[9px] font-black uppercase tracking-widest">
+                                                        {language === 'zh' ? '场景生成中...' : 'Generating scene...'}
+                                                    </span>
+                                                </div>
+                                            )}
+                                            
+                                            <img 
+                                                src={`https://image.pollinations.ai/prompt/${encodeURIComponent(currentTask.scenePrompt)}?width=640&height=480&nologo=true`} 
+                                                alt="Scene illustration" 
+                                                className={`w-full h-full object-cover transition-all duration-750 group-hover:scale-[1.02] ${imageLoaded ? 'opacity-100 scale-100' : 'opacity-0 scale-95'}`}
+                                                onLoad={() => setImageLoaded(true)}
+                                            />
+                                            <div className="absolute inset-0 bg-gradient-to-t from-charcoal/20 to-transparent pointer-events-none" />
                                         </div>
-                                    )}
-                                    
-                                    {/* The Background Scene Image */}
-                                    <img 
-                                        src={`https://image.pollinations.ai/prompt/${encodeURIComponent(currentTask.scenePrompt)}?width=640&height=480&nologo=true`} 
-                                        alt="Scene illustration" 
-                                        className={`w-full h-full object-cover transition-all duration-750 group-hover:scale-[1.02] ${imageLoaded ? 'opacity-100 scale-100' : 'opacity-0 scale-95'}`}
-                                        onLoad={() => setImageLoaded(true)}
-                                    />
-                                    
-                                    <div className="absolute inset-0 bg-gradient-to-t from-charcoal/20 to-transparent pointer-events-none" />
+                                    </div>
 
-                                    {/* Stickers overlaid on top of background - Rendered immediately so user doesn't wait */}
-                                    {labelingItems.map((item, idx) => {
-                                        const pos = STICKER_POSITIONS[idx % STICKER_POSITIONS.length];
-                                        const showHint = revealedLabelHints[item.correctKr];
-                                        return (
-                                            <div 
-                                                key={item.english}
-                                                style={{ left: pos.left, top: pos.top }}
-                                                className="absolute -translate-x-1/2 -translate-y-1/2 flex flex-col items-center gap-1.5 z-20 pointer-events-auto select-none"
-                                            >
-                                                {/* Label / Meaning Badge */}
-                                                <div className="bg-charcoal/90 text-white text-[10px] sm:text-xs font-black px-2.5 py-0.5 rounded-full shadow-md whitespace-nowrap">
-                                                    {language === 'zh' ? item.chinese : item.english}
-                                                </div>
-
-                                                {/* Circular Sticker Container */}
-                                                <div className={`relative w-12 h-12 sm:w-16 sm:h-16 rounded-full bg-white border-3 sm:border-4 transition-all flex items-center justify-center shadow-lg ${
-                                                    item.isCorrect 
-                                                        ? 'border-emerald-500 bg-emerald-50 shadow-inner' 
-                                                        : labelingErrorId === item.english
-                                                        ? 'border-rose-400 bg-rose-50 animate-shake'
-                                                        : 'border-white hover:border-primary/45 hover:scale-105 cursor-pointer'
-                                                }`}>
-                                                    <img 
-                                                        src={getIllustrationUrl(item.word)} 
-                                                        alt={item.english}
-                                                        className="w-full h-full object-cover rounded-full"
-                                                    />
-                                                    {item.isCorrect && (
-                                                        <div className="absolute -top-1 -right-1 bg-emerald-500 text-white rounded-full p-0.5 shadow-md">
-                                                            <CheckCircle2 size={12} className="stroke-[3] sm:w-[14px] sm:h-[14px]" />
+                                    {/* Right Column: Labeling Input Cards */}
+                                    <div className="lg:col-span-5 xl:col-span-4 flex flex-col gap-3 max-h-[380px] lg:max-h-[480px] overflow-y-auto pr-1">
+                                        {labelingItems.map((item, idx) => {
+                                            const showHint = revealedLabelHints[item.correctKr];
+                                            return (
+                                                <div 
+                                                    key={item.english}
+                                                    className={`p-3 rounded-2xl border-2 transition-all flex items-center justify-between gap-3 bg-white shadow-sm ${
+                                                        item.isCorrect 
+                                                            ? 'border-emerald-500 bg-emerald-50/50' 
+                                                            : labelingErrorId === item.english
+                                                            ? 'border-rose-400 bg-rose-50 animate-shake'
+                                                            : 'border-charcoal/5 hover:border-primary/20'
+                                                    }`}
+                                                >
+                                                    {/* Word Thumbnail / Meaning */}
+                                                    <div className="flex items-center gap-3">
+                                                        <div className="relative w-12 h-12 rounded-full overflow-hidden border-2 border-cloud bg-white flex-shrink-0">
+                                                            <img 
+                                                                src={getIllustrationUrl(item.word)} 
+                                                                alt={item.english}
+                                                                className="w-full h-full object-cover"
+                                                            />
+                                                            {item.isCorrect && (
+                                                                <div className="absolute inset-0 bg-emerald-500/10 flex items-center justify-center">
+                                                                    <CheckCircle2 size={18} className="text-emerald-500 stroke-[3]" />
+                                                                </div>
+                                                            )}
                                                         </div>
-                                                    )}
-                                                </div>
-
-                                                {/* Input / Result Box */}
-                                                <div className="relative">
-                                                    <input 
-                                                        type="text"
-                                                        value={item.inputValue}
-                                                        onChange={(e) => handleLabelInput(idx, e.target.value)}
-                                                        disabled={item.isCorrect}
-                                                        placeholder={item.isCorrect ? '' : (language === 'zh' ? '韩语...' : 'Korean...')}
-                                                        className={`w-24 sm:w-28 px-2 py-1 sm:py-1.5 pr-6 rounded-xl text-center font-bold text-[10px] sm:text-xs outline-none border transition-all shadow-md ${
-                                                            item.isCorrect
-                                                                ? 'bg-emerald-500 text-white border-transparent font-black pr-2'
-                                                                : 'bg-white/95 backdrop-blur-sm border-charcoal/15 focus:border-primary focus:ring-2 focus:ring-primary/20 text-charcoal'
-                                                        }`}
-                                                    />
-                                                    {!item.isCorrect && (
-                                                        <button 
-                                                            type="button"
-                                                            onClick={() => toggleLabelHint(item.correctKr)}
-                                                            className={`absolute right-1.5 top-1/2 -translate-y-1/2 text-charcoal/30 hover:text-charcoal/60 transition-colors`}
-                                                            title="Show hint"
-                                                        >
-                                                            <HelpCircle size={12} />
-                                                        </button>
-                                                    )}
-                                                </div>
-
-                                                {/* Hint popup */}
-                                                {showHint && !item.isCorrect && (
-                                                    <div className="bg-amber-500 text-white text-[9px] sm:text-[10px] font-black px-2 py-0.5 rounded shadow-sm whitespace-nowrap animate-bounce mt-0.5">
-                                                        {item.correctKr[0] + '•'.repeat(Math.max(1, item.correctKr.length - 1))}
+                                                        <div>
+                                                            <div className="text-[10px] font-black text-charcoal/40 uppercase tracking-wide">
+                                                                {language === 'zh' ? '物品' : 'Item'}
+                                                            </div>
+                                                            <div className="text-sm font-black text-charcoal leading-tight">
+                                                                {language === 'zh' ? item.chinese : item.english}
+                                                            </div>
+                                                        </div>
                                                     </div>
-                                                )}
-                                            </div>
-                                        );
-                                    })}
+
+                                                    {/* Input Box & Hints */}
+                                                    <div className="flex flex-col items-end gap-1 flex-shrink-0">
+                                                        <div className="relative">
+                                                            <input 
+                                                                type="text"
+                                                                value={item.inputValue}
+                                                                onChange={(e) => handleLabelInput(idx, e.target.value)}
+                                                                disabled={item.isCorrect}
+                                                                placeholder={item.isCorrect ? '✓ Correct' : (language === 'zh' ? '输入韩语...' : 'Korean...')}
+                                                                className={`w-28 sm:w-32 px-2.5 py-1.5 pr-7 rounded-xl text-center font-bold text-xs outline-none border transition-all ${
+                                                                    item.isCorrect
+                                                                        ? 'bg-emerald-500 text-white border-transparent font-black pr-2.5'
+                                                                        : 'bg-white border-charcoal/15 focus:border-primary focus:ring-2 focus:ring-primary/20 text-charcoal'
+                                                                }`}
+                                                            />
+                                                            {!item.isCorrect && (
+                                                                <button 
+                                                                    type="button"
+                                                                    onClick={() => toggleLabelHint(item.correctKr)}
+                                                                    className="absolute right-2 top-1/2 -translate-y-1/2 text-charcoal/30 hover:text-charcoal/60 transition-colors"
+                                                                    title="Show hint"
+                                                                >
+                                                                    <HelpCircle size={14} />
+                                                                </button>
+                                                            )}
+                                                        </div>
+                                                        
+                                                        {/* Hint text */}
+                                                        {showHint && !item.isCorrect && (
+                                                            <span className="text-[10px] font-black text-amber-600 animate-pulse">
+                                                                Hint: {item.correctKr[0] + '•'.repeat(Math.max(1, item.correctKr.length - 1))}
+                                                            </span>
+                                                        )}
+                                                    </div>
+                                                </div>
+                                            );
+                                        })}
+                                    </div>
                                 </div>
                             </div>
                         )}
