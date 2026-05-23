@@ -262,15 +262,17 @@ export function ScenarioTask({ words, onComplete, mascotName }: ScenarioTaskProp
             <div className="relative z-10 flex items-center justify-between mb-8 pb-6 border-b border-charcoal/5">
                 <div>
                     <span className="pill-badge bg-primary/10 text-primary mb-2 inline-block italic font-bold">
-                        {t('mission.scenarioMission') || 'Scenario Mission'}
+                        {language === 'zh' ? '情境任务' : 'Scenario Mission'}
                     </span>
                     <h2 className="text-2xl font-black italic tracking-tighter uppercase text-charcoal">
-                        {currentTask?.type === 'labeling' ? 'Task 1: Label the Scene' : `Task ${currentTaskIndex + 1}: Context Translation`}
+                        {currentTask?.type === 'labeling' 
+                            ? (language === 'zh' ? '任务 1：标注场景' : 'Task 1: Label the Scene') 
+                            : (language === 'zh' ? `任务 ${currentTaskIndex + 1}：情境翻译` : `Task ${currentTaskIndex + 1}: Context Translation`)}
                     </h2>
                 </div>
                 <div className="text-right">
                     <span className="text-xs font-black text-charcoal/40 uppercase tracking-widest">
-                        Progress: {currentTaskIndex + 1} / {tasks.length}
+                        {language === 'zh' ? '进度' : 'Progress'}: {currentTaskIndex + 1} / {tasks.length}
                     </span>
                     <div className="w-24 h-2 bg-cloud rounded-full mt-2 overflow-hidden">
                         <div 
@@ -374,7 +376,7 @@ export function ScenarioTask({ words, onComplete, mascotName }: ScenarioTaskProp
                                                                     }
                                                                 }}
                                                                 disabled={item.isCorrect}
-                                                                placeholder={item.isCorrect ? '✓ Correct' : (language === 'zh' ? '按回车检查...' : 'Press Enter...')}
+                                                                placeholder={item.isCorrect ? (language === 'zh' ? '✓ 正确' : '✓ Correct') : (language === 'zh' ? '输入韩语...' : 'Type Korean...')}
                                                                 className={`w-28 sm:w-32 px-2.5 py-1.5 pr-7 rounded-xl text-center font-bold text-xs outline-none border transition-all ${
                                                                     item.isCorrect
                                                                         ? 'bg-emerald-500 text-white border-transparent font-black pr-2.5'
@@ -402,7 +404,7 @@ export function ScenarioTask({ words, onComplete, mascotName }: ScenarioTaskProp
                                                             </span>
                                                         ) : showHint && !item.isCorrect ? (
                                                             <span className="text-[9px] sm:text-[10px] font-black text-amber-600 animate-pulse">
-                                                                Hint: {item.correctKr[0] + '•'.repeat(Math.max(1, item.correctKr.length - 1))}
+                                                                {language === 'zh' ? '提示: ' : 'Hint: '}{item.correctKr[0] + '•'.repeat(Math.max(1, item.correctKr.length - 1))}
                                                             </span>
                                                         ) : null}
                                                     </div>
@@ -460,7 +462,9 @@ export function ScenarioTask({ words, onComplete, mascotName }: ScenarioTaskProp
                                 {/* Right: Translation & Input details */}
                                 <div className="space-y-6">
                                     <div>
-                                        <span className="text-xs font-black text-primary uppercase tracking-widest block mb-2">Translate Example Sentence</span>
+                                        <span className="text-xs font-black text-primary uppercase tracking-widest block mb-2">
+                                            {language === 'zh' ? '翻译例句' : 'Translate Example Sentence'}
+                                        </span>
                                         <div className="p-5 bg-cloud rounded-2xl border border-charcoal/5 font-semibold text-lg text-charcoal italic leading-relaxed">
                                             "{language === 'zh' ? currentTask.word.sentenceZh : currentTask.word.sentenceMeaning}"
                                         </div>
@@ -468,7 +472,9 @@ export function ScenarioTask({ words, onComplete, mascotName }: ScenarioTaskProp
 
                                     {/* Korean sentence with blank */}
                                     <div className="space-y-2">
-                                        <span className="text-xs font-black text-charcoal/40 uppercase tracking-widest block">Korean Context</span>
+                                        <span className="text-xs font-black text-charcoal/40 uppercase tracking-widest block">
+                                            {language === 'zh' ? '韩语语境' : 'Korean Context'}
+                                        </span>
                                         <div className="flex items-center gap-3">
                                             <p className="text-2xl font-bold text-charcoal tracking-tight">
                                                 {getDisplaySentence(currentTask.word)}
@@ -491,7 +497,7 @@ export function ScenarioTask({ words, onComplete, mascotName }: ScenarioTaskProp
                                                 value={sentenceInput}
                                                 onChange={(e) => setSentenceInput(e.target.value)}
                                                 disabled={isSentenceCorrect === true}
-                                                placeholder={t('tasks.spelling.placeholder') || 'Type Korean word...'}
+                                                placeholder={language === 'zh' ? '输入韩语单词...' : 'Type Korean word...'}
                                                 className={`w-full p-5 rounded-[20px] border-3 text-2xl font-black text-center outline-none transition-all ${
                                                     isSentenceCorrect === true ? 'border-emerald-400 bg-emerald-50 text-emerald-600' :
                                                     isSentenceCorrect === false ? 'border-rose-400 bg-rose-50 text-rose-600 animate-shake' :
@@ -522,14 +528,14 @@ export function ScenarioTask({ words, onComplete, mascotName }: ScenarioTaskProp
                                                     className="px-5 py-4 rounded-[16px] bg-amber-50 text-amber-600 font-bold border border-amber-200 hover:bg-amber-100 transition-colors flex items-center gap-2 text-sm"
                                                 >
                                                     <HelpCircle size={16} />
-                                                    {showSentenceHint ? (language === 'zh' ? currentTask.word.zh : currentTask.word.en) : 'Hint?'}
+                                                    {showSentenceHint ? (language === 'zh' ? currentTask.word.zh : currentTask.word.en) : (language === 'zh' ? '提示' : 'Hint?')}
                                                 </button>
 
                                                 <button 
                                                     type="submit"
                                                     className="btn-primary-cute flex-1 py-4 text-sm font-black flex items-center justify-center gap-2"
                                                 >
-                                                    {t('tasks.spelling.confirm') || 'Confirm'}
+                                                    {language === 'zh' ? '确认' : 'Confirm'}
                                                     <ArrowRight size={16} />
                                                 </button>
                                             </div>
@@ -551,13 +557,13 @@ export function ScenarioTask({ words, onComplete, mascotName }: ScenarioTaskProp
                             <Sparkles size={52} />
                         </div>
                         <h3 className="text-4xl font-black italic tracking-tighter uppercase text-emerald-600 mb-4">
-                            SCENARIO PASSED!
+                            {language === 'zh' ? '情境任务通关！' : 'SCENARIO PASSED!'}
                         </h3>
                         <p className="text-lg font-bold text-charcoal/40 mb-10 max-w-md mx-auto">
-                            {t('mission.scenarioSuccess') || 'You successfully navigated the scenario tasks using your new vocabulary. Great job!'}
+                            {language === 'zh' ? '你已成功通过情境任务，太棒了！' : 'You successfully navigated the scenario tasks using your new vocabulary. Great job!'}
                         </p>
                         <button onClick={onComplete} className="btn-primary-cute px-12 py-5 text-xl">
-                            {t('mission.returnToBase')}
+                            {language === 'zh' ? '返回主页' : 'Return to Base'}
                         </button>
                     </motion.div>
                 )}

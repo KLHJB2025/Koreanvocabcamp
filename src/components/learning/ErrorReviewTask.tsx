@@ -69,16 +69,16 @@ export function ErrorReviewTask({ words, onComplete }: ErrorReviewTaskProps) {
                     <AlertCircle size={24} />
                 </div>
                 <span className="text-strawberry font-black italic uppercase tracking-widest text-sm">
-                    {t('tasks.errorReview.title') || 'Error Review'}
+                    {language === 'zh' ? '错题温习' : 'Error Review'}
                 </span>
             </div>
 
             <h2 className="text-4xl font-black text-charcoal italic tracking-tighter mb-4">
-                {t('tasks.errorReview.instruction') || 'Let\'s master the tricky ones!'}
+                {language === 'zh' ? '攻克难点单词！' : "Let's master the tricky ones!"}
             </h2>
             
             <p className="text-charcoal/40 font-bold mb-10">
-                {t('tasks.errorReview.subtitle') || 'Correct your mistakes to move forward'}
+                {language === 'zh' ? '纠正之前的错误以继续前进' : 'Correct your mistakes to move forward'}
             </p>
 
             <AnimatePresence mode="wait">
@@ -118,7 +118,7 @@ export function ErrorReviewTask({ words, onComplete }: ErrorReviewTaskProps) {
                             className="mt-6 p-8 bg-emerald-50 border-2 border-emerald-200 rounded-[32px] text-left"
                         >
                             <p className="text-emerald-800 font-black uppercase text-xs tracking-widest mb-2 flex items-center gap-2">
-                                <CheckCircle2 size={16} /> {t('tasks.errorReview.correctAnswer') || 'Correct Spelling'}
+                                <CheckCircle2 size={16} /> {language === 'zh' ? '正确拼写' : 'Correct Spelling'}
                             </p>
                             <p className="text-5xl font-black text-emerald-600 italic tracking-tighter">
                                 {currentWord.kr}
@@ -145,7 +145,7 @@ export function ErrorReviewTask({ words, onComplete }: ErrorReviewTaskProps) {
                             : 'bg-strawberry text-white shadow-xl shadow-strawberry/30 hover:bg-strawberry/90'
                         }`}
                     >
-                        {showCorrection ? (t('tasks.errorReview.gotIt') || 'I got it!') : (t('tasks.spelling.confirm'))}
+                        {showCorrection ? (language === 'zh' ? '我懂了！' : 'I got it!') : (language === 'zh' ? '确认' : 'Confirm')}
                         <ArrowRight size={28} />
                     </button>
                 )}
