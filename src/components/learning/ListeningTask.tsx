@@ -4,6 +4,7 @@ import { useState, useEffect } from 'react';
 import { Word } from '@/lib/vocabulary-data';
 import { Volume2 } from 'lucide-react';
 import { useTranslation } from '@/hooks/use-translation';
+import { playSuccessSound, playErrorSound } from '@/lib/sound';
 
 interface ListeningTaskProps {
     words: Word[];
@@ -55,7 +56,10 @@ export function ListeningTask({ words, onComplete, onMiss }: ListeningTaskProps)
         setIsCorrect(correct);
         setIsSubmitted(true);
 
-        if (!correct) {
+        if (correct) {
+            playSuccessSound();
+        } else {
+            playErrorSound();
             onMiss(words[currentIndex]);
         }
     };

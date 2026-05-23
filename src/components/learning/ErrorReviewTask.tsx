@@ -4,6 +4,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { Word } from '@/lib/vocabulary-data';
 import { AlertCircle, ArrowRight, CheckCircle2 } from 'lucide-react';
 import { useTranslation } from '@/hooks/use-translation';
+import { playSuccessSound, playErrorSound } from '@/lib/sound';
 
 interface ErrorReviewTaskProps {
     words: Word[];
@@ -33,7 +34,10 @@ export function ErrorReviewTask({ words, onComplete }: ErrorReviewTaskProps) {
         const correct = input.trim() === currentWord.kr;
         setIsCorrect(correct);
 
-        if (!correct) {
+        if (correct) {
+            playSuccessSound();
+        } else {
+            playErrorSound();
             setShowCorrection(true);
         }
     };

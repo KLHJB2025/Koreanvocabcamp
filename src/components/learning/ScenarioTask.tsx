@@ -6,6 +6,7 @@ import { Word } from '@/lib/vocabulary-data';
 import { useTranslation } from '@/hooks/use-translation';
 import { Sparkles, ArrowRight, CheckCircle2, Volume2, HelpCircle, AlertCircle, GripVertical, Loader2 } from 'lucide-react';
 import { isConcreteWord, getIllustrationUrl } from '@/lib/vocabulary';
+import { playSuccessSound, playErrorSound } from '@/lib/sound';
 
 
 interface ScenarioTaskProps {
@@ -204,11 +205,14 @@ export function ScenarioTask({ words, onComplete, mascotName }: ScenarioTaskProp
         setLabelingItems(updated);
 
         if (hasWrong && firstWrongItem) {
+            playErrorSound();
             // Trigger error state for the first incorrect item
             setLabelingErrorId(firstWrongItem.english);
             setTimeout(() => {
                 setLabelingErrorId(null);
             }, 1500);
+        } else if (updated.every(i => i.isCorrect)) {
+            playSuccessSound();
         }
     };
 
@@ -222,9 +226,11 @@ export function ScenarioTask({ words, onComplete, mascotName }: ScenarioTaskProp
         setIsSentenceCorrect(correct);
 
         if (correct) {
+            playSuccessSound();
             playAudio(targetWord.kr, 'word');
             setShowSentenceHint(false);
         } else {
+            playErrorSound();
             setTimeout(() => setIsSentenceCorrect(null), 1500);
         }
     };

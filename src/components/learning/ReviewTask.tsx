@@ -5,6 +5,7 @@ import { motion } from 'framer-motion';
 import { Word } from '@/lib/vocabulary-data';
 import { CheckCircle2, XCircle } from 'lucide-react';
 import { useTranslation } from '@/hooks/use-translation';
+import { playSuccessSound, playErrorSound } from '@/lib/sound';
 import { useAuth } from '@/hooks/use-auth';
 import { updateWordProgress } from '@/lib/user';
 
@@ -59,6 +60,12 @@ export function ReviewTask({ words, onComplete }: ReviewTaskProps) {
         const correct = selectedOption === currentMeaning;
         setIsCorrect(correct);
         setIsSubmitted(true);
+
+        if (correct) {
+            playSuccessSound();
+        } else {
+            playErrorSound();
+        }
 
         // Sync to backend
         if (profile?.uid) {

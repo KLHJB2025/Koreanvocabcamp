@@ -4,6 +4,7 @@ import { Word } from '@/lib/vocabulary-data';
 import { getIllustrationUrl } from '@/lib/vocabulary';
 import { Sparkles, ArrowRight } from 'lucide-react';
 import { useTranslation } from '@/hooks/use-translation';
+import { playSuccessSound, playErrorSound } from '@/lib/sound';
 
 interface SpellingTaskProps {
     words: Word[];
@@ -26,7 +27,10 @@ export function SpellingTask({ words, onComplete, onMiss }: SpellingTaskProps) {
         const correct = input.trim() === currentWord.kr;
         setIsCorrect(correct);
 
-        if (!correct) {
+        if (correct) {
+            playSuccessSound();
+        } else {
+            playErrorSound();
             onMiss(currentWord);
             setTimeout(() => setIsCorrect(null), 1500);
         }
