@@ -307,3 +307,14 @@ export function getMissionImageUrls(words: Word[]): string[] {
     return urls;
 }
 
+export async function getUserLearnedWords(uid: string): Promise<any[]> {
+    try {
+        const learnedRef = collection(db, 'users', uid, 'learned_words');
+        const snapshot = await getDocs(learnedRef);
+        return snapshot.docs.map(doc => doc.data());
+    } catch (e) {
+        console.error("Error fetching user learned words", e);
+        return [];
+    }
+}
+

@@ -426,7 +426,7 @@ export default function Dashboard() {
                                 icon={<Target size={24} />}
                                 badge={t('dashboard.actions.memoryLab.badge', { count: reviewCount })}
                                 color="bg-mint"
-                                href="/mission"
+                                href="/vocabulary"
                             />
                             <ActionCard
                                 title={t('dashboard.actions.store.title')}
