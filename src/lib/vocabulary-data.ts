@@ -232,16 +232,6 @@ export const MOCK_VOCABULARY: Record<string, Word[]> = {
             sentenceZh: "离家还蛮远的。"
         },
         {
-            kr: "거리",
-            en: "Distance/Street",
-            zh: "距离/街道",
-            pos: "Noun",
-            category: "city_travel_places",
-            sentenceKr: "집에서 거리가 꽤 멀어요.",
-            sentenceMeaning: "The distance from home is quite far.",
-            sentenceZh: "离家还蛮远的。"
-        },
-        {
             kr: "건물",
             en: "Building",
             zh: "建筑物",

@@ -12,18 +12,23 @@ interface MatchingTaskProps {
     onMiss: (word: Word) => void;
 }
 
-interface MeaningOption {
-    wordKr: string; // Unique Korean word spelling this translation belongs to
-    text: string;   // The translation string (can have duplicate values, e.g. "去")
+interface MatchItem {
+    id: string; // Unique option ID (e.g. "word_0", "word_1")
+    kr: string;
+}
+
+interface MeaningItem {
+    id: string; // Matches the corresponding MatchItem's id
+    text: string;
 }
 
 export function MatchingTask({ words, onComplete, onMiss }: MatchingTaskProps) {
-    const [koreanWords, setKoreanWords] = useState<string[]>([]);
-    const [meanings, setMeanings] = useState<MeaningOption[]>([]);
-    const [selectedKr, setSelectedKr] = useState<string | null>(null);
-    const [selectedMeaningKr, setSelectedMeaningKr] = useState<string | null>(null);
+    const [koreanWords, setKoreanWords] = useState<MatchItem[]>([]);
+    const [meanings, setMeanings] = useState<MeaningItem[]>([]);
+    const [selectedKrId, setSelectedKrId] = useState<string | null>(null);
+    const [selectedMeaningId, setSelectedMeaningId] = useState<string | null>(null);
     
-    // matches maps: { [koreanSpelling]: meaningWordKr }
+    // matches maps: { [krId]: meaningId }
     const [matches, setMatches] = useState<Record<string, string>>({}); 
     
     // Verification states
@@ -33,95 +38,102 @@ export function MatchingTask({ words, onComplete, onMiss }: MatchingTaskProps) {
     
     const { t, language } = useTranslation();
 
-    // Shuffle and initialize columns
+    // Map and shuffle columns with unique item IDs based on index
     useEffect(() => {
-        setKoreanWords([...words.map(w => w.kr)].sort(() => Math.random() - 0.5));
-        setMeanings([...words.map(w => ({
-            wordKr: w.kr,
+        const leftItems = words.map((w, idx) => ({
+            id: `word_${idx}`,
+            kr: w.kr
+        }));
+        
+        const rightItems = words.map((w, idx) => ({
+            id: `word_${idx}`,
             text: language === 'zh' ? w.zh : w.en
-        }))].sort(() => Math.random() - 0.5));
+        }));
+
+        setKoreanWords([...leftItems].sort(() => Math.random() - 0.5));
+        setMeanings([...rightItems].sort(() => Math.random() - 0.5));
         
         setMatches({});
         setCorrectMatches([]);
         setIncorrectMatches([]);
-        setSelectedKr(null);
-        setSelectedMeaningKr(null);
+        setSelectedKrId(null);
+        setSelectedMeaningId(null);
         setIsSubmitted(false);
     }, [words, language]);
 
-    // Symmetrical matching connector
+    // Handle selecting and saving a matching pair
     useEffect(() => {
-        if (selectedKr && selectedMeaningKr) {
+        if (selectedKrId && selectedMeaningId) {
             const newMatches = { ...matches };
             
-            // If the meaning was already matched to a different kr, break it
-            const oldKrForMeaning = Object.keys(newMatches).find(k => newMatches[k] === selectedMeaningKr);
-            if (oldKrForMeaning) {
-                delete newMatches[oldKrForMeaning];
+            // Break any existing match that contains this meaningId
+            const oldKrId = Object.keys(newMatches).find(k => newMatches[k] === selectedMeaningId);
+            if (oldKrId) {
+                delete newMatches[oldKrId];
             }
             
-            // Link them
-            newMatches[selectedKr] = selectedMeaningKr;
+            // Set the new match
+            newMatches[selectedKrId] = selectedMeaningId;
             setMatches(newMatches);
             
             // Reset selection highlights
-            setSelectedKr(null);
-            setSelectedMeaningKr(null);
+            setSelectedKrId(null);
+            setSelectedMeaningId(null);
         }
-    }, [selectedKr, selectedMeaningKr, matches]);
+    }, [selectedKrId, selectedMeaningId, matches]);
 
-    const handleSelectKr = (kr: string) => {
+    const handleSelectKr = (krId: string) => {
         if (isSubmitted) {
             // Lock correct matches on submission
-            if (correctMatches.includes(kr)) return;
+            if (correctMatches.includes(krId)) return;
         }
 
         // If already matched, clicking it breaks the match
-        if (matches[kr]) {
+        if (matches[krId]) {
             const newMatches = { ...matches };
-            delete newMatches[kr];
+            delete newMatches[krId];
             setMatches(newMatches);
             
-            setIncorrectMatches(prev => prev.filter(k => k !== kr));
+            setIncorrectMatches(prev => prev.filter(id => id !== krId));
             setIsSubmitted(false);
             return;
         }
 
         // Otherwise, select
-        if (selectedKr === kr) {
-            setSelectedKr(null);
+        if (selectedKrId === krId) {
+            setSelectedKrId(null);
         } else {
-            setSelectedKr(kr);
+            setSelectedKrId(krId);
         }
     };
 
-    const getKrForMeaning = (meaningKr: string) => {
-        return Object.keys(matches).find(k => matches[k] === meaningKr) || null;
+    const getKrIdForMeaning = (meaningId: string) => {
+        return Object.keys(matches).find(k => matches[k] === meaningId) || null;
     };
 
-    const handleSelectMeaning = (meaningKr: string) => {
-        const pairedKr = getKrForMeaning(meaningKr);
+    const handleSelectMeaning = (meaningId: string) => {
+        const pairedKrId = getKrIdForMeaning(meaningId);
         
-        if (isSubmitted && pairedKr) {
-            if (correctMatches.includes(pairedKr)) return;
+        if (isSubmitted && pairedKrId) {
+            if (correctMatches.includes(pairedKrId)) return;
         }
 
         // If already matched, clicking it breaks the match
-        if (pairedKr) {
+        if (pairedKrId) {
             const newMatches = { ...matches };
-            delete newMatches[pairedKr];
+            delete newMatches[pairedKrId];
             setMatches(newMatches);
             
-            setIncorrectMatches(prev => prev.filter(k => k !== pairedKr));
+            setIncorrectMatches(prev => prev.filter(id => id !== pairedKrId));
             setIsSubmitted(false);
             return;
         }
 
         // Otherwise, select
-        if (selectedMeaningKr === meaningKr) {
-            setSelectedMeaningKr(null);
+        if (selectedMeaningId === meaningId) {
+            setSelectedMeaningId(null);
         } else {
-            setSelectedMeaningKr(meaningKr);
+            setSelectedMeaningId(meaningId);
         }
     };
 
@@ -131,12 +143,14 @@ export function MatchingTask({ words, onComplete, onMiss }: MatchingTaskProps) {
         const correctList: string[] = [];
         const incorrectList: string[] = [];
 
-        Object.entries(matches).forEach(([kr, meaningKr]) => {
-            if (kr === meaningKr) {
-                correctList.push(kr);
+        Object.entries(matches).forEach(([krId, meaningId]) => {
+            // IDs are identical (e.g. "word_3" === "word_3") if and only if it's the correct match
+            if (krId === meaningId) {
+                correctList.push(krId);
             } else {
-                incorrectList.push(kr);
-                const originalWord = words.find(w => w.kr === kr);
+                incorrectList.push(krId);
+                const idx = parseInt(krId.split('_')[1], 10);
+                const originalWord = words[idx];
                 if (originalWord) {
                     onMiss(originalWord);
                 }
@@ -162,27 +176,27 @@ export function MatchingTask({ words, onComplete, onMiss }: MatchingTaskProps) {
         } else {
             // Keep correct matches, reset incorrect ones
             const newMatches = { ...matches };
-            incorrectMatches.forEach(kr => {
-                delete newMatches[kr];
+            incorrectMatches.forEach(krId => {
+                delete newMatches[krId];
             });
             setMatches(newMatches);
             setIncorrectMatches([]);
             setIsSubmitted(false);
-            setSelectedKr(null);
-            setSelectedMeaningKr(null);
+            setSelectedKrId(null);
+            setSelectedMeaningId(null);
         }
     };
 
-    const getPairIndex = (kr: string) => {
-        return Object.keys(matches).indexOf(kr);
+    const getPairIndex = (krId: string) => {
+        return Object.keys(matches).indexOf(krId);
     };
 
-    const getPairStyle = (kr: string) => {
+    const getPairStyle = (krId: string) => {
         if (isSubmitted) {
-            if (correctMatches.includes(kr)) {
+            if (correctMatches.includes(krId)) {
                 return 'bg-emerald-50 border-emerald-400 text-emerald-800';
             }
-            if (incorrectMatches.includes(kr)) {
+            if (incorrectMatches.includes(krId)) {
                 return 'bg-rose-50 border-rose-400 text-rose-800 animate-shake';
             }
         }
@@ -201,19 +215,19 @@ export function MatchingTask({ words, onComplete, onMiss }: MatchingTaskProps) {
             'bg-violet-50 border-violet-400 text-violet-800',
         ];
         
-        const idx = getPairIndex(kr);
+        const idx = getPairIndex(krId);
         return idx !== -1 ? styles[idx % styles.length] : '';
     };
 
-    const getPairNumberBadge = (kr: string) => {
-        const idx = getPairIndex(kr);
+    const getPairNumberBadge = (krId: string) => {
+        const idx = getPairIndex(krId);
         if (idx === -1) return null;
         
         if (isSubmitted) {
-            if (correctMatches.includes(kr)) {
+            if (correctMatches.includes(krId)) {
                 return <span className="w-5 h-5 rounded-full bg-emerald-500 text-white flex items-center justify-center text-[10px] font-black">✓</span>;
             }
-            if (incorrectMatches.includes(kr)) {
+            if (incorrectMatches.includes(krId)) {
                 return <span className="w-5 h-5 rounded-full bg-rose-500 text-white flex items-center justify-center text-[10px] font-black">✗</span>;
             }
         }
@@ -246,11 +260,11 @@ export function MatchingTask({ words, onComplete, onMiss }: MatchingTaskProps) {
                     <p className="text-xs font-black uppercase tracking-widest text-charcoal/30 text-center mb-2">
                         {language === 'zh' ? '韩语单词' : 'Korean Words'}
                     </p>
-                    {koreanWords.map(kr => {
-                        const isSelected = selectedKr === kr;
-                        const isMatched = matches[kr] !== undefined;
-                        const pairStyle = isMatched ? getPairStyle(kr) : '';
-                        const badge = isMatched ? getPairNumberBadge(kr) : null;
+                    {koreanWords.map(item => {
+                        const isSelected = selectedKrId === item.id;
+                        const isMatched = matches[item.id] !== undefined;
+                        const pairStyle = isMatched ? getPairStyle(item.id) : '';
+                        const badge = isMatched ? getPairNumberBadge(item.id) : null;
                         
                         let btnClass = 'bg-secondary/30 border-transparent hover:border-primary/20 text-charcoal';
                         if (isMatched) {
@@ -261,11 +275,11 @@ export function MatchingTask({ words, onComplete, onMiss }: MatchingTaskProps) {
 
                         return (
                             <button
-                                key={kr}
-                                onClick={() => handleSelectKr(kr)}
+                                key={item.id}
+                                onClick={() => handleSelectKr(item.id)}
                                 className={`w-full p-6 rounded-3xl border-2 font-black italic text-2xl transition-all flex items-center justify-between min-h-[72px] text-left ${btnClass}`}
                             >
-                                <span>{kr}</span>
+                                <span>{item.kr}</span>
                                 {badge}
                             </button>
                         );
@@ -277,12 +291,12 @@ export function MatchingTask({ words, onComplete, onMiss }: MatchingTaskProps) {
                     <p className="text-xs font-black uppercase tracking-widest text-charcoal/30 text-center mb-2">
                         {language === 'zh' ? '对应释义' : 'Meanings'}
                     </p>
-                    {meanings.map(opt => {
-                        const isSelected = selectedMeaningKr === opt.wordKr;
-                        const pairedKr = getKrForMeaning(opt.wordKr);
-                        const isMatched = pairedKr !== null;
-                        const pairStyle = isMatched ? getPairStyle(pairedKr) : '';
-                        const badge = isMatched ? getPairNumberBadge(pairedKr) : null;
+                    {meanings.map(item => {
+                        const isSelected = selectedMeaningId === item.id;
+                        const pairedKrId = getKrIdForMeaning(item.id);
+                        const isMatched = pairedKrId !== null;
+                        const pairStyle = isMatched ? getPairStyle(pairedKrId) : '';
+                        const badge = isMatched ? getPairNumberBadge(pairedKrId) : null;
                         
                         let btnClass = 'bg-secondary/30 border-transparent hover:border-primary/20 text-charcoal';
                         if (isMatched) {
@@ -293,11 +307,11 @@ export function MatchingTask({ words, onComplete, onMiss }: MatchingTaskProps) {
 
                         return (
                             <button
-                                key={opt.wordKr}
-                                onClick={() => handleSelectMeaning(opt.wordKr)}
+                                key={item.id}
+                                onClick={() => handleSelectMeaning(item.id)}
                                 className={`w-full p-6 rounded-3xl border-2 font-bold text-lg transition-all flex items-center justify-between min-h-[72px] text-left ${btnClass}`}
                             >
-                                <span>{opt.text}</span>
+                                <span>{item.text}</span>
                                 {badge}
                             </button>
                         );
