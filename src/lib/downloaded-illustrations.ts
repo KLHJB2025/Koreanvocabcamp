@@ -28,6 +28,8 @@ export const DOWNLOADED_ILLUSTRATIONS = new Set([
   "갚다",
   "개",
   "개월",
+  "거",
+  "거기",
   "거리",
   "거실",
   "거울",
