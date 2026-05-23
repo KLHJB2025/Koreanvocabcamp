@@ -28,6 +28,7 @@ export const DOWNLOADED_ILLUSTRATIONS = new Set([
   "거리",
   "거실",
   "거울",
+  "거의",
   "걱정",
   "건너가다",
   "건너다",

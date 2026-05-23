@@ -316,7 +316,7 @@ export function ScenarioTask({ words, onComplete, mascotName }: ScenarioTaskProp
                                             )}
                                             
                                             <img 
-                                                src={`https://image.pollinations.ai/prompt/${encodeURIComponent(currentTask.scenePrompt)}?width=640&height=480&nologo=true`} 
+                                                src={`https://image.pollinations.ai/prompt/${encodeURIComponent(currentTask.scenePrompt)}?width=640&height=480&nologo=true&model=sana`} 
                                                 alt="Scene illustration" 
                                                 className={`w-full h-full object-cover transition-all duration-750 group-hover:scale-[1.02] ${imageLoaded ? 'opacity-100 scale-100' : 'opacity-0 scale-95'}`}
                                                 onLoad={() => setImageLoaded(true)}
@@ -449,7 +449,7 @@ export function ScenarioTask({ words, onComplete, mascotName }: ScenarioTaskProp
                                         </div>
                                     )}
                                     <img 
-                                        src={`https://image.pollinations.ai/prompt/realistic%20photography%20representing%20the%20scene:%20${encodeURIComponent(currentTask.word.sentenceMeaning || '')}?width=500&height=500&nologo=true`} 
+                                        src={`https://image.pollinations.ai/prompt/realistic%20photography%20representing%20the%20scene:%20${encodeURIComponent(currentTask.word.sentenceMeaning || '')}?width=500&height=500&nologo=true&model=sana`} 
                                         alt="Context scene" 
                                         className={`w-full h-full object-cover transition-all duration-500 ${imageLoaded ? 'opacity-100' : 'opacity-0'}`}
                                         onLoad={() => setImageLoaded(true)}
