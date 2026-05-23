@@ -16,7 +16,8 @@ export function ListeningTask({ words, onComplete, onMiss }: ListeningTaskProps)
     const [options, setOptions] = useState<Word[]>([]);
     const [selectedId, setSelectedId] = useState<string | null>(null);
     const [isCorrect, setIsCorrect] = useState<boolean | null>(null);
-    const { t } = useTranslation();
+    const [isSubmitted, setIsSubmitted] = useState(false);
+    const { t, language } = useTranslation();
 
     const speak = (word: string, rate: number = 1.0) => {
         const cleanName = word.replace(/[<>:"/\\|?*]/g, '');
@@ -35,6 +36,7 @@ export function ListeningTask({ words, onComplete, onMiss }: ListeningTaskProps)
             setOptions([...shuffled, current].sort(() => Math.random() - 0.5));
             setSelectedId(null);
             setIsCorrect(null);
+            setIsSubmitted(false);
             
             // Auto play sound
             speak(current.kr);
@@ -42,22 +44,28 @@ export function ListeningTask({ words, onComplete, onMiss }: ListeningTaskProps)
     }, [currentIndex, words]);
 
     const handleSelect = (word: Word) => {
-        if (selectedId) return;
+        if (isSubmitted) return;
         setSelectedId(word.kr);
-        const correct = word.kr === words[currentIndex].kr;
+    };
+
+    const handleSubmit = () => {
+        if (!selectedId || isSubmitted) return;
+        
+        const correct = selectedId === words[currentIndex].kr;
         setIsCorrect(correct);
+        setIsSubmitted(true);
 
         if (!correct) {
             onMiss(words[currentIndex]);
         }
+    };
 
-        setTimeout(() => {
-            if (currentIndex < words.length - 1) {
-                setCurrentIndex(prev => prev + 1);
-            } else {
-                onComplete();
-            }
-        }, 1500);
+    const handleNext = () => {
+        if (currentIndex < words.length - 1) {
+            setCurrentIndex(prev => prev + 1);
+        } else {
+            onComplete();
+        }
     };
 
     return (
@@ -86,20 +94,57 @@ export function ListeningTask({ words, onComplete, onMiss }: ListeningTaskProps)
                 {t('tasks.listening.instruction')}
             </h3>
 
-            <div className="grid grid-cols-2 gap-6">
-                {options.map((opt) => (
+            <div className="grid grid-cols-2 gap-6 mb-8">
+                {options.map((opt) => {
+                    const isSelected = selectedId === opt.kr;
+                    const isCorrectAnswer = opt.kr === words[currentIndex].kr;
+                    
+                    let btnClass = 'bg-secondary/30 border-transparent hover:border-primary/20 text-charcoal';
+                    if (isSubmitted) {
+                        if (isCorrectAnswer) {
+                            btnClass = 'bg-emerald-50 border-emerald-400 text-emerald-600';
+                        } else if (isSelected) {
+                            btnClass = 'bg-rose-50 border-rose-400 text-rose-600';
+                        } else {
+                            btnClass = 'bg-secondary/10 border-transparent text-charcoal/40 opacity-60';
+                        }
+                    } else if (isSelected) {
+                        btnClass = 'bg-primary/10 border-primary text-primary';
+                    }
+
+                    return (
+                        <button
+                            key={opt.kr}
+                            onClick={() => handleSelect(opt)}
+                            className={`p-8 rounded-[32px] border-2 transition-all text-2xl font-black italic ${btnClass}`}
+                        >
+                            {opt.kr}
+                        </button>
+                    );
+                })}
+            </div>
+
+            <div className="mt-8">
+                {!isSubmitted ? (
                     <button
-                        key={opt.kr}
-                        onClick={() => handleSelect(opt)}
-                        className={`p-8 rounded-[32px] border-2 transition-all text-2xl font-black italic ${
-                            selectedId === opt.kr 
-                                ? (isCorrect ? 'bg-emerald-50 border-emerald-400 text-emerald-600' : 'bg-rose-50 border-rose-400 text-rose-600')
-                                : 'bg-secondary/30 border-transparent hover:border-primary/20 text-charcoal'
+                        onClick={handleSubmit}
+                        disabled={!selectedId}
+                        className={`w-full py-5 text-xl font-black italic rounded-[32px] flex items-center justify-center gap-3 transition-all transform active:scale-95 ${
+                            selectedId 
+                                ? 'bg-primary text-white shadow-xl shadow-primary/30 hover:bg-primary/90' 
+                                : 'bg-secondary/30 text-charcoal/30 border-2 border-dashed border-charcoal/10 cursor-not-allowed'
                         }`}
                     >
-                        {opt.kr}
+                        {language === 'zh' ? '提交答案' : 'Submit Answer'}
                     </button>
-                ))}
+                ) : (
+                    <button
+                        onClick={handleNext}
+                        className="w-full py-5 text-xl font-black italic bg-charcoal hover:bg-charcoal/90 text-white rounded-[32px] flex items-center justify-center gap-3 transition-all transform active:scale-95 shadow-xl"
+                    >
+                        {language === 'zh' ? '下一题' : 'Next Question'}
+                    </button>
+                )}
             </div>
         </div>
     );

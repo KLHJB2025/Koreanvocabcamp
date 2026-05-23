@@ -172,45 +172,40 @@ export function ScenarioTask({ words, onComplete, mascotName }: ScenarioTaskProp
         const updated = [...labelingItems];
         updated[targetIndex].inputValue = text;
         setLabelingItems(updated);
-
-        const item = updated[targetIndex];
-        if (text.trim() === item.correctKr) {
-            updated[targetIndex].isCorrect = true;
-            setLabelingItems(updated);
-            setLabelingErrorId(null);
-            playAudio(item.correctKr, 'word');
-
-            if (updated.every(i => i.isCorrect)) {
-                setTimeout(() => {
-                    advanceTask();
-                }, 1500);
-            }
-        }
     };
 
-    // Validate labeling item on Enter keypress
+    // Validate labeling item on Enter keypress (validates all)
     const validateLabelItem = (idx: number) => {
-        const item = labelingItems[idx];
-        if (item.isCorrect) return;
+        validateAllLabelItems();
+    };
 
-        if (item.inputValue.trim() === item.correctKr) {
-            const updated = [...labelingItems];
-            updated[idx].isCorrect = true;
-            setLabelingItems(updated);
-            setLabelingErrorId(null);
-            playAudio(item.correctKr, 'word');
+    // Validate all labels at once on submit button click
+    const validateAllLabelItems = () => {
+        const updated = [...labelingItems];
+        let hasWrong = false;
+        let firstWrongItem: LabelingItem | null = null;
 
-            if (updated.every(i => i.isCorrect)) {
-                setTimeout(() => {
-                    advanceTask();
-                }, 1500);
+        for (const item of updated) {
+            if (item.isCorrect) continue;
+
+            if (item.inputValue.trim() === item.correctKr) {
+                item.isCorrect = true;
+                playAudio(item.correctKr, 'word');
+            } else {
+                hasWrong = true;
+                if (!firstWrongItem) {
+                    firstWrongItem = item;
+                }
+                // Automatically reveal hint for wrong items
+                setRevealedLabelHints(prev => ({ ...prev, [item.correctKr]: true }));
             }
-        } else {
-            setLabelingErrorId(item.english);
-            // Automatically reveal hint to encourage them and provide feedback
-            setRevealedLabelHints(prev => ({ ...prev, [item.correctKr]: true }));
-            
-            // Reset error animation after 1.5s
+        }
+
+        setLabelingItems(updated);
+
+        if (hasWrong && firstWrongItem) {
+            // Trigger error state for the first incorrect item
+            setLabelingErrorId(firstWrongItem.english);
             setTimeout(() => {
                 setLabelingErrorId(null);
             }, 1500);
@@ -229,14 +224,15 @@ export function ScenarioTask({ words, onComplete, mascotName }: ScenarioTaskProp
         if (correct) {
             playAudio(targetWord.kr, 'word');
             setShowSentenceHint(false);
-            setTimeout(() => {
-                setSentenceInput('');
-                setIsSentenceCorrect(null);
-                advanceTask();
-            }, 1500);
         } else {
             setTimeout(() => setIsSentenceCorrect(null), 1500);
         }
+    };
+
+    const handleSentenceNext = () => {
+        setSentenceInput('');
+        setIsSentenceCorrect(null);
+        advanceTask();
     };
 
     // Advance to the next game card / complete step
@@ -407,6 +403,27 @@ export function ScenarioTask({ words, onComplete, mascotName }: ScenarioTaskProp
                                                 </div>
                                             );
                                         })}
+
+                                        {/* Submit Button for Labeling */}
+                                        {!labelingItems.every(item => item.isCorrect) ? (
+                                            <button
+                                                type="button"
+                                                onClick={validateAllLabelItems}
+                                                className="btn-primary-cute w-full py-4 text-sm font-black mt-2 flex items-center justify-center gap-2"
+                                            >
+                                                {language === 'zh' ? '提交检查' : 'Submit & Check'}
+                                                <ArrowRight size={16} />
+                                            </button>
+                                        ) : (
+                                            <button
+                                                type="button"
+                                                onClick={advanceTask}
+                                                className="w-full py-4 text-sm font-black mt-2 bg-charcoal hover:bg-charcoal/90 text-white rounded-2xl flex items-center justify-center gap-2 shadow-lg transition-all transform active:scale-95"
+                                            >
+                                                {language === 'zh' ? '下一步' : 'Next Task'}
+                                                <ArrowRight size={16} />
+                                            </button>
+                                        )}
                                     </div>
                                 </div>
                             </div>
@@ -482,30 +499,40 @@ export function ScenarioTask({ words, onComplete, mascotName }: ScenarioTaskProp
                                             )}
                                         </div>
 
-                                        <div className="flex gap-3">
+                                        {isSentenceCorrect === true ? (
                                             <button 
                                                 type="button"
-                                                onClick={() => setShowSentenceHint(true)}
-                                                className="px-5 py-4 rounded-[16px] bg-amber-50 text-amber-600 font-bold border border-amber-200 hover:bg-amber-100 transition-colors flex items-center gap-2 text-sm"
+                                                onClick={handleSentenceNext}
+                                                className="w-full py-4 text-sm font-black bg-charcoal hover:bg-charcoal/90 text-white rounded-2xl flex items-center justify-center gap-2 shadow-lg transition-all transform active:scale-95 animate-bounce-short"
                                             >
-                                                <HelpCircle size={16} />
-                                                {showSentenceHint ? (language === 'zh' ? currentTask.word.zh : currentTask.word.en) : 'Hint?'}
-                                            </button>
-
-                                            <button 
-                                                type="submit"
-                                                disabled={isSentenceCorrect === true}
-                                                className="btn-primary-cute flex-1 py-4 text-sm font-black flex items-center justify-center gap-2"
-                                            >
-                                                {t('tasks.spelling.confirm') || 'Confirm'}
+                                                {language === 'zh' ? '下一题' : 'Next Question'}
                                                 <ArrowRight size={16} />
                                             </button>
-                                        </div>
-                                    </form>
-                                </div>
-                            </div>
-                        )}
-                    </motion.div>
+                                        ) : (
+                                            <div className="flex gap-3">
+                                                <button 
+                                                    type="button"
+                                                    onClick={() => setShowSentenceHint(true)}
+                                                    className="px-5 py-4 rounded-[16px] bg-amber-50 text-amber-600 font-bold border border-amber-200 hover:bg-amber-100 transition-colors flex items-center gap-2 text-sm"
+                                                >
+                                                    <HelpCircle size={16} />
+                                                    {showSentenceHint ? (language === 'zh' ? currentTask.word.zh : currentTask.word.en) : 'Hint?'}
+                                                </button>
+
+                                                <button 
+                                                    type="submit"
+                                                    className="btn-primary-cute flex-1 py-4 text-sm font-black flex items-center justify-center gap-2"
+                                                >
+                                                    {t('tasks.spelling.confirm') || 'Confirm'}
+                                                    <ArrowRight size={16} />
+                                                </button>
+                                            </div>
+                                        )}
+                                     </form>
+                                 </div>
+                             </div>
+                         )}
+                     </motion.div>
                 ) : (
                     /* --------------------- CONGRATS SCREEN --------------------- */
                     <motion.div 

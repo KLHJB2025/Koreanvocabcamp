@@ -25,13 +25,15 @@ export function ErrorReviewTask({ words, onComplete }: ErrorReviewTaskProps) {
             handleNext(false); // Move to next, but word was wrong
             return;
         }
+        if (isCorrect === true) {
+            handleNext(true);
+            return;
+        }
 
         const correct = input.trim() === currentWord.kr;
         setIsCorrect(correct);
 
-        if (correct) {
-            setTimeout(() => handleNext(true), 1000);
-        } else {
+        if (!correct) {
             setShowCorrection(true);
         }
     };
@@ -97,7 +99,7 @@ export function ErrorReviewTask({ words, onComplete }: ErrorReviewTaskProps) {
                         onChange={(e) => setInput(e.target.value)}
                         placeholder={t('tasks.spelling.placeholder')}
                         autoFocus
-                        disabled={showCorrection}
+                        disabled={showCorrection || isCorrect === true}
                         className={`w-full p-8 rounded-[40px] border-4 text-4xl font-black italic text-center outline-none transition-all ${
                             isCorrect === true ? 'border-emerald-400 bg-emerald-50 text-emerald-600' :
                             isCorrect === false ? 'border-strawberry/40 bg-strawberry/5 text-strawberry' :
@@ -121,17 +123,28 @@ export function ErrorReviewTask({ words, onComplete }: ErrorReviewTaskProps) {
                     )}
                 </div>
                 
-                <button 
-                    type="submit"
-                    className={`w-full py-8 text-2xl font-black italic rounded-[40px] flex items-center justify-center gap-3 transition-all transform active:scale-95 ${
-                        showCorrection 
-                        ? 'bg-charcoal text-white shadow-xl' 
-                        : 'bg-strawberry text-white shadow-xl shadow-strawberry/30 hover:bg-strawberry/90'
-                    }`}
-                >
-                    {showCorrection ? (t('tasks.errorReview.gotIt') || 'I got it!') : (t('tasks.spelling.confirm'))}
-                    <ArrowRight size={28} />
-                </button>
+                {isCorrect === true ? (
+                    <button 
+                        type="button"
+                        onClick={() => handleNext(true)}
+                        className="w-full py-8 text-2xl font-black bg-charcoal hover:bg-charcoal/90 text-white rounded-[40px] flex items-center justify-center gap-3 transition-all transform active:scale-95 shadow-xl animate-bounce-short"
+                    >
+                        {language === 'zh' ? '下一题' : 'Next Question'}
+                        <ArrowRight size={28} />
+                    </button>
+                ) : (
+                    <button 
+                        type="submit"
+                        className={`w-full py-8 text-2xl font-black italic rounded-[40px] flex items-center justify-center gap-3 transition-all transform active:scale-95 ${
+                            showCorrection 
+                            ? 'bg-charcoal text-white shadow-xl' 
+                            : 'bg-strawberry text-white shadow-xl shadow-strawberry/30 hover:bg-strawberry/90'
+                        }`}
+                    >
+                        {showCorrection ? (t('tasks.errorReview.gotIt') || 'I got it!') : (t('tasks.spelling.confirm'))}
+                        <ArrowRight size={28} />
+                    </button>
+                )}
             </form>
 
             <div className="mt-12 flex justify-center gap-2">

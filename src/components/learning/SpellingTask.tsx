@@ -21,22 +21,24 @@ export function SpellingTask({ words, onComplete, onMiss }: SpellingTaskProps) {
 
     const handleSubmit = (e: React.FormEvent) => {
         e.preventDefault();
+        if (isCorrect === true) return;
+        
         const correct = input.trim() === currentWord.kr;
         setIsCorrect(correct);
 
-        if (correct) {
-            setTimeout(() => {
-                if (currentIndex < words.length - 1) {
-                    setCurrentIndex(prev => prev + 1);
-                    setInput('');
-                    setIsCorrect(null);
-                } else {
-                    onComplete();
-                }
-            }, 1000);
-        } else {
+        if (!correct) {
             onMiss(currentWord);
             setTimeout(() => setIsCorrect(null), 1500);
+        }
+    };
+
+    const handleNext = () => {
+        if (currentIndex < words.length - 1) {
+            setCurrentIndex(prev => prev + 1);
+            setInput('');
+            setIsCorrect(null);
+        } else {
+            onComplete();
         }
     };
 
@@ -72,6 +74,7 @@ export function SpellingTask({ words, onComplete, onMiss }: SpellingTaskProps) {
                     onChange={(e) => setInput(e.target.value)}
                     placeholder={t('tasks.spelling.placeholder')}
                     autoFocus
+                    disabled={isCorrect === true}
                     className={`w-full p-8 rounded-[32px] border-4 text-4xl font-black italic text-center outline-none transition-all ${
                         isCorrect === true ? 'border-emerald-400 bg-emerald-50 text-emerald-600' :
                         isCorrect === false ? 'border-rose-400 bg-rose-50 text-rose-600' :
@@ -79,13 +82,29 @@ export function SpellingTask({ words, onComplete, onMiss }: SpellingTaskProps) {
                     }`}
                 />
                 
-                <button 
-                    type="submit"
-                    className="btn-primary-cute w-full py-6 text-xl flex items-center justify-center gap-3"
-                >
-                    {t('tasks.spelling.confirm')}
-                    <ArrowRight size={24} />
-                </button>
+                {isCorrect === true ? (
+                    <button 
+                        type="button"
+                        onClick={handleNext}
+                        className="w-full py-6 text-xl font-black bg-charcoal hover:bg-charcoal/90 text-white rounded-[32px] flex items-center justify-center gap-3 transition-all transform active:scale-95 shadow-xl"
+                    >
+                        {language === 'zh' ? '下一题' : 'Next Question'}
+                        <ArrowRight size={24} />
+                    </button>
+                ) : (
+                    <button 
+                        type="submit"
+                        disabled={!input.trim()}
+                        className={`w-full py-6 text-xl flex items-center justify-center gap-3 transition-all transform active:scale-95 ${
+                            input.trim()
+                            ? 'btn-primary-cute'
+                            : 'bg-secondary/30 text-charcoal/30 border-2 border-dashed border-charcoal/10 cursor-not-allowed rounded-[32px]'
+                        }`}
+                    >
+                        {t('tasks.spelling.confirm')}
+                        <ArrowRight size={24} />
+                    </button>
+                )}
             </form>
 
             <p className="mt-8 text-[10px] font-black uppercase tracking-widest text-charcoal/20 italic">
