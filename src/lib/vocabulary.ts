@@ -206,6 +206,15 @@ export function isConcreteWord(word: Word): boolean {
     return isNoun && !hasAbstractCategory && !hasAbstractMeaning;
 }
 
+export function cleanPrompt(text: string): string {
+    if (!text) return '';
+    return text
+        .replace(/[\/\\]/g, ' or ')
+        .replace(/[\?\\#%&~`|:;<>'"()[\]{}.,!]/g, ' ')
+        .replace(/\s+/g, ' ')
+        .trim();
+}
+
 /**
  * Returns the illustration URL for a word.
  * If a static illustrationUrl is defined, it is used.
@@ -226,11 +235,13 @@ export function getIllustrationUrl(word: Word): string {
     const isConcrete = isConcreteWord(word);
 
     if (!isConcrete && word.sentenceMeaning && word.sentenceMeaning !== 'TBD') {
-        return `https://image.pollinations.ai/prompt/realistic%20photography%20representing%20the%20scene:%20${encodeURIComponent(word.sentenceMeaning)}?width=400&height=400&nologo=true`;
+        const cleanScene = cleanPrompt(word.sentenceMeaning);
+        return `https://image.pollinations.ai/prompt/realistic%20photography%20representing%20the%20scene:%20${encodeURIComponent(cleanScene)}?width=400&height=400&nologo=true&model=sana`;
     }
 
     const enMeaning = word.en || '';
-    return `https://image.pollinations.ai/prompt/realistic%20photography%20of%20${encodeURIComponent(enMeaning)}?width=400&height=400&nologo=true`;
+    const cleanEn = cleanPrompt(enMeaning);
+    return `https://image.pollinations.ai/prompt/realistic%20photography%20of%20${encodeURIComponent(cleanEn)}?width=400&height=400&nologo=true&model=sana`;
 }
 
 /**
@@ -280,15 +291,16 @@ export function getMissionImageUrls(words: Word[]): string[] {
             sceneHeader = 'a friendly cartoon neighborhood, office, or family home environment background scene';
         }
 
-        const itemsList = concrete.map(w => w.en).join(', a ');
-        const scenePrompt = `high quality digital illustration of ${sceneHeader} containing a ${itemsList}. Labeled details, soft bright colors, vector graphics style.`;
-        urls.push(`https://image.pollinations.ai/prompt/${encodeURIComponent(scenePrompt)}?width=640&height=480&nologo=true`);
+        const itemsList = concrete.map(w => cleanPrompt(w.en || '')).join(', a ');
+        const scenePrompt = cleanPrompt(`high quality digital illustration of ${sceneHeader} containing a ${itemsList}. Labeled details, soft bright colors, vector graphics style.`);
+        urls.push(`https://image.pollinations.ai/prompt/${encodeURIComponent(scenePrompt)}?width=640&height=480&nologo=true&model=sana`);
     }
 
     // Abstract Scenario sentence images
     abstract.forEach(w => {
         if (w.sentenceMeaning && w.sentenceMeaning !== 'TBD') {
-            urls.push(`https://image.pollinations.ai/prompt/realistic%20photography%20representing%20the%20scene:%20${encodeURIComponent(w.sentenceMeaning)}?width=500&height=500&nologo=true`);
+            const cleanScene = cleanPrompt(w.sentenceMeaning);
+            urls.push(`https://image.pollinations.ai/prompt/realistic%20photography%20representing%20the%20scene:%20${encodeURIComponent(cleanScene)}?width=500&height=500&nologo=true&model=sana`);
         }
     });
 
