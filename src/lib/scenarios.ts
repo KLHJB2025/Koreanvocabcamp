@@ -162,3 +162,69 @@ export function buildScenario(words: Word[], lang: 'en' | 'zh', mascotName?: str
         introText: template.intro(lang, mascotName)
     };
 }
+
+export interface AIStory {
+    title: string;
+    story: string;
+}
+
+function extractJson(text: string): any {
+    try {
+        // Try parsing directly
+        return JSON.parse(text.trim());
+    } catch {
+        // Try extracting from markdown code blocks
+        const match = text.match(/```json\s*([\s\S]*?)\s*```/) || text.match(/```\s*([\s\S]*?)\s*```/);
+        if (match) {
+            try {
+                return JSON.parse(match[1].trim());
+            } catch {}
+        }
+        // Fallback: extract anything between { and }
+        const braceMatch = text.match(/\{[\s\S]*\}/);
+        if (braceMatch) {
+            try {
+                return JSON.parse(braceMatch[0].trim());
+            } catch {}
+        }
+    }
+    throw new Error('Failed to parse JSON');
+}
+
+export function getFallbackStory(words: Word[], lang: 'zh' | 'en'): AIStory {
+    const title = lang === 'zh' ? '今日情境小故事' : 'Today\'s Story';
+    const sentences = words.map(w => {
+        if (lang === 'zh') {
+            return w.sentenceZh || `${w.zh}很常见。`;
+        } else {
+            return w.sentenceMeaning || `This represents the word: ${w.en}.`;
+        }
+    });
+    return {
+        title,
+        story: sentences.join(' ')
+    };
+}
+
+export async function fetchAIStory(words: Word[], lang: 'zh' | 'en'): Promise<AIStory> {
+    const wordTranslations = words.map(w => lang === 'zh' ? w.zh : w.en).filter(Boolean);
+    const wordListStr = wordTranslations.map(t => `"${t}"`).join(', ');
+    
+    const systemPrompt = `You are a creative writer. Write a short, engaging story or dialogue in ${lang === 'zh' ? 'Chinese' : 'English'} (max 180 words) that naturally includes these exact terms: ${wordListStr}. 
+Important: 
+1. You must use the exact terms provided, without changing them (e.g., if "镜子" is given, do not use "镜面").
+2. The story must make logical sense.
+3. Return ONLY a JSON object in this format: { "title": "story title", "story": "story text" }. No markdown wrapper, no extra text, just the raw JSON.`;
+
+    try {
+        const response = await fetch(`https://text.pollinations.ai/${encodeURIComponent(systemPrompt)}`);
+        if (!response.ok) throw new Error('Network response was not ok');
+        const text = await response.text();
+        
+        return extractJson(text);
+    } catch (error) {
+        console.error('Failed to fetch AI story, using fallback:', error);
+        return getFallbackStory(words, lang);
+    }
+}
+

@@ -255,53 +255,11 @@ export function getMissionImageUrls(words: Word[]): string[] {
         urls.push(getIllustrationUrl(w));
     });
 
-    // 2. Scenario task image URLs
-    const concrete = words.filter(isConcreteWord);
-    const abstract = words.filter(w => !isConcreteWord(w));
-
-    // Concrete Scenario scene image
-    if (concrete.length > 0) {
-        const themeCounts: Record<string, number> = {};
-        concrete.forEach(w => {
-            const cat = w.category || 'miscellaneous';
-            themeCounts[cat] = (themeCounts[cat] || 0) + 1;
-        });
-        
-        let dominantTheme = 'miscellaneous';
-        let maxCount = 0;
-        for (const [theme, count] of Object.entries(themeCounts)) {
-            if (count > maxCount) {
-                maxCount = count;
-                dominantTheme = theme;
-            }
-        }
-
-        let sceneHeader = 'a cheerful and clean cartoon playroom background scene';
-        if (dominantTheme === 'food_dining') {
-            sceneHeader = 'a clean, bright cartoon kitchen or restaurant dining table background scene';
-        } else if (dominantTheme === 'school_education') {
-            sceneHeader = 'a cheerful cartoon school classroom with a blackboard background scene';
-        } else if (dominantTheme === 'home_living') {
-            sceneHeader = 'a cozy and warm cartoon living room or bedroom background scene';
-        } else if (dominantTheme === 'city_travel_places') {
-            sceneHeader = 'a vibrant and friendly cartoon city street or park background scene';
-        } else if (dominantTheme === 'nature_animals_plants') {
-            sceneHeader = 'a beautiful sunny cartoon park, garden, or forest background scene';
-        } else if (dominantTheme === 'people_jobs_family') {
-            sceneHeader = 'a friendly cartoon neighborhood, office, or family home environment background scene';
-        }
-
-        const itemsList = concrete.map(w => cleanPrompt(w.en || '')).join(', a ');
-        const scenePrompt = cleanPrompt(`high quality digital illustration of ${sceneHeader} containing a ${itemsList}. Labeled details, soft bright colors, vector graphics style.`);
-        urls.push(`https://image.pollinations.ai/prompt/${encodeURIComponent(scenePrompt)}?width=640&height=480&nologo=true&model=sana`);
-    }
-
-    // Abstract Scenario sentence images
-    abstract.forEach(w => {
-        if (w.sentenceMeaning && w.sentenceMeaning !== 'TBD') {
-            const cleanScene = cleanPrompt(w.sentenceMeaning);
-            urls.push(`https://image.pollinations.ai/prompt/realistic%20photography%20representing%20the%20scene:%20${encodeURIComponent(cleanScene)}?width=500&height=500&nologo=true&model=sana`);
-        }
+    // 2. Scenario cover images for potential mascots
+    const mascots = ['Boopi', 'Pippi', 'Chupi', 'Kopi'];
+    mascots.forEach(mascot => {
+        const coverPrompt = `cute cartoon illustration of mascot ${mascot} studying in a cozy library, map of Korea in background, soft bright colors, vector graphics style`;
+        urls.push(`https://image.pollinations.ai/prompt/${encodeURIComponent(coverPrompt)}?width=640&height=480&nologo=true&model=sana`);
     });
 
     return urls;
