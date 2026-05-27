@@ -145,14 +145,22 @@ export function MatchingTask({ words, onComplete, onMiss }: MatchingTaskProps) {
         
         const getCleanParts = (text: string) => {
             return text.split(/[\/,，]/)
-                .map(p => p.replace(/\([^)]*\)/g, '').replace(/\（[^）]*\）/g, '').trim().toLowerCase())
+                .map(p => {
+                    let cleaned = p.trim().toLowerCase();
+                    // Strip 'to ' prefix for English verbs to align them
+                    if (cleaned.startsWith('to ')) {
+                        cleaned = cleaned.substring(3).trim();
+                    }
+                    return cleaned;
+                })
                 .filter(Boolean);
         };
         
         const targetParts = getCleanParts(target);
         const candidateParts = getCleanParts(candidate);
         
-        return targetParts.some(tp => candidateParts.some(cp => tp === cp || tp.includes(cp) || cp.includes(tp)));
+        // Strictly check if there is at least one exact match in the split candidate meanings
+        return targetParts.some(tp => candidateParts.some(cp => tp === cp));
     };
 
     const handleSubmit = () => {
