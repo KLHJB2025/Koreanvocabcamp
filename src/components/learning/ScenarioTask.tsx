@@ -6,7 +6,7 @@ import { Word } from '@/lib/vocabulary-data';
 import { useTranslation } from '@/hooks/use-translation';
 import { Sparkles, ArrowRight, CheckCircle2, Volume2, Loader2 } from 'lucide-react';
 import { playSuccessSound, playErrorSound } from '@/lib/sound';
-import { fetchAIStory } from '@/lib/scenarios';
+import { fetchAIStory, findTranslationInStory, getCleanCandidate } from '@/lib/scenarios';
 
 interface ScenarioTaskProps {
     words: Word[];
@@ -57,17 +57,18 @@ export function ScenarioTask({ words, onComplete, mascotName }: ScenarioTaskProp
             // Fallback strategy: ensure every single word is represented.
             // If the AI missed some words, append them naturally to the story.
             const missedWords = words.filter(w => {
-                const targetText = (lang === 'zh' ? w.zh : w.en || '').trim().toLowerCase();
-                return !textToParse.toLowerCase().includes(targetText);
+                const matchResult = findTranslationInStory(w, textToParse, lang);
+                return !matchResult || matchResult.index === -1;
             });
             
             if (missedWords.length > 0) {
                 let additions = '';
                 missedWords.forEach(w => {
+                    const cleanTrans = getCleanCandidate(w, lang);
                     if (lang === 'zh') {
-                        additions += ` 另外，我还注意到了${w.zh}。`;
+                        additions += ` 另外，我还看到了${cleanTrans}。`;
                     } else {
-                        additions += ` Also, I noticed the ${w.en || ''}.`;
+                        additions += ` Also, I noticed the ${cleanTrans}.`;
                     }
                 });
                 textToParse += additions;
@@ -85,21 +86,16 @@ export function ScenarioTask({ words, onComplete, mascotName }: ScenarioTaskProp
             });
 
             sortedWords.forEach(w => {
-                const translation = (lang === 'zh' ? w.zh : w.en || '').trim();
-                if (!translation) return;
+                const matchResult = findTranslationInStory(w, textToParse, lang);
+                if (!matchResult) return;
 
-                let index = -1;
-                if (lang === 'zh') {
-                    index = textToParse.indexOf(translation);
-                } else {
-                    index = textToParse.toLowerCase().indexOf(translation.toLowerCase());
-                }
+                const { translation, index } = matchResult;
 
                 // Check if index is valid and not already consumed by a longer word match
                 if (index !== -1 && !Array.from(usedIndices).some(i => index >= i && index < i + translation.length)) {
                     matches.push({
                         word: w,
-                        translation: textToParse.substring(index, index + translation.length), // preserve case in story
+                        translation,
                         index,
                         length: translation.length
                     });

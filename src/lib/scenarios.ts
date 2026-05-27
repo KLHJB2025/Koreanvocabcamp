@@ -168,19 +168,69 @@ export interface AIStory {
     story: string;
 }
 
+export function getCleanCandidate(word: Word, lang: 'zh' | 'en'): string {
+    const raw = (lang === 'zh' ? word.zh : word.en || '').trim();
+    if (!raw) return '';
+    const cleanPart = (part: string) => {
+        return part.replace(/\([^)]*\)/g, '').replace(/\（[^）]*\）/g, '').trim();
+    };
+    const firstPart = raw.split(/[\/,，]/)[0];
+    return cleanPart(firstPart);
+}
+
+export function findTranslationInStory(word: Word, storyText: string, lang: 'zh' | 'en'): { translation: string, index: number } | null {
+    const raw = (lang === 'zh' ? word.zh : word.en || '').trim();
+    if (!raw) return null;
+    
+    const cleanPart = (part: string) => {
+        return part.replace(/\([^)]*\)/g, '').replace(/\（[^）]*\）/g, '').trim();
+    };
+    
+    const candidates: string[] = [];
+    const parts = raw.split(/[\/,，]/);
+    parts.forEach(p => {
+        const cleaned = cleanPart(p);
+        if (cleaned) {
+            candidates.push(cleaned);
+        }
+    });
+    
+    for (const cand of candidates) {
+        let idx = -1;
+        if (lang === 'zh') {
+            idx = storyText.indexOf(cand);
+        } else {
+            idx = storyText.toLowerCase().indexOf(cand.toLowerCase());
+        }
+        
+        if (idx !== -1) {
+            return {
+                translation: storyText.substring(idx, idx + cand.length),
+                index: idx
+            };
+        }
+    }
+    
+    if (candidates.length > 0) {
+        return {
+            translation: candidates[0],
+            index: -1
+        };
+    }
+    
+    return null;
+}
+
 function extractJson(text: string): any {
     try {
-        // Try parsing directly
         return JSON.parse(text.trim());
     } catch {
-        // Try extracting from markdown code blocks
         const match = text.match(/```json\s*([\s\S]*?)\s*```/) || text.match(/```\s*([\s\S]*?)\s*```/);
         if (match) {
             try {
                 return JSON.parse(match[1].trim());
             } catch {}
         }
-        // Fallback: extract anything between { and }
         const braceMatch = text.match(/\{[\s\S]*\}/);
         if (braceMatch) {
             try {
@@ -192,32 +242,51 @@ function extractJson(text: string): any {
 }
 
 export function getFallbackStory(words: Word[], lang: 'zh' | 'en'): AIStory {
-    const title = lang === 'zh' ? '今日情境小故事' : 'Today\'s Story';
-    const sentences = words.map(w => {
-        if (lang === 'zh') {
-            return w.sentenceZh || `${w.zh}很常见。`;
-        } else {
-            return w.sentenceMeaning || `This represents the word: ${w.en}.`;
-        }
+    const title = lang === 'zh' ? '今日词汇例句挑战' : 'Today\'s Sentence Challenge';
+    const lines = words.map((w, index) => {
+        const sentence = lang === 'zh' 
+            ? (w.sentenceZh || `${w.zh}很常见。`)
+            : (w.sentenceMeaning || `This represents the word: ${w.en || ''}.`);
+        return `${index + 1}. ${sentence}`;
     });
     return {
         title,
-        story: sentences.join(' ')
+        story: lines.join('\n')
     };
 }
 
 export async function fetchAIStory(words: Word[], lang: 'zh' | 'en'): Promise<AIStory> {
-    const wordTranslations = words.map(w => lang === 'zh' ? w.zh : w.en).filter(Boolean);
+    const wordTranslations = words.map(w => getCleanCandidate(w, lang)).filter(Boolean);
     const wordListStr = wordTranslations.map(t => `"${t}"`).join(', ');
     
     const systemPrompt = `You are a creative writer. Write a short, engaging story or dialogue in ${lang === 'zh' ? 'Chinese' : 'English'} (max 180 words) that naturally includes these exact terms: ${wordListStr}. 
 Important: 
-1. You must use the exact terms provided, without changing them (e.g., if "镜子" is given, do not use "镜面").
-2. The story must make logical sense.
-3. Return ONLY a JSON object in this format: { "title": "story title", "story": "story text" }. No markdown wrapper, no extra text, just the raw JSON.`;
+1. You must use the exact terms provided, without changing them (e.g., if "singer" is given, do not use "song").
+2. The story must make logical sense, flow beautifully, and be coherent.
+3. Return ONLY a JSON object in this format: { "title": "story title", "story": "story text" }.`;
+
+    const payload = {
+        messages: [
+            {
+                role: 'system',
+                content: systemPrompt
+            },
+            {
+                role: 'user',
+                content: `Write a coherent, creative short story containing: ${wordListStr}.`
+            }
+        ],
+        jsonMode: true
+    };
 
     try {
-        const response = await fetch(`https://text.pollinations.ai/${encodeURIComponent(systemPrompt)}`);
+        const response = await fetch('https://text.pollinations.ai/', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(payload)
+        });
         if (!response.ok) throw new Error('Network response was not ok');
         const text = await response.text();
         
