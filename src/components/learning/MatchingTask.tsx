@@ -137,6 +137,24 @@ export function MatchingTask({ words, onComplete, onMiss }: MatchingTaskProps) {
         }
     };
 
+    const isSemanticMatch = (word: Word, meaningText: string) => {
+        const target = (language === 'zh' ? word.zh : word.en || '').trim().toLowerCase();
+        const candidate = meaningText.trim().toLowerCase();
+        
+        if (target === candidate) return true;
+        
+        const getCleanParts = (text: string) => {
+            return text.split(/[\/,，]/)
+                .map(p => p.replace(/\([^)]*\)/g, '').replace(/\（[^）]*\）/g, '').trim().toLowerCase())
+                .filter(Boolean);
+        };
+        
+        const targetParts = getCleanParts(target);
+        const candidateParts = getCleanParts(candidate);
+        
+        return targetParts.some(tp => candidateParts.some(cp => tp === cp || tp.includes(cp) || cp.includes(tp)));
+    };
+
     const handleSubmit = () => {
         if (Object.keys(matches).length !== words.length || isSubmitted) return;
 
@@ -144,16 +162,26 @@ export function MatchingTask({ words, onComplete, onMiss }: MatchingTaskProps) {
         const incorrectList: string[] = [];
 
         Object.entries(matches).forEach(([krId, meaningId]) => {
-            // IDs are identical (e.g. "word_3" === "word_3") if and only if it's the correct match
-            if (krId === meaningId) {
-                correctList.push(krId);
-            } else {
-                incorrectList.push(krId);
-                const idx = parseInt(krId.split('_')[1], 10);
-                const originalWord = words[idx];
-                if (originalWord) {
-                    onMiss(originalWord);
+            const krWordItem = koreanWords.find(k => k.id === krId);
+            const meaningItem = meanings.find(m => m.id === meaningId);
+            
+            if (krWordItem && meaningItem) {
+                // Find if there is any word in the daily list with this spelling and meaning
+                const matchedWord = words.find(w => 
+                    w.kr === krWordItem.kr && 
+                    isSemanticMatch(w, meaningItem.text)
+                );
+                if (matchedWord) {
+                    correctList.push(krId);
+                    return;
                 }
+            }
+            
+            incorrectList.push(krId);
+            const idx = parseInt(krId.split('_')[1], 10);
+            const originalWord = words[idx];
+            if (originalWord) {
+                onMiss(originalWord);
             }
         });
 
