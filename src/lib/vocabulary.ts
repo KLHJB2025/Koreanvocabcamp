@@ -236,12 +236,12 @@ export function getIllustrationUrl(word: Word): string {
 
     if (!isConcrete && word.sentenceMeaning && word.sentenceMeaning !== 'TBD') {
         const cleanScene = cleanPrompt(word.sentenceMeaning) + ", without any text, letters, words, or Korean characters in the image";
-        return `https://image.pollinations.ai/prompt/realistic%20photography%20representing%20the%20scene:%20${encodeURIComponent(cleanScene)}?width=400&height=400&nologo=true&model=sana`;
+        return `https://image.pollinations.ai/prompt/cute%20friendly%20cartoon%20illustration%20representing%20the%20scene:%20${encodeURIComponent(cleanScene)}?width=400&height=400&nologo=true&model=sana`;
     }
 
     const enMeaning = word.en || '';
     const cleanEn = cleanPrompt(enMeaning) + ", without any text, letters, words, or Korean characters in the image";
-    return `https://image.pollinations.ai/prompt/realistic%20photography%20of%20${encodeURIComponent(cleanEn)}?width=400&height=400&nologo=true&model=sana`;
+    return `https://image.pollinations.ai/prompt/cute%20friendly%20cartoon%20illustration%20of%20${encodeURIComponent(cleanEn)}?width=400&height=400&nologo=true&model=sana`;
 }
 
 /**
