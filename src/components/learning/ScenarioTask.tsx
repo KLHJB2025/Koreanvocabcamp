@@ -53,27 +53,6 @@ export function ScenarioTask({ words, onComplete, mascotName }: ScenarioTaskProp
             // Parse story text and substitute target vocabulary words
             let textToParse = storyData.story;
             
-            // Fallback strategy: ensure every single word is represented.
-            // If the AI missed some words, append them to the story in the Korean(Translation) format.
-            const missedWords = words.filter(w => {
-                const matchResult = findTranslationInStory(w, textToParse, lang);
-                return !matchResult || matchResult.index === -1;
-            });
-            
-            if (missedWords.length > 0) {
-                let additions = '';
-                if (lang === 'zh') {
-                    additions += ' 另外，我们需要温习以下词汇：';
-                    additions += missedWords.map(w => `${w.kr}(${getCleanCandidate(w, lang)})`).join('、');
-                    additions += '。';
-                } else {
-                    additions += ' Additionally, we need to review these words: ';
-                    additions += missedWords.map(w => `${w.kr}(${getCleanCandidate(w, lang)})`).join(', ');
-                    additions += '.';
-                }
-                textToParse += additions;
-            }
-
             // Find all word translations and split the text into parts
             const matches: { word: Word; translation: string; index: number; length: number }[] = [];
             const usedIndices = new Set<number>();
@@ -85,26 +64,64 @@ export function ScenarioTask({ words, onComplete, mascotName }: ScenarioTaskProp
                 return bLen - aLen;
             });
 
+            const missedWords: Word[] = [];
+
+            // First pass: Match words in the story (checking all occurrences to find a clean, non-overlapping index)
             sortedWords.forEach(w => {
-                const matchResult = findTranslationInStory(w, textToParse, lang);
-                if (!matchResult) return;
-
-                const { translation, index } = matchResult;
-
-                // Check if index is valid and not already consumed by a longer word match
-                if (index !== -1 && !Array.from(usedIndices).some(i => index >= i && index < i + translation.length)) {
+                const matchResult = findTranslationInStory(w, textToParse, lang, usedIndices);
+                if (matchResult && matchResult.index !== -1) {
+                    const { translation, index } = matchResult;
                     matches.push({
                         word: w,
                         translation,
                         index,
                         length: translation.length
                     });
-                    
                     for (let i = 0; i < translation.length; i++) {
                         usedIndices.add(index + i);
                     }
+                } else {
+                    missedWords.push(w);
                 }
             });
+
+            // Second pass: Append missed words and match them at their new appended offsets
+            if (missedWords.length > 0) {
+                let additions = '';
+                if (lang === 'zh') {
+                    additions += ' 另外，我们需要温习以下词汇：';
+                } else {
+                    additions += ' Additionally, we need to review these words: ';
+                }
+                
+                missedWords.forEach((w, idx) => {
+                    const cleanTrans = getCleanCandidate(w, lang);
+                    const formatted = `${w.kr}(${cleanTrans})`;
+                    
+                    const startInAdditions = additions.length;
+                    
+                    if (lang === 'zh') {
+                        additions += formatted + (idx < missedWords.length - 1 ? '、' : '。');
+                    } else {
+                        additions += formatted + (idx < missedWords.length - 1 ? ', ' : '.');
+                    }
+                    
+                    const finalIndex = textToParse.length + startInAdditions;
+                    
+                    matches.push({
+                        word: w,
+                        translation: w.kr,
+                        index: finalIndex,
+                        length: w.kr.length
+                    });
+                    
+                    for (let i = 0; i < w.kr.length; i++) {
+                        usedIndices.add(finalIndex + i);
+                    }
+                });
+                
+                textToParse += additions;
+            }
 
             // Sort matches by index
             matches.sort((a, b) => a.index - b.index);

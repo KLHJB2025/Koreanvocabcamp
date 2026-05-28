@@ -180,16 +180,33 @@ export function getCleanCandidate(word: Word, lang: 'zh' | 'en'): string {
     return cleanPart(firstPart);
 }
 
-export function findTranslationInStory(word: Word, storyText: string, lang: 'zh' | 'en'): { translation: string, index: number } | null {
+export function findTranslationInStory(
+    word: Word, 
+    storyText: string, 
+    lang: 'zh' | 'en',
+    usedIndices: Set<number> = new Set()
+): { translation: string, index: number } | null {
+    
+    const isCleanIndex = (idx: number, len: number) => {
+        for (let i = 0; i < len; i++) {
+            if (usedIndices.has(idx + i)) return false;
+        }
+        return true;
+    };
+
     // 1. Try to find the Korean word first
     const krWord = word.kr.trim();
     if (krWord) {
-        const krIdx = storyText.indexOf(krWord);
-        if (krIdx !== -1) {
-            return {
-                translation: krWord,
-                index: krIdx
-            };
+        let krIdx = -1;
+        while (true) {
+            krIdx = storyText.indexOf(krWord, krIdx + 1);
+            if (krIdx === -1) break;
+            if (isCleanIndex(krIdx, krWord.length)) {
+                return {
+                    translation: krWord,
+                    index: krIdx
+                };
+            }
         }
     }
 
@@ -212,16 +229,24 @@ export function findTranslationInStory(word: Word, storyText: string, lang: 'zh'
     
     for (const cand of candidates) {
         let idx = -1;
-        if (lang === 'zh') {
-            idx = storyText.indexOf(cand);
-        } else {
-            idx = storyText.toLowerCase().indexOf(cand.toLowerCase());
-        }
-        if (idx !== -1) {
-            return {
-                translation: storyText.substring(idx, idx + cand.length),
-                index: idx
-            };
+        const lowerStory = storyText.toLowerCase();
+        const lowerCand = cand.toLowerCase();
+        
+        while (true) {
+            if (lang === 'zh') {
+                idx = storyText.indexOf(cand, idx + 1);
+            } else {
+                idx = lowerStory.indexOf(lowerCand, idx + 1);
+            }
+            
+            if (idx === -1) break;
+            
+            if (isCleanIndex(idx, cand.length)) {
+                return {
+                    translation: storyText.substring(idx, idx + cand.length),
+                    index: idx
+                };
+            }
         }
     }
     
