@@ -55,7 +55,7 @@ export function ScenarioTask({ words, onComplete, mascotName }: ScenarioTaskProp
             let textToParse = storyData.story;
             
             // Fallback strategy: ensure every single word is represented.
-            // If the AI missed some words, append them naturally to the story.
+            // If the AI missed some words, append them to the story in the Korean(Translation) format.
             const missedWords = words.filter(w => {
                 const matchResult = findTranslationInStory(w, textToParse, lang);
                 return !matchResult || matchResult.index === -1;
@@ -63,14 +63,15 @@ export function ScenarioTask({ words, onComplete, mascotName }: ScenarioTaskProp
             
             if (missedWords.length > 0) {
                 let additions = '';
-                missedWords.forEach(w => {
-                    const cleanTrans = getCleanCandidate(w, lang);
-                    if (lang === 'zh') {
-                        additions += ` 另外，我还看到了${cleanTrans}。`;
-                    } else {
-                        additions += ` Also, I noticed the ${cleanTrans}.`;
-                    }
-                });
+                if (lang === 'zh') {
+                    additions += ' 另外，我们需要温习以下词汇：';
+                    additions += missedWords.map(w => `${w.kr}(${getCleanCandidate(w, lang)})`).join('、');
+                    additions += '。';
+                } else {
+                    additions += ' Additionally, we need to review these words: ';
+                    additions += missedWords.map(w => `${w.kr}(${getCleanCandidate(w, lang)})`).join(', ');
+                    additions += '.';
+                }
                 textToParse += additions;
             }
 
@@ -78,10 +79,10 @@ export function ScenarioTask({ words, onComplete, mascotName }: ScenarioTaskProp
             const matches: { word: Word; translation: string; index: number; length: number }[] = [];
             const usedIndices = new Set<number>();
 
-            // Sort words by translation length descending to match longer phrases first (prevent substrings matching incorrectly)
+            // Sort words by max length (spelling or translation) descending to match longer terms first and prevent substring collision (e.g., 가다 inside 걸어가다)
             const sortedWords = [...words].sort((a, b) => {
-                const aLen = (lang === 'zh' ? a.zh : a.en || '').length;
-                const bLen = (lang === 'zh' ? b.zh : b.en || '').length;
+                const aLen = Math.max(a.kr.length, (lang === 'zh' ? a.zh : a.en || '').length);
+                const bLen = Math.max(b.kr.length, (lang === 'zh' ? b.zh : b.en || '').length);
                 return bLen - aLen;
             });
 
@@ -348,14 +349,14 @@ export function ScenarioTask({ words, onComplete, mascotName }: ScenarioTaskProp
                                                     value={val}
                                                     onChange={(e) => handleInputChange(word.kr, e.target.value)}
                                                     disabled={isCorrect}
-                                                    placeholder={part.content}
+                                                    placeholder={language === 'zh' ? word.zh : word.en}
                                                     style={{ width: inputWidth }}
                                                     className={`px-2 py-1 rounded-xl text-center font-bold text-base sm:text-lg outline-none border-2 transition-all ${
                                                         isCorrect
                                                             ? 'bg-emerald-500 text-white border-transparent font-black shadow-sm'
                                                             : 'bg-white border-charcoal/15 focus:border-primary text-charcoal focus:ring-2 focus:ring-primary/20 shadow-inner'
                                                     }`}
-                                                    title={language === 'zh' ? `输入韩文以翻译“${part.content}”` : `Type Korean for "${part.content}"`}
+                                                    title={language === 'zh' ? `输入韩文以翻译“${word.zh}”` : `Type Korean for "${word.en}"`}
                                                 />
                                                 {isCorrect && (
                                                     <span className="absolute -top-2.5 -right-2 bg-emerald-500 text-white rounded-full p-0.5 shadow-md border border-white">

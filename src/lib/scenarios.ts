@@ -1,4 +1,6 @@
 import { Word } from './vocabulary-data';
+import { getPredefinedStory } from './predefined-stories';
+
 
 export interface ScenarioTemplate {
     id: string;
@@ -179,6 +181,19 @@ export function getCleanCandidate(word: Word, lang: 'zh' | 'en'): string {
 }
 
 export function findTranslationInStory(word: Word, storyText: string, lang: 'zh' | 'en'): { translation: string, index: number } | null {
+    // 1. Try to find the Korean word first
+    const krWord = word.kr.trim();
+    if (krWord) {
+        const krIdx = storyText.indexOf(krWord);
+        if (krIdx !== -1) {
+            return {
+                translation: krWord,
+                index: krIdx
+            };
+        }
+    }
+
+    // 2. Fallback to finding the translation (Chinese or English)
     const raw = (lang === 'zh' ? word.zh : word.en || '').trim();
     if (!raw) return null;
     
@@ -501,65 +516,36 @@ const FALLBACK_THEMES: StoryTheme[] = [
 ];
 
 export function getFallbackStory(words: Word[], lang: 'zh' | 'en'): AIStory {
-    // Select theme dynamically based on the sum of char codes of Korean words
-    const hash = words.reduce((acc, w) => acc + (w.kr.charCodeAt(0) || 0), 0);
-    const themeIndex = hash % FALLBACK_THEMES.length;
-    const theme = FALLBACK_THEMES[themeIndex];
+    const title = lang === 'zh' ? '📚 词汇学习日记' : '📚 Vocabulary Study Diary';
     
-    const title = theme.title(lang);
-    
-    const wordItems = words.map(w => {
-        const clean = getCleanCandidate(w, lang);
+    const lines = words.map((w, index) => {
+        const cleanTrans = getCleanCandidate(w, lang);
         let sentence = lang === 'zh' ? w.sentenceZh : w.sentenceMeaning;
         if (!sentence) {
-            sentence = lang === 'zh' ? `${clean}很常见。` : `This represents "${clean}".`;
+            sentence = lang === 'zh' 
+                ? `我们在日常生活中常常使用这个词。` 
+                : `We often use this word in daily life.`;
         }
-        sentence = sentence.trim();
-        return { word: w, clean, sentence };
-    }).filter(item => item.clean);
-
-    const parts: string[] = [];
-    parts.push(theme.intro(lang));
-
-    wordItems.forEach((item, index) => {
-        const sentenceText = theme.getSentence(item.clean, item.sentence, index, lang);
-        parts.push(sentenceText);
+        
+        // Example format: 1. 계절(季节): 韩国的春天是个美丽的季节。
+        return `${index + 1}. ${w.kr}(${cleanTrans}): ${sentence.trim()}`;
     });
 
     return {
         title,
-        story: parts.join(lang === 'zh' ? "" : " ")
+        story: lines.join('\n\n')
     };
 }
 
 export async function fetchAIStory(words: Word[], lang: 'zh' | 'en'): Promise<AIStory> {
-    const wordTranslations = words.map(w => getCleanCandidate(w, lang)).filter(Boolean);
-    const wordListStr = wordTranslations.map(t => `"${t}"`).join(', ');
-    
-    // Keep the prompt concise to prevent Cloudflare URL character length blocks
-    const prompt = `Write a short story or dialogue in ${lang === 'zh' ? 'Chinese' : 'English'} (max 120 words) incorporating these exact terms: ${wordListStr}. Output JSON format: {"title":"story title", "story":"story text"}. No markdown, no reasoning, just raw JSON.`;
-    const url = `https://text.pollinations.ai/${encodeURIComponent(prompt)}?jsonMode=true&model=openai`;
-
-    const controller = new AbortController();
-    const timeoutId = setTimeout(() => controller.abort(), 12000); // 12s timeout to give reasoning LLM a fair chance to return
-
-    try {
-        const response = await fetch(url, { 
-            signal: controller.signal,
-            headers: {
-                'Accept': 'application/json'
-            }
-        });
-        clearTimeout(timeoutId);
-        
-        if (!response.ok) throw new Error(`HTTP error ${response.status}`);
-        const text = await response.text();
-        
-        return extractJson(text);
-    } catch (error) {
-        clearTimeout(timeoutId);
-        console.warn('Failed to fetch AI story from Pollinations client-side, using local theme:', error);
-        return getFallbackStory(words, lang);
+    // 1. Check if there is a predefined story in the local database first
+    const predefined = getPredefinedStory(words, lang);
+    if (predefined) {
+        return predefined;
     }
+
+    // 2. If no predefined story exists (e.g. dynamic review session), return the structured study diary immediately.
+    // This completely prevents AI failure and avoids long API load times/errors for users.
+    return getFallbackStory(words, lang);
 }
 
