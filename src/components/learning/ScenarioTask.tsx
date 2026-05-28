@@ -164,16 +164,40 @@ export function ScenarioTask({ words, onComplete, mascotName }: ScenarioTaskProp
 
     // Text typing validation
     const handleInputChange = (kr: string, val: string) => {
-        if (correctAnswers[kr]) return;
+        if (correctAnswers[kr] === true) return;
 
         const newAnswers = { ...answers, [kr]: val };
         setAnswers(newAnswers);
 
-        // Immediate check as user types
-        if (val.trim() === kr) {
-            setCorrectAnswers(prev => ({ ...prev, [kr]: true }));
-            playAudio(kr, 'word');
+        // Reset incorrect state if they make changes
+        if (correctAnswers[kr] === false) {
+            setCorrectAnswers(prev => ({ ...prev, [kr]: undefined } as any));
+        }
+    };
+
+    const handleCheckAnswers = () => {
+        let allCorrect = true;
+        const newCorrect: Record<string, boolean> = { ...correctAnswers };
+
+        words.forEach(w => {
+            if (correctAnswers[w.kr] === true) return;
+
+            const val = (answers[w.kr] || '').trim();
+            if (val === w.kr) {
+                newCorrect[w.kr] = true;
+                playAudio(w.kr, 'word');
+            } else {
+                newCorrect[w.kr] = false;
+                allCorrect = false;
+            }
+        });
+
+        setCorrectAnswers(newCorrect);
+
+        if (allCorrect) {
             playSuccessSound();
+        } else {
+            playErrorSound();
         }
     };
 
@@ -195,7 +219,7 @@ export function ScenarioTask({ words, onComplete, mascotName }: ScenarioTaskProp
         setIsFinished(true);
     };
 
-    const allCorrect = words.every(w => correctAnswers[w.kr]);
+    const allCorrect = words.every(w => correctAnswers[w.kr] === true);
 
     // Cover art prompt matching the story theme
     const themeArtPrompt = `cute cartoon illustration of mascot ${mascotName || 'Boopi'} in a story themed "${storyTitle}". Soft bright colors, vector graphics style, friendly, cheerful mood, without any text, letters, words, or Korean characters in the image`;
@@ -336,7 +360,8 @@ export function ScenarioTask({ words, onComplete, mascotName }: ScenarioTaskProp
                                         }
 
                                         const word = part.word!;
-                                        const isCorrect = correctAnswers[word.kr] || false;
+                                        const isCorrect = correctAnswers[word.kr] === true;
+                                        const isIncorrect = correctAnswers[word.kr] === false;
                                         const val = answers[word.kr] || '';
 
                                         // Estimate input width based on spelling length
@@ -354,6 +379,8 @@ export function ScenarioTask({ words, onComplete, mascotName }: ScenarioTaskProp
                                                     className={`px-2 py-1 rounded-xl text-center font-bold text-base sm:text-lg outline-none border-2 transition-all ${
                                                         isCorrect
                                                             ? 'bg-emerald-500 text-white border-transparent font-black shadow-sm'
+                                                            : isIncorrect
+                                                            ? 'bg-rose-50 border-rose-400 text-rose-600 focus:border-rose-500 shadow-sm'
                                                             : 'bg-white border-charcoal/15 focus:border-primary text-charcoal focus:ring-2 focus:ring-primary/20 shadow-inner'
                                                     }`}
                                                     title={language === 'zh' ? `输入韩文以翻译“${word.zh}”` : `Type Korean for "${word.en}"`}
@@ -370,9 +397,14 @@ export function ScenarioTask({ words, onComplete, mascotName }: ScenarioTaskProp
                             </div>
 
                             {/* TIP or NEXT Button */}
-                            <div className="mt-8 pt-6 border-t border-charcoal/5">
-                                {allCorrect ? (
-                                    <div className="flex justify-end">
+                            <div className="mt-8 pt-6 border-t border-charcoal/5 flex flex-col sm:flex-row items-center justify-between gap-4">
+                                <p className="text-xs sm:text-sm font-bold text-charcoal/40 italic text-center sm:text-left">
+                                    {language === 'zh' 
+                                        ? '💡 提示：遇到记不起来的单词？可以点击左侧词汇库中的“显示答案”或播放发音哦！' 
+                                        : '💡 Tip: Stumble on a word? Click "Reveal" or play the audio in the Word Bank on the left!'}
+                                </p>
+                                <div className="flex justify-end w-full sm:w-auto">
+                                    {allCorrect ? (
                                         <button
                                             onClick={advanceTask}
                                             className="btn-primary-cute px-8 py-4 text-base font-black flex items-center justify-center gap-2 animate-bounce-short"
@@ -380,14 +412,16 @@ export function ScenarioTask({ words, onComplete, mascotName }: ScenarioTaskProp
                                             {language === 'zh' ? '通关并完成任务' : 'Complete Scenario'}
                                             <ArrowRight size={18} />
                                         </button>
-                                    </div>
-                                ) : (
-                                    <p className="text-xs sm:text-sm font-bold text-charcoal/40 italic text-center sm:text-left">
-                                        {language === 'zh' 
-                                            ? '💡 提示：遇到记不起来的单词？可以点击左侧词汇库中的“显示答案”或播放发音哦！' 
-                                            : '💡 Tip: Stumble on a word? Click "Reveal" or play the audio in the Word Bank on the left!'}
-                                    </p>
-                                )}
+                                    ) : (
+                                        <button
+                                            onClick={handleCheckAnswers}
+                                            className="btn-primary-cute bg-charcoal hover:bg-charcoal/90 text-white px-8 py-4 text-base font-black flex items-center justify-center gap-2"
+                                        >
+                                            {language === 'zh' ? '提交并检查答案' : 'Submit & Check Answers'}
+                                            <ArrowRight size={18} />
+                                        </button>
+                                    )}
+                                </div>
                             </div>
                         </div>
                     </motion.div>
