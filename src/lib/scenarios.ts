@@ -242,40 +242,94 @@ function extractJson(text: string): any {
 }
 
 export function getFallbackStory(words: Word[], lang: 'zh' | 'en'): AIStory {
-    const title = lang === 'zh' ? '今日词汇例句挑战' : 'Today\'s Sentence Challenge';
-    const lines = words.map((w, index) => {
-        const sentence = lang === 'zh' 
-            ? (w.sentenceZh || `${w.zh}很常见。`)
-            : (w.sentenceMeaning || `This represents the word: ${w.en || ''}.`);
-        return `${index + 1}. ${sentence}`;
-    });
-    return {
-        title,
-        story: lines.join('\n')
-    };
+    const title = lang === 'zh' ? '一天的精彩旅程' : 'A Wonderful Day\'s Journey';
+    const wordCleanList = words.map(w => getCleanCandidate(w, lang)).filter(Boolean);
+    
+    if (lang === 'zh') {
+        const parts: string[] = [];
+        parts.push("今天清晨，我拉开窗帘，心中突然有了一个特别的想法。");
+        
+        wordCleanList.forEach((word, index) => {
+            if (index === 0) {
+                parts.push(`首先，我开始思考关于“${word}”的事情，感觉这是一个很好的起点。`);
+            } else if (index === 1) {
+                parts.push(`在这过程中，虽然免不了一些“${word}”，但探索的热情依然高涨。`);
+            } else if (index === 2) {
+                parts.push(`于是，我决定出门走走，一路上，路过的地方仿佛变成了美丽的“${word}”。`);
+            } else if (index === 3) {
+                parts.push(`就在这时候，我的视线被一个奇特的目标吸引，那是一个十分显眼的“${word}”。`);
+            } else if (index === 4) {
+                parts.push(`我轻轻摇了摇“${word}”，心想，这或许就是旅行中的小确幸吧。`);
+            } else if (index === 5) {
+                parts.push(`旁边还站着一个非常有趣的“${word}”，它似乎也在静静感受着这个奇妙的瞬间。`);
+            } else if (index === 6) {
+                parts.push(`放眼望去，此时的景色犹如温暖的“${word}”般诗情画意，令人心旷神怡。`);
+            } else if (index === 7) {
+                parts.push(`虽然偶尔会遇到一点“${word}”，但能在这段旅途中收获成长，一切都非常值得。`);
+            } else {
+                parts.push(`最后，我的脑海里不断闪现着“${word}”的画面，为今天画上了圆满的句号。`);
+            }
+        });
+        
+        return {
+            title,
+            story: parts.join("")
+        };
+    } else {
+        const parts: string[] = [];
+        parts.push("This morning, I drew the curtains and felt a sudden burst of inspiration. ");
+        
+        wordCleanList.forEach((word, index) => {
+            if (index === 0) {
+                parts.push(`First, my thoughts gravitated toward "${word}", thinking it would be a perfect starting point. `);
+            } else if (index === 1) {
+                parts.push(`Along the way, there was a touch of "${word}", yet my excitement remained high. `);
+            } else if (index === 2) {
+                parts.push(`So, I decided to go outside. The surrounding view reminded me of a picturesque "${word}". `);
+            } else if (index === 3) {
+                parts.push(`Just then, my attention was caught by a peculiar "${word}" nearby. `);
+            } else if (index === 4) {
+                parts.push(`I carefully moved my "${word}", realizing how unexpected life's little discoveries can be. `);
+            } else if (index === 5) {
+                parts.push(`Next to it stood a curious "${word}", seemingly appreciating this quiet moment as well. `);
+            } else if (index === 6) {
+                parts.push(`Looking up, the atmosphere felt as cozy as a golden "${word}", filling me with peace. `);
+            } else if (index === 7) {
+                parts.push(`Despite some occasional "${word}", the growth I gained today made everything worthwhile. `);
+            } else {
+                parts.push(`Finally, the impression of "${word}" lingered in my mind, wrapping up a perfect day. `);
+            }
+        });
+        
+        return {
+            title,
+            story: parts.join("")
+        };
+    }
 }
 
 export async function fetchAIStory(words: Word[], lang: 'zh' | 'en'): Promise<AIStory> {
-    const wordTranslations = words.map(w => getCleanCandidate(w, lang)).filter(Boolean);
-    const wordListStr = wordTranslations.map(t => `"${t}"`).join(', ');
-    
-    const systemPrompt = `You are a creative writer. Write a short, engaging story or dialogue in ${lang === 'zh' ? 'Chinese' : 'English'} (max 180 words) that naturally includes these exact terms: ${wordListStr}. 
-Important: 
-1. You must use the exact terms provided, without changing them (e.g., if "singer" is given, do not use "song").
-2. The story must make logical sense, flow beautifully, and be coherent.
-3. Return ONLY a JSON object in this format: { "title": "story title", "story": "story text" }.`;
-
-    const userPrompt = `Write a coherent, creative short story containing: ${wordListStr}.`;
-    const url = `https://text.pollinations.ai/${encodeURIComponent(userPrompt)}?system=${encodeURIComponent(systemPrompt)}&jsonMode=true`;
-
     try {
-        const response = await fetch(url);
-        if (!response.ok) throw new Error('Network response was not ok');
-        const text = await response.text();
+        const response = await fetch('/api/story', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ words, lang })
+        });
         
-        return extractJson(text);
+        if (!response.ok) {
+            throw new Error(`Server responded with status ${response.status}`);
+        }
+        
+        const data = await response.json();
+        if (data.error) {
+            throw new Error(data.error);
+        }
+        
+        return data;
     } catch (error) {
-        console.error('Failed to fetch AI story, using fallback:', error);
+        console.error('Failed to fetch AI story from server proxy, using fallback:', error);
         return getFallbackStory(words, lang);
     }
 }
