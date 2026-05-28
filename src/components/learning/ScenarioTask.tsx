@@ -154,8 +154,8 @@ export function ScenarioTask({ words, onComplete, mascotName }: ScenarioTaskProp
     const playAudio = (wordKr: string, type: 'word' | 'sentence') => {
         const cleanName = wordKr.replace(/[<>:"/\\|?*]/g, '');
         const audioPath = type === 'word' 
-            ? `/audio/words/${cleanName}.mp3` 
-            : `/audio/sentences/${cleanName}.mp3`;
+            ? `/audio/words/${cleanName}.mp3?v=2` 
+            : `/audio/sentences/${cleanName}.mp3?v=2`;
         
         const audio = new Audio(audioPath);
         audio.play().catch(e => console.error("Audio playback failed:", e));

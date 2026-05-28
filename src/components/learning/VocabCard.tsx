@@ -73,7 +73,7 @@ export function VocabCard({
     const speakSentence = (sentenceText: string) => {
         if (sentenceText === sentenceKr) {
             const cleanName = word.replace(/[<>:"/\\|?*]/g, '');
-            const audioPath = `/audio/sentences/${cleanName}.mp3`;
+            const audioPath = `/audio/sentences/${cleanName}.mp3?v=2`;
             const audio = new Audio(audioPath);
             audio.play().catch(e => {
                 console.warn("MP3 playback failed, falling back to Web Speech API:", e);
@@ -87,8 +87,8 @@ export function VocabCard({
     const speak = (type: 'word' | 'sentence', speed: 'normal' | 'slow' = 'normal') => {
         const cleanName = word.replace(/[<>:"/\\|?*]/g, '');
         const audioPath = type === 'word' 
-            ? `/audio/words/${cleanName}.mp3` 
-            : `/audio/sentences/${cleanName}.mp3`;
+            ? `/audio/words/${cleanName}.mp3?v=2` 
+            : `/audio/sentences/${cleanName}.mp3?v=2`;
         
         const audio = new Audio(audioPath);
         audio.playbackRate = speed === 'normal' ? 1.0 : 0.7;
