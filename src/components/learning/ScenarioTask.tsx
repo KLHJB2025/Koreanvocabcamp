@@ -34,7 +34,6 @@ export function ScenarioTask({ words, onComplete, mascotName }: ScenarioTaskProp
     
     // UI Image states
     const [imageLoaded, setImageLoaded] = useState(false);
-    const [isFinished, setIsFinished] = useState(false);
 
     // Initialize Game Story
     useEffect(() => {
@@ -216,7 +215,7 @@ export function ScenarioTask({ words, onComplete, mascotName }: ScenarioTaskProp
     };
 
     const advanceTask = () => {
-        setIsFinished(true);
+        onComplete();
     };
 
     const allCorrect = words.every(w => correctAnswers[w.kr] === true);
@@ -264,7 +263,7 @@ export function ScenarioTask({ words, onComplete, mascotName }: ScenarioTaskProp
                             </p>
                         </div>
                     </motion.div>
-                ) : !isFinished ? (
+                ) : (
                     /* --------------------- STORY FILL IN BLANKS GAME --------------------- */
                     <motion.div
                         key="game"
@@ -424,27 +423,6 @@ export function ScenarioTask({ words, onComplete, mascotName }: ScenarioTaskProp
                                 </div>
                             </div>
                         </div>
-                    </motion.div>
-                ) : (
-                    /* --------------------- CONGRATS SCREEN --------------------- */
-                    <motion.div 
-                        key="complete"
-                        initial={{ opacity: 0, scale: 0.9 }}
-                        animate={{ opacity: 1, scale: 1 }}
-                        className="text-center py-8 relative z-10"
-                    >
-                        <div className="w-28 h-28 bg-emerald-100 text-emerald-500 rounded-[36px] flex items-center justify-center mx-auto mb-6 shadow-inner animate-pulse">
-                            <Sparkles size={52} />
-                        </div>
-                        <h3 className="text-4xl font-black italic tracking-tighter uppercase text-emerald-600 mb-4">
-                            {language === 'zh' ? '情境任务通关！' : 'SCENARIO PASSED!'}
-                        </h3>
-                        <p className="text-lg font-bold text-charcoal/40 mb-10 max-w-md mx-auto">
-                            {language === 'zh' ? '你已成功通过情境任务，太棒了！' : 'You successfully navigated the scenario tasks using your new vocabulary. Great job!'}
-                        </p>
-                        <button onClick={onComplete} className="btn-primary-cute px-12 py-5 text-xl">
-                            {language === 'zh' ? '返回主页' : 'Return to Base'}
-                        </button>
                     </motion.div>
                 )}
             </AnimatePresence>
