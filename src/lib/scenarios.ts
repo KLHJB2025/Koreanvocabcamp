@@ -202,7 +202,6 @@ export function findTranslationInStory(word: Word, storyText: string, lang: 'zh'
         } else {
             idx = storyText.toLowerCase().indexOf(cand.toLowerCase());
         }
-        
         if (idx !== -1) {
             return {
                 translation: storyText.substring(idx, idx + cand.length),
@@ -222,23 +221,51 @@ export function findTranslationInStory(word: Word, storyText: string, lang: 'zh'
 }
 
 function extractJson(text: string): any {
+    let parsed: any = null;
+    
+    // Try to parse the text directly
     try {
-        return JSON.parse(text.trim());
+        parsed = JSON.parse(text.trim());
     } catch {
         const match = text.match(/```json\s*([\s\S]*?)\s*```/) || text.match(/```\s*([\s\S]*?)\s*```/);
         if (match) {
             try {
-                return JSON.parse(match[1].trim());
+                parsed = JSON.parse(match[1].trim());
             } catch {}
         }
-        const braceMatch = text.match(/\{[\s\S]*\}/);
-        if (braceMatch) {
-            try {
-                return JSON.parse(braceMatch[0].trim());
-            } catch {}
+        if (!parsed) {
+            const braceMatch = text.match(/\{[\s\S]*\}/);
+            if (braceMatch) {
+                try {
+                    parsed = JSON.parse(braceMatch[0].trim());
+                } catch {}
+            }
         }
     }
-    throw new Error('Failed to parse JSON');
+
+    if (!parsed) {
+        throw new Error('Failed to parse JSON');
+    }
+
+    // Handle nested ChatCompletion envelopes
+    if (parsed.choices && parsed.choices[0]?.message?.content) {
+        return extractJson(parsed.choices[0].message.content);
+    }
+    if (parsed.message?.content) {
+        return extractJson(parsed.message.content);
+    }
+    if (parsed.content && typeof parsed.content === 'string') {
+        try {
+            return extractJson(parsed.content);
+        } catch {}
+    }
+
+    // Check if it has the required fields
+    if (parsed.title && parsed.story) {
+        return parsed;
+    }
+
+    throw new Error('Parsed object does not contain title and story');
 }
 
 function classifyWord(w: Word, lang: 'zh' | 'en'): string {
@@ -324,146 +351,214 @@ function classifyWord(w: Word, lang: 'zh' | 'en'): string {
     return 'other';
 }
 
-function getSentenceForWord(word: string, cat: string, index: number, lang: 'zh' | 'en'): string {
-    if (lang === 'zh') {
-        switch (cat) {
-            case 'feeling':
-                return index === 0 
-                    ? `首先，我开始思考关于“${word}”的事情，感觉这会是个很好的起点。`
-                    : `这一路走来，脑海里装满了关于“${word}”的憧憬，让步伐更加轻快。`;
-            case 'obstacle':
-                return index === 0
-                    ? `在这过程中，虽然免不了一些“${word}”，但探索的热情依然高涨。`
-                    : `虽然生活里偶尔也会有些许“${word}”，但旅途的风景总能治愈心灵。`;
-            case 'place':
-                return index === 0
-                    ? `于是，我决定出门走走，一路上路过的地方仿佛变成了美丽的“${word}”。`
-                    : `我漫步前行，不知不觉来到了宁静的“${word}”，感受着大自然的呼吸。`;
-            case 'object':
-                return index === 0
-                    ? `就在这时候，我的视线被一个奇特的目标吸引，那是一个十分显眼的“${word}”。`
-                    : `低头看去，地面上摆放着一件做工别致的“${word}”，仿佛是某人遗留的线索。`;
-            case 'body_part':
-                return index === 0
-                    ? `我轻轻地摇了摇“${word}”，心想，这或许就是旅行中的小确幸吧。`
-                    : `我揉了揉自己的“${word}”，舒展了一下身体，继续向着未知的前方出发。`;
-            case 'companion':
-                if (index === 0) return `旁边还站着一个非常有趣的“${word}”，它似乎也在静静感受着这个奇妙的瞬间。`;
-                if (index === 1) return `而在大树底下，另一只可爱的“${word}”正在欢快地蹦跳玩耍。`;
-                return `不远处甚至还有一只温顺的“${word}”在懒洋洋地晒着太阳。`;
-            case 'time_season':
-                return index === 0
-                    ? `放眼望去，此时的景色犹如温暖的“${word}”般诗情画意，令人心旷神怡。`
-                    : `迎面吹来的微风里，夹杂着属于“${word}”的独特气息，清新而惬意。`;
-            default:
-                return index === 0
-                    ? `最后，我的脑海里不断闪现着关于“${word}”的画面，为今天画上了圆满的句号。`
-                    : `在回家的路上，我静静回味着与“${word}”相关的一切，感到无比充实。`;
-        }
-    } else {
-        switch (cat) {
-            case 'feeling':
-                return index === 0
-                    ? `First, my thoughts gravitated toward "${word}", thinking it would be a perfect starting point. `
-                    : `Along the way, a sense of "${word}" filled my mind, making my steps much lighter. `;
-            case 'obstacle':
-                return index === 0
-                    ? `Along the way, there was a touch of "${word}", yet my excitement remained high. `
-                    : `Even though there is occasional "${word}" in life, the journey always brings comfort. `;
-            case 'place':
-                return index === 0
-                    ? `So, I decided to go outside. The surrounding view reminded me of a picturesque "${word}". `
-                    : `I wandered along the path and soon arrived at a peaceful "${word}", taking in a deep breath. `;
-            case 'object':
-                return index === 0
-                    ? `Just then, my attention was caught by a peculiar "${word}" nearby. `
-                    : `Looking down, I noticed a finely crafted "${word}" resting on the ground. `;
-            case 'body_part':
-                return index === 0
-                    ? `I carefully moved my "${word}", realizing how unexpected life's discoveries can be. `
-                    : `I rubbed my "${word}" to relax my body, ready to push forward. `;
-            case 'companion':
-                if (index === 0) return `Next to it stood a curious "${word}", seemingly appreciating this quiet moment as well. `;
-                if (index === 1) return `Under the shade of a big tree, another lovely "${word}" was playing happily. `;
-                return `Not far away, a gentle "${word}" was lazily sunbathing. `;
-            case 'time_season':
-                return index === 0
-                    ? `Looking up, the atmosphere felt as cozy as a golden "${word}", filling me with peace. `
-                    : `The gentle breeze carried the distinct scent of "${word}", refreshing my spirit. `;
-            default:
-                return index === 0
-                    ? `Finally, the impression of "${word}" lingered in my mind, wrapping up a perfect day. `
-                    : `On my way home, I quietly reflected on "${word}", feeling deeply content. `;
-        }
-    }
+interface StoryTheme {
+    title: (lang: 'zh' | 'en') => string;
+    intro: (lang: 'zh' | 'en') => string;
+    getSentence: (clean: string, sentence: string, index: number, lang: 'zh' | 'en') => string;
 }
 
+const FALLBACK_THEMES: StoryTheme[] = [
+    // Theme 0: Travel Journal
+    {
+        title: (lang) => lang === 'zh' ? '一天的精彩旅程' : 'A Wonderful Day\'s Journey',
+        intro: (lang) => lang === 'zh' ? '今天清晨，我拉开窗帘，心中突然有了一个特别的想法。我决定来一场温习词汇的旅行。' : 'This morning, I drew the curtains and felt a sudden burst of inspiration. I decided to take a vocabulary learning journey.',
+        getSentence: (clean, sentence, index, lang) => {
+            if (lang === 'zh') {
+                if (index === 0) return `首先，脑海里浮现出关于“${clean}”的练习：“${sentence}”。这会是个很好的起点。`;
+                if (index === 1) return `出发时，我想起如何使用“${clean}”：“${sentence}”。虽然旅途免不了劳累，但我的热情依然高涨。`;
+                if (index === 2) return `一路上，看着两旁的风景，我想到了“${clean}”的例句：“${sentence}”，这让路途显得非常有趣。`;
+                if (index === 3) return `路过一个小店时，橱窗上的图案让我想起“${clean}”的用法：“${sentence}”。`;
+                if (index === 4) return `走累了，我坐下休息，本子上写着“${clean}”的释义：“${sentence}”。这或许就是旅行中的小确幸吧。`;
+                if (index === 5) return `不远处有一位路人，这场景正符合“${clean}”的描述：“${sentence}”。`;
+                if (index === 6) return `抬头望去，天边的云彩犹如“${clean}”般诗情画意：“${sentence}”。`;
+                if (index === 7) return `虽然在温习“${clean}”时遇到了一点疑惑：“${sentence}”，但这次旅行收获满满。`;
+                return `最后，我脑海中依然回想着关于“${clean}”的场景：“${sentence}”，为今天画上了圆满的句号。`;
+            } else {
+                if (index === 0) return `First, my thoughts gravitated toward "${clean}", recalling the sentence: "${sentence}". It felt like a perfect starting point.`;
+                if (index === 1) return `As I set out, I remembered how to use "${clean}": "${sentence}". Despite the effort, my excitement remained high.`;
+                if (index === 2) return `Wandering along the path and seeing the scenery, I reflected on "${clean}": "${sentence}". It made the walk very interesting.`;
+                if (index === 3) return `Passing by a small shop, the window display reminded me of "${clean}": "${sentence}".`;
+                if (index === 4) return `Feeling a bit tired, I sat down to rest, reading about "${clean}": "${sentence}". This was a pleasant discovery.`;
+                if (index === 5) return `Not far away, a scene caught my eye, perfectly matching the usage of "${clean}": "${sentence}".`;
+                if (index === 6) return `Looking up at the sky, the view felt as poetic as "${clean}": "${sentence}".`;
+                if (index === 7) return `Although I had a minor confusion about "${clean}": "${sentence}", this journey was deeply rewarding.`;
+                return `Finally, I reflected on "${clean}": "${sentence}", wrapping up a perfect day.`;
+            }
+        }
+    },
+    // Theme 1: Kitchen Cooking
+    {
+        title: (lang) => lang === 'zh' ? '惬意的午后厨房' : 'Cozy Kitchen Afternoon',
+        intro: (lang) => lang === 'zh' ? '今天是周末，我决定下厨做一顿丰盛的午餐，顺便复习一下我的生词笔记。' : 'It is the weekend, and I decided to cook a hearty lunch in the kitchen while reviewing my vocabulary notes.',
+        getSentence: (clean, sentence, index, lang) => {
+            if (lang === 'zh') {
+                if (index === 0) return `系上围裙，我脑海中闪过的第一个词是“${clean}”，正如例句所写：“${sentence}”。`;
+                if (index === 1) return `切菜时，我联想到了“${clean}”的用法：“${sentence}”。这让做饭变得很有意思。`;
+                if (index === 2) return `锅里的汤开始沸腾，散发出香味，让我想起“${clean}”的表达：“${sentence}”。`;
+                if (index === 3) return `拿调料瓶时，我顺手在便签上写下“${clean}”的记忆方法：“${sentence}”。`;
+                if (index === 4) return `擦了擦手，我坐着等待出锅，翻开笔记本读到“${clean}”：“${sentence}”。`;
+                if (index === 5) return `看着桌上的摆设，感觉可以用“${clean}”来形容此景：“${sentence}”。`;
+                if (index === 6) return `温暖的阳光洒进厨房，这惬意的氛围正是“${clean}”的写照：“${sentence}”。`;
+                if (index === 7) return `虽然今天尝试“${clean}”相关的烹饪有些许手忙脚乱：“${sentence}”，但结果非常令人期待。`;
+                return `品尝着热气腾腾的佳肴，我默默记下了“${clean}”的句子：“${sentence}”。`;
+            } else {
+                if (index === 0) return `Putting on my apron, the first word that came to mind was "${clean}", just like the example: "${sentence}".`;
+                if (index === 1) return `While chopping ingredients, I thought of "${clean}": "${sentence}". It made cooking feel like an intellectual game.`;
+                if (index === 2) return `As the soup started boiling and filling the room with aroma, I recalled "${clean}": "${sentence}".`;
+                if (index === 3) return `Reaching for the spices, I scribbled a note about "${clean}": "${sentence}".`;
+                if (index === 4) return `Wiping my hands and waiting for the dish to simmer, I opened my book to "${clean}": "${sentence}".`;
+                if (index === 5) return `Looking at the table setup, it felt like a good illustration of "${clean}": "${sentence}".`;
+                if (index === 6) return `Warm sunlight streamed into the kitchen, capturing the very essence of "${clean}": "${sentence}".`;
+                if (index === 7) return `Although practicing "${clean}" during cooking was slightly challenging: "${sentence}", the overall experience was rewarding.`;
+                return `Tasting the delicious meal, I made a mental note of "${clean}": "${sentence}".`;
+            }
+        }
+    },
+    // Theme 2: Forest Adventure
+    {
+        title: (lang) => lang === 'zh' ? '奇妙的森林探险' : 'Mystical Forest Adventure',
+        intro: (lang) => lang === 'zh' ? '清晨，我背起双肩包，决定在森林中进行一次充满词汇灵感的探险。' : 'In the early morning, carrying my backpack, I set out on a forest walk to find vocabulary inspiration.',
+        getSentence: (clean, sentence, index, lang) => {
+            if (lang === 'zh') {
+                if (index === 0) return `刚踏入树林，清新的空气让我想起“${clean}”的定义：“${sentence}”。这是一个很好的开始。`;
+                if (index === 1) return `沿着小路前行，我注意到了关于“${clean}”的生动情景：“${sentence}”。`;
+                if (index === 2) return `穿过一片灌木丛，我脑海中突然冒出了“${clean}”的句子：“${sentence}”。`;
+                if (index === 3) return `在老树根旁小憩时，我看着四周，联想到了“${clean}”：“${sentence}”。`;
+                if (index === 4) return `抬头看着树叶间洒下的光斑，想到了“${clean}”的用法：“${sentence}”。`;
+                if (index === 5) return `耳边传来清脆的鸟鸣声，这场景让我想起“${clean}”的描述：“${sentence}”。`;
+                if (index === 6) return `林间的微风拂面，氛围犹如“${clean}”般宁静致远：“${sentence}”。`;
+                if (index === 7) return `虽然探险中遇到了关于“${clean}”的小疑惑：“${sentence}”，但大自然治愈了一切。`;
+                return `在归途中，我默默回味着“${clean}”的含义，感到十分充实：“${sentence}”。`;
+            } else {
+                if (index === 0) return `Stepping into the woods, the fresh air reminded me of "${clean}": "${sentence}". It was a great start.`;
+                if (index === 1) return `Walking along the path, I noticed a detail representing "${clean}": "${sentence}".`;
+                if (index === 2) return `Pushing through the dense bushes, a sentence for "${clean}" popped up: "${sentence}".`;
+                if (index === 3) return `Resting near the tree roots, I watched the forest around me and reflected on "${clean}": "${sentence}".`;
+                if (index === 4) return `Looking at the sunlight filtering through the canopy, I recalled "${clean}": "${sentence}".`;
+                if (index === 5) return `Hearing birds singing nearby, this lively scene reminded me of "${clean}": "${sentence}".`;
+                if (index === 6) return `A gentle breeze brushed my face, creating a quiet atmosphere like "${clean}": "${sentence}".`;
+                if (index === 7) return `Although I encountered a puzzle about "${clean}": "${sentence}", nature brought peace to my mind.`;
+                return `On my way back, I quietly reflected on "${clean}": "${sentence}".`;
+            }
+        }
+    },
+    // Theme 3: Library Reading
+    {
+        title: (lang) => lang === 'zh' ? '宁静的书房午后' : 'Quiet Library Afternoon',
+        intro: (lang) => lang === 'zh' ? '细雨轻敲窗台，我捧着一杯热茶，在书房里整理我的单词卡片。' : 'Rain gently tapped the window as I enjoyed a quiet library afternoon with hot tea, sorting my vocabulary cards.',
+        getSentence: (clean, sentence, index, lang) => {
+            if (lang === 'zh') {
+                if (index === 0) return `翻开书本的第一页，我读到了关于“${clean}”的句子：“${sentence}”。这十分引人入胜。`;
+                if (index === 1) return `字里行间，我温习了“${clean}”的结构：“${sentence}”。这让我受益匪浅。`;
+                if (index === 2) return `合上这一章，我把“${clean}”的用法写在书页旁作为标记：“${sentence}”。`;
+                if (index === 3) return `看着杯中升腾的热气，我脑海里掠过“${clean}”的场景：“${sentence}”。`;
+                if (index === 4) return `揉了揉疲倦的眼睛，我看着笔记上的“${clean}”：“${sentence}”，继续深入思考。`;
+                if (index === 5) return `窗外的雨声渐渐变小，这场景让我想起书中关于“${clean}”的描写：“${sentence}”。`;
+                if (index === 6) return `屋里的墨香让人沉静，仿佛进入了“${clean}”的唯美意境：“${sentence}”。`;
+                if (index === 7) return `虽然理解“${clean}”的精髓需要花些心思：“${sentence}”，但读书的时光非常充实。`;
+                return `合上日记，我彻底掌握了“${clean}”的含义：“${sentence}”。`;
+            } else {
+                if (index === 0) return `Opening the first page of the book, I read a sentence about "${clean}": "${sentence}". It was fascinating.`;
+                if (index === 1) return `Between the lines, I reviewed the structure of "${clean}": "${sentence}". It was very helpful.`;
+                if (index === 2) return `Finishing this chapter, I wrote a marginal note on "${clean}": "${sentence}".`;
+                if (index === 3) return `Looking at my warm teacup, a scenario for "${clean}" flashed through my mind: "${sentence}".`;
+                if (index === 4) return `Rubbing my tired eyes, I stared at "${clean}": "${sentence}", thinking deeper.`;
+                if (index === 5) return `As the rain softened outside, it reminded me of a description of "${clean}": "${sentence}".`;
+                if (index === 6) return `The scent of ink brought a calm state, resembling the mood of "${clean}": "${sentence}".`;
+                if (index === 7) return `Although understanding "${clean}" took some effort: "${sentence}", it was time well spent.`;
+                return `Closing the diary, I fully mastered "${clean}": "${sentence}".`;
+            }
+        }
+    },
+    // Theme 4: City Walk
+    {
+        title: (lang) => lang === 'zh' ? '繁华的城市漫步' : 'Scenic City Walk',
+        intro: (lang) => lang === 'zh' ? '今天下午，我决定在城市的街道上进行一次漫步，并在路上寻找单词的线索。' : 'This afternoon, I decided to take a walk along the city streets, searching for vocabulary clues along the way.',
+        getSentence: (clean, sentence, index, lang) => {
+            if (lang === 'zh') {
+                if (index === 0) return `刚走到街角，街道上的繁华景象让我想起“${clean}”：“${sentence}”。`;
+                if (index === 1) return `穿过人行横道，我注意到了一个与“${clean}”有关的城市牌匾：“${sentence}”。`;
+                if (index === 2) return `路过一家复古小店，橱窗里的一幅画极其符合“${clean}”的意境：“${sentence}”。`;
+                if (index === 3) return `买了一瓶凉茶，我看着包装上的标语，想到了“${clean}”：“${sentence}”。`;
+                if (index === 4) return `在街角的长椅上坐下，我翻出卡片温习“${clean}”：“${sentence}”。`;
+                if (index === 5) return `看到路边一位热心的行路人，这情景正是“${clean}”的生动写照：“${sentence}”。`;
+                if (index === 6) return `夕阳下的街景流光溢彩，氛围就像“${clean}”般温暖人心：“${sentence}”。`;
+                if (index === 7) return `虽然今天探索“${clean}”时遇到了一点疑惑：“${sentence}”，但这也是城市漫步的魅力所在。`;
+                return `坐上回程的巴士，我把关于“${clean}”的句子深深记在脑海里：“${sentence}”。`;
+            } else {
+                if (index === 0) return `Just reaching the corner, the bustling street reminded me of "${clean}": "${sentence}".`;
+                if (index === 1) return `Crossing the street, I noticed a city sign related to "${clean}": "${sentence}".`;
+                if (index === 2) return `Passing an antique shop, a painting in the window matched the mood of "${clean}": "${sentence}".`;
+                if (index === 3) return `Buying a cold drink, the text on the label reminded me of "${clean}": "${sentence}".`;
+                if (index === 4) return `Sitting on a bench to rest, I opened my notes to review "${clean}": "${sentence}".`;
+                if (index === 5) return `Seeing a kind pedestrian nearby, the scene was a perfect illustration of "${clean}": "${sentence}".`;
+                if (index === 6) return `The city in the sunset was glowing, feeling as warm as "${clean}": "${sentence}".`;
+                if (index === 7) return `Although I had a minor confusion about "${clean}": "${sentence}", it was all part of the city experience.`;
+                return `On the bus back, I kept the usage of "${clean}" in my heart: "${sentence}".`;
+            }
+        }
+    }
+];
+
 export function getFallbackStory(words: Word[], lang: 'zh' | 'en'): AIStory {
-    const title = lang === 'zh' ? '一天的精彩旅程' : 'A Wonderful Day\'s Journey';
+    // Select theme dynamically based on the sum of char codes of Korean words
+    const hash = words.reduce((acc, w) => acc + (w.kr.charCodeAt(0) || 0), 0);
+    const themeIndex = hash % FALLBACK_THEMES.length;
+    const theme = FALLBACK_THEMES[themeIndex];
+    
+    const title = theme.title(lang);
     
     const wordItems = words.map(w => {
         const clean = getCleanCandidate(w, lang);
-        const category = classifyWord(w, lang);
-        return { word: w, clean, category };
+        let sentence = lang === 'zh' ? w.sentenceZh : w.sentenceMeaning;
+        if (!sentence) {
+            sentence = lang === 'zh' ? `${clean}很常见。` : `This represents "${clean}".`;
+        }
+        sentence = sentence.trim();
+        return { word: w, clean, sentence };
     }).filter(item => item.clean);
 
-    const CATEGORY_ORDER = ['feeling', 'obstacle', 'place', 'object', 'body_part', 'companion', 'time_season', 'other'];
-
-    // Sort wordItems based on category order
-    wordItems.sort((a, b) => {
-        const aIndex = CATEGORY_ORDER.indexOf(a.category);
-        const bIndex = CATEGORY_ORDER.indexOf(b.category);
-        const aVal = aIndex === -1 ? CATEGORY_ORDER.length : aIndex;
-        const bVal = bIndex === -1 ? CATEGORY_ORDER.length : bIndex;
-        return aVal - bVal;
-    });
-
-    const categoryCounts: Record<string, number> = {};
     const parts: string[] = [];
-    
-    if (lang === 'zh') {
-        parts.push("今天清晨，我拉开窗帘，心中突然有了一个特别的想法。");
-    } else {
-        parts.push("This morning, I drew the curtains and felt a sudden burst of inspiration. ");
-    }
+    parts.push(theme.intro(lang));
 
-    wordItems.forEach(item => {
-        const cat = item.category;
-        const count = categoryCounts[cat] || 0;
-        categoryCounts[cat] = count + 1;
-        
-        const sentence = getSentenceForWord(item.clean, cat, count, lang);
-        parts.push(sentence);
+    wordItems.forEach((item, index) => {
+        const sentenceText = theme.getSentence(item.clean, item.sentence, index, lang);
+        parts.push(sentenceText);
     });
 
     return {
         title,
-        story: parts.join("")
+        story: parts.join(lang === 'zh' ? "" : " ")
     };
 }
 
 export async function fetchAIStory(words: Word[], lang: 'zh' | 'en'): Promise<AIStory> {
+    const wordTranslations = words.map(w => getCleanCandidate(w, lang)).filter(Boolean);
+    const wordListStr = wordTranslations.map(t => `"${t}"`).join(', ');
+    
+    // Keep the prompt concise to prevent Cloudflare URL character length blocks
+    const prompt = `Write a short story or dialogue in ${lang === 'zh' ? 'Chinese' : 'English'} (max 120 words) incorporating these exact terms: ${wordListStr}. Output JSON format: {"title":"story title", "story":"story text"}. No markdown, no reasoning, just raw JSON.`;
+    const url = `https://text.pollinations.ai/${encodeURIComponent(prompt)}?jsonMode=true&model=openai`;
+
+    const controller = new AbortController();
+    const timeoutId = setTimeout(() => controller.abort(), 12000); // 12s timeout to give reasoning LLM a fair chance to return
+
     try {
-        const response = await fetch('/api/story', {
-            method: 'POST',
+        const response = await fetch(url, { 
+            signal: controller.signal,
             headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({ words, lang })
+                'Accept': 'application/json'
+            }
         });
+        clearTimeout(timeoutId);
         
-        if (!response.ok) {
-            throw new Error(`Server responded with status ${response.status}`);
-        }
+        if (!response.ok) throw new Error(`HTTP error ${response.status}`);
+        const text = await response.text();
         
-        const data = await response.json();
-        if (data.error) {
-            throw new Error(data.error);
-        }
-        
-        return data;
+        return extractJson(text);
     } catch (error) {
-        console.error('Failed to fetch AI story from server proxy, using fallback:', error);
+        clearTimeout(timeoutId);
+        console.warn('Failed to fetch AI story from Pollinations client-side, using local theme:', error);
         return getFallbackStory(words, lang);
     }
 }
