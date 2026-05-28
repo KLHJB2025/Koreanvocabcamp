@@ -20,13 +20,35 @@ export function ListeningTask({ words, onComplete, onMiss }: ListeningTaskProps)
     const [isSubmitted, setIsSubmitted] = useState(false);
     const { t, language } = useTranslation();
 
-    const speak = (word: string, rate: number = 1.0) => {
-        const cleanName = word.replace(/[<>:"/\\|?*]/g, '');
-        const audioPath = `/audio/words/${cleanName}.mp3`;
-        
-        const audio = new Audio(audioPath);
-        audio.playbackRate = rate === 1.0 ? 1.0 : 0.7; // Ensure slow is 0.7
-        audio.play().catch(e => console.error("Audio playback failed:", e));
+    const speakMeaning = (word: Word, rate: number = 1.0) => {
+        if (typeof window === 'undefined' || !window.speechSynthesis) return;
+
+        // Cancel any ongoing speech
+        window.speechSynthesis.cancel();
+
+        const textToSpeak = language === 'zh' ? word.zh : word.en;
+        if (!textToSpeak) return;
+
+        // Clean up formatting for smoother text-to-speech
+        let cleanText = textToSpeak;
+        if (language === 'zh') {
+            cleanText = cleanText
+                .replace(/\([^)]*\)/g, '')
+                .replace(/\（[^）]*\）/g, '')
+                .replace(/[\/,]/g, '，或者')
+                .trim();
+        } else {
+            cleanText = cleanText
+                .replace(/\([^)]*\)/g, '')
+                .replace(/[\/,]/g, ', or')
+                .trim();
+        }
+
+        const utterance = new SpeechSynthesisUtterance(cleanText);
+        utterance.lang = language === 'zh' ? 'zh-CN' : 'en-US';
+        utterance.rate = rate === 1.0 ? 0.9 : 0.6;
+
+        window.speechSynthesis.speak(utterance);
     };
 
     useEffect(() => {
@@ -39,10 +61,10 @@ export function ListeningTask({ words, onComplete, onMiss }: ListeningTaskProps)
             setIsCorrect(null);
             setIsSubmitted(false);
             
-            // Auto play sound
-            speak(current.kr);
+            // Auto play Chinese/English meaning
+            speakMeaning(current);
         }
-    }, [currentIndex, words]);
+    }, [currentIndex, words, language]);
 
     const handleSelect = (word: Word) => {
         if (isSubmitted) return;
@@ -80,13 +102,13 @@ export function ListeningTask({ words, onComplete, onMiss }: ListeningTaskProps)
             
             <div className="flex flex-col items-center gap-4 mb-12">
                 <button 
-                    onClick={() => speak(words[currentIndex].kr)}
+                    onClick={() => speakMeaning(words[currentIndex])}
                     className="w-32 h-32 bg-primary rounded-[40px] flex items-center justify-center text-white shadow-2xl shadow-primary/40 hover:scale-110 active:scale-95 transition-all"
                 >
                     <Volume2 size={60} />
                 </button>
                 <button
-                    onClick={() => speak(words[currentIndex].kr, 0.6)}
+                    onClick={() => speakMeaning(words[currentIndex], 0.6)}
                     className="px-6 py-2 bg-cloud/20 rounded-2xl flex items-center gap-2 text-sm font-black uppercase tracking-widest text-charcoal/40 hover:text-primary transition-colors border border-charcoal/5 shadow-sm"
                 >
                     <Volume2 size={16} />
