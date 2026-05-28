@@ -5,7 +5,7 @@ import { useAuth } from '@/hooks/use-auth';
 import { motion } from 'framer-motion';
 import { 
     ArrowLeft, Volume2, Search, Brain, Trophy, Calendar, 
-    Sparkles, HelpCircle, CheckCircle, Clock, Filter, ArrowUpDown, Play
+    Sparkles, HelpCircle, CheckCircle, Clock, Filter, ArrowUpDown, Play, ShieldCheck
 } from 'lucide-react';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
@@ -26,6 +26,90 @@ interface JoinedLearnedWord {
     sentenceKr?: string;
     sentenceZh?: string;
     sentenceMeaning?: string;
+}
+
+const getStageBadgeInfo = (level: number, lang: 'zh' | 'en') => {
+    const stages: Record<number, { nameZh: string; nameEn: string; color: string; descZh: string; descEn: string }> = {
+        1: { nameZh: '🌱 萌芽级', nameEn: '🌱 Seedling', color: 'bg-lime-50 text-lime-700 border-lime-100', descZh: '遗忘高危期', descEn: 'High decay risk' },
+        2: { nameZh: '🌿 幼苗级', nameEn: '🌿 Sprout', color: 'bg-emerald-50 text-emerald-700 border-emerald-100', descZh: '记忆形成中', descEn: 'Consolidating' },
+        3: { nameZh: '🌳 小树级', nameEn: '🌳 Sapling', color: 'bg-teal-50 text-teal-700 border-teal-100', descZh: '中度稳固', descEn: 'Strengthening' },
+        4: { nameZh: '🌲 成树级', nameEn: '🌲 Tree', color: 'bg-cyan-50 text-cyan-700 border-cyan-100', descZh: '长期存留', descEn: 'Retaining' },
+        5: { nameZh: '👑 永恒黄金林', nameEn: '👑 Golden Forest', color: 'bg-amber-100 text-amber-800 border-amber-300 font-black', descZh: '永久记忆', descEn: 'Permanent memory' }
+    };
+    const levelKey = Math.min(5, Math.max(1, level));
+    const stage = stages[levelKey];
+    return {
+        name: lang === 'zh' ? stage.nameZh : stage.nameEn,
+        color: stage.color,
+        desc: lang === 'zh' ? stage.descZh : stage.descEn
+    };
+};
+
+function ForgettingCurveGraph({ lang }: { lang: 'zh' | 'en' }) {
+    return (
+        <div className="w-full bg-secondary/20 p-4 sm:p-6 rounded-[32px] border border-charcoal/5 shadow-inner">
+            <div className="flex justify-between items-center mb-2">
+                <span className="text-[10px] font-black uppercase tracking-widest text-charcoal/45">
+                    {lang === 'zh' ? '📈 记忆遗忘与复习重建示意图' : '📈 Memory Decay & Recovery Graph'}
+                </span>
+                <div className="flex gap-4 text-[9px] font-black uppercase text-charcoal/50">
+                    <span className="flex items-center gap-1"><span className="w-2.5 h-0.5 bg-red-400 inline-block rounded-full"></span>{lang === 'zh' ? '无复习（自然遗忘）' : 'No Review'}</span>
+                    <span className="flex items-center gap-1"><span className="w-2.5 h-0.5 bg-emerald-500 inline-block rounded-full"></span>{lang === 'zh' ? '定期复习（巩固）' : 'With Review'}</span>
+                </div>
+            </div>
+            <svg className="w-full h-32 text-primary" viewBox="0 0 500 130">
+                {/* Grid Lines */}
+                <line x1="40" y1="10" x2="480" y2="10" stroke="#e0e0e0" strokeDasharray="3" />
+                <line x1="40" y1="60" x2="480" y2="60" stroke="#e0e0e0" strokeDasharray="3" />
+                <line x1="40" y1="110" x2="480" y2="110" stroke="#e0e0e0" strokeDasharray="3" />
+                
+                {/* Y Axis Labels */}
+                <text x="5" y="14" fill="#888" className="text-[9px] font-bold">100%</text>
+                <text x="10" y="64" fill="#888" className="text-[9px] font-bold">50%</text>
+                <text x="15" y="114" fill="#888" className="text-[9px] font-bold">0%</text>
+
+                {/* X Axis Labels */}
+                <text x="40" y="128" fill="#888" className="text-[8px] font-bold">{lang === 'zh' ? '学完' : 'Learn'}</text>
+                <text x="120" y="128" fill="#888" className="text-[8px] font-bold">1 {lang === 'zh' ? '天' : 'Day'}</text>
+                <text x="200" y="128" fill="#888" className="text-[8px] font-bold">2 {lang === 'zh' ? '天' : 'Days'}</text>
+                <text x="280" y="128" fill="#888" className="text-[8px] font-bold">4 {lang === 'zh' ? '天' : 'Days'}</text>
+                <text x="360" y="128" fill="#888" className="text-[8px] font-bold">7 {lang === 'zh' ? '天' : 'Days'}</text>
+                <text x="440" y="128" fill="#888" className="text-[8px] font-bold">12 {lang === 'zh' ? '天' : 'Days'}</text>
+                
+                {/* Forgetting curves (decay paths) */}
+                <path d="M 40 10 Q 80 80, 120 90" fill="none" stroke="#f87171" strokeWidth="1.5" strokeDasharray="3" />
+                <path d="M 120 10 Q 160 60, 200 65" fill="none" stroke="#f87171" strokeWidth="1.5" strokeDasharray="3" />
+                <path d="M 200 10 Q 240 40, 280 45" fill="none" stroke="#f87171" strokeWidth="1.5" strokeDasharray="3" />
+                <path d="M 280 10 Q 320 25, 360 30" fill="none" stroke="#f87171" strokeWidth="1.5" strokeDasharray="3" />
+                <path d="M 360 10 Q 400 18, 440 20" fill="none" stroke="#f87171" strokeWidth="1.5" strokeDasharray="3" />
+                
+                {/* Review jumps */}
+                <line x1="120" y1="90" x2="120" y2="10" stroke="#10b981" strokeWidth="1.5" strokeDasharray="2" />
+                <line x1="200" y1="65" x2="200" y2="10" stroke="#10b981" strokeWidth="1.5" strokeDasharray="2" />
+                <line x1="280" y1="45" x2="280" y2="10" stroke="#10b981" strokeWidth="1.5" strokeDasharray="2" />
+                <line x1="360" y1="30" x2="360" y2="10" stroke="#10b981" strokeWidth="1.5" strokeDasharray="2" />
+                <line x1="440" y1="20" x2="440" y2="10" stroke="#10b981" strokeWidth="1.5" strokeDasharray="2" />
+
+                {/* Permanent memory ceiling line */}
+                <path d="M 40 10 L 120 10 L 200 10 L 280 10 L 360 10 L 440 10 L 480 10" fill="none" stroke="#10b981" strokeWidth="2.5" />
+
+                {/* Target nodes */}
+                <circle cx="40" cy="10" r="3" fill="#10b981" />
+                <circle cx="120" cy="10" r="3" fill="#10b981" />
+                <circle cx="200" cy="10" r="3" fill="#10b981" />
+                <circle cx="280" cy="10" r="3" fill="#10b981" />
+                <circle cx="360" cy="10" r="3" fill="#10b981" />
+                <circle cx="440" cy="10" r="3" fill="#10b981" />
+                
+                {/* Cute visual text labels for stages */}
+                <text x="45" y="22" fill="#047857" className="text-[7px] font-black">🌱 {lang === 'zh' ? '萌芽' : 'Seedling'}</text>
+                <text x="125" y="22" fill="#047857" className="text-[7px] font-black">🌿 {lang === 'zh' ? '幼苗' : 'Sprout'}</text>
+                <text x="205" y="22" fill="#047857" className="text-[7px] font-black">🌳 {lang === 'zh' ? '小树' : 'Sapling'}</text>
+                <text x="285" y="22" fill="#047857" className="text-[7px] font-black">🌲 {lang === 'zh' ? '成树' : 'Tree'}</text>
+                <text x="365" y="22" fill="#d97706" className="text-[7px] font-black">👑 {lang === 'zh' ? '黄金林' : 'Forest'}</text>
+            </svg>
+        </div>
+    );
 }
 
 export default function VocabularyLibrary() {
@@ -241,38 +325,47 @@ export default function VocabularyLibrary() {
                 </div>
 
                 {/* Ebbinghaus Forgetting Curve Explainer Card */}
-                <section className="bg-white rounded-[40px] p-8 border-2 border-strawberry/5 shadow-xl relative overflow-hidden">
+                <section className="bg-white rounded-[40px] p-8 border-2 border-strawberry/5 shadow-xl relative overflow-hidden space-y-8">
                     <div className="absolute top-0 right-0 w-48 h-48 bg-strawberry/5 rounded-full blur-3xl pointer-events-none" />
                     
-                    <div className="flex items-center gap-3 mb-6">
-                        <div className="p-2.5 bg-primary/10 text-primary rounded-2xl shadow-inner">
-                            <Sparkles size={20} />
-                        </div>
-                        <div>
-                            <h3 className="text-lg font-black uppercase italic tracking-tight">
-                                {language === 'zh' ? '艾宾浩斯抗遗忘记忆曲线' : 'Ebbinghaus Anti-Forgetting Memory Curve'}
-                            </h3>
-                            <p className="text-[10px] font-bold uppercase tracking-widest text-charcoal/30">
-                                {language === 'zh' ? '单词是如何变成长期记忆的？' : 'How words are transferred into long-term memory'}
+                    <div className="flex flex-col md:flex-row gap-6 md:items-center justify-between">
+                        <div className="space-y-4 max-w-2xl">
+                            <div className="flex items-center gap-3">
+                                <div className="p-2.5 bg-primary/10 text-primary rounded-2xl shadow-inner">
+                                    <Sparkles size={20} />
+                                </div>
+                                <div>
+                                    <h3 className="text-lg font-black uppercase italic tracking-tight">
+                                        {language === 'zh' ? '艾宾浩斯抗遗忘记忆曲线' : 'Ebbinghaus Anti-Forgetting Memory Curve'}
+                                    </h3>
+                                    <p className="text-[10px] font-bold uppercase tracking-widest text-charcoal/30">
+                                        {language === 'zh' ? '单词是如何变成长期记忆的？' : 'How words are transferred into long-term memory'}
+                                    </p>
+                                </div>
+                            </div>
+
+                            <p className="text-sm font-semibold text-charcoal/60 leading-relaxed">
+                                {language === 'zh' 
+                                    ? '根据人类大脑遗忘规律，新学的词如果不复习，会在24小时内忘掉大半。我们通过智能算法为每个词追踪 5 个“成长阶段”复习周期（复习间隔分别为 1天、2天、4天、7天和12天）。每次您在复习中回答正确，单词的记忆阶段就会升级成长，复习间隔自动拉长；若回答错误，单词会退回上一阶段重新加固，直至它牢牢成长为黄金林，锁入您的长期记忆。'
+                                    : 'According to Ebbinghaus forgetting curve research, newly learned vocabulary decays rapidly within 24 hours. Our program automatically tracks 5 growth stages (intervals of 1, 2, 4, 7, and 12 days). Answering correctly upgrades a word\'s memory stage, stretching its retention interval. If you get it wrong, it steps back a stage to consolidate, ensuring it locks permanently into your long-term memory.'
+                                }
                             </p>
+                        </div>
+
+                        {/* Interactive-looking graph */}
+                        <div className="w-full md:w-[45%] flex-shrink-0">
+                            <ForgettingCurveGraph lang={language === 'zh' ? 'zh' : 'en'} />
                         </div>
                     </div>
 
-                    <p className="text-sm font-medium text-charcoal/60 leading-relaxed mb-8 max-w-3xl">
-                        {language === 'zh' 
-                            ? '根据人类大脑遗忘规律，新学的单词如果不复习，会在24小时内忘掉大半。我们通过智能算法为每个单词追踪 5 个抗遗忘复习周期（复习间隔分别为 1天、2天、4天、7天和12天）。每次您在复习中回答正确，该单词的记忆强度就会升级，复习间隔被自动拉长；若回答错误，单词将退回上一阶段重新加固，直至其牢固锁入您的长期记忆。'
-                            : 'According to Ebbinghaus forgetting curve research, newly learned vocabulary decays rapidly within 24 hours. Our program automatically tracks 5 review cycles (intervals of 1, 2, 4, 7, and 12 days). Answering correctly upgrades a word\'s memory stage, stretching its retention interval. If you get it wrong, it steps back a stage to consolidate, ensuring it locks permanently into your long-term memory.'
-                        }
-                    </p>
-
                     {/* Timeline Stages */}
-                    <div className="grid grid-cols-5 gap-3 md:gap-6 pt-4 border-t border-charcoal/5">
+                    <div className="grid grid-cols-5 gap-3 md:gap-6 pt-6 border-t border-charcoal/5">
                         {[
-                            { step: "Stage 1", label: language === 'zh' ? '初次巩固' : 'Initial', interval: language === 'zh' ? '1 天后' : '1 Day', p: "20%" },
-                            { step: "Stage 2", label: language === 'zh' ? '二次加深' : 'Consolidate', interval: language === 'zh' ? '2 天后' : '2 Days', p: "40%" },
-                            { step: "Stage 3", label: language === 'zh' ? '复习抗阻' : 'Strengthen', interval: language === 'zh' ? '4 天后' : '4 Days', p: "60%" },
-                            { step: "Stage 4", label: language === 'zh' ? '长期锁存' : 'Retain', interval: language === 'zh' ? '7 天后' : '7 Days', p: "80%" },
-                            { step: "Stage 5", label: language === 'zh' ? '终极掌握' : 'Mastered', interval: language === 'zh' ? '12 天后' : '12 Days', p: "100%" }
+                            { step: language === 'zh' ? "🌱 萌芽级" : "🌱 Seedling", label: language === 'zh' ? '初次巩固' : 'Initial', interval: language === 'zh' ? '1 天后' : '1 Day', p: "20%" },
+                            { step: language === 'zh' ? "🌿 幼苗级" : "🌿 Sprout", label: language === 'zh' ? '二次加深' : 'Consolidate', interval: language === 'zh' ? '2 天后' : '2 Days', p: "40%" },
+                            { step: language === 'zh' ? "🌳 小树级" : "🌳 Sapling", label: language === 'zh' ? '复习抗阻' : 'Strengthen', interval: language === 'zh' ? '4 天后' : '4 Days', p: "60%" },
+                            { step: language === 'zh' ? "🌲 成树级" : "🌲 Tree", label: language === 'zh' ? '长期锁存' : 'Retain', interval: language === 'zh' ? '7 天后' : '7 Days', p: "80%" },
+                            { step: language === 'zh' ? "👑 黄金林" : "👑 Forest", label: language === 'zh' ? '终极掌握' : 'Mastered', interval: language === 'zh' ? '12 天后' : '12 Days', p: "100%" }
                         ].map((item, idx) => {
                             const isCurrentStageEmpty = levelCounts[idx] === 0;
                             return (
@@ -281,7 +374,7 @@ export default function VocabularyLibrary() {
                                         {idx + 1}
                                     </div>
                                     <div className="space-y-1">
-                                        <p className="text-[10px] font-black uppercase text-charcoal tracking-tighter leading-tight italic">{item.step}</p>
+                                        <p className="text-[10px] sm:text-xs font-black text-charcoal tracking-tighter leading-tight italic">{item.step}</p>
                                         <p className="text-[9px] font-black text-charcoal/40 uppercase tracking-widest leading-none">{item.interval}</p>
                                         <div className="pt-2">
                                             <span className={`inline-block px-2.5 py-0.5 rounded-full text-[9px] font-black ${isCurrentStageEmpty ? 'bg-cloud text-charcoal/20' : 'bg-strawberry/15 text-primary'}`}>
@@ -353,12 +446,13 @@ export default function VocabularyLibrary() {
                             {filteredList.map((word) => {
                                 const nextReviewDate = word.nextReview?.toDate ? word.nextReview.toDate() : new Date(word.nextReview);
                                 const isDue = nextReviewDate <= now;
+                                const badgeInfo = getStageBadgeInfo(word.level, language === 'zh' ? 'zh' : 'en');
                                 
                                 return (
                                     <motion.div 
                                         key={word.kr}
                                         layout
-                                        className={`bg-white rounded-[32px] p-6 border-2 shadow-sm transition-all hover:shadow-lg relative flex flex-col justify-between ${isDue ? 'border-amber-400 bg-amber-50/5' : 'border-strawberry/5'}`}
+                                        className={`bg-white rounded-[32px] p-6 border-2 shadow-sm transition-all hover:shadow-lg relative flex flex-col justify-between ${isDue ? 'border-amber-400 bg-amber-50/5 shadow-md shadow-amber-400/5' : 'border-strawberry/5'}`}
                                     >
                                         {/* Top section: Word details */}
                                         <div>
@@ -368,14 +462,8 @@ export default function VocabularyLibrary() {
                                                 </span>
                                                 
                                                 {/* Stage badge */}
-                                                <span className={`px-2.5 py-0.5 rounded-full text-[8px] font-black uppercase ${
-                                                    word.level >= 5 
-                                                        ? 'bg-emerald-500/10 text-emerald-600' 
-                                                        : isDue 
-                                                        ? 'bg-amber-500/15 text-amber-600 animate-pulse'
-                                                        : 'bg-primary/10 text-primary'
-                                                }`}>
-                                                    {word.level >= 5 ? (language === 'zh' ? 'Stage 5 · 已掌握' : 'Stage 5 · Mastered') : `Stage ${word.level}`}
+                                                <span className={`px-2.5 py-0.5 rounded-full text-[8px] font-black uppercase border ${badgeInfo.color}`} title={badgeInfo.desc}>
+                                                    {badgeInfo.name}
                                                 </span>
                                             </div>
 
@@ -386,7 +474,7 @@ export default function VocabularyLibrary() {
                                                 
                                                 <button 
                                                     onClick={() => playAudio(word.kr)}
-                                                    className="w-10 h-10 rounded-full bg-secondary/50 flex items-center justify-center text-charcoal/60 hover:bg-strawberry/20 hover:text-primary transition-colors flex-shrink-0"
+                                                    className="w-10 h-10 rounded-full bg-secondary/50 flex items-center justify-center text-charcoal/60 hover:bg-strawberry/20 hover:text-primary transition-colors flex-shrink-0 cursor-pointer"
                                                 >
                                                     <Volume2 size={16} />
                                                 </button>
@@ -418,15 +506,15 @@ export default function VocabularyLibrary() {
                                                 {isDue ? (
                                                     <>
                                                         <Clock size={12} className="text-amber-500" />
-                                                        <span className="text-amber-600 animate-pulse">
-                                                            {language === 'zh' ? '⚡ 现已达到遗忘临界，待复习' : '⚡ Due for review'}
+                                                        <span className="text-amber-600 animate-pulse font-bold">
+                                                            {language === 'zh' ? '🔥 处于遗忘边缘，亟需复习！' : '🔥 VERGE OF FORGETTING, REVIEW NOW!'}
                                                         </span>
                                                     </>
                                                 ) : (
                                                     <>
-                                                        <Calendar size={12} className="text-charcoal/20" />
-                                                        <span>
-                                                            {language === 'zh' ? '下次复习: ' : 'Next Review: '}
+                                                        <ShieldCheck size={12} className="text-emerald-500" />
+                                                        <span className="text-emerald-600 font-bold">
+                                                            {language === 'zh' ? '🛡️ 记忆安全期 • ' : '🛡️ MEMORY SAFE • '}
                                                             {formatNextReview(nextReviewDate, language)}
                                                         </span>
                                                     </>
