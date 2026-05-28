@@ -14,6 +14,11 @@ interface VocabCardProps {
     sentenceKr?: string;
     sentenceMeaning?: string;
     sentenceZh?: string;
+    sentences?: {
+        kr: string;
+        en: string;
+        zh: string;
+    }[];
     illustrationUrl?: string;
     animationUrl?: string;
     animationData?: any;
@@ -39,6 +44,7 @@ export function VocabCard({
     sentenceKr,
     sentenceMeaning,
     sentenceZh,
+    sentences,
     animationData,
     animationUrl,
     illustrationUrl,
@@ -54,6 +60,30 @@ export function VocabCard({
         setImageLoaded(false);
     }, [word]);
 
+    const speakText = (text: string) => {
+        if (typeof window !== 'undefined' && window.speechSynthesis) {
+            window.speechSynthesis.cancel();
+            const utterance = new SpeechSynthesisUtterance(text);
+            utterance.lang = 'ko-KR';
+            utterance.rate = 0.9;
+            window.speechSynthesis.speak(utterance);
+        }
+    };
+
+    const speakSentence = (sentenceText: string) => {
+        if (sentenceText === sentenceKr) {
+            const cleanName = word.replace(/[<>:"/\\|?*]/g, '');
+            const audioPath = `/audio/sentences/${cleanName}.mp3`;
+            const audio = new Audio(audioPath);
+            audio.play().catch(e => {
+                console.warn("MP3 playback failed, falling back to Web Speech API:", e);
+                speakText(sentenceText);
+            });
+        } else {
+            speakText(sentenceText);
+        }
+    };
+
     const speak = (type: 'word' | 'sentence', speed: 'normal' | 'slow' = 'normal') => {
         const cleanName = word.replace(/[<>:"/\\|?*]/g, '');
         const audioPath = type === 'word' 
@@ -62,7 +92,14 @@ export function VocabCard({
         
         const audio = new Audio(audioPath);
         audio.playbackRate = speed === 'normal' ? 1.0 : 0.7;
-        audio.play().catch(e => console.error("Audio playback failed:", e));
+        audio.play().catch(e => {
+            console.error("Audio playback failed:", e);
+            if (type === 'sentence') {
+                speakText(sentenceKr || '');
+            } else {
+                speakText(word);
+            }
+        });
     };
 
     const posStyle = POS_COLORS[pos] || POS_COLORS.default;
@@ -82,14 +119,14 @@ export function VocabCard({
                     <div className="flex gap-1.5 sm:gap-2">
                         <button
                             onClick={() => speak('word', 'slow')}
-                            className="px-2.5 py-1.5 sm:px-3 sm:py-1.5 bg-white rounded-xl flex items-center gap-1 text-[8px] sm:text-[10px] font-black uppercase tracking-widest text-charcoal/40 hover:text-primary transition-colors border border-charcoal/5 shadow-sm"
+                            className="px-2.5 py-1.5 sm:px-3 sm:py-1.5 bg-white rounded-xl flex items-center gap-1 text-[8px] sm:text-[10px] font-black uppercase tracking-widest text-charcoal/40 hover:text-primary transition-colors border border-charcoal/5 shadow-sm cursor-pointer"
                         >
                             <Volume2 size={12} className="sm:w-[14px] sm:h-[14px]" />
                             {t('learning.slow')}
                         </button>
                         <button
                             onClick={() => speak('word', 'normal')}
-                            className="w-8 h-8 sm:w-10 sm:h-10 bg-primary rounded-xl flex items-center justify-center text-white hover:scale-110 active:scale-95 transition-all shadow-md shrink-0"
+                            className="w-8 h-8 sm:w-10 sm:h-10 bg-primary rounded-xl flex items-center justify-center text-white hover:scale-110 active:scale-95 transition-all shadow-md shrink-0 cursor-pointer"
                         >
                             <Volume2 size={16} className="sm:w-[20px] sm:h-[20px]" />
                         </button>
@@ -152,18 +189,45 @@ export function VocabCard({
                     </div>
 
                     {/* Example Sentence Section */}
-                    <div className="w-full pt-6 sm:pt-8 border-t border-strawberry/5">
-                        {sentenceKr && (
-                            <div className="flex items-start gap-3 sm:gap-4 bg-cloud/10 p-4 sm:p-6 rounded-[20px] sm:rounded-[32px] mb-6 sm:mb-8">
+                    <div className="w-full pt-6 sm:pt-8 border-t border-strawberry/5 space-y-4">
+                        {sentences && sentences.length > 0 ? (
+                            sentences.map((s, idx) => {
+                                const displayedSentenceMeaning = language === 'zh' ? s.zh : s.en;
+                                return (
+                                    <div key={idx} className="flex items-start gap-3 sm:gap-4 bg-cloud/10 p-4 sm:p-5 rounded-[20px] sm:rounded-[28px] text-left">
+                                        <div className="w-8 h-8 sm:w-9 sm:h-9 rounded-full bg-white flex items-center justify-center text-primary shadow-sm shrink-0">
+                                            <Quote size={12} className="sm:w-[14px] sm:h-[14px]" fill="currentColor" />
+                                        </div>
+                                        <div className="space-y-0.5 sm:space-y-1 flex-1">
+                                            <p className="text-base sm:text-xl font-bold text-charcoal leading-snug">
+                                                {s.kr}
+                                                <button 
+                                                    onClick={() => speakSentence(s.kr)}
+                                                    className="inline-flex ml-2 align-middle text-primary/40 hover:text-primary transition-colors cursor-pointer"
+                                                >
+                                                    <Volume2 size={14} className="sm:w-[16px] sm:h-[16px]" />
+                                                </button>
+                                            </p>
+                                            {displayedSentenceMeaning && (
+                                                <p className="text-xs sm:text-base font-bold text-charcoal/40 italic">
+                                                    {displayedSentenceMeaning}
+                                                </p>
+                                            )}
+                                        </div>
+                                    </div>
+                                );
+                            })
+                        ) : sentenceKr ? (
+                            <div className="flex items-start gap-3 sm:gap-4 bg-cloud/10 p-4 sm:p-6 rounded-[20px] sm:rounded-[32px] text-left">
                                 <div className="w-8 h-8 sm:w-10 sm:h-10 rounded-full bg-white flex items-center justify-center text-primary shadow-sm shrink-0">
                                     <Quote size={14} className="sm:w-[18px] sm:h-[18px]" fill="currentColor" />
                                 </div>
-                                <div className="space-y-1 sm:space-y-2 text-left">
+                                <div className="space-y-1 sm:space-y-2 flex-1">
                                     <p className="text-lg sm:text-2xl font-bold text-charcoal leading-snug">
                                         {sentenceKr}
                                         <button 
-                                            onClick={() => speak('sentence')}
-                                            className="inline-flex ml-2 align-middle text-primary/40 hover:text-primary transition-colors"
+                                            onClick={() => speakSentence(sentenceKr)}
+                                            className="inline-flex ml-2 align-middle text-primary/40 hover:text-primary transition-colors cursor-pointer"
                                         >
                                             <Volume2 size={14} className="sm:w-[16px] sm:h-[16px]" />
                                         </button>
@@ -175,20 +239,20 @@ export function VocabCard({
                                     )}
                                 </div>
                             </div>
-                        )}
+                        ) : null}
 
                         {/* Navigation Buttons */}
-                        <div className="flex gap-3 sm:gap-4">
+                        <div className="flex gap-3 sm:gap-4 pt-4">
                             <button
                                 onClick={onPrev}
-                                className="flex-1 btn-primary-cute bg-white text-charcoal border-2 border-strawberry/10 py-3 sm:py-5 text-sm sm:text-lg flex items-center justify-center gap-1 sm:gap-2"
+                                className="flex-1 btn-primary-cute bg-white text-charcoal border-2 border-strawberry/10 py-3 sm:py-5 text-sm sm:text-lg flex items-center justify-center gap-1 sm:gap-2 cursor-pointer"
                             >
                                 <ChevronLeft size={18} className="sm:w-[24px] sm:h-[24px]" />
                                 {t('mission.prev')}
                             </button>
                             <button
                                 onClick={onNext}
-                                className="flex-[2] btn-primary-cute py-3 sm:py-5 text-sm sm:text-lg flex items-center justify-center gap-1 sm:gap-2"
+                                className="flex-[2] btn-primary-cute py-3 sm:py-5 text-sm sm:text-lg flex items-center justify-center gap-1 sm:gap-2 cursor-pointer"
                             >
                                 {t('mission.next')}
                                 <ChevronRight size={18} className="sm:w-[24px] sm:h-[24px]" />

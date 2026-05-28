@@ -235,12 +235,12 @@ export function getIllustrationUrl(word: Word): string {
     const isConcrete = isConcreteWord(word);
 
     if (!isConcrete && word.sentenceMeaning && word.sentenceMeaning !== 'TBD') {
-        const cleanScene = cleanPrompt(word.sentenceMeaning);
+        const cleanScene = cleanPrompt(word.sentenceMeaning) + ", without any text, letters, words, or Korean characters in the image";
         return `https://image.pollinations.ai/prompt/realistic%20photography%20representing%20the%20scene:%20${encodeURIComponent(cleanScene)}?width=400&height=400&nologo=true&model=sana`;
     }
 
     const enMeaning = word.en || '';
-    const cleanEn = cleanPrompt(enMeaning);
+    const cleanEn = cleanPrompt(enMeaning) + ", without any text, letters, words, or Korean characters in the image";
     return `https://image.pollinations.ai/prompt/realistic%20photography%20of%20${encodeURIComponent(cleanEn)}?width=400&height=400&nologo=true&model=sana`;
 }
 
@@ -258,7 +258,7 @@ export function getMissionImageUrls(words: Word[]): string[] {
     // 2. Scenario cover images for potential mascots
     const mascots = ['Boopi', 'Pippi', 'Chupi', 'Kopi'];
     mascots.forEach(mascot => {
-        const coverPrompt = `cute cartoon illustration of mascot ${mascot} studying in a cozy library, map of Korea in background, soft bright colors, vector graphics style`;
+        const coverPrompt = `cute cartoon illustration of mascot ${mascot} studying in a cozy library, map of Korea in background, soft bright colors, vector graphics style, without any text, letters, words, or Korean characters in the image`;
         urls.push(`https://image.pollinations.ai/prompt/${encodeURIComponent(coverPrompt)}?width=640&height=480&nologo=true&model=sana`);
     });
 

@@ -312,6 +312,7 @@ export default function MissionPage() {
                                 sentenceKr={words[currentIndex].sentenceKr} 
                                 sentenceMeaning={words[currentIndex].sentenceMeaning}
                                 sentenceZh={words[currentIndex].sentenceZh}
+                                sentences={words[currentIndex].sentences}
                                 illustrationUrl={words[currentIndex].illustrationUrl}
                                 category={words[currentIndex].category}
                                 onNext={() => currentIndex < words.length - 1 ? setCurrentIndex(prev => prev + 1) : handleNextStep()}

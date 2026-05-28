@@ -6,6 +6,11 @@ export interface Word {
     sentenceKr?: string;
     sentenceMeaning?: string;
     sentenceZh?: string;
+    sentences?: {
+        kr: string;
+        en: string;
+        zh: string;
+    }[];
     illustrationUrl?: string;
     animationData?: any;
     animationUrl?: string;
@@ -177,7 +182,19 @@ export const MOCK_VOCABULARY: Record<string, Word[]> = {
             "category": "home_living",
             "sentenceKr": "눈을 감고 음악을 들어요.",
             "sentenceMeaning": "I close my eyes and listen to music.",
-            "sentenceZh": "我闭上眼睛听音乐。"
+            "sentenceZh": "我闭上眼睛听音乐。",
+            "sentences": [
+                {
+                    "kr": "눈을 감고 음악을 들어요.",
+                    "en": "I close my eyes and listen to music.",
+                    "zh": "我闭上眼睛听音乐。"
+                },
+                {
+                    "kr": "머리를 감고 말렸어요.",
+                    "en": "I washed my hair and dried it.",
+                    "zh": "我洗了头发并吹干了。"
+                }
+            ]
         },
         {
             "kr": "거실",
@@ -218,7 +235,19 @@ export const MOCK_VOCABULARY: Record<string, Word[]> = {
             "category": "city_travel_places",
             "sentenceKr": "집에서 거리가 꽤 멀어요.",
             "sentenceMeaning": "The distance from home is quite far.",
-            "sentenceZh": "离家还蛮远的。"
+            "sentenceZh": "离家还蛮远的。",
+            "sentences": [
+                {
+                    "kr": "집에서 거리가 꽤 멀어요.",
+                    "en": "The distance from home is quite far.",
+                    "zh": "离家还蛮远的。"
+                },
+                {
+                    "kr": "거리에 사람들이 가득해요.",
+                    "en": "The street is full of people.",
+                    "zh": "街道上挤满了人。"
+                }
+            ]
         },
         {
             "kr": "건물",
@@ -394,7 +423,19 @@ export const MOCK_VOCABULARY: Record<string, Word[]> = {
             "category": "nature_animals_plants",
             "sentenceKr": "마당에서 개가 짖어요.",
             "sentenceMeaning": "The dog is barking in the yard.",
-            "sentenceZh": "狗在院子里叫。"
+            "sentenceZh": "狗在院子里叫。",
+            "sentences": [
+                {
+                    "kr": "마당에서 개가 짖어요.",
+                    "en": "The dog is barking in the yard.",
+                    "zh": "狗在院子里叫。"
+                },
+                {
+                    "kr": "사과 세 개를 샀어요.",
+                    "en": "I bought three apples.",
+                    "zh": "我买了三个苹果。"
+                }
+            ]
         },
         {
             "kr": "고개",
@@ -402,9 +443,21 @@ export const MOCK_VOCABULARY: Record<string, Word[]> = {
             "zh": "头 / 山岭",
             "pos": "명사",
             "category": "nature_animals_plants",
-            "sentenceKr": "고개를 들다",
-            "sentenceMeaning": "I nodded my head.",
-            "sentenceZh": "我点了点头。"
+            "sentenceKr": "고개를 들어 하늘을 봐요.",
+            "sentenceMeaning": "Lift your head and look at the sky.",
+            "sentenceZh": "抬起头看天空。",
+            "sentences": [
+                {
+                    "kr": "고개를 들어 하늘을 봐요.",
+                    "en": "Lift your head and look at the sky.",
+                    "zh": "抬起头看天空。"
+                },
+                {
+                    "kr": "힘들게 높은 고개를 넘어갔어요.",
+                    "en": "I crossed the high hill with difficulty.",
+                    "zh": "费力地翻越了高山岭。"
+                }
+            ]
         },
         {
             "kr": "고양이",
@@ -456,7 +509,19 @@ export const MOCK_VOCABULARY: Record<string, Word[]> = {
             "category": "time_seasons",
             "sentenceKr": "시간이 십 분쯤 걸려요.",
             "sentenceMeaning": "It takes about 10 minutes.",
-            "sentenceZh": "大约需要十分钟。"
+            "sentenceZh": "大约需要十分钟。",
+            "sentences": [
+                {
+                    "kr": "시간이 십 분쯤 걸려요.",
+                    "en": "It takes about 10 minutes.",
+                    "zh": "大约需要十分钟。"
+                },
+                {
+                    "kr": "감기에 걸려서 병원에 갔어요.",
+                    "en": "I caught a cold and went to the hospital.",
+                    "zh": "我得了感冒，去了医院。"
+                }
+            ]
         },
         {
             "kr": "걸어가다",

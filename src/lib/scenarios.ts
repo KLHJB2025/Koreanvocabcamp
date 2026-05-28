@@ -265,28 +265,11 @@ Important:
 2. The story must make logical sense, flow beautifully, and be coherent.
 3. Return ONLY a JSON object in this format: { "title": "story title", "story": "story text" }.`;
 
-    const payload = {
-        messages: [
-            {
-                role: 'system',
-                content: systemPrompt
-            },
-            {
-                role: 'user',
-                content: `Write a coherent, creative short story containing: ${wordListStr}.`
-            }
-        ],
-        jsonMode: true
-    };
+    const userPrompt = `Write a coherent, creative short story containing: ${wordListStr}.`;
+    const url = `https://text.pollinations.ai/${encodeURIComponent(userPrompt)}?system=${encodeURIComponent(systemPrompt)}&jsonMode=true`;
 
     try {
-        const response = await fetch('https://text.pollinations.ai/', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(payload)
-        });
+        const response = await fetch(url);
         if (!response.ok) throw new Error('Network response was not ok');
         const text = await response.text();
         
