@@ -79,9 +79,9 @@ export const PREDEFINED_STORIES: Record<string, PredefinedStory> = {
     // Day 11: 가격,갈색,감기약,값,거,거기,거절,고맙다
     "가격,갈색,감기약,값,거,거기,거절,고맙다": {
         titleZh: "在药店买药",
-        storyZh: "我走进那家药店，指着柜台上的 东西, 거(东西) 问售货员。我想买点 感冒药, 감기약(感冒药)，但它的 价格, 가격(价格) 和 价值, 값(价格) 实在太贵了。我没有 拒绝, 거절(拒绝) 推荐，而是听从了药剂师的建议。我买下那个 褐色, 갈색(褐色) 包装的平价药，并向他表达了 感谢, 고맙다(谢谢)，因为 那里, 거기(那里) 的服务真的很暖心。",
+        storyZh: "我走进那家药店，指着柜台上的 东西, 거(东西) 问售货员。我想买点 感冒药, 감기약(感冒药)，但药店里的 价格, 가격(价格) 偏高，这个 价钱, 값(价格) 实在太贵了。我没有 拒绝, 거절(拒绝) 推荐，而是听从了药剂师的建议。我买下那个 褐色, 갈색(褐色) 包装的平价药，并向他表达了 感谢, 고맙다(谢谢)，因为 那里, 거기(那里) 的服务真的很暖心。",
         titleEn: "At the Pharmacy",
-        storyEn: "I walked into the pharmacy and pointed at that thing, 거(thing) on the shelf. I needed cold medicine, 감기약(cold medicine), but the price, 가격(price) or value, 값(value) was a bit high. Instead of a refusal, 거절(refusal), I accepted the pharmacist's advice. I bought the brown, 갈색(brown) package and said thank you, 고맙다(thankful) for the kind service there, 거기(there)."
+        storyEn: "I walked into the pharmacy and pointed at that thing, 거(thing) on the shelf. I needed cold medicine, 감기약(cold medicine), but the price, 가격(price) was high, and this cost, 값(price) was a bit too much for me. Instead of a refusal, 거절(refusal), I accepted the pharmacist's advice. I bought the brown, 갈색(brown) package and said thank you, 고맙다(thankful) for the kind service there, 거기(there)."
     },
     // Day 12: 거짓말,건강,건너편,걸음,검은색,검정,것,겉
     "거짓말,건강,건너편,걸음,검은색,검정,것,겉": {
