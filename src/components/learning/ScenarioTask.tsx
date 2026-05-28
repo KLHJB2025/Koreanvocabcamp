@@ -35,6 +35,10 @@ export function ScenarioTask({ words, onComplete, mascotName }: ScenarioTaskProp
     // UI Image states
     const [imageLoaded, setImageLoaded] = useState(false);
 
+    // Audio speaking queue states
+    const [readingQueue, setReadingQueue] = useState<string[]>([]);
+    const [currentReadingWord, setCurrentReadingWord] = useState<string | null>(null);
+
     // Initialize Game Story
     useEffect(() => {
         let active = true;
@@ -167,16 +171,71 @@ export function ScenarioTask({ words, onComplete, mascotName }: ScenarioTaskProp
         };
     }, [words, language]);
 
-    // Audio Player Helper
+    // Audio Player Helper for manual clicks (interrupts queue and plays immediately)
     const playAudio = (wordKr: string, type: 'word' | 'sentence') => {
+        setReadingQueue([]);
+        setCurrentReadingWord(wordKr);
+
         const cleanName = wordKr.replace(/[<>:"/\\|?*]/g, '');
         const audioPath = type === 'word' 
             ? `/audio/words/${cleanName}.mp3?v=2` 
             : `/audio/sentences/${cleanName}.mp3?v=2`;
         
         const audio = new Audio(audioPath);
-        audio.play().catch(e => console.error("Audio playback failed:", e));
+        
+        let isDone = false;
+        const done = () => {
+            if (isDone) return;
+            isDone = true;
+            setCurrentReadingWord(null);
+        };
+        audio.onended = done;
+        audio.onerror = done;
+
+        // Safety timeout
+        const timeoutId = setTimeout(done, 2000);
+
+        audio.play().catch(e => {
+            console.error("Audio playback failed:", e);
+            done();
+        });
     };
+
+    // Sequential audio playback queue handler
+    useEffect(() => {
+        if (readingQueue.length > 0 && !currentReadingWord) {
+            const nextWord = readingQueue[0];
+            setReadingQueue(prev => prev.slice(1));
+            setCurrentReadingWord(nextWord);
+
+            const cleanName = nextWord.replace(/[<>:"/\\|?*]/g, '');
+            const audioPath = `/audio/words/${cleanName}.mp3?v=2`;
+            const audio = new Audio(audioPath);
+            
+            let isDone = false;
+            const done = () => {
+                if (isDone) return;
+                isDone = true;
+                setCurrentReadingWord(null);
+            };
+
+            audio.onended = done;
+            audio.onerror = done;
+
+            // Safety timeout of 2 seconds
+            const timeoutId = setTimeout(done, 2000);
+
+            audio.play().catch(e => {
+                console.error("Audio playback failed:", e);
+                done();
+            });
+
+            return () => {
+                clearTimeout(timeoutId);
+                audio.pause();
+            };
+        }
+    }, [readingQueue, currentReadingWord]);
 
     // Text typing validation
     const handleInputChange = (kr: string, val: string) => {
@@ -194,6 +253,7 @@ export function ScenarioTask({ words, onComplete, mascotName }: ScenarioTaskProp
     const handleCheckAnswers = () => {
         let allCorrect = true;
         const newCorrect: Record<string, boolean> = { ...correctAnswers };
+        const correctNewly: string[] = [];
 
         words.forEach(w => {
             if (correctAnswers[w.kr] === true) return;
@@ -201,7 +261,7 @@ export function ScenarioTask({ words, onComplete, mascotName }: ScenarioTaskProp
             const val = (answers[w.kr] || '').trim();
             if (val === w.kr) {
                 newCorrect[w.kr] = true;
-                playAudio(w.kr, 'word');
+                correctNewly.push(w.kr);
             } else {
                 newCorrect[w.kr] = false;
                 allCorrect = false;
@@ -209,6 +269,10 @@ export function ScenarioTask({ words, onComplete, mascotName }: ScenarioTaskProp
         });
 
         setCorrectAnswers(newCorrect);
+
+        if (correctNewly.length > 0) {
+            setReadingQueue(prev => [...prev, ...correctNewly]);
+        }
 
         if (allCorrect) {
             playSuccessSound();
@@ -382,6 +446,20 @@ export function ScenarioTask({ words, onComplete, mascotName }: ScenarioTaskProp
 
                                         // Estimate input width based on spelling length
                                         const inputWidth = `${Math.max(4.5, word.kr.length * 1.5 + 2)}rem`;
+                                        const isReading = currentReadingWord === word.kr;
+
+                                        let inputStatusClass = 'bg-white border-charcoal/15 focus:border-primary text-charcoal focus:ring-2 focus:ring-primary/20 shadow-inner';
+                                        if (isCorrect) {
+                                            inputStatusClass = 'bg-emerald-500 text-white border-transparent font-black shadow-sm';
+                                        } else if (isIncorrect) {
+                                            inputStatusClass = 'bg-rose-50 border-rose-400 text-rose-600 focus:border-rose-500 shadow-sm';
+                                        }
+
+                                        const highlightClass = isReading 
+                                            ? isCorrect 
+                                                ? 'ring-4 ring-emerald-400/50 scale-105 z-10 border-emerald-400'
+                                                : 'ring-4 ring-primary/40 scale-105 z-10 border-primary animate-pulse'
+                                            : '';
 
                                         return (
                                             <span key={index} className="inline-block mx-1.5 align-middle relative">
@@ -392,20 +470,18 @@ export function ScenarioTask({ words, onComplete, mascotName }: ScenarioTaskProp
                                                     disabled={isCorrect}
                                                     placeholder={language === 'zh' ? word.zh : word.en}
                                                     style={{ width: inputWidth }}
-                                                    className={`px-2 py-1 rounded-xl text-center font-bold text-base sm:text-lg outline-none border-2 transition-all ${
-                                                        isCorrect
-                                                            ? 'bg-emerald-500 text-white border-transparent font-black shadow-sm'
-                                                            : isIncorrect
-                                                            ? 'bg-rose-50 border-rose-400 text-rose-600 focus:border-rose-500 shadow-sm'
-                                                            : 'bg-white border-charcoal/15 focus:border-primary text-charcoal focus:ring-2 focus:ring-primary/20 shadow-inner'
-                                                    }`}
+                                                    className={`px-2 py-1 rounded-xl text-center font-bold text-base sm:text-lg outline-none border-2 transition-all ${inputStatusClass} ${highlightClass}`}
                                                     title={language === 'zh' ? `输入韩文以翻译“${word.zh}”` : `Type Korean for "${word.en}"`}
                                                 />
-                                                {isCorrect && (
+                                                {isReading ? (
+                                                    <span className="absolute -top-2.5 -right-2 bg-primary text-white rounded-full p-1 shadow-md border border-white animate-bounce">
+                                                        <Volume2 size={10} className="stroke-[3] animate-pulse" />
+                                                    </span>
+                                                ) : isCorrect ? (
                                                     <span className="absolute -top-2.5 -right-2 bg-emerald-500 text-white rounded-full p-0.5 shadow-md border border-white">
                                                         <CheckCircle2 size={10} className="stroke-[3]" />
                                                     </span>
-                                                )}
+                                                ) : null}
                                             </span>
                                         );
                                     })}
