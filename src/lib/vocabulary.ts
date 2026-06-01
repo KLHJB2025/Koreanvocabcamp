@@ -227,21 +227,17 @@ export function getIllustrationUrl(word: Word): string {
         return word.illustrationUrl;
     }
 
-    const cleanName = word.kr.replace(/[<>:"/\\|?*]/g, '');
-    if (DOWNLOADED_ILLUSTRATIONS.has(cleanName)) {
-        return `/illustrations/words/${cleanName}.jpg`;
-    }
-
-    const isConcrete = isConcreteWord(word);
-
-    if (!isConcrete && word.sentenceMeaning && word.sentenceMeaning !== 'TBD') {
-        const cleanScene = cleanPrompt(word.sentenceMeaning) + ", without any text, letters, words, or Korean characters in the image";
-        return `https://image.pollinations.ai/prompt/cute%20friendly%20cartoon%20illustration%20representing%20the%20scene:%20${encodeURIComponent(cleanScene)}?width=400&height=400&nologo=true&model=sana`;
-    }
-
     const enMeaning = word.en || '';
-    const cleanEn = cleanPrompt(enMeaning) + ", without any text, letters, words, or Korean characters in the image";
-    return `https://image.pollinations.ai/prompt/cute%20friendly%20cartoon%20illustration%20of%20${encodeURIComponent(cleanEn)}?width=400&height=400&nologo=true&model=sana`;
+    const cleanEn = cleanPrompt(enMeaning);
+    
+    let promptBase = `cute friendly cartoon illustration of: ${cleanEn}`;
+    if (word.sentenceMeaning && word.sentenceMeaning !== 'TBD') {
+        const cleanScene = cleanPrompt(word.sentenceMeaning);
+        promptBase += `, representing the scene: ${cleanScene}`;
+    }
+    
+    const finalPrompt = promptBase + ", without any text, letters, words, or Korean characters in the image";
+    return `https://image.pollinations.ai/prompt/${encodeURIComponent(finalPrompt)}?width=400&height=400&nologo=true&model=sana`;
 }
 
 /**
