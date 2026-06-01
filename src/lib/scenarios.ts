@@ -1,4 +1,4 @@
-import { Word } from './vocabulary-data';
+import { Word, normalizePos } from './vocabulary-data';
 import { getPredefinedStory } from './predefined-stories';
 
 
@@ -110,10 +110,11 @@ export function buildScenario(words: Word[], lang: 'en' | 'zh', mascotName?: str
     const sortedWords = [...words].sort((a, b) => (b.category ? 1 : 0) - (a.category ? 1 : 0));
 
     sortedWords.forEach(w => {
+        const normPos = normalizePos(w.pos);
         const cat = w.category || 
-                   (w.pos === 'Noun' ? 'object' : 
-                    w.pos === 'Verb' ? 'action' : 
-                    w.pos === 'Adjective' ? 'description' : 'other');
+                   (normPos === 'Noun' ? 'object' : 
+                    normPos === 'Verb' ? 'action' : 
+                    normPos === 'Adjective' ? 'description' : 'other');
         
         if (!categoryMap[cat]) {
             categoryMap[cat] = w;

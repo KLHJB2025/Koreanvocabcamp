@@ -17,6 +17,28 @@ export interface Word {
     category?: string;
 }
 
+export function normalizePos(pos: string): string {
+    if (!pos) return 'default';
+    const mapping: Record<string, string> = {
+        '명사': 'Noun',
+        'Noun': 'Noun',
+        '동사': 'Verb',
+        'Verb': 'Verb',
+        '형용사': 'Adjective',
+        'Adjective': 'Adjective',
+        '부사': 'Adverb',
+        'Adverb': 'Adverb',
+        '대명사': 'Pronoun',
+        'Pronoun': 'Pronoun',
+        '의존명사': 'Noun',
+        '조사': 'Particle',
+        '감탄사': 'Exclamation',
+        'Exclamation': 'Exclamation',
+        'Interjection': 'Exclamation',
+    };
+    return mapping[pos] || pos;
+}
+
 export const MOCK_VOCABULARY: Record<string, Word[]> = {
     "beginner_cycle_1": [
         {

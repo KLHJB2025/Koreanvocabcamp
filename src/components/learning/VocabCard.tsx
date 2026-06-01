@@ -5,6 +5,7 @@ import { motion } from 'framer-motion';
 import { Volume2, Sparkles, Quote, ChevronLeft, ChevronRight, Loader2 } from 'lucide-react';
 import { useTranslation } from '@/hooks/use-translation';
 import { getIllustrationUrl } from '@/lib/vocabulary';
+import { normalizePos } from '@/lib/vocabulary-data';
 
 interface VocabCardProps {
     word: string;
@@ -102,7 +103,8 @@ export function VocabCard({
         });
     };
 
-    const posStyle = POS_COLORS[pos] || POS_COLORS.default;
+    const normalizedPos = normalizePos(pos);
+    const posStyle = POS_COLORS[normalizedPos] || POS_COLORS.default;
     const displayedMeaning = language === 'zh' ? meaningZh : meaningEn;
     const displayedSentenceMeaning = language === 'zh' ? sentenceZh : sentenceMeaning;
 
@@ -114,7 +116,7 @@ export function VocabCard({
 
                 <div className="w-full flex justify-between items-center relative z-10 mb-6 sm:mb-8">
                     <span className={`pill-badge ${posStyle.bg} ${posStyle.text} border ${posStyle.border} font-black`}>
-                        {t(`pos.${pos}`)}
+                        {t(`pos.${normalizedPos}`)}
                     </span>
                     <div className="flex gap-1.5 sm:gap-2">
                         <button

@@ -227,6 +227,10 @@ export function getIllustrationUrl(word: Word): string {
         return word.illustrationUrl;
     }
 
+    if (DOWNLOADED_ILLUSTRATIONS.has(word.kr)) {
+        return `/illustrations/words/${word.kr}.jpg`;
+    }
+
     const enMeaning = word.en || '';
     const cleanEn = cleanPrompt(enMeaning);
     

@@ -1,7 +1,7 @@
 /* eslint-disable react-hooks/purity, react-hooks/set-state-in-effect, react-hooks/exhaustive-deps */
 'use client';
 import { useState, useEffect } from 'react';
-import { Word } from '@/lib/vocabulary-data';
+import { Word, MOCK_VOCABULARY } from '@/lib/vocabulary-data';
 import { Volume2 } from 'lucide-react';
 import { useTranslation } from '@/hooks/use-translation';
 import { playSuccessSound, playErrorSound } from '@/lib/sound';
@@ -54,9 +54,32 @@ export function ListeningTask({ words, onComplete, onMiss }: ListeningTaskProps)
     useEffect(() => {
         if (currentIndex < words.length) {
             const current = words[currentIndex];
-            const others = words.filter(w => w.kr !== current.kr);
-            const shuffled = [...others].sort(() => Math.random() - 0.5).slice(0, 3);
-            setOptions([...shuffled, current].sort(() => Math.random() - 0.5));
+            
+            // Deduplicate choices to prevent duplicate keys/answers
+            const uniqueOthers = Array.from(new Map(
+                words.filter(w => w.kr !== current.kr).map(w => [w.kr, w])
+            ).values());
+            
+            let shuffled = [...uniqueOthers].sort(() => Math.random() - 0.5);
+            
+            // Fallback to MOCK_VOCABULARY if we don't have enough options
+            if (shuffled.length < 3) {
+                const globalList = Object.values(MOCK_VOCABULARY).flat();
+                const fallbackOthers = globalList.filter(
+                    w => w.kr !== current.kr && !uniqueOthers.some(o => o.kr === w.kr)
+                );
+                const uniqueFallbackOthers = Array.from(new Map(
+                    fallbackOthers.map(w => [w.kr, w])
+                ).values());
+                
+                const extraNeeded = 3 - shuffled.length;
+                const extra = [...uniqueFallbackOthers].sort(() => Math.random() - 0.5).slice(0, extraNeeded);
+                shuffled = [...shuffled, ...extra];
+            }
+            
+            const finalOptions = [...shuffled.slice(0, 3), current].sort(() => Math.random() - 0.5);
+            
+            setOptions(finalOptions);
             setSelectedId(null);
             setIsCorrect(null);
             setIsSubmitted(false);

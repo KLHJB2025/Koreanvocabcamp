@@ -171,6 +171,16 @@ export function ScenarioTask({ words, onComplete, mascotName }: ScenarioTaskProp
         };
     }, [words, language]);
 
+    const speakTextKo = (text: string) => {
+        if (typeof window !== 'undefined' && window.speechSynthesis) {
+            window.speechSynthesis.cancel();
+            const utterance = new SpeechSynthesisUtterance(text);
+            utterance.lang = 'ko-KR';
+            utterance.rate = 0.9;
+            window.speechSynthesis.speak(utterance);
+        }
+    };
+
     // Audio Player Helper for manual clicks (interrupts queue and plays immediately)
     const playAudio = (wordKr: string, type: 'word' | 'sentence') => {
         setReadingQueue([]);
@@ -190,13 +200,18 @@ export function ScenarioTask({ words, onComplete, mascotName }: ScenarioTaskProp
             setCurrentReadingWord(null);
         };
         audio.onended = done;
-        audio.onerror = done;
+        audio.onerror = () => {
+            console.warn("Audio file not found, falling back to Web Speech API");
+            speakTextKo(wordKr);
+            done();
+        };
 
         // Safety timeout
         const timeoutId = setTimeout(done, 2000);
 
         audio.play().catch(e => {
-            console.error("Audio playback failed:", e);
+            console.warn("Audio playback failed, falling back to Web Speech API:", e);
+            speakTextKo(wordKr);
             done();
         });
     };
@@ -220,18 +235,25 @@ export function ScenarioTask({ words, onComplete, mascotName }: ScenarioTaskProp
             };
 
             audio.onended = done;
-            audio.onerror = done;
+            audio.onerror = () => {
+                console.warn("Audio queue file not found, falling back to Web Speech API");
+                speakTextKo(nextWord);
+                done();
+            };
 
             // Safety timeout of 2 seconds
             const timeoutId = setTimeout(done, 2000);
 
             audio.play().catch(e => {
-                console.error("Audio playback failed:", e);
+                console.warn("Audio queue playback failed, falling back to Web Speech API:", e);
+                speakTextKo(nextWord);
                 done();
             });
 
             return () => {
                 clearTimeout(timeoutId);
+                audio.onended = null;
+                audio.onerror = null;
                 audio.pause();
             };
         }
