@@ -12,7 +12,7 @@ import { useRouter } from 'next/navigation';
 import confetti from 'canvas-confetti';
 import { CertificateCard } from '@/components/rewards/CertificateCard';
 import { db } from '@/lib/firebase';
-import { doc, updateDoc, arrayUnion } from 'firebase/firestore';
+import { doc, updateDoc, arrayUnion, increment } from 'firebase/firestore';
 
 export default function ChallengePage() {
     const { profile, loading: authLoading } = useAuth();
@@ -31,8 +31,28 @@ export default function ChallengePage() {
     const [feedback, setFeedback] = useState<{ type: 'correct' | 'wrong', combo: number } | null>(null);
     const [generatedVoucherCode, setGeneratedVoucherCode] = useState('');
 
-    const startChallenge = useCallback(() => {
+    const startChallenge = useCallback(async () => {
         const cycleId = profile?.currentCycleId || 'beginner_cycle_1';
+        const attempts = profile?.challengeAttempts?.[cycleId] || 0;
+
+        if (attempts >= 2) {
+            alert(language === 'zh' ? '您已達到該營地的最大嘗試次數（2次）。' : 'You have reached the maximum number of attempts (2) for this camp.');
+            return;
+        }
+
+        if (profile?.uid) {
+            try {
+                const userRef = doc(db, 'users', profile.uid);
+                await updateDoc(userRef, {
+                    [`challengeAttempts.${cycleId}`]: increment(1)
+                });
+            } catch (err) {
+                console.error('Failed to increment challenge attempts:', err);
+                alert('Connection error. Please try again.');
+                return;
+            }
+        }
+
         const allWords = MOCK_VOCABULARY[cycleId] || MOCK_VOCABULARY['beginner_cycle_1'];
 
         // Shuffle and pick 30
@@ -46,7 +66,7 @@ export default function ChallengePage() {
         setTimeLeft(90);
         setGeneratedVoucherCode('');
         setGameState('playing');
-    }, [profile]);
+    }, [profile, language]);
 
     const handleFinishedChallenge = useCallback(async (finalScore?: number) => {
         const actualScore = finalScore !== undefined ? finalScore : score;
@@ -158,6 +178,10 @@ export default function ChallengePage() {
     const accuracy = Math.round((score / (questions.length || 1)) * 100);
     const tier = accuracy === 100 ? 'Legendary' : accuracy >= 90 ? 'Gold' : accuracy >= 80 ? 'Silver' : 'Bronze';
 
+    const cycleId = profile?.currentCycleId || 'beginner_cycle_1';
+    const attempts = profile?.challengeAttempts?.[cycleId] || 0;
+    const attemptsLeft = Math.max(0, 2 - attempts);
+
     if (authLoading) return (
         <div className="min-h-screen flex items-center justify-center bg-charcoal">
             <Loader2 className="w-12 h-12 text-primary animate-spin" />
@@ -186,11 +210,21 @@ export default function ChallengePage() {
                         <h1 className="text-[100px] font-black italic tracking-tighter leading-none mb-4 uppercase drop-shadow-2xl">
                             {t('challenge.title').split(' ')[0]}<br /><span className="text-primary italic">{t('challenge.title').split(' ')[1]}</span>
                         </h1>
-                        <p className="text-white/40 font-bold uppercase tracking-[0.5em] mb-12 text-sm">Target: 30 Words | Time: 90s</p>
+                        <p className="text-white/40 font-bold uppercase tracking-[0.3em] mb-12 text-sm">
+                            Target: 30 Words | Time: 90s | {language === 'zh' ? `剩餘嘗試次數: ${attemptsLeft} / 2` : `Attempts Remaining: ${attemptsLeft} / 2`}
+                        </p>
 
                         <div className="flex flex-col gap-6 w-full max-w-sm">
-                            <button onClick={startChallenge} className="btn-primary-cute text-xl py-6 rounded-[32px] bg-white text-charcoal hover:bg-primary hover:text-white transition-all border-none shadow-2xl">
-                                {t('challenge.commence')}
+                            <button 
+                                onClick={startChallenge} 
+                                disabled={attemptsLeft === 0}
+                                className={`btn-primary-cute text-xl py-6 rounded-[32px] bg-white text-charcoal transition-all border-none shadow-2xl disabled:opacity-50 disabled:cursor-not-allowed ${
+                                    attemptsLeft > 0 ? 'hover:bg-primary hover:text-white' : ''
+                                }`}
+                            >
+                                {attemptsLeft === 0 
+                                    ? (language === 'zh' ? '無剩餘嘗試次數' : 'NO ATTEMPTS LEFT') 
+                                    : t('challenge.commence')}
                             </button>
                             <Link href="/dashboard" className="text-white/20 hover:text-white transition-colors font-black uppercase tracking-widest text-xs">
                                 {t('challenge.abandon')}

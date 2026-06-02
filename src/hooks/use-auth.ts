@@ -28,6 +28,7 @@ export interface UserProfile {
         value: string;
         isUsed?: boolean;
     }[];
+    challengeAttempts?: { [cycleId: string]: number };
 }
 
 export function useAuth() {

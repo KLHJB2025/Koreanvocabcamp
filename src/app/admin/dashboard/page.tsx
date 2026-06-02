@@ -18,7 +18,8 @@ import {
     CheckCircle2,
     XCircle,
     Layers,
-    Lock
+    Lock,
+    RotateCcw
 } from 'lucide-react';
 
 interface Student {
@@ -30,6 +31,7 @@ interface Student {
     status: 'pending' | 'approved' | 'rejected';
     createdAt: string;
     unlockedCycles?: string[];
+    challengeAttempts?: { [cycleId: string]: number };
 }
 
 export default function AdminDashboard() {
@@ -93,6 +95,31 @@ export default function AdminDashboard() {
             // Update local state is handled by onSnapshot
         } catch (err) {
             console.error('Error toggling cycle:', err);
+        }
+    };
+
+    const resetAttempts = async (studentId: string, cycleId: string) => {
+        if (!confirm('Are you sure you want to reset attempts for this cycle?')) return;
+        const studentRef = doc(db, 'users', studentId);
+        try {
+            await updateDoc(studentRef, {
+                [`challengeAttempts.${cycleId}`]: 0
+            });
+            // Update selected student local state so modal updates instantly
+            setSelectedStudent(prev => {
+                if (!prev) return null;
+                return {
+                    ...prev,
+                    challengeAttempts: {
+                        ...(prev.challengeAttempts || {}),
+                        [cycleId]: 0
+                    }
+                };
+            });
+            alert('Attempts reset successfully!');
+        } catch (err) {
+            console.error('Error resetting attempts:', err);
+            alert('Failed to reset attempts.');
         }
     };
 
@@ -305,18 +332,30 @@ export default function AdminDashboard() {
                                 {Array.from({ length: 19 }, (_, i) => {
                                     const cycleId = `beginner_cycle_${i + 1}`;
                                     const isUnlocked = selectedStudent.unlockedCycles?.includes(cycleId);
+                                    const attempts = selectedStudent.challengeAttempts?.[cycleId] || 0;
                                     return (
-                                        <button 
-                                            key={cycleId}
-                                            onClick={() => toggleCycle(selectedStudent.uid, cycleId, !!isUnlocked)}
-                                            className={`p-4 rounded-2xl border-2 flex items-center justify-between transition-all ${isUnlocked ? 'border-primary bg-primary/5 text-primary' : 'border-border bg-white text-foreground/40 hover:border-primary/20'}`}
-                                        >
-                                            <div className="flex items-center gap-3">
-                                                {isUnlocked ? <UserCheck size={18} /> : <Lock size={18} />}
-                                                <span className="font-bold text-sm uppercase italic">Cycle #{i + 1}</span>
-                                            </div>
-                                            {isUnlocked && <CheckCircle2 size={16} />}
-                                        </button>
+                                        <div key={cycleId} className="flex gap-2">
+                                            <button 
+                                                onClick={() => toggleCycle(selectedStudent.uid, cycleId, !!isUnlocked)}
+                                                className={`flex-1 p-4 rounded-2xl border-2 flex items-center justify-between transition-all ${isUnlocked ? 'border-primary bg-primary/5 text-primary' : 'border-border bg-white text-foreground/40 hover:border-primary/20'}`}
+                                            >
+                                                <div className="flex items-center gap-3">
+                                                    {isUnlocked ? <UserCheck size={18} /> : <Lock size={18} />}
+                                                    <span className="font-bold text-sm uppercase italic">Cycle #{i + 1}</span>
+                                                </div>
+                                                {isUnlocked && <CheckCircle2 size={16} />}
+                                            </button>
+                                            {attempts > 0 && (
+                                                <button 
+                                                    onClick={() => resetAttempts(selectedStudent.uid, cycleId)}
+                                                    className="px-4 py-3 bg-amber-50 text-amber-600 rounded-2xl border border-amber-100 hover:bg-amber-600 hover:text-white transition-all flex flex-col items-center justify-center gap-0.5 shrink-0 min-w-[70px]"
+                                                    title={`Reset Attempts (${attempts} used)`}
+                                                >
+                                                    <RotateCcw size={14} />
+                                                    <span className="text-[8px] font-bold uppercase">{attempts} / 2</span>
+                                                </button>
+                                            )}
+                                        </div>
                                     );
                                 })}
                             </div>
