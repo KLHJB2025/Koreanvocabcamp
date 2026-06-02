@@ -29,6 +29,7 @@ export default function ChallengePage() {
     const [wrongWords, setWrongWords] = useState<Word[]>([]);
     const [combo, setCombo] = useState(0);
     const [feedback, setFeedback] = useState<{ type: 'correct' | 'wrong', combo: number } | null>(null);
+    const [generatedVoucherCode, setGeneratedVoucherCode] = useState('');
 
     const startChallenge = useCallback(() => {
         const cycleId = profile?.currentCycleId || 'beginner_cycle_1';
@@ -43,6 +44,7 @@ export default function ChallengePage() {
         setCombo(0);
         setWrongWords([]);
         setTimeLeft(90);
+        setGeneratedVoucherCode('');
         setGameState('playing');
     }, [profile]);
 
@@ -68,11 +70,14 @@ export default function ChallengePage() {
             });
 
             if (accuracy === 100) {
+                const uniqueCode = 'BOSS10-' + Math.random().toString(36).substring(7).toUpperCase();
+                setGeneratedVoucherCode(uniqueCode);
                 await updateDoc(userRef, {
                     vouchers: arrayUnion({
-                        code: 'BOSS10-' + Math.random().toString(36).substring(7).toUpperCase(),
+                        code: uniqueCode,
                         validUntil: new Date(Date.now() + 30 * 24 * 60 * 60 * 1000).toISOString(),
-                        value: 'RM10'
+                        value: 'RM10',
+                        isUsed: false
                     })
                 });
             }
@@ -343,12 +348,12 @@ export default function ChallengePage() {
                                                 {t('challenge.scholarshipUnlocked')}
                                             </h3>
                                             <p className="text-sm font-bold opacity-60 uppercase tracking-widest leading-relaxed">
-                                                {t('challenge.voucherInstruction')}
+                                                {t('challenge.voucherInstruction').replace('BOSS10-VICTORY', generatedVoucherCode || 'BOSS10-VICTORY')}
                                             </p>
                                         </div>
                                         <button
                                             onClick={() => {
-                                                navigator.clipboard.writeText('BOSS10-VICTORY');
+                                                navigator.clipboard.writeText(generatedVoucherCode || 'BOSS10-VICTORY');
                                                 alert(t('challenge.copied'));
                                             }}
                                             className="px-8 py-4 bg-charcoal text-white rounded-full font-black text-xs uppercase tracking-widest hover:scale-105 transition-transform"

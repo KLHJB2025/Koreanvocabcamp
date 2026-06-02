@@ -31,16 +31,13 @@ export function CertificateCard({ userName, campTitle, date, score, tier }: Cert
         if (!certificateRef.current) return;
         setIsDownloading(true);
         try {
-            // Import html2canvas dynamically to prevent server-side compilation issues in Next.js
-            const html2canvas = (await import('html2canvas')).default;
-            const canvas = await html2canvas(certificateRef.current, {
-                scale: 2, // Higher scale for print quality resolution
-                useCORS: true,
-                backgroundColor: null,
-                logging: false,
+            // Import html-to-image dynamically to prevent server-side compilation issues in Next.js
+            const { toPng } = await import('html-to-image');
+            const dataUrl = await toPng(certificateRef.current, {
+                pixelRatio: 2, // High resolution scale
+                cacheBust: true,
             });
 
-            const dataUrl = canvas.toDataURL('image/png');
             const link = document.createElement('a');
             link.download = `TOPIK_Certificate_${userName.replace(/\s+/g, '_')}.png`;
             link.href = dataUrl;

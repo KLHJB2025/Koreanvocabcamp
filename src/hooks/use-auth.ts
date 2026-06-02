@@ -22,6 +22,12 @@ export interface UserProfile {
     unlockedCycles: string[];
     completedCycles: string[];
     mascotName?: string;
+    vouchers?: {
+        code: string;
+        validUntil: string;
+        value: string;
+        isUsed?: boolean;
+    }[];
 }
 
 export function useAuth() {

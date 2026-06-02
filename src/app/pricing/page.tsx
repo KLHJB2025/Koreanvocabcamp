@@ -17,16 +17,45 @@ export default function PricingPage() {
     const [voucherCode, setVoucherCode] = useState('');
     const [discount, setDiscount] = useState(0);
     const [isVoucherApplied, setIsVoucherApplied] = useState(false);
+    const [appliedVoucherCode, setAppliedVoucherCode] = useState<string | null>(null);
+    const [voucherType, setVoucherType] = useState<'static' | 'dynamic' | null>(null);
     const router = useRouter();
 
     const handleApplyVoucher = () => {
-        // Basic simulation of RM10 discount for testing
-        if (voucherCode.toUpperCase() === 'TOPIK100' || voucherCode.toUpperCase() === 'BOSS10') {
+        const codeUpper = voucherCode.trim().toUpperCase();
+        if (!codeUpper) return;
+
+        // 1. Check static codes for backward compatibility
+        if (codeUpper === 'TOPIK100' || codeUpper === 'BOSS10' || codeUpper === 'BOSS10-VICTORY') {
             setDiscount(10);
+            setAppliedVoucherCode(codeUpper);
+            setVoucherType('static');
             setIsVoucherApplied(true);
-        } else {
-            alert(language === 'zh' ? '无效的代码' : 'Invalid Voucher Code');
+            return;
         }
+
+        // 2. Check dynamic user-specific codes
+        if (profile?.vouchers) {
+            const userVoucher = profile.vouchers.find(v => v.code.toUpperCase() === codeUpper);
+            if (userVoucher) {
+                if (userVoucher.isUsed) {
+                    alert(language === 'zh' ? '此代金券已被使用' : 'This voucher has already been used');
+                    return;
+                }
+                if (new Date(userVoucher.validUntil) < new Date()) {
+                    alert(language === 'zh' ? '此代金券已過期' : 'This voucher has expired');
+                    return;
+                }
+                // Valid dynamic voucher
+                setDiscount(10);
+                setAppliedVoucherCode(userVoucher.code);
+                setVoucherType('dynamic');
+                setIsVoucherApplied(true);
+                return;
+            }
+        }
+
+        alert(language === 'zh' ? '无效的代码' : 'Invalid Voucher Code');
     };
 
     const handlePurchase = async (credits: number, id: string, basePrice: number) => {
@@ -34,12 +63,33 @@ export default function PricingPage() {
         setLoading(id);
         try {
             const userRef = doc(db, 'users', profile.uid);
-            await updateDoc(userRef, {
+            const updates: any = {
                 campCredits: increment(credits)
-            });
+            };
+
+            // Mark dynamic voucher as used in Firestore if applied
+            if (isVoucherApplied && voucherType === 'dynamic' && appliedVoucherCode) {
+                const updatedVouchers = (profile.vouchers || []).map(v => 
+                    v.code.toUpperCase() === appliedVoucherCode.toUpperCase()
+                        ? { ...v, isUsed: true }
+                        : v
+                );
+                updates.vouchers = updatedVouchers;
+            }
+
+            await updateDoc(userRef, updates);
+            
+            // Clear local checkout voucher states
+            setVoucherCode('');
+            setIsVoucherApplied(false);
+            setDiscount(0);
+            setAppliedVoucherCode(null);
+            setVoucherType(null);
+
             router.push('/camps');
         } catch (err) {
             console.error(err);
+            alert('Purchase failed. Please try again.');
         } finally {
             setLoading(null);
         }
