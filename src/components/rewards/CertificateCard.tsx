@@ -1,6 +1,5 @@
 /* eslint-disable react-hooks/purity, react-hooks/set-state-in-effect */
-import { useState, useEffect } from 'react';
-/* eslint-disable react-hooks/set-state-in-effect */
+import { useState, useEffect, useRef } from 'react';
 import { motion } from 'framer-motion';
 import { Award, Star, ShieldCheck, Download, Share2 } from 'lucide-react';
 
@@ -14,15 +13,68 @@ interface CertificateProps {
 
 export function CertificateCard({ userName, campTitle, date, score, tier }: CertificateProps) {
     const [verificationId, setVerificationId] = useState('');
+    const [isDownloading, setIsDownloading] = useState(false);
+    const certificateRef = useRef<HTMLDivElement>(null);
 
     useEffect(() => {
         setVerificationId(Math.random().toString(36).substring(7).toUpperCase());
     }, []);
+
     const tierColors = {
         Legendary: 'from-amber-400 to-orange-500 text-white border-amber-200',
         Gold: 'from-slate to-charcoal text-white border-slate/20',
         Silver: 'from-blue-400 to-blue-600 text-white border-blue-200',
         Bronze: 'from-emerald-400 to-emerald-600 text-white border-emerald-200'
+    };
+
+    const handleDownload = async () => {
+        if (!certificateRef.current) return;
+        setIsDownloading(true);
+        try {
+            // Import html2canvas dynamically to prevent server-side compilation issues in Next.js
+            const html2canvas = (await import('html2canvas')).default;
+            const canvas = await html2canvas(certificateRef.current, {
+                scale: 2, // Higher scale for print quality resolution
+                useCORS: true,
+                backgroundColor: null,
+                logging: false,
+            });
+
+            const dataUrl = canvas.toDataURL('image/png');
+            const link = document.createElement('a');
+            link.download = `TOPIK_Certificate_${userName.replace(/\s+/g, '_')}.png`;
+            link.href = dataUrl;
+            link.click();
+        } catch (error) {
+            console.error('Failed to download PNG certificate:', error);
+            alert('Failed to generate image. Please try again.');
+        } finally {
+            setIsDownloading(false);
+        }
+    };
+
+    const handleShare = async () => {
+        const shareText = `🎉 I completed the ${campTitle} Boss Battle on TOPIK BOOTCAMP with ${score}% accuracy! Verification ID: ${verificationId}`;
+        if (navigator.share) {
+            try {
+                await navigator.share({
+                    title: 'TOPIK BOOTCAMP Certificate',
+                    text: shareText,
+                    url: window.location.origin
+                });
+            } catch (err) {
+                console.error('Sharing failed', err);
+            }
+        } else {
+            // Fallback: Copy to clipboard
+            try {
+                await navigator.clipboard.writeText(`${shareText}\nCheck it out here: ${window.location.origin}`);
+                alert('Share text copied to clipboard! You can paste and share it now.');
+            } catch (err) {
+                console.error('Failed to copy text:', err);
+                alert('Failed to copy link. Please copy the URL manually.');
+            }
+        }
     };
 
     return (
@@ -31,7 +83,10 @@ export function CertificateCard({ userName, campTitle, date, score, tier }: Cert
             animate={{ scale: 1, opacity: 1 }}
             className="w-full max-w-2xl mx-auto"
         >
-            <div className={`relative p-12 rounded-[60px] bg-gradient-to-br ${tierColors[tier]} shadow-2xl overflow-hidden border-8 border-white/20`}>
+            <div 
+                ref={certificateRef}
+                className={`relative p-12 rounded-[60px] bg-gradient-to-br ${tierColors[tier]} shadow-2xl overflow-hidden border-8 border-white/20`}
+            >
                 {/* Decorative background elements */}
                 <div className="absolute top-0 right-0 w-96 h-96 bg-white/10 rounded-full blur-[100px] -mr-48 -mt-48" />
                 <div className="absolute bottom-0 left-0 w-64 h-64 bg-black/10 rounded-full blur-[80px] -ml-32 -mb-32" />
@@ -78,11 +133,18 @@ export function CertificateCard({ userName, campTitle, date, score, tier }: Cert
             </div>
 
             <div className="flex justify-center gap-4 mt-8">
-                <button className="flex items-center gap-2 px-6 py-3 bg-white text-charcoal rounded-full font-black text-xs uppercase tracking-widest hover:scale-105 transition-transform shadow-lg">
-                    <Download size={16} />
-                    Download PNG
+                <button 
+                    onClick={handleDownload}
+                    disabled={isDownloading}
+                    className="flex items-center gap-2 px-6 py-3 bg-white text-charcoal rounded-full font-black text-xs uppercase tracking-widest hover:scale-105 transition-transform shadow-lg disabled:opacity-50 disabled:cursor-not-allowed"
+                >
+                    <Download size={16} className={isDownloading ? "animate-spin" : ""} />
+                    {isDownloading ? "Downloading..." : "Download PNG"}
                 </button>
-                <button className="flex items-center gap-2 px-6 py-3 bg-primary text-white rounded-full font-black text-xs uppercase tracking-widest hover:scale-105 transition-transform shadow-lg">
+                <button 
+                    onClick={handleShare}
+                    className="flex items-center gap-2 px-6 py-3 bg-primary text-white rounded-full font-black text-xs uppercase tracking-widest hover:scale-105 transition-transform shadow-lg"
+                >
                     <Share2 size={16} />
                     Share Result
                 </button>
