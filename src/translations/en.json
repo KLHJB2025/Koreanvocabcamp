@@ -124,6 +124,11 @@
         "desc": "Review your current word list before the memory fades.",
         "badge": "{{count}} Ready"
       },
+      "dictionary": {
+        "title": "Dictionary Lookup",
+        "desc": "Direct lookup in Naver/NIKL dictionaries or query AI for synonym differences.",
+        "badge": "⚡ Refs & AI"
+      },
       "store": {
         "title": "Academy Store",
         "desc": "Spend your XP on stickers, badges and power-ups.",

@@ -1,5 +1,6 @@
 export const DOWNLOADED_ILLUSTRATIONS = new Set([
   "가장",
+  "가격",
   "가져가다",
   "가져오다",
   "가끔",
@@ -31,6 +32,7 @@ export const DOWNLOADED_ILLUSTRATIONS = new Set([
   "개",
   "개월",
   "거",
+  "거/것",
   "거기",
   "거리",
   "거실",
@@ -53,6 +55,7 @@ export const DOWNLOADED_ILLUSTRATIONS = new Set([
   "검사",
   "검은색",
   "검정",
+  "검정/검은색",
   "것",
   "겉",
   "게으르다",

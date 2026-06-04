@@ -4,7 +4,7 @@
 import { useTranslation } from '@/hooks/use-translation';
 import { useAuth } from '@/hooks/use-auth';
 import { motion } from 'framer-motion';
-import { Trophy, Flame, Star, ChevronRight, Play, ShieldCheck, Loader2, LogOut, Map as MapIcon, GraduationCap, Heart, Target, Sparkles } from 'lucide-react';
+import { Trophy, Flame, Star, ChevronRight, Play, ShieldCheck, Loader2, LogOut, Map as MapIcon, GraduationCap, Heart, Target, Sparkles, BookMarked } from 'lucide-react';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { auth } from '@/lib/firebase';
@@ -446,7 +446,7 @@ export default function Dashboard() {
                         </motion.div>
 
                         {/* Sub-Actions */}
-                        <div className="grid md:grid-cols-2 gap-4 sm:gap-8">
+                        <div className="grid md:grid-cols-3 gap-4 sm:gap-6">
                             <ActionCard
                                 title={t('dashboard.actions.memoryLab.title')}
                                 desc={t('dashboard.actions.memoryLab.desc')}
@@ -454,6 +454,16 @@ export default function Dashboard() {
                                 badge={t('dashboard.actions.memoryLab.badge', { count: reviewCount })}
                                 color="bg-mint"
                                 href="/vocabulary"
+                            />
+                            <ActionCard
+                                title={t('dashboard.actions.dictionary.title')}
+                                desc={t('dashboard.actions.dictionary.desc')}
+                                icon={<BookMarked size={24} />}
+                                badge={t('dashboard.actions.dictionary.badge')}
+                                color="bg-rose"
+                                onClick={() => {
+                                    window.dispatchEvent(new CustomEvent('open-dictionary-lookup'));
+                                }}
                             />
                             <ActionCard
                                 title={t('dashboard.actions.store.title')}
@@ -563,11 +573,15 @@ interface ActionCardProps {
     color: string;
     locked?: boolean;
     href?: string;
+    onClick?: () => void;
 }
 
-function ActionCard({ title, desc, icon, badge, color, locked = false, href }: ActionCardProps) {
+function ActionCard({ title, desc, icon, badge, color, locked = false, href, onClick }: ActionCardProps) {
     const content = (
-        <div className={`puffy-card p-6 sm:p-8 rounded-[32px] sm:rounded-[48px] flex flex-col group h-full transition-all ${locked ? 'opacity-50 cursor-not-allowed' : 'cursor-pointer hover:border-primary'}`}>
+        <div 
+            onClick={onClick}
+            className={`puffy-card p-6 sm:p-8 rounded-[32px] sm:rounded-[48px] flex flex-col group h-full transition-all ${locked ? 'opacity-50 cursor-not-allowed' : 'cursor-pointer hover:border-primary'}`}
+        >
             <div className={`w-14 h-14 ${color}/20 rounded-[24px] flex items-center justify-center ${color.replace('bg-', 'text-')} mb-6 group-hover:scale-110 transition-transform shadow-inner`}>
                 {icon}
             </div>
@@ -584,11 +598,15 @@ function ActionCard({ title, desc, icon, badge, color, locked = false, href }: A
         </div>
     );
 
-    if (locked || !href) return content;
+    if (locked) return content;
 
-    return (
-        <Link href={href} className="block h-full">
-            {content}
-        </Link>
-    );
+    if (href) {
+        return (
+            <Link href={href} className="block h-full">
+                {content}
+            </Link>
+        );
+    }
+
+    return content;
 }

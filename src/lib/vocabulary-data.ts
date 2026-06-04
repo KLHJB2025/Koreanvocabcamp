@@ -933,15 +933,14 @@ export const MOCK_VOCABULARY: Record<string, Word[]> = {
             sentenceZh: "非常感谢您的帮助。"
         },
         {
-            kr: "가격",
-            en: "Price",
-            zh: "价格",
+            kr: "건강",
+            en: "Health",
+            zh: "健康",
             pos: "Noun",
             category: "miscellaneous",
-            sentenceKr: "이 물건은 가격이 비싸요.",
-            sentenceMeaning: "This item's price is expensive.",
-            sentenceZh: "这个物品的价格很贵。",
-            illustrationUrl: "/illustrations/price.png"
+            sentenceKr: "운동은 건강에 아주 좋아요.",
+            sentenceMeaning: "Exercise is very good for health.",
+            sentenceZh: "锻炼对您的健康非常有益。"
         },
         {
             kr: "갈색",
@@ -974,14 +973,24 @@ export const MOCK_VOCABULARY: Record<string, Word[]> = {
             sentenceZh: "物价上涨了很多。"
         },
         {
-            kr: "거",
+            kr: "거/것",
             en: "Thing/Item",
             zh: "东西",
             pos: "Noun",
             category: "miscellaneous",
-            sentenceKr: "이게 내 거니까 건드리지 마.",
-            sentenceMeaning: "This is mine, so don't touch it.",
-            sentenceZh: "这是我的，所以不要碰它。"
+            sentences: [
+                {
+                    kr: "이게 내 거니까 건드리지 마.",
+                    en: "This is mine, so don't touch it.",
+                    zh: "这是我的，所以不要碰它。"
+                },
+                {
+                    kr: "좋은 것이 많이 있어요.",
+                    en: "There are many good things.",
+                    zh: "有很多好的。"
+                }
+            ],
+            illustrationUrl: "/illustrations/words/거.jpg"
         },
         {
             kr: "거기",
@@ -1014,14 +1023,14 @@ export const MOCK_VOCABULARY: Record<string, Word[]> = {
             sentenceZh: "你不能说谎。"
         },
         {
-            kr: "건강",
-            en: "Health",
-            zh: "健康",
+            kr: "가격",
+            en: "Price",
+            zh: "价格",
             pos: "Noun",
             category: "miscellaneous",
-            sentenceKr: "운동은 건강에 아주 좋아요.",
-            sentenceMeaning: "Exercise is very good for health.",
-            sentenceZh: "锻炼对您的健康非常有益。"
+            sentenceKr: "이 물건은 가격이 비싸요.",
+            sentenceMeaning: "This item's price is expensive.",
+            sentenceZh: "这个物品的价格很贵。"
         },
         {
             kr: "건너편",
@@ -1044,34 +1053,24 @@ export const MOCK_VOCABULARY: Record<string, Word[]> = {
             sentenceZh: "慢慢来，一次一步。"
         },
         {
-            kr: "검은색",
-            en: "black color",
+            kr: "검정/검은색",
+            en: "Black / Black color",
             zh: "黑色",
-            pos: "명사",
-            category: "miscellaneous",
-            sentenceKr: "검은색 셔츠를 샀어요.",
-            sentenceMeaning: "I bought a black shirt.",
-            sentenceZh: "我买了一件黑色的衬衫。"
-        },
-        {
-            kr: "검정",
-            en: "black",
-            zh: "黑色",
-            pos: "명사",
-            category: "miscellaneous",
-            sentenceKr: "저는 검정색을 좋아해요.",
-            sentenceMeaning: "I like black color.",
-            sentenceZh: "我喜欢黑色。"
-        },
-        {
-            kr: "것",
-            en: "Thing",
-            zh: "东西",
             pos: "Noun",
             category: "miscellaneous",
-            sentenceKr: "좋은 것이 많이 있어요.",
-            sentenceMeaning: "There are many good things.",
-            sentenceZh: "有很多好的。"
+            sentences: [
+                {
+                    kr: "저는 검정색을 좋아해요.",
+                    en: "I like black color.",
+                    zh: "我喜欢黑色。"
+                },
+                {
+                    kr: "검은색 셔츠를 샀어요.",
+                    en: "I bought a black shirt.",
+                    zh: "我买了一件黑色的衬衫。"
+                }
+            ],
+            illustrationUrl: "/illustrations/words/검정.jpg"
         },
         {
             kr: "겉",

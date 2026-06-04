@@ -76,33 +76,33 @@ export const PREDEFINED_STORIES: Record<string, PredefinedStory> = {
         titleEn: "Changing Study Habits",
         storyEn: "In the past, I was lazy, 게으르다(lazy) and almost, 거의(almost) never studied. But suddenly, 갑자기(suddenly) one day, I realized I could not go on, 계속(to continue) like this. I wanted to build a strong, 강하다(strong) mind. Now, I study together, 같이(together) with my friend in the library. We briefly, 간단히(simply) discuss tough points and find our ideas are the same, 같다(same)."
     },
-    // Day 11: 가격,갈색,감기약,값,거,거기,거절,고맙다
-    "가격,갈색,감기약,값,거,거기,거절,고맙다": {
+    // Day 11: 갈색,감기약,값,거/것,거기,거절,건강,고맙다
+    "갈색,감기약,값,거/것,거기,거절,건강,고맙다": {
         titleZh: "在药店买药",
-        storyZh: "我走进那家药店，指着柜台上的 东西, 거(东西) 问售货员。我想买点 感冒药, 감기약(感冒药)，但药店里的 价格, 가격(价格) 偏高，这个 价钱, 값(价格) 实在太贵了。我没有 拒绝, 거절(拒绝) 推荐，而是听从了药剂师的建议。我买下那个 褐色, 갈색(褐色) 包装的平价药，并向他表达了 感谢, 고맙다(谢谢)，因为 那里, 거기(那里) 的服务真的很暖心。",
+        storyZh: "我走进那家药店，想要买点 感冒药, 감기약(感冒药) 来保障身体 健康, 건강(健康)。我指着柜台上的 东西, 거/것(东西) 询问，发现那个 褐色, 갈색(褐色) 包装的药品非常便宜，它的 价钱, 값(价格) 很划算。药剂师建议我多喝水，我没有 拒绝, 거절(拒绝) 他的热心建议，并由衷表达了 感谢, 고맙다(谢谢)，因为 那里, 거기(那里) 的服务态度真的很温暖。",
         titleEn: "At the Pharmacy",
-        storyEn: "I walked into the pharmacy and pointed at that thing, 거(thing) on the shelf. I needed cold medicine, 감기약(cold medicine), but the price, 가격(price) was high, and this cost, 값(price) was a bit too much for me. Instead of a refusal, 거절(refusal), I accepted the pharmacist's advice. I bought the brown, 갈색(brown) package and said thank you, 고맙다(thankful) for the kind service there, 거기(there)."
+        storyEn: "I walked into the pharmacy to buy some cold medicine, 감기약(cold medicine) to stay in good health, 건강(health). I pointed at the thing, 거/것(thing) on the shelf, and noticed the medicine in the brown, 갈색(brown) package was cheap, and its value, 값(value/price) was reasonable. The pharmacist advised me to drink more water; I did not show any refusal, 거절(refusal) and said thank you, 고맙다(thankful) for the kind service there, 거기(there)."
     },
-    // Day 12: 거짓말,건강,건너편,걸음,검은색,검정,것,겉
-    "거짓말,건강,건너편,걸음,검은색,검정,것,겉": {
-        titleZh: "公园旁的散步",
-        storyZh: "保持 身体健康, 건강(健康) 的最好方法就是多散步。我迈着轻快的 步伐, 걸음(步)，走到马路的 对面, 건너편(对面)。我穿着一件 黑色, 검은색(黑色) 外套，搭配着 黑色, 검정(黑色) 的鞋子。路边卖的 东西, 것(东西) 琳琅满目，虽然有些商品的 表面, 겉(表面) 看着好看，但销售员说的 谎话, 거짓말(谎言) 还是被我一眼看穿了。",
-        titleEn: "Walk by the Park",
-        storyEn: "To stay in good health, 건강(health), I walk daily. Taking light steps, 걸음(steps), I crossed to the opposite side, 건너편(opposite side) of the street. I wore a black, 검은색(black) jacket and black, 검정(black) shoes. The things, 것(things) sold on the street had beautiful surfaces, 겉(surface/outside), but I quickly spotted the seller's lie, 거짓말(lie) about their origin."
+    // Day 12: 가격,거짓말,건너편,걸음,검정/검은색,겉,게임,결과
+    "가격,거짓말,건너편,걸음,검정/검은색,겉,게임,결과": {
+        titleZh: "街对面的游戏店",
+        storyZh: "在马路 对面, 건너편(对面) 的文具店里，有一款很火的 游戏, 게임(游戏)。我穿着 黑色, 검정/검은색(黑色) 的外衣走过去，每走一步 步伐, 걸음(步) 都很轻快。我看了看它的 价格, 가격(价格)，其实不算便宜。虽然它 表面, 겉(表面) 上看起来包装很精美，但老板承诺有大奖的话，多半是 谎言, 거짓말(谎言)。我考虑了一下，最终决定等看别人的测试 结果, 결과(结果) 再买。",
+        titleEn: "Game Shop Across the Street",
+        storyEn: "In the shop on the opposite side, 건너편(opposite side) of the street, there is a popular game, 게임(game). I walked over in my black, 검정/검은색(black) jacket, taking light steps, 걸음(steps). I checked the price, 가격(price), which wasn't cheap. Although the outside, 겉(outside/surface) package looked very nice, the seller's claim about winning prizes was probably a lie, 거짓말(lie). I decided to wait for the review result, 결과(result) first."
     },
-    // Day 13: 게임,结果 -> 결과,결석,결정,결혼,결혼식,경기,경치
-    "게임,결과,결석,결정,결혼,결혼식,경기,경치": {
-        titleZh: "充实的周末安排",
-        storyZh: "这个周末我的日程排得很满。首先，我做出 决定, 결정(决定) 绝对不能 缺席, 결석(缺席) 好友的 婚礼, 결혼식(婚礼)，见证他们幸福的 结婚, 결혼(结婚)。婚礼现场的 风景, 경치(景色) 非常迷人。下午，我赶去体育馆观看了一场精彩的 比赛, 경기(竞技/经济)，比赛的 结果, 결과(结果) 令人欢呼。晚上回家后，我玩了一会儿 游戏, 게임(游戏) 来放松神经。",
-        titleEn: "A Packed Weekend",
-        storyEn: "This weekend was packed. First, I made the decision, 결정(decision) not to be absent, 결석(absent) from my friend's wedding, 결혼식(wedding ceremony) as they got married, 결혼(married). The scenery, 경치(scenery) was lovely. Later, I watched an exciting match, 경기(game) and was thrilled by the result, 결과(result). At night, I played a video game, 게임(game) to relax."
+    // Day 13: 결석,결정,결혼,결혼식,경기,경치,경험,계단
+    "결석,결정,결혼,결혼식,경기,경치,경험,계단": {
+        titleZh: "好友的婚礼安排",
+        storyZh: "我做出 决定, 결정(决定)，这周末绝对不能 缺席, 결석(缺席) 好友的 婚礼, 결혼식(婚礼)，祝贺他们幸福的 结婚, 결혼(结婚)。婚礼在大厦顶楼举行，由于电梯坏了，我们只能走 楼梯, 계단(楼梯) 上去，虽然累但很有趣，沿途还能欣赏美丽的 风景, 경치(景色)。新郎是一位足球教练，经常组织各种 比赛, 경기(比赛)。根据我参加婚礼的 经验, 경험(经验)，今天一定会非常难忘。",
+        titleEn: "Friend's Wedding Day",
+        storyEn: "I made the decision, 결정(decision) not to be absent, 결석(absent) from my friend's wedding, 결혼식(wedding ceremony) as they got married, 결혼(married). Since the elevator broke down, we climbed the stairs, 계단(stairs), enjoying the scenery, 경치(scenery) along the way. The groom is a coach who organizes soccer matches, 경기(match). Based on my experience, 경험(experience), today will be unforgettable."
     },
-    // Day 14: 경험,계단,계산,계획,고장
-    "경험,계단,계산,계획,고장": {
-        titleZh: "搬运文件箱的挑战",
-        storyZh: "今天我们公司搬家，电梯突然 故障, 고장(故障) 停运了。我们只能 制定计划, 계획(计划) 沿着 楼梯, 계단(楼梯) 步行把文件箱搬上去。根据我多年的 经验, 경험(经验)，搬运大件物品需要仔细 计算, 계산(计算) 好人员和负重，好在大家齐心协力，最终顺利完成了搬迁。",
-        titleEn: "Moving Office Challenge",
-        storyEn: "During our office move, the elevator had a breakdown, 고장(breakdown). We made a plan, 계획(plan) to carry boxes up the stairs, 계단(stairs). Based on my experience, 경험(experience), moving heavy items requires careful calculation, 계산(calculation) of weight, but everyone worked hard and finished successfully."
+    // Day 14: 계산,계획,고장
+    "계산,계획,고장": {
+        titleZh: "备用计划的成功",
+        storyZh: "今天复习的最后一天，本来 计划, 계획(计划) 用学习软件测试，但电脑却突然 故障, 고장(故障) 了。好在我早有准备，在草稿本上通过手工 计算, 계산(计算) 出了所有题目的答案，完成了最后一天的学习。",
+        titleEn: "Calculations in Action",
+        storyEn: "Today is the last day of review. I planned, 계획(planned) to take a mock test, but my laptop had a breakdown, 고장(breakdown). Luckily, I was prepared and finished the calculations, 계산(calculation) manually on a notebook to complete my session."
     }
 };
 
