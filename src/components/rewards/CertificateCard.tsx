@@ -51,7 +51,7 @@ export function CertificateCard({ userName, campTitle, date, score, tier }: Cert
     };
 
     const handleShare = async () => {
-        const shareText = `🎉 I completed the ${campTitle} Boss Battle on TOPIK BOOTCAMP with ${score}% accuracy! Verification ID: ${verificationId}`;
+        const shareText = `🎉 I completed the ${campTitle} final challenge on TOPIK BOOTCAMP with ${score}% accuracy! Join the next camp to improve your Korean vocabularies!`;
         if (navigator.share) {
             try {
                 await navigator.share({
