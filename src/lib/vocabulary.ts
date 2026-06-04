@@ -224,11 +224,14 @@ export function cleanPrompt(text: string): string {
  */
 export function getIllustrationUrl(word: Word): string {
     if (word.illustrationUrl) {
+        if (word.illustrationUrl.startsWith('/illustrations')) {
+            return `${word.illustrationUrl}?v=3`;
+        }
         return word.illustrationUrl;
     }
 
     if (DOWNLOADED_ILLUSTRATIONS.has(word.kr)) {
-        return `/illustrations/words/${word.kr}.jpg`;
+        return `/illustrations/words/${word.kr}.jpg?v=3`;
     }
 
     const enMeaning = word.en || '';
