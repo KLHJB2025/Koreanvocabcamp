@@ -4,7 +4,7 @@ import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Word } from '@/lib/vocabulary-data';
 import { useTranslation } from '@/hooks/use-translation';
-import { Sparkles, ArrowRight, CheckCircle2, Volume2, Loader2 } from 'lucide-react';
+import { Sparkles, ArrowRight, CheckCircle2, Volume2, Loader2, BookOpen, HelpingHand } from 'lucide-react';
 import { playSuccessSound, playErrorSound } from '@/lib/sound';
 import { fetchAIStory, findTranslationInStory, getCleanCandidate } from '@/lib/scenarios';
 
@@ -22,6 +22,14 @@ interface StoryPart {
 
 export function ScenarioTask({ words, onComplete, mascotName }: ScenarioTaskProps) {
     const { language } = useTranslation();
+    const getMascotGreeting = () => {
+        const name = mascotName || (language === 'zh' ? '小步' : 'Boopi');
+        if (language === 'zh') {
+            return `🐾 ${name}：“哇！今天新学的单词好棒呀！我把它们都编成了一篇超精彩的情境故事，快来帮我填满它吧！通关即可夺得今日特训徽章哦，一起加油冲鸭！✨🍀”`;
+        } else {
+            return `🐾 ${name}: "Wow! The words you learned today are amazing! I've woven them into a special story. Help me fill in the blanks to secure your daily badge. Let's do this! ✨🍀"`;
+        }
+    };
     const [loading, setLoading] = useState(true);
     const [storyTitle, setStoryTitle] = useState('');
     const [storyParts, setStoryParts] = useState<StoryPart[]>([]);
@@ -328,11 +336,11 @@ export function ScenarioTask({ words, onComplete, mascotName }: ScenarioTaskProp
     return (
         <div className="max-w-5xl mx-auto p-4 sm:p-8 md:p-12 bg-white rounded-[32px] sm:rounded-[48px] shadow-2xl border-2 border-strawberry/5 relative overflow-hidden">
             {/* Background Flair */}
-            <div className="absolute top-0 right-0 w-80 h-80 bg-primary/5 rounded-full blur-3xl -mr-40 -mt-40" />
-            <div className="absolute bottom-0 left-0 w-80 h-80 bg-secondary/5 rounded-full blur-3xl -ml-40 -mb-40" />
+            <div className="absolute top-0 right-0 w-80 h-80 bg-primary/5 rounded-full blur-3xl -mr-40 -mt-40 pointer-events-none" />
+            <div className="absolute bottom-0 left-0 w-80 h-80 bg-secondary/5 rounded-full blur-3xl -ml-40 -mb-40 pointer-events-none" />
             
             {/* Header */}
-            <div className="relative z-10 flex items-center justify-between mb-8 pb-6 border-b border-charcoal/5">
+            <div className="relative z-10 flex items-center justify-between mb-6 pb-6 border-b border-charcoal/5">
                 <div>
                     <span className="pill-badge bg-primary/10 text-primary mb-2 inline-block italic font-bold">
                         {language === 'zh' ? '情境任务' : 'Scenario Mission'}
@@ -342,6 +350,20 @@ export function ScenarioTask({ words, onComplete, mascotName }: ScenarioTaskProp
                     </h2>
                 </div>
             </div>
+
+            {/* Mascot Cheering Dialogue Card */}
+            {!loading && (
+                <div className="relative z-10 flex flex-col sm:flex-row items-center gap-4 bg-gradient-to-r from-strawberry/10 via-pink-50/30 to-amber-50/50 p-6 rounded-[28px] border-2 border-strawberry/10 shadow-sm mb-8 animate-float">
+                    <div className="w-16 h-16 bg-white rounded-2xl flex items-center justify-center shrink-0 border-2 border-strawberry/20 overflow-hidden shadow-inner transform -rotate-3 hover:rotate-0 transition-transform">
+                        <img src="/illustrations/mascot.png" alt="Mascot Avatar" className="w-14 h-14 object-contain" />
+                    </div>
+                    <div className="flex-1 text-center sm:text-left">
+                        <p className="text-sm sm:text-base font-extrabold text-charcoal/80 leading-relaxed italic">
+                            {getMascotGreeting()}
+                        </p>
+                    </div>
+                </div>
+            )}
 
             <AnimatePresence mode="wait">
                 {loading ? (
@@ -392,23 +414,32 @@ export function ScenarioTask({ words, onComplete, mascotName }: ScenarioTaskProp
                                 <div className="absolute inset-0 bg-gradient-to-t from-charcoal/30 to-transparent pointer-events-none" />
                             </div>
 
-                            {/* Word Bank Reference Helper */}
-                            <div className="bg-cloud p-5 rounded-3xl border border-charcoal/5 shadow-sm">
+                            {/* Word Bank Sticker Book */}
+                            <div className="bg-gradient-to-br from-violet-50/50 via-pink-50/50 to-amber-50/30 p-6 rounded-[32px] border-2 border-dashed border-strawberry/15 shadow-sm relative overflow-hidden">
+                                <div className="absolute top-0 right-0 w-16 h-16 bg-strawberry/5 rounded-full blur-xl pointer-events-none" />
                                 <div className="flex items-center justify-between mb-4 pb-2 border-b border-charcoal/5">
-                                    <h4 className="font-black text-xs uppercase tracking-widest text-charcoal/40">
-                                        {language === 'zh' ? '🔑 今日词汇库' : '🔑 Word Bank'}
+                                    <h4 className="font-black text-xs uppercase tracking-widest text-charcoal/40 flex items-center gap-1.5">
+                                        <BookOpen size={12} className="text-strawberry" />
+                                        {language === 'zh' ? '🔑 今日词条贴纸' : '🔑 Word Bank'}
                                     </h4>
-                                    <span className={`pill-badge text-xs font-black px-2.5 py-1 ${hintsLeft > 0 ? 'bg-amber-100 text-amber-600' : 'bg-rose-100 text-rose-500 font-bold animate-pulse'}`}>
-                                        {language === 'zh' ? `提示: ${hintsLeft}次` : `Hints: ${hintsLeft}`}
+                                    <span className={`pill-badge text-xs font-black px-2.5 py-1 ${hintsLeft > 0 ? 'bg-amber-100 text-amber-600 border border-amber-200' : 'bg-rose-100 text-rose-500 font-bold border border-rose-200 animate-pulse'}`}>
+                                        {language === 'zh' ? `提示剩: ${hintsLeft}次` : `Hints: ${hintsLeft}`}
                                     </span>
                                 </div>
                                 <div className="flex flex-col gap-3">
                                     {words.map(w => {
                                         const isRevealed = revealedHints[w.kr] || false;
+                                        const isCorrect = correctAnswers[w.kr] === true;
                                         return (
                                             <div 
                                                 key={w.kr} 
-                                                className="flex items-center justify-between gap-3 bg-white p-3 rounded-2xl border border-charcoal/5 shadow-sm hover:border-primary/10 transition-all"
+                                                className={`flex items-center justify-between gap-3 bg-white p-3 rounded-2xl border-2 border-dashed transition-all duration-300 transform hover:scale-102 hover:rotate-1 shadow-sm hover:shadow-md cursor-pointer ${
+                                                    isCorrect 
+                                                        ? 'border-emerald-300 bg-emerald-50/30' 
+                                                        : isRevealed 
+                                                        ? 'border-amber-300 bg-amber-50/20' 
+                                                        : 'border-strawberry/15 hover:border-strawberry/40'
+                                                }`}
                                             >
                                                 <div className="flex items-center gap-3">
                                                     <button 
@@ -425,19 +456,25 @@ export function ScenarioTask({ words, onComplete, mascotName }: ScenarioTaskProp
                                                     </div>
                                                 </div>
 
-                                                <button
-                                                    disabled={!isRevealed && hintsLeft === 0}
-                                                    onClick={() => toggleHint(w.kr)}
-                                                    className={`px-3 py-1.5 rounded-xl text-xs font-bold transition-all ${
-                                                        isRevealed
-                                                            ? 'bg-amber-100 text-amber-700 hover:bg-amber-200'
-                                                            : hintsLeft === 0
-                                                            ? 'bg-cloud text-charcoal/20 cursor-not-allowed'
-                                                            : 'bg-cloud text-charcoal/40 hover:bg-charcoal/10 hover:text-charcoal/60'
-                                                    }`}
-                                                >
-                                                    {isRevealed ? w.kr : (language === 'zh' ? '提示' : 'Hint')}
-                                                </button>
+                                                {isCorrect ? (
+                                                    <span className="text-[10px] font-black uppercase text-emerald-600 border-2 border-emerald-500 rounded-lg px-1.5 py-0.5 transform rotate-[-8deg] shrink-0 font-mono tracking-tighter bg-white shadow-sm">
+                                                        {language === 'zh' ? '已填入' : 'PASSED'}
+                                                    </span>
+                                                ) : (
+                                                    <button
+                                                        disabled={!isRevealed && hintsLeft === 0}
+                                                        onClick={() => toggleHint(w.kr)}
+                                                        className={`px-3 py-1.5 rounded-xl text-xs font-black transition-all transform active:scale-95 duration-200 ${
+                                                            isRevealed
+                                                                ? 'bg-amber-400 text-charcoal shadow-sm hover:bg-amber-300'
+                                                                : hintsLeft === 0
+                                                                ? 'bg-cloud text-charcoal/20 cursor-not-allowed border border-transparent'
+                                                                : 'bg-white border-2 border-amber-200 text-amber-500 hover:bg-amber-50 shadow-sm'
+                                                        }`}
+                                                    >
+                                                        {isRevealed ? w.kr : (language === 'zh' ? '查看提示' : 'Reveal')}
+                                                    </button>
+                                                )}
                                             </div>
                                         );
                                     })}
@@ -445,16 +482,23 @@ export function ScenarioTask({ words, onComplete, mascotName }: ScenarioTaskProp
                             </div>
                         </div>
 
-                        {/* Right Column: Story Text and Inputs */}
-                        <div className="lg:col-span-8 flex flex-col justify-between bg-cloud p-6 sm:p-8 rounded-3xl border border-charcoal/5 shadow-inner">
-                            <div className="space-y-6">
+                        {/* Right Column: Story Text and Inputs (Diary Notebook layout) */}
+                        <div className="lg:col-span-8 flex flex-col justify-between bg-[#FCFBF7] bg-[radial-gradient(#e5e0d8_1.5px,transparent_1.5px)] [background-size:24px_24px] p-6 sm:p-10 rounded-[36px] border-3 border-strawberry/15 shadow-lg relative min-h-[480px]">
+                            {/* Cute Notebook Spiral Binding (Left Edge) */}
+                            <div className="absolute left-[-15px] top-8 bottom-8 flex flex-col justify-around pointer-events-none hidden sm:flex">
+                                {Array.from({ length: 12 }).map((_, i) => (
+                                    <div key={i} className="w-8 h-4 bg-gradient-to-r from-charcoal/30 via-slate-300 to-white rounded-full border border-charcoal/20 shadow-md transform rotate-[-5deg] z-20" />
+                                ))}
+                            </div>
+
+                            <div className="space-y-6 relative z-10">
                                 {/* Story Title */}
-                                <h3 className="text-xl sm:text-2xl font-black italic text-primary uppercase tracking-tight pb-3 border-b border-charcoal/5">
+                                <h3 className="text-xl sm:text-2xl font-black italic text-primary uppercase tracking-tight pb-3 border-b border-charcoal/5 flex items-center gap-2">
                                     📖 {storyTitle || (language === 'zh' ? '精选情境短文' : 'Scenario Story')}
                                 </h3>
 
                                 {/* Interactive Story Text */}
-                                <div className="text-base sm:text-lg md:text-xl text-charcoal leading-loose font-medium whitespace-pre-wrap select-text">
+                                <div className="text-base sm:text-lg md:text-xl text-charcoal leading-loose font-bold whitespace-pre-wrap select-text px-2">
                                     {storyParts.map((part, index) => {
                                         if (part.type === 'text') {
                                             return <span key={index}>{part.content}</span>;
@@ -469,11 +513,11 @@ export function ScenarioTask({ words, onComplete, mascotName }: ScenarioTaskProp
                                         const inputWidth = `${Math.max(4.5, word.kr.length * 1.5 + 2)}rem`;
                                         const isReading = currentReadingWord === word.kr;
 
-                                        let inputStatusClass = 'bg-white border-charcoal/15 focus:border-primary text-charcoal focus:ring-2 focus:ring-primary/20 shadow-inner';
+                                        let inputStatusClass = 'bg-white border-strawberry/20 text-charcoal focus:border-primary focus:ring-4 focus:ring-primary/10 shadow-sm';
                                         if (isCorrect) {
-                                            inputStatusClass = 'bg-emerald-500 text-white border-transparent font-black shadow-sm';
+                                            inputStatusClass = 'bg-gradient-to-r from-emerald-400 to-teal-500 text-white border-none font-black shadow-md scale-102';
                                         } else if (isIncorrect) {
-                                            inputStatusClass = 'bg-rose-50 border-rose-400 text-rose-600 focus:border-rose-500 shadow-sm';
+                                            inputStatusClass = 'bg-rose-50 border-rose-400 text-rose-600 focus:border-rose-500 focus:ring-rose-200 shadow-sm animate-shake';
                                         }
 
                                         const highlightClass = isReading 
@@ -491,7 +535,7 @@ export function ScenarioTask({ words, onComplete, mascotName }: ScenarioTaskProp
                                                     disabled={isCorrect}
                                                     placeholder={language === 'zh' ? word.zh : word.en}
                                                     style={{ width: inputWidth }}
-                                                    className={`px-2 py-1 rounded-xl text-center font-bold text-base sm:text-lg outline-none border-2 transition-all ${inputStatusClass} ${highlightClass}`}
+                                                    className={`px-2 py-1.5 rounded-xl text-center font-extrabold text-base sm:text-lg outline-none border-2 transition-all ${inputStatusClass} ${highlightClass}`}
                                                     title={language === 'zh' ? `输入韩文以翻译“${word.zh}”` : `Type Korean for "${word.en}"`}
                                                 />
                                                 {isReading ? (
@@ -510,27 +554,28 @@ export function ScenarioTask({ words, onComplete, mascotName }: ScenarioTaskProp
                             </div>
 
                             {/* TIP or NEXT Button */}
-                            <div className="mt-8 pt-6 border-t border-charcoal/5 flex flex-col sm:flex-row items-center justify-between gap-4">
-                                <p className="text-xs sm:text-sm font-bold text-charcoal/40 italic text-center sm:text-left">
+                            <div className="mt-8 pt-6 border-t border-charcoal/5 flex flex-col sm:flex-row items-center justify-between gap-4 relative z-10">
+                                <p className="text-xs sm:text-sm font-bold text-charcoal/40 italic text-center sm:text-left flex items-center gap-1.5">
+                                    <HelpingHand size={14} className="text-primary/70 shrink-0" />
                                     {language === 'zh' 
-                                        ? '💡 提示：遇到记不起来的单词？可以点击左侧词汇库中的“显示答案”或播放发音哦！' 
-                                        : '💡 Tip: Stumble on a word? Click "Reveal" or play the audio in the Word Bank on the left!'}
+                                        ? '💡 点击左侧词汇卡可以查看提示或播放发音哦！' 
+                                        : '💡 Click a word in the Word Bank to reveal hints or hear pronunciation!'}
                                 </p>
-                                <div className="flex justify-end w-full sm:w-auto">
+                                <div className="flex justify-end w-full sm:w-auto shrink-0">
                                     {allCorrect ? (
                                         <button
                                             onClick={advanceTask}
-                                            className="btn-primary-cute px-8 py-4 text-base font-black flex items-center justify-center gap-2 animate-bounce-short"
+                                            className="btn-primary-cute px-10 py-4.5 text-lg font-black flex items-center justify-center gap-2 bg-gradient-to-r from-emerald-400 to-teal-500 text-white border-none shadow-lg shadow-emerald-400/20 hover:scale-105 active:scale-95 transition-all animate-bounce-short cursor-pointer"
                                         >
-                                            {language === 'zh' ? '通关并完成任务' : 'Complete Scenario'}
-                                            <ArrowRight size={18} />
+                                            {language === 'zh' ? '通关并完成特训！🎉' : 'Complete Scenario! 🎉'}
+                                            <ArrowRight size={20} />
                                         </button>
                                     ) : (
                                         <button
                                             onClick={handleCheckAnswers}
-                                            className="btn-primary-cute bg-charcoal hover:bg-charcoal/90 text-white px-8 py-4 text-base font-black flex items-center justify-center gap-2"
+                                            className="btn-primary-cute bg-charcoal hover:bg-charcoal/90 text-white px-10 py-4.5 text-base font-black flex items-center justify-center gap-2 shadow-md hover:shadow-lg transition-all cursor-pointer animate-pulse-soft"
                                         >
-                                            {language === 'zh' ? '提交并检查答案' : 'Submit & Check Answers'}
+                                            {language === 'zh' ? '提交并检查答案 📝' : 'Submit & Check Answers 📝'}
                                             <ArrowRight size={18} />
                                         </button>
                                     )}
@@ -540,6 +585,39 @@ export function ScenarioTask({ words, onComplete, mascotName }: ScenarioTaskProp
                     </motion.div>
                 )}
             </AnimatePresence>
+
+            {/* Custom local animation styles */}
+            <style>{`
+                @keyframes shake {
+                    0%, 100% { transform: translateX(0); }
+                    25% { transform: translateX(-4px); }
+                    75% { transform: translateX(4px); }
+                }
+                .animate-shake {
+                    animation: shake 0.3s ease-in-out;
+                }
+                @keyframes float {
+                    0%, 100% { transform: translateY(0); }
+                    50% { transform: translateY(-5px); }
+                }
+                .animate-float {
+                    animation: float 4s ease-in-out infinite;
+                }
+                @keyframes bounce-short {
+                    0%, 100% { transform: translateY(0); }
+                    50% { transform: translateY(-4px); }
+                }
+                .animate-bounce-short {
+                    animation: bounce-short 1.5s ease-in-out infinite;
+                }
+                @keyframes pulse-soft {
+                    0%, 100% { transform: scale(1); box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1); }
+                    50% { transform: scale(1.02); box-shadow: 0 10px 15px -3px rgba(255, 78, 141, 0.2); }
+                }
+                .animate-pulse-soft {
+                    animation: pulse-soft 2s ease-in-out infinite;
+                }
+            `}</style>
         </div>
     );
 }
