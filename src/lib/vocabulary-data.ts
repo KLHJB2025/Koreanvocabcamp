@@ -757,8 +757,7 @@ export const MOCK_VOCABULARY: Record<string, Word[]> = {
             category: "descriptions_qualities",
             sentenceKr: "가끔 한국 음식을 먹어요.",
             sentenceMeaning: "I sometimes eat Korean food.",
-            sentenceZh: "有时吃韩国菜。",
-            illustrationUrl: "/illustrations/sometimes.png"
+            sentenceZh: "有时吃韩国菜。"
         },
         {
             kr: "가늘다",
@@ -779,8 +778,7 @@ export const MOCK_VOCABULARY: Record<string, Word[]> = {
             category: "descriptions_qualities",
             sentenceKr: "가방에 책이 가득 있어요.",
             sentenceMeaning: "The bag is full of books.",
-            sentenceZh: "书包里装满了书。",
-            illustrationUrl: "/illustrations/full.png"
+            sentenceZh: "书包里装满了书。"
         },
         {
             kr: "가볍다",
