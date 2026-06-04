@@ -1,7 +1,7 @@
 /* eslint-disable react-hooks/purity, react-hooks/set-state-in-effect */
 import { useState, useEffect, useRef } from 'react';
 import { motion } from 'framer-motion';
-import { Award, Star, ShieldCheck, Download, Share2 } from 'lucide-react';
+import { Star, ShieldCheck, Download, Share2 } from 'lucide-react';
 
 interface CertificateProps {
     userName: string;
@@ -21,10 +21,10 @@ export function CertificateCard({ userName, campTitle, date, score, tier }: Cert
     }, []);
 
     const tierColors = {
-        Legendary: 'from-amber-400 to-orange-500 text-white border-amber-200',
-        Gold: 'from-slate to-charcoal text-white border-slate/20',
-        Silver: 'from-blue-400 to-blue-600 text-white border-blue-200',
-        Bronze: 'from-emerald-400 to-emerald-600 text-white border-emerald-200'
+        Legendary: 'from-pink-50 via-amber-50 to-rose-100/50 text-charcoal border-rose-200/60 border-dashed border-4',
+        Gold: 'from-amber-50 to-orange-50/70 text-charcoal border-amber-200/60 border-dashed border-4',
+        Silver: 'from-sky-50 to-indigo-50/70 text-charcoal border-sky-200/60 border-dashed border-4',
+        Bronze: 'from-emerald-50 to-teal-50/70 text-charcoal border-emerald-200/60 border-dashed border-4'
     };
 
     const handleDownload = async () => {
@@ -39,7 +39,7 @@ export function CertificateCard({ userName, campTitle, date, score, tier }: Cert
             });
 
             const link = document.createElement('a');
-            link.download = `TOPIK_Certificate_${userName.replace(/\s+/g, '_')}.png`;
+            link.download = `TOPIK_Congratulations_${userName.replace(/\s+/g, '_')}.png`;
             link.href = dataUrl;
             link.click();
         } catch (error) {
@@ -55,7 +55,7 @@ export function CertificateCard({ userName, campTitle, date, score, tier }: Cert
         if (navigator.share) {
             try {
                 await navigator.share({
-                    title: 'TOPIK BOOTCAMP Certificate',
+                    title: 'TOPIK BOOTCAMP Accomplishment',
                     text: shareText,
                     url: window.location.origin
                 });
@@ -82,50 +82,66 @@ export function CertificateCard({ userName, campTitle, date, score, tier }: Cert
         >
             <div 
                 ref={certificateRef}
-                className={`relative p-12 rounded-[60px] bg-gradient-to-br ${tierColors[tier]} shadow-2xl overflow-hidden border-8 border-white/20`}
+                className={`relative p-8 sm:p-12 rounded-[52px] bg-gradient-to-br ${tierColors[tier]} shadow-xl overflow-hidden`}
             >
-                {/* Decorative background elements */}
-                <div className="absolute top-0 right-0 w-96 h-96 bg-white/10 rounded-full blur-[100px] -mr-48 -mt-48" />
-                <div className="absolute bottom-0 left-0 w-64 h-64 bg-black/10 rounded-full blur-[80px] -ml-32 -mb-32" />
+                {/* Decorative background bubbles */}
+                <div className="absolute top-10 left-10 w-24 h-24 bg-strawberry/5 rounded-full blur-xl pointer-events-none" />
+                <div className="absolute bottom-10 right-10 w-32 h-32 bg-amber-200/10 rounded-full blur-xl pointer-events-none" />
+                <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-64 h-64 bg-strawberry/3 rounded-full blur-2xl pointer-events-none" />
 
                 <div className="relative z-10 flex flex-col items-center text-center">
-                    <div className="w-24 h-24 bg-white/20 backdrop-blur-md rounded-3xl flex items-center justify-center mb-8 shadow-xl border border-white/30">
-                        <Award size={48} className="text-white" />
+                    {/* Cute Mascot Header */}
+                    <div className="mb-6 transform hover:scale-105 transition-transform duration-300 select-none pointer-events-none">
+                        <img 
+                            src="/illustrations/mascot.png" 
+                            alt="Mascot" 
+                            className="w-24 h-24 object-contain animate-bounce" 
+                            style={{ animationDuration: '3s' }}
+                        />
                     </div>
 
-                    <p className="text-[10px] font-black uppercase tracking-[0.3em] mb-4 opacity-60">✦ MILESTONE ACCOMPLISHED ✦</p>
-                    <h2 className="text-4xl font-black italic tracking-tighter uppercase mb-2">TOPIK BOOTCAMP</h2>
-                    <h3 className="text-xl font-bold uppercase tracking-widest mb-12 opacity-80">{campTitle}</h3>
+                    <p className="text-[10px] font-black uppercase tracking-[0.3em] mb-3 text-primary">✦ MILESTONE ACCOMPLISHED ✦</p>
+                    <h2 className="text-4xl font-black italic tracking-tighter uppercase mb-1 text-primary drop-shadow-sm">CONGRATULATIONS!</h2>
+                    <h3 className="text-sm font-bold uppercase tracking-widest mb-8 text-charcoal/60">TOPIK BOOTCAMP • {campTitle}</h3>
 
-                    <div className="w-full h-[1px] bg-white/20 mb-12" />
+                    {/* Cute Dotted Divider */}
+                    <div className="w-full border-t-2 border-dashed border-strawberry/20 mb-8" />
 
-                    <p className="text-sm font-medium uppercase tracking-[0.2em] mb-4 opacity-60">In recognition of the outstanding dedication of</p>
-                    <h4 className="text-5xl font-noto-kr font-black italic mb-4 drop-shadow-lg">{userName}</h4>
-                    <p className="text-lg font-medium opacity-80 mb-12">Who has successfully completed the intensive 14-day vocabulary training program<br />and demonstrated a strong command of core vocabulary with a final score of <span className="font-black underline">{score}%</span></p>
+                    <p className="text-xs font-black uppercase tracking-[0.2em] mb-3 text-charcoal/40">In recognition of the outstanding dedication of</p>
+                    <h4 className="text-4xl font-noto-kr font-black italic mb-4 text-charcoal drop-shadow-sm select-all">{userName}</h4>
+                    
+                    {/* Bubbly Description with Accuracy Badge */}
+                    <div className="max-w-md mx-auto text-sm sm:text-base font-bold text-charcoal/70 leading-relaxed mb-8 select-all">
+                        Who has successfully completed the intensive 14-day vocabulary training program and demonstrated a strong command of core vocabulary with a final score of{' '}
+                        <span className="inline-block bg-strawberry/15 border border-strawberry/25 text-primary font-black px-4 py-1 rounded-full scale-105 mx-1 shadow-sm select-none">
+                            {score}%
+                        </span>
+                    </div>
 
-                    <div className="grid grid-cols-3 gap-8 w-full border-t border-white/10 pt-12">
-                        <div className="flex flex-col gap-1">
-                            <span className="text-[8px] font-black uppercase tracking-widest opacity-40">Date Issued</span>
-                            <span className="text-xs font-bold">{date}</span>
+                    {/* Sub labels in rounded pills */}
+                    <div className="grid grid-cols-3 gap-4 sm:gap-6 w-full border-t border-strawberry/15 pt-8 mt-4 select-none">
+                        <div className="flex flex-col gap-1 bg-white/60 backdrop-blur-sm border border-strawberry/5 p-3 rounded-2xl shadow-sm">
+                            <span className="text-[8px] font-black uppercase tracking-widest text-charcoal/30">Date Issued</span>
+                            <span className="text-xs font-black text-charcoal">{date}</span>
                         </div>
-                        <div className="flex flex-col items-center gap-1">
-                            <div className="flex gap-1 text-amber-300">
+                        <div className="flex flex-col items-center justify-center gap-1 bg-white/60 backdrop-blur-sm border border-strawberry/5 p-3 rounded-2xl shadow-sm">
+                            <div className="flex gap-0.5 text-amber-400">
                                 <Star size={10} fill="currentColor" />
                                 <Star size={10} fill="currentColor" />
                                 <Star size={10} fill="currentColor" />
                             </div>
-                            <span className="text-[10px] font-black uppercase tracking-widest">{tier} GRADE</span>
+                            <span className="text-[9px] font-black uppercase tracking-widest text-charcoal">{tier} GRADE</span>
                         </div>
-                        <div className="flex flex-col gap-1">
-                            <span className="text-[8px] font-black uppercase tracking-widest opacity-40">Verification ID</span>
-                            <span className="text-[8px] font-mono opacity-60">{verificationId}</span>
+                        <div className="flex flex-col gap-1 bg-white/60 backdrop-blur-sm border border-strawberry/5 p-3 rounded-2xl shadow-sm">
+                            <span className="text-[8px] font-black uppercase tracking-widest text-charcoal/30">Verification ID</span>
+                            <span className="text-[8px] font-mono font-bold text-charcoal/60 select-all">{verificationId}</span>
                         </div>
                     </div>
                 </div>
 
-                {/* Seal */}
-                <div className="absolute top-12 right-12 w-20 h-20 bg-white/10 rounded-full border border-white/20 flex items-center justify-center rotate-12 backdrop-blur-sm">
-                    <ShieldCheck size={32} className="text-white opacity-40" />
+                {/* Decorative Soft Wax Seal */}
+                <div className="absolute top-8 right-8 w-16 h-16 bg-strawberry text-white rounded-full border-2 border-white/40 flex items-center justify-center rotate-12 shadow-md pointer-events-none select-none">
+                    <ShieldCheck size={28} className="text-white" />
                 </div>
             </div>
 
@@ -133,14 +149,14 @@ export function CertificateCard({ userName, campTitle, date, score, tier }: Cert
                 <button 
                     onClick={handleDownload}
                     disabled={isDownloading}
-                    className="flex items-center gap-2 px-6 py-3 bg-white text-charcoal rounded-full font-black text-xs uppercase tracking-widest hover:scale-105 transition-transform shadow-lg disabled:opacity-50 disabled:cursor-not-allowed"
+                    className="flex items-center gap-2 px-6 py-3 bg-white text-charcoal rounded-full font-black text-xs uppercase tracking-widest hover:scale-105 transition-transform shadow-lg disabled:opacity-50 disabled:cursor-not-allowed cursor-pointer"
                 >
                     <Download size={16} className={isDownloading ? "animate-spin" : ""} />
                     {isDownloading ? "Downloading..." : "Download PNG"}
                 </button>
                 <button 
                     onClick={handleShare}
-                    className="flex items-center gap-2 px-6 py-3 bg-primary text-white rounded-full font-black text-xs uppercase tracking-widest hover:scale-105 transition-transform shadow-lg"
+                    className="flex items-center gap-2 px-6 py-3 bg-primary text-white rounded-full font-black text-xs uppercase tracking-widest hover:scale-105 transition-transform shadow-lg cursor-pointer"
                 >
                     <Share2 size={16} />
                     Share Result
