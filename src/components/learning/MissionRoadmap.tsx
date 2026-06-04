@@ -68,20 +68,20 @@ function MissionNode({ day, status, titleEn, titleZh }: MissionNodeProps) {
 export function MissionRoadmap({ currentDay }: { currentDay: number, language: 'en' | 'zh' }) {
     const { t } = useTranslation();
     const missions = [
-        { en: "Operation: Genesis", zh: "初始入境" },
-        { en: "System Check", zh: "系统自检" },
-        { en: "Daily Pulse", zh: "日常节律" },
-        { en: "Social Bridge", zh: "社交桥梁" },
-        { en: "Action Flow", zh: "行为流动" },
-        { en: "Object Matrix", zh: "物体矩阵" },
-        { en: "Feeling Waves", zh: "情感波动" },
-        { en: "World View", zh: "世界视点" },
-        { en: "Wayfinder", zh: "轨迹追踪" },
-        { en: "Lifestyle", zh: "生活方式" },
-        { en: "Wellness", zh: "身心守护" },
-        { en: "Connection", zh: "联络中心" },
-        { en: "Recall Phase", zh: "回溯阶段" },
-        { en: "Overdrive", zh: "超限预备" },
+        { en: "Spawn Town", zh: "新手村降临 🐣" },
+        { en: "Target Practice", zh: "击打木人桩 🎯" },
+        { en: "Word Awakening", zh: "词力初觉醒 ✨" },
+        { en: "Tavern Gathering", zh: "酒馆集结令 🍻" },
+        { en: "Gale Runner", zh: "疾风行者步 🏃" },
+        { en: "Labyrinth Quest", zh: "迷宫寻宝箱 📦" },
+        { en: "Slime Echoes", zh: "史莱姆回响 👾" },
+        { en: "Watchtower Vista", zh: "登上瞭望塔 🔭" },
+        { en: "Wilderness Track", zh: "荒野迷踪迹 🧭" },
+        { en: "Camp Supply", zh: "营地补给站 🍖" },
+        { en: "Guardian Aegis", zh: "圣盾大洗礼 🛡️" },
+        { en: "Magic Frequency", zh: "魔力电波连 📡" },
+        { en: "Ruins Recall", zh: "遗迹大回溯 ⏳" },
+        { en: "Dawn Charge", zh: "决战前夜蓄 ⚡" },
     ];
 
     return (
