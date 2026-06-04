@@ -5,7 +5,8 @@ import { useAuth } from '@/hooks/use-auth';
 import { motion } from 'framer-motion';
 import { 
     ArrowLeft, Volume2, Search, Brain, Trophy, Calendar, 
-    Sparkles, HelpCircle, CheckCircle, Clock, Filter, ArrowUpDown, Play, ShieldCheck
+    Sparkles, HelpCircle, CheckCircle, Clock, Filter, ArrowUpDown, Play, ShieldCheck,
+    ChevronDown, ChevronUp, Lock
 } from 'lucide-react';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
@@ -13,6 +14,23 @@ import { getUserLearnedWords } from '@/lib/vocabulary';
 import { MOCK_VOCABULARY, Word } from '@/lib/vocabulary-data';
 import { formatNextReview } from '@/lib/srs';
 import { useState, useEffect } from 'react';
+
+const MISSIONS = [
+    { en: "Spawn Town", zh: "新手村降临 🐣" },
+    { en: "Target Practice", zh: "击打木人桩 🎯" },
+    { en: "Word Awakening", zh: "词力初觉醒 ✨" },
+    { en: "Tavern Gathering", zh: "酒馆集结令 🍻" },
+    { en: "Gale Runner", zh: "疾风行者步 🏃" },
+    { en: "Labyrinth Quest", zh: "迷宫寻宝箱 📦" },
+    { en: "Slime Echoes", zh: "史莱姆回响 👾" },
+    { en: "Watchtower Vista", zh: "登上瞭望塔 🔭" },
+    { en: "Wilderness Track", zh: "荒野迷踪迹 🧭" },
+    { en: "Camp Supply", zh: "营地补给站 🍖" },
+    { en: "Guardian Aegis", zh: "圣盾大洗礼 🛡️" },
+    { en: "Magic Frequency", zh: "魔力电波连 📡" },
+    { en: "Ruins Recall", zh: "遗迹大回溯 ⏳" },
+    { en: "Dawn Charge", zh: "决战前夜蓄 ⚡" },
+];
 
 interface JoinedLearnedWord {
     kr: string;
@@ -125,6 +143,10 @@ export default function VocabularyLibrary() {
     const [searchQuery, setSearchQuery] = useState('');
     const [stageFilter, setStageFilter] = useState('all'); // all, due, 1, 2, 3, 4, 5
     const [sortBy, setSortBy] = useState('nextReview'); // nextReview, dateLearned, level
+
+    // Tab and Day Browser state
+    const [activeTab, setActiveTab] = useState<'tracker' | 'days'>('tracker');
+    const [expandedDay, setExpandedDay] = useState<number | null>(null);
 
     // Audio Player Helper
     const playAudio = (wordKr: string) => {
@@ -273,6 +295,18 @@ export default function VocabularyLibrary() {
         levelCounts[lvl - 1]++;
     });
 
+    // Slicing words for active cycle
+    const cycleId = profile?.currentCycleId || 'beginner_cycle_1';
+    const cycleWords = MOCK_VOCABULARY[cycleId] || MOCK_VOCABULARY['beginner_cycle_1'];
+    const totalWordsCount = cycleWords.length;
+    const wordsPerDay = Math.ceil(totalWordsCount / 14);
+
+    const getWordsForDay = (dayNum: number) => {
+        const start = (dayNum - 1) * wordsPerDay;
+        const end = Math.min(start + wordsPerDay, totalWordsCount);
+        return cycleWords.slice(start, end);
+    };
+
     return (
         <div className="min-h-screen bg-[#FEF9FA] text-charcoal pb-20 w-full max-w-full overflow-x-hidden">
             {/* Header */}
@@ -388,158 +422,364 @@ export default function VocabularyLibrary() {
                     </div>
                 </section>
 
-                {/* Filter and vocabulary list grid */}
-                <section className="space-y-6">
-                    {/* Toolbar */}
-                    <div className="bg-white p-4 sm:p-6 rounded-[32px] border-2 border-strawberry/5 shadow-md flex flex-col md:flex-row gap-4 items-center justify-between">
-                        {/* Search input */}
-                        <div className="relative w-full md:w-80">
-                            <input 
-                                type="text"
-                                value={searchQuery}
-                                onChange={(e) => setSearchQuery(e.target.value)}
-                                placeholder={language === 'zh' ? '搜索韩语/拼音/翻译...' : 'Search word or meaning...'}
-                                className="w-full pl-11 pr-5 py-3 rounded-2xl bg-secondary/30 border border-transparent focus:border-primary focus:bg-white text-sm font-bold text-charcoal outline-none transition-all"
-                            />
-                            <Search className="absolute left-4 top-1/2 -translate-y-1/2 text-charcoal/30 w-4 h-4" />
-                        </div>
-
-                        {/* Filters and Sorting */}
-                        <div className="flex flex-wrap items-center gap-3 w-full md:w-auto justify-end">
-                            {/* Filter stage */}
-                            <div className="flex items-center gap-2 bg-secondary/30 p-1.5 rounded-2xl border border-transparent">
-                                <Filter size={14} className="text-charcoal/40 ml-1.5" />
-                                <select 
-                                    value={stageFilter}
-                                    onChange={(e) => setStageFilter(e.target.value)}
-                                    className="bg-transparent text-xs font-black uppercase text-charcoal/60 border-none outline-none pr-3 py-1 cursor-pointer"
-                                >
-                                    <option value="all">{language === 'zh' ? '全部阶段' : 'All Stages'}</option>
-                                    <option value="due">{language === 'zh' ? '⚡ 待复习词汇' : '⚡ Due Words'}</option>
-                                    <option value="1">Stage 1</option>
-                                    <option value="2">Stage 2</option>
-                                    <option value="3">Stage 3</option>
-                                    <option value="4">Stage 4</option>
-                                    <option value="5">Stage 5</option>
-                                </select>
-                            </div>
-
-                            {/* Sort selection */}
-                            <div className="flex items-center gap-2 bg-secondary/30 p-1.5 rounded-2xl border border-transparent">
-                                <ArrowUpDown size={14} className="text-charcoal/40 ml-1.5" />
-                                <select 
-                                    value={sortBy}
-                                    onChange={(e) => setSortBy(e.target.value)}
-                                    className="bg-transparent text-xs font-black uppercase text-charcoal/60 border-none outline-none pr-3 py-1 cursor-pointer"
-                                >
-                                    <option value="nextReview">{language === 'zh' ? '复习时间 (最快)' : 'Next Review'}</option>
-                                    <option value="dateLearned">{language === 'zh' ? '学习时间 (最新)' : 'Date Learned'}</option>
-                                    <option value="level">{language === 'zh' ? '记忆阶段 (最高)' : 'Memory Stage'}</option>
-                                </select>
-                            </div>
-                        </div>
+                {/* Tab Switcher */}
+                <div className="flex justify-center">
+                    <div className="bg-strawberry/5 p-1.5 rounded-[24px] border border-strawberry/15 flex gap-2 shadow-sm">
+                        <button
+                            onClick={() => setActiveTab('tracker')}
+                            className={`px-6 py-2.5 rounded-[20px] font-black text-sm flex items-center gap-2 transition-all duration-300 cursor-pointer ${
+                                activeTab === 'tracker'
+                                    ? 'bg-primary text-white shadow-md shadow-primary/20'
+                                    : 'text-charcoal/60 hover:text-primary hover:bg-strawberry/5'
+                            }`}
+                        >
+                            <Brain size={16} />
+                            {language === 'zh' ? '记忆追踪' : 'Memory Tracker'}
+                        </button>
+                        <button
+                            onClick={() => setActiveTab('days')}
+                            className={`px-6 py-2.5 rounded-[20px] font-black text-sm flex items-center gap-2 transition-all duration-300 cursor-pointer ${
+                                activeTab === 'days'
+                                    ? 'bg-primary text-white shadow-md shadow-primary/20'
+                                    : 'text-charcoal/60 hover:text-primary hover:bg-strawberry/5'
+                            }`}
+                        >
+                            <Calendar size={16} />
+                            {language === 'zh' ? '按天浏览' : 'Browse by Day'}
+                        </button>
                     </div>
+                </div>
 
-                    {/* Vocabulary cards Grid */}
-                    {filteredList.length > 0 ? (
-                        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-                            {filteredList.map((word) => {
-                                const nextReviewDate = word.nextReview?.toDate ? word.nextReview.toDate() : new Date(word.nextReview);
-                                const isDue = nextReviewDate <= now;
-                                const badgeInfo = getStageBadgeInfo(word.level, language === 'zh' ? 'zh' : 'en');
-                                
-                                return (
-                                    <motion.div 
-                                        key={word.kr}
-                                        layout
-                                        className={`bg-white rounded-[32px] p-6 border-2 shadow-sm transition-all hover:shadow-lg relative flex flex-col justify-between ${isDue ? 'border-amber-400 bg-amber-50/5 shadow-md shadow-amber-400/5' : 'border-strawberry/5'}`}
+                {/* Content based on Active Tab */}
+                {activeTab === 'tracker' ? (
+                    <section className="space-y-6">
+                        {/* Toolbar */}
+                        <div className="bg-white p-4 sm:p-6 rounded-[32px] border-2 border-strawberry/5 shadow-md flex flex-col md:flex-row gap-4 items-center justify-between">
+                            {/* Search input */}
+                            <div className="relative w-full md:w-80">
+                                <input 
+                                    type="text"
+                                    value={searchQuery}
+                                    onChange={(e) => setSearchQuery(e.target.value)}
+                                    placeholder={language === 'zh' ? '搜索韩语/拼音/翻译...' : 'Search word or meaning...'}
+                                    className="w-full pl-11 pr-5 py-3 rounded-2xl bg-secondary/30 border border-transparent focus:border-primary focus:bg-white text-sm font-bold text-charcoal outline-none transition-all"
+                                />
+                                <Search className="absolute left-4 top-1/2 -translate-y-1/2 text-charcoal/30 w-4 h-4" />
+                            </div>
+
+                            {/* Filters and Sorting */}
+                            <div className="flex flex-wrap items-center gap-3 w-full md:w-auto justify-end">
+                                {/* Filter stage */}
+                                <div className="flex items-center gap-2 bg-secondary/30 p-1.5 rounded-2xl border border-transparent">
+                                    <Filter size={14} className="text-charcoal/40 ml-1.5" />
+                                    <select 
+                                        value={stageFilter}
+                                        onChange={(e) => setStageFilter(e.target.value)}
+                                        className="bg-transparent text-xs font-black uppercase text-charcoal/60 border-none outline-none pr-3 py-1 cursor-pointer"
                                     >
-                                        {/* Top section: Word details */}
-                                        <div>
-                                            <div className="flex items-center justify-between mb-4">
-                                                <span className="text-[8px] font-black uppercase tracking-widest text-charcoal/30">
-                                                    {word.category}
-                                                </span>
-                                                
-                                                {/* Stage badge */}
-                                                <span className={`px-2.5 py-0.5 rounded-full text-[8px] font-black uppercase border ${badgeInfo.color}`} title={badgeInfo.desc}>
-                                                    {badgeInfo.name}
-                                                </span>
-                                            </div>
+                                        <option value="all">{language === 'zh' ? '全部阶段' : 'All Stages'}</option>
+                                        <option value="due">{language === 'zh' ? '⚡ 待复习词汇' : '⚡ Due Words'}</option>
+                                        <option value="1">Stage 1</option>
+                                        <option value="2">Stage 2</option>
+                                        <option value="3">Stage 3</option>
+                                        <option value="4">Stage 4</option>
+                                        <option value="5">Stage 5</option>
+                                    </select>
+                                </div>
 
-                                            <div className="flex items-center justify-between gap-4 mb-2">
-                                                <h4 className="text-3xl font-black italic tracking-tighter text-charcoal select-all">
-                                                    {word.kr}
-                                                </h4>
-                                                
-                                                <button 
-                                                    onClick={() => playAudio(word.kr)}
-                                                    className="w-10 h-10 rounded-full bg-secondary/50 flex items-center justify-center text-charcoal/60 hover:bg-strawberry/20 hover:text-primary transition-colors flex-shrink-0 cursor-pointer"
-                                                >
-                                                    <Volume2 size={16} />
-                                                </button>
-                                            </div>
+                                {/* Sort selection */}
+                                <div className="flex items-center gap-2 bg-secondary/30 p-1.5 rounded-2xl border border-transparent">
+                                    <ArrowUpDown size={14} className="text-charcoal/40 ml-1.5" />
+                                    <select 
+                                        value={sortBy}
+                                        onChange={(e) => setSortBy(e.target.value)}
+                                        className="bg-transparent text-xs font-black uppercase text-charcoal/60 border-none outline-none pr-3 py-1 cursor-pointer"
+                                    >
+                                        <option value="nextReview">{language === 'zh' ? '复习时间 (最快)' : 'Next Review'}</option>
+                                        <option value="dateLearned">{language === 'zh' ? '学习时间 (最新)' : 'Date Learned'}</option>
+                                        <option value="level">{language === 'zh' ? '记忆阶段 (最高)' : 'Memory Stage'}</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
 
-                                            <p className="text-sm font-bold text-charcoal/60 mb-6 italic">
-                                                {language === 'zh' ? word.zh : word.en}
-                                            </p>
-                                        </div>
-
-                                        {/* Bottom section: SRS stats */}
-                                        <div className="space-y-4 pt-4 border-t border-charcoal/5">
-                                            {/* Memory strength bar */}
+                        {/* Vocabulary cards Grid */}
+                        {filteredList.length > 0 ? (
+                            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                                {filteredList.map((word) => {
+                                    const nextReviewDate = word.nextReview?.toDate ? word.nextReview.toDate() : new Date(word.nextReview);
+                                    const isDue = nextReviewDate <= now;
+                                    const badgeInfo = getStageBadgeInfo(word.level, language === 'zh' ? 'zh' : 'en');
+                                    
+                                    return (
+                                        <motion.div 
+                                            key={word.kr}
+                                            layout
+                                            className={`bg-white rounded-[32px] p-6 border-2 shadow-sm transition-all hover:shadow-lg relative flex flex-col justify-between ${isDue ? 'border-amber-400 bg-amber-50/5 shadow-md shadow-amber-400/5' : 'border-strawberry/5'}`}
+                                        >
+                                            {/* Top section: Word details */}
                                             <div>
-                                                <div className="flex justify-between items-center text-[9px] font-black uppercase text-charcoal/30 mb-1.5">
-                                                    <span>{language === 'zh' ? '记忆强度' : 'Memory Strength'}</span>
-                                                    <span>{word.level * 20}%</span>
+                                                <div className="flex items-center justify-between mb-4">
+                                                    <span className="text-[8px] font-black uppercase tracking-widest text-charcoal/30">
+                                                        {word.category}
+                                                    </span>
+                                                    
+                                                    {/* Stage badge */}
+                                                    <span className={`px-2.5 py-0.5 rounded-full text-[8px] font-black uppercase border ${badgeInfo.color}`} title={badgeInfo.desc}>
+                                                        {badgeInfo.name}
+                                                    </span>
                                                 </div>
-                                                <div className="w-full bg-secondary h-2 rounded-full overflow-hidden">
-                                                    <div 
-                                                        className={`h-full rounded-full ${word.level >= 5 ? 'bg-emerald-500' : 'bg-primary'}`}
-                                                        style={{ width: `${word.level * 20}%` }}
-                                                    />
+
+                                                <div className="flex items-center justify-between gap-4 mb-2">
+                                                    <h4 className="text-3xl font-black italic tracking-tighter text-charcoal select-all">
+                                                        {word.kr}
+                                                    </h4>
+                                                    
+                                                    <div className="flex items-center gap-1.5">
+                                                        <button 
+                                                            onClick={() => playAudio(word.kr)}
+                                                            className="w-10 h-10 rounded-full bg-secondary/50 flex items-center justify-center text-charcoal/60 hover:bg-strawberry/20 hover:text-primary transition-colors flex-shrink-0 cursor-pointer"
+                                                        >
+                                                            <Volume2 size={16} />
+                                                        </button>
+                                                        
+                                                        <button 
+                                                            onClick={() => {
+                                                                window.dispatchEvent(new CustomEvent('open-dictionary-lookup', {
+                                                                    detail: { query: word.kr }
+                                                                }));
+                                                            }}
+                                                            className="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center text-primary hover:bg-primary hover:text-white transition-colors flex-shrink-0 cursor-pointer"
+                                                            title={language === 'zh' ? '查找字典/AI解析' : 'Dictionary Lookup'}
+                                                        >
+                                                            <Search size={16} />
+                                                        </button>
+                                                    </div>
                                                 </div>
+
+                                                <p className="text-sm font-bold text-charcoal/60 mb-6 italic">
+                                                    {language === 'zh' ? word.zh : word.en}
+                                                </p>
                                             </div>
 
-                                            {/* Due time */}
-                                            <div className="flex items-center gap-1.5 text-[9px] font-black text-charcoal/40 uppercase">
-                                                {isDue ? (
-                                                    <>
-                                                        <Clock size={12} className="text-amber-500" />
-                                                        <span className="text-amber-600 animate-pulse font-bold">
-                                                            {language === 'zh' ? '🔥 处于遗忘边缘，亟需复习！' : '🔥 VERGE OF FORGETTING, REVIEW NOW!'}
-                                                        </span>
-                                                    </>
-                                                ) : (
-                                                    <>
-                                                        <ShieldCheck size={12} className="text-emerald-500" />
-                                                        <span className="text-emerald-600 font-bold">
-                                                            {language === 'zh' ? '🛡️ 记忆安全期 • ' : '🛡️ MEMORY SAFE • '}
-                                                            {formatNextReview(nextReviewDate, language)}
-                                                        </span>
-                                                    </>
-                                                )}
+                                            {/* Bottom section: SRS stats */}
+                                            <div className="space-y-4 pt-4 border-t border-charcoal/5">
+                                                {/* Memory strength bar */}
+                                                <div>
+                                                    <div className="flex justify-between items-center text-[9px] font-black uppercase text-charcoal/30 mb-1.5">
+                                                        <span>{language === 'zh' ? '记忆强度' : 'Memory Strength'}</span>
+                                                        <span>{word.level * 20}%</span>
+                                                    </div>
+                                                    <div className="w-full bg-secondary h-2 rounded-full overflow-hidden">
+                                                        <div 
+                                                            className={`h-full rounded-full ${word.level >= 5 ? 'bg-emerald-500' : 'bg-primary'}`}
+                                                            style={{ width: `${word.level * 20}%` }}
+                                                        />
+                                                    </div>
+                                                </div>
+
+                                                {/* Due time */}
+                                                <div className="flex items-center gap-1.5 text-[9px] font-black text-charcoal/40 uppercase">
+                                                    {isDue ? (
+                                                        <>
+                                                            <Clock size={12} className="text-amber-500" />
+                                                            <span className="text-amber-600 animate-pulse font-bold">
+                                                                {language === 'zh' ? '🔥 处于遗忘边缘，亟需复习！' : '🔥 VERGE OF FORGETTING, REVIEW NOW!'}
+                                                            </span>
+                                                        </>
+                                                    ) : (
+                                                        <>
+                                                            <ShieldCheck size={12} className="text-emerald-500" />
+                                                            <span className="text-emerald-600 font-bold">
+                                                                {language === 'zh' ? '🛡️ 记忆安全期 • ' : '🛡️ MEMORY SAFE • '}
+                                                                {formatNextReview(nextReviewDate, language)}
+                                                            </span>
+                                                        </>
+                                                    )}
+                                                </div>
+                                            </div>
+                                        </motion.div>
+                                    );
+                                })}
+                            </div>
+                        ) : (
+                            <div className="bg-white rounded-[40px] border-2 border-dashed border-charcoal/10 p-20 text-center text-charcoal/30 flex flex-col items-center gap-4">
+                                <Brain size={48} className="text-charcoal/10" />
+                                <h4 className="text-lg font-black uppercase italic tracking-tighter">
+                                    {language === 'zh' ? '未找到单词' : 'No words found'}
+                                </h4>
+                                <p className="text-xs font-semibold max-w-sm leading-relaxed">
+                                    {searchQuery || stageFilter !== 'all' 
+                                        ? (language === 'zh' ? '尝试调整您的搜索关键字或过滤条件。' : 'Try modifying your search queries or filtering criteria.')
+                                        : (language === 'zh' ? '您还没有开始进行今日任务学习，还没有录入的已学词汇。' : 'You have not learned any words yet. Start a daily mission to add words!')
+                                    }
+                                </p>
+                            </div>
+                        )}
+                    </section>
+                ) : (
+                    <section className="space-y-4">
+                        {Array.from({ length: 14 }).map((_, idx) => {
+                            const dayNum = idx + 1;
+                            const mission = MISSIONS[idx] || { en: `Day ${dayNum}`, zh: `第 ${dayNum} 天` };
+                            const dayWords = getWordsForDay(dayNum);
+                            const totalCount = dayWords.length;
+                            const learnedDayWords = dayWords.filter(w => learnedList.some(lw => lw.kr === w.kr));
+                            const learnedCount = learnedDayWords.length;
+                            const isCompleted = learnedCount === totalCount && totalCount > 0;
+                            const isExpanded = expandedDay === dayNum;
+
+                            return (
+                                <div 
+                                    key={dayNum}
+                                    className={`bg-white rounded-[32px] border-2 transition-all ${
+                                        isExpanded 
+                                            ? 'border-primary shadow-lg' 
+                                            : isCompleted
+                                                ? 'border-emerald-200/60 shadow-sm hover:border-emerald-300'
+                                                : 'border-strawberry/5 shadow-sm hover:border-strawberry/15'
+                                    }`}
+                                >
+                                    {/* Accordion Header */}
+                                    <button
+                                        onClick={() => setExpandedDay(isExpanded ? null : dayNum)}
+                                        className="w-full px-6 py-5 flex items-center justify-between text-left cursor-pointer select-none"
+                                    >
+                                        <div className="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-4">
+                                            <span className="text-[10px] font-black uppercase tracking-widest text-primary">
+                                                Day {dayNum}
+                                            </span>
+                                            <h3 className="text-base sm:text-lg font-black italic tracking-tighter text-charcoal leading-none">
+                                                {language === 'zh' ? mission.zh : mission.en}
+                                            </h3>
+                                        </div>
+
+                                        <div className="flex items-center gap-3">
+                                            {/* Progress badge */}
+                                            {isCompleted ? (
+                                                <span className="px-3 py-1 rounded-full text-[10px] font-black uppercase bg-emerald-50 border border-emerald-100 text-emerald-600 flex items-center gap-1">
+                                                    <CheckCircle size={10} fill="currentColor" className="text-white" />
+                                                    {language === 'zh' ? '已全部掌握' : 'Fully Mastered'} ({learnedCount}/{totalCount})
+                                                </span>
+                                            ) : (
+                                                <span className={`px-3 py-1 rounded-full text-[10px] font-black uppercase border ${
+                                                    learnedCount > 0 
+                                                        ? 'bg-strawberry/15 border-strawberry/20 text-primary' 
+                                                        : 'bg-secondary border-transparent text-charcoal/40'
+                                                }`}>
+                                                    {language === 'zh' ? '已学' : 'Learned'} {learnedCount}/{totalCount}
+                                                </span>
+                                            )}
+
+                                            {/* Expand/Collapse Chevron */}
+                                            <div className="text-charcoal/40">
+                                                {isExpanded ? <ChevronUp size={20} /> : <ChevronDown size={20} />}
                                             </div>
                                         </div>
-                                    </motion.div>
-                                );
-                            })}
-                        </div>
-                    ) : (
-                        <div className="bg-white rounded-[40px] border-2 border-dashed border-charcoal/10 p-20 text-center text-charcoal/30 flex flex-col items-center gap-4">
-                            <Brain size={48} className="text-charcoal/10" />
-                            <h4 className="text-lg font-black uppercase italic tracking-tighter">
-                                {language === 'zh' ? '未找到单词' : 'No words found'}
-                            </h4>
-                            <p className="text-xs font-semibold max-w-sm leading-relaxed">
-                                {searchQuery || stageFilter !== 'all' 
-                                    ? (language === 'zh' ? '尝试调整您的搜索关键字或过滤条件。' : 'Try modifying your search queries or filtering criteria.')
-                                    : (language === 'zh' ? '您还没有开始进行今日任务学习，还没有录入的已学词汇。' : 'You have not learned any words yet. Start a daily mission to add words!')
-                                }
-                            </p>
-                        </div>
-                    )}
-                </section>
+                                    </button>
+
+                                    {/* Accordion Content */}
+                                    {isExpanded && (
+                                        <div className="px-6 pb-6 pt-2 border-t border-charcoal/5 bg-secondary/5 rounded-b-[30px] transition-all duration-300">
+                                            {totalCount > 0 ? (
+                                                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 mt-2">
+                                                    {dayWords.map((word) => {
+                                                        const learnedInfo = learnedList.find(lw => lw.kr === word.kr);
+                                                        const isLearned = !!learnedInfo;
+                                                        const badgeInfo = isLearned 
+                                                            ? getStageBadgeInfo(learnedInfo.level, language === 'zh' ? 'zh' : 'en') 
+                                                            : null;
+
+                                                        return (
+                                                            <div 
+                                                                key={word.kr}
+                                                                className={`bg-white rounded-[24px] p-5 border-2 shadow-sm flex flex-col justify-between transition-all hover:shadow-md ${
+                                                                    isLearned 
+                                                                        ? 'border-strawberry/5 bg-white' 
+                                                                        : 'border-charcoal/5 bg-[#FDF9FA] opacity-75'
+                                                                }`}
+                                                            >
+                                                                <div>
+                                                                    {/* Card Top: Category and Badge */}
+                                                                    <div className="flex items-center justify-between mb-3">
+                                                                        <span className="text-[8px] font-black uppercase tracking-widest text-charcoal/30">
+                                                                            {word.category || 'Vocabulary'}
+                                                                        </span>
+                                                                        {isLearned && badgeInfo ? (
+                                                                            <span className={`px-2 py-0.5 rounded-full text-[8px] font-black uppercase border ${badgeInfo.color}`} title={badgeInfo.desc}>
+                                                                                {badgeInfo.name}
+                                                                            </span>
+                                                                        ) : (
+                                                                            <span className="px-2 py-0.5 rounded-full text-[8px] font-black uppercase border bg-charcoal/5 border-charcoal/10 text-charcoal/40 flex items-center gap-1">
+                                                                                <Lock size={8} />
+                                                                                {language === 'zh' ? '未学习' : 'Locked'}
+                                                                            </span>
+                                                                        )}
+                                                                    </div>
+
+                                                                    {/* Card Middle: Spelling, Audio & Search */}
+                                                                    <div className="flex items-center justify-between gap-2 mb-1">
+                                                                        <h4 className="text-2xl font-black italic tracking-tighter text-charcoal select-all">
+                                                                            {word.kr}
+                                                                        </h4>
+                                                                        
+                                                                        <div className="flex items-center gap-1">
+                                                                            {/* Pronounce Button */}
+                                                                            <button 
+                                                                                onClick={() => playAudio(word.kr)}
+                                                                                className="w-8 h-8 rounded-full bg-secondary/50 flex items-center justify-center text-charcoal/60 hover:bg-strawberry/20 hover:text-primary transition-colors cursor-pointer"
+                                                                                title={language === 'zh' ? '发音' : 'Pronounce'}
+                                                                            >
+                                                                                <Volume2 size={14} />
+                                                                            </button>
+                                                                            
+                                                                            {/* Dictionary Lookup Event */}
+                                                                            <button 
+                                                                                onClick={() => {
+                                                                                    window.dispatchEvent(new CustomEvent('open-dictionary-lookup', {
+                                                                                        detail: { query: word.kr }
+                                                                                    }));
+                                                                                }}
+                                                                                className="w-8 h-8 rounded-full bg-primary/10 flex items-center justify-center text-primary hover:bg-primary hover:text-white transition-colors cursor-pointer"
+                                                                                title={language === 'zh' ? '查找字典/AI解析' : 'Dictionary Lookup'}
+                                                                            >
+                                                                                <Search size={14} />
+                                                                            </button>
+                                                                        </div>
+                                                                    </div>
+
+                                                                    <p className="text-xs font-bold text-charcoal/60 italic mb-2">
+                                                                        {language === 'zh' ? word.zh : word.en}
+                                                                    </p>
+                                                                </div>
+
+                                                                {/* Word sentence detail if learned */}
+                                                                {isLearned && learnedInfo?.sentenceKr && (
+                                                                    <div className="mt-3 pt-3 border-t border-charcoal/5 space-y-1">
+                                                                        <p className="text-[11px] font-black text-charcoal leading-snug">
+                                                                            {learnedInfo.sentenceKr}
+                                                                        </p>
+                                                                        <p className="text-[10px] font-semibold text-charcoal/50 leading-snug">
+                                                                            {language === 'zh' ? learnedInfo.sentenceZh : learnedInfo.sentenceMeaning}
+                                                                        </p>
+                                                                    </div>
+                                                                )}
+                                                            </div>
+                                                        );
+                                                    })}
+                                                </div>
+                                            ) : (
+                                                <p className="text-xs text-charcoal/40 text-center py-4 font-semibold">
+                                                    {language === 'zh' ? '本天无词汇数据' : 'No words for this day'}
+                                                </p>
+                                            )}
+                                        </div>
+                                    )}
+                                </div>
+                            );
+                        })}
+                    </section>
+                )}
             </main>
         </div>
     );
