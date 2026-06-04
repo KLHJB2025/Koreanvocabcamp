@@ -20,6 +20,30 @@ export function SpellingTask({ words, onComplete, onMiss }: SpellingTaskProps) {
 
     const currentWord = words[currentIndex];
 
+    const speakTextKo = (text: string) => {
+        if (typeof window !== 'undefined' && window.speechSynthesis) {
+            window.speechSynthesis.cancel();
+            const utterance = new SpeechSynthesisUtterance(text);
+            utterance.lang = 'ko-KR';
+            utterance.rate = 0.9;
+            window.speechSynthesis.speak(utterance);
+        }
+    };
+
+    const playWordAudio = (wordKr: string) => {
+        const cleanName = wordKr.replace(/[<>:"/\\|?*]/g, '');
+        const audioPath = `/audio/words/${cleanName}.mp3?v=2`;
+        const audio = new Audio(audioPath);
+        audio.play().catch(e => {
+            console.warn("Audio playback failed, falling back to Web Speech API:", e);
+            speakTextKo(wordKr);
+        });
+        audio.onerror = () => {
+            console.warn("Audio file not found, falling back to Web Speech API");
+            speakTextKo(wordKr);
+        };
+    };
+
     const handleSubmit = (e: React.FormEvent) => {
         e.preventDefault();
         if (isCorrect === true) return;
@@ -29,6 +53,7 @@ export function SpellingTask({ words, onComplete, onMiss }: SpellingTaskProps) {
 
         if (correct) {
             playSuccessSound();
+            playWordAudio(currentWord.kr);
         } else {
             playErrorSound();
             onMiss(currentWord);

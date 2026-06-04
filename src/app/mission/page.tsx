@@ -24,6 +24,14 @@ import { ErrorReviewTask } from '@/components/learning/ErrorReviewTask';
 
 type MissionStep = 'intro' | 'review' | 'learn' | 'listen' | 'match' | 'spell' | 'errorReview' | 'scenario' | 'complete';
 
+const getTodayDateString = () => {
+    const d = new Date();
+    const year = d.getFullYear();
+    const month = String(d.getMonth() + 1).padStart(2, '0');
+    const day = String(d.getDate()).padStart(2, '0');
+    return `${year}-${month}-${day}`;
+};
+
 export default function MissionPage() {
     const { profile, loading: authLoading } = useAuth();
     const { t, language } = useTranslation();
@@ -201,9 +209,10 @@ export default function MissionPage() {
 
         if (profile?.uid) {
             const wordIds = words.map(w => w.kr);
+            const todayStr = getTodayDateString();
             await Promise.all([
                 addXp(profile.uid, 150),
-                completeDay(profile.uid),
+                completeDay(profile.uid, todayStr),
                 recordLearnedWords(profile.uid, wordIds)
             ]);
         }
@@ -214,6 +223,48 @@ export default function MissionPage() {
             <Loader2 className="w-12 h-12 text-primary animate-spin" />
         </div>
     );
+
+    const isLockedToday = profile && profile.role !== 'admin' && profile.lastCompletedDate === getTodayDateString();
+
+    if (isLockedToday) {
+        return (
+            <div className="min-h-screen flex items-center justify-center bg-[#FEFAFB] px-4">
+                <motion.div
+                    initial={{ opacity: 0, scale: 0.9 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    className="max-w-md w-full bg-white rounded-[32px] p-8 sm:p-10 shadow-2xl border-2 border-strawberry/5 text-center relative overflow-hidden"
+                >
+                    <div className="absolute top-0 left-0 w-full h-2 bg-gradient-to-r from-amber-400 via-strawberry to-primary" />
+                    
+                    <motion.div
+                        animate={{ y: [0, -6, 0] }}
+                        transition={{ repeat: Infinity, duration: 3, ease: "easeInOut" }}
+                        className="w-24 h-24 bg-strawberry/10 rounded-[32px] flex items-center justify-center text-primary mx-auto mb-6 shadow-inner"
+                    >
+                        <Sparkles size={44} className="text-primary animate-pulse" />
+                    </motion.div>
+
+                    <h2 className="text-2xl sm:text-3xl font-black italic text-charcoal mb-4 uppercase tracking-tight">
+                        {language === 'zh' ? '今日特训已圆满！' : 'Today\'s Intel Secured!'}
+                    </h2>
+                    
+                    <p className="text-sm sm:text-base font-semibold text-charcoal/60 leading-relaxed mb-8">
+                        {language === 'zh' 
+                            ? '你今天已经完成了一次每日关卡，脑细胞正在高速吸收新词汇中哦！明天的全新任务将在明天解锁 🔒，请先好好休息吧！' 
+                            : 'You have already completed your daily training for today! Your brain is actively processing the new words. Tomorrow\'s mission will unlock tomorrow 🔒. Keep up the amazing work!'}
+                    </p>
+
+                    <button
+                        onClick={() => router.push('/dashboard')}
+                        className="btn-primary-cute w-full py-4 text-base font-black flex items-center justify-center gap-3 bg-gradient-to-r from-primary to-rose-400 text-white shadow-lg shadow-primary/20 border-none rounded-2xl"
+                    >
+                        <Home size={18} />
+                        <span>{language === 'zh' ? '返回控制台' : 'Back to Dashboard'}</span>
+                    </button>
+                </motion.div>
+            </div>
+        );
+    }
 
     return (
         <div className="min-h-screen bg-[#FEF9FA] pb-20">

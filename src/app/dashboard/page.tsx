@@ -4,7 +4,7 @@
 import { useTranslation } from '@/hooks/use-translation';
 import { useAuth } from '@/hooks/use-auth';
 import { motion } from 'framer-motion';
-import { Trophy, Flame, Star, ChevronRight, Play, ShieldCheck, Loader2, LogOut, Map as MapIcon, GraduationCap, Heart, Target } from 'lucide-react';
+import { Trophy, Flame, Star, ChevronRight, Play, ShieldCheck, Loader2, LogOut, Map as MapIcon, GraduationCap, Heart, Target, Sparkles } from 'lucide-react';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { auth } from '@/lib/firebase';
@@ -16,10 +16,20 @@ import { MOCK_VOCABULARY } from '@/lib/vocabulary-data';
 import { getReviewCount, getDailyWords, getMissionImageUrls } from '@/lib/vocabulary';
 import { useState, useEffect } from 'react';
 
+const getTodayDateString = () => {
+    const d = new Date();
+    const year = d.getFullYear();
+    const month = String(d.getMonth() + 1).padStart(2, '0');
+    const day = String(d.getDate()).padStart(2, '0');
+    return `${year}-${month}-${day}`;
+};
+
 export default function Dashboard() {
     const { t, language } = useTranslation();
     const { profile, loading } = useAuth();
     const router = useRouter();
+    
+    const isLockedToday = profile && profile.role !== 'admin' && profile.lastCompletedDate === getTodayDateString();
     const [reviewCount, setReviewCount] = useState(0);
     const [words, setWords] = useState<any[]>([]);
     const [preloadProgress, setPreloadProgress] = useState(0);
@@ -341,57 +351,74 @@ export default function Dashboard() {
                             <div className="relative z-10 flex-1 w-full text-center md:text-left">
                                 <div className="flex flex-wrap items-center justify-center md:justify-start gap-2 mb-4 sm:mb-6">
                                     <span className={`pill-badge inline-block ${profile.dayOfCamp === 15 ? 'bg-primary text-white' : 'bg-primary/10 text-primary'}`}>
-                                        {profile.dayOfCamp === 15 
-                                            ? t('dashboard.dailyMission.finalBreach') 
-                                            : t('dashboard.dailyMission.objectives', { day: profile.dayOfCamp || 1 })}
+                                        {isLockedToday 
+                                            ? (language === 'zh' ? '오늘 완료 • 今日已通关' : 'Daily Objective Complete')
+                                            : profile.dayOfCamp === 15 
+                                                ? t('dashboard.dailyMission.finalBreach') 
+                                                : t('dashboard.dailyMission.objectives', { day: profile.dayOfCamp || 1 })}
                                     </span>
-                                    {profile.dayOfCamp !== 15 && isPreloading && (
+                                    {profile.dayOfCamp !== 15 && isPreloading && !isLockedToday && (
                                         <span className="bg-amber-100 text-amber-700 border border-amber-200 px-3 py-1 text-[10px] font-black uppercase rounded-full inline-block animate-pulse">
                                             {t('dashboard.dailyMission.materialsPreloading', { progress: preloadProgress })}
                                         </span>
                                     )}
-                                    {profile.dayOfCamp !== 15 && isPreloaded && (
+                                    {profile.dayOfCamp !== 15 && isPreloaded && !isLockedToday && (
                                         <span className="bg-emerald-100 text-emerald-700 border border-emerald-200 px-3 py-1 text-[10px] font-black uppercase rounded-full inline-block">
                                             {t('dashboard.dailyMission.materialsPreloaded')}
                                         </span>
                                     )}
                                 </div>
                                 <h2 className={`text-3xl sm:text-5xl font-black italic mb-4 sm:mb-6 tracking-tighter uppercase leading-none ${profile.dayOfCamp === 15 ? 'text-white' : 'text-charcoal'}`}>
-                                    {profile.dayOfCamp === 15
-                                        ? t('dashboard.dailyMission.deployBoss')
-                                        : t('dashboard.dailyMission.deployToday')}
+                                    {isLockedToday
+                                        ? (language === 'zh' ? '🎉 今日学习已圆满达成！' : '🎉 Today\'s Session Secured!')
+                                        : profile.dayOfCamp === 15
+                                            ? t('dashboard.dailyMission.deployBoss')
+                                            : t('dashboard.dailyMission.deployToday')}
                                 </h2>
                                 <p className={`text-sm sm:text-lg font-medium mb-6 sm:mb-10 leading-relaxed max-w-sm mx-auto md:mx-0 ${profile.dayOfCamp === 15 ? 'text-white/60' : 'text-charcoal/40'}`}>
-                                    {profile.dayOfCamp === 15
-                                        ? t('dashboard.dailyMission.bossDesc')
-                                        : t('dashboard.dailyMission.todayDesc')}
+                                    {isLockedToday
+                                        ? (language === 'zh' ? '您今天已经完成了韩语每日特训！记忆正在大脑中逐步稳固，下一天的新词任务将在明日 00:00 自动解锁。好好休息吧！' : 'You have completed today\'s vocab mission! Your memory is consolidating. The next day will unlock automatically tomorrow.')
+                                        : profile.dayOfCamp === 15
+                                            ? t('dashboard.dailyMission.bossDesc')
+                                            : t('dashboard.dailyMission.todayDesc')}
                                 </p>
                                 <div className="flex flex-col sm:flex-row items-center gap-4 w-full sm:w-fit">
-                                    <Link
-                                        href={profile.dayOfCamp === 15 ? "/challenge" : "/mission"}
-                                        className={`btn-primary-cute flex items-center justify-center gap-3 w-full sm:w-fit ${profile.dayOfCamp === 15 ? 'bg-white text-charcoal border-none' : ''}`}
-                                    >
-                                        <Play size={20} fill="currentColor" />
-                                        {profile.dayOfCamp === 15 
-                                            ? t('dashboard.dailyMission.beginBattle') 
-                                            : savedProgress
-                                                ? t('dashboard.dailyMission.resumeTraining')
-                                                : t('dashboard.dailyMission.commenceTraining')}
-                                    </Link>
-                                    {savedProgress && (
-                                        <div className="text-center sm:text-left flex flex-col sm:flex-row items-center gap-2 sm:gap-4">
-                                            <span className="text-[11px] font-bold text-charcoal/50">
-                                                {language === 'zh'
-                                                    ? `进度: [${savedProgress.step === 'learn' ? '学习' : savedProgress.step === 'listen' ? '听力' : savedProgress.step === 'match' ? '匹配' : savedProgress.step === 'spell' ? '拼写' : savedProgress.step === 'errorReview' ? '错题复习' : savedProgress.step === 'scenario' ? '情境' : '复习'}] | 词 [${savedProgress.currentIndex + 1}/${words.length || 10}]`
-                                                    : `Progress: [${savedProgress.step}] | Word [${savedProgress.currentIndex + 1}/${words.length || 10}]`}
-                                            </span>
-                                            <button 
-                                                onClick={handleResetProgress}
-                                                className="text-[11px] font-black text-red-500 hover:text-red-700 underline uppercase tracking-wider"
-                                            >
-                                                {t('dashboard.dailyMission.resetProgress')}
-                                            </button>
+                                    {isLockedToday ? (
+                                        <div
+                                            className="btn-primary-cute flex items-center justify-center gap-3 w-full sm:w-fit bg-gradient-to-r from-amber-400 to-rose-500 hover:from-amber-400 hover:to-rose-500 border-none text-white shadow-lg shadow-rose-500/30 cursor-default scale-105"
+                                        >
+                                            <Sparkles size={20} className="text-white animate-pulse" />
+                                            <span>{language === 'zh' ? '🔥 今日特训圆满完成！' : '🔥 Mission Accomplished!'}</span>
                                         </div>
+                                    ) : (
+                                        <>
+                                            <Link
+                                                href={profile.dayOfCamp === 15 ? "/challenge" : "/mission"}
+                                                className={`btn-primary-cute flex items-center justify-center gap-3 w-full sm:w-fit ${profile.dayOfCamp === 15 ? 'bg-white text-charcoal border-none' : ''}`}
+                                            >
+                                                <Play size={20} fill="currentColor" />
+                                                {profile.dayOfCamp === 15 
+                                                    ? t('dashboard.dailyMission.beginBattle') 
+                                                    : savedProgress
+                                                        ? t('dashboard.dailyMission.resumeTraining')
+                                                        : t('dashboard.dailyMission.commenceTraining')}
+                                            </Link>
+                                            {savedProgress && (
+                                                <div className="text-center sm:text-left flex flex-col sm:flex-row items-center gap-2 sm:gap-4">
+                                                    <span className="text-[11px] font-bold text-charcoal/50">
+                                                        {language === 'zh'
+                                                            ? `进度: [${savedProgress.step === 'learn' ? '学习' : savedProgress.step === 'listen' ? '听力' : savedProgress.step === 'match' ? '匹配' : savedProgress.step === 'spell' ? '拼写' : savedProgress.step === 'errorReview' ? '错题复习' : savedProgress.step === 'scenario' ? '情境' : '复习'}] | 词 [${savedProgress.currentIndex + 1}/${words.length || 10}]`
+                                                            : `Progress: [${savedProgress.step}] | Word [${savedProgress.currentIndex + 1}/${words.length || 10}]`}
+                                                    </span>
+                                                    <button 
+                                                        onClick={handleResetProgress}
+                                                        className="text-[11px] font-black text-red-500 hover:text-red-700 underline uppercase tracking-wider"
+                                                    >
+                                                        {t('dashboard.dailyMission.resetProgress')}
+                                                    </button>
+                                                </div>
+                                            )}
+                                        </>
                                     )}
                                 </div>
                             </div>

@@ -1,0 +1,42 @@
+const fs = require('fs');
+const path = require('path');
+
+function loadVocabularyData() {
+    const filePath = path.join(__dirname, '..', 'src', 'lib', 'vocabulary-data.ts');
+    const content = fs.readFileSync(filePath, 'utf8');
+    const startIndex = content.indexOf('export const MOCK_VOCABULARY');
+    const declStart = content.indexOf('=', startIndex);
+    let jsCode = content.substring(declStart + 1).trim();
+    if (jsCode.endsWith(';')) {
+        jsCode = jsCode.substring(0, jsCode.length - 1);
+    }
+    return eval('(' + jsCode + ')');
+}
+
+const downloaded = new Set([
+  "가장", "가져가다", "가져오다", "가지", "가지다", "각각", "간단하다", "간단히", "간장", "갈비",
+  "갈비탕", "갈색", "갈아입다", "갈아타다", "감", "감기", "감기약", "감다", "감사", "감자",
+  "갑자기", "값", "강하다", "갖다", "같다", "같이", "갚다", "개", "개월", "거",
+  "거기", "거리", "거실", "거울", "거의", "거절", "거짓말", "걱정", "건너가다", "건너다",
+  "건물", "걷다", "걸다", "걸리다", "걸어가다", "걸어오다", "검사", "게으르다", "겨울", "결심",
+  "결혼", "결혼식", "경기", "경찰", "경찰서", "경치", "경험", "계단", "계란", "계산",
+  "계속", "계시다", "계절", "계획", "고개", "고기", "고등학교", "고등학생", "고르다", "고맙다",
+  "고모", "고민", "고속버스", "고장", "고추장", "공부", "공책", "과일", "과자", "괴로워하다",
+  "교과서", "교사", "교실", "교육", "국", "국수", "권", "그리다", "끝", "넘다",
+  "달걀", "돕다", "말", "못생기다", "사이다"
+]);
+
+const vocab = loadVocabularyData();
+const cycle1 = vocab['beginner_cycle_1'] || [];
+
+const neither = [];
+cycle1.forEach(word => {
+    if (!downloaded.has(word.kr) && !word.illustrationUrl) {
+        neither.push(word);
+    }
+});
+
+console.log(`Words in Cycle 1 with NEITHER: ${neither.length}`);
+neither.forEach(w => {
+    console.log(`- ${w.kr} (${w.pos}): EN: "${w.en}"`);
+});

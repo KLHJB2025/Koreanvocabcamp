@@ -61,11 +61,14 @@ export function ScenarioTask({ words, onComplete, mascotName }: ScenarioTaskProp
             const matches: { word: Word; translation: string; index: number; length: number }[] = [];
             const usedIndices = new Set<number>();
 
-            // Sort words by max length (spelling or translation) descending to match longer terms first and prevent substring collision (e.g., 가다 inside 걸어가다)
+            // Sort words by Korean spelling length descending to match longer terms first and prevent Korean substring collision (e.g., 감 inside 감자, 가다 inside 걸어가다)
             const sortedWords = [...words].sort((a, b) => {
-                const aLen = Math.max(a.kr.length, (lang === 'zh' ? a.zh : a.en || '').length);
-                const bLen = Math.max(b.kr.length, (lang === 'zh' ? b.zh : b.en || '').length);
-                return bLen - aLen;
+                if (b.kr.length !== a.kr.length) {
+                    return b.kr.length - a.kr.length;
+                }
+                const aTransLen = (lang === 'zh' ? a.zh : a.en || '').length;
+                const bTransLen = (lang === 'zh' ? b.zh : b.en || '').length;
+                return bTransLen - aTransLen;
             });
 
             const missedWords: Word[] = [];
@@ -291,10 +294,6 @@ export function ScenarioTask({ words, onComplete, mascotName }: ScenarioTaskProp
         });
 
         setCorrectAnswers(newCorrect);
-
-        if (correctNewly.length > 0) {
-            setReadingQueue(prev => [...prev, ...correctNewly]);
-        }
 
         if (allCorrect) {
             playSuccessSound();

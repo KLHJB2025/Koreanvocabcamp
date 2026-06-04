@@ -1,0 +1,3530 @@
+[
+  {
+    "cycleId": "beginner_cycle_2",
+    "index": 8,
+    "word": "교과서",
+    "originalKr": "교과서 에서 배우다",
+    "sentenceKr": "교과서 에서 배워요.",
+    "sentenceMeaning": "Learn from textbooks.",
+    "sentenceZh": "从教科书中学习。"
+  },
+  {
+    "cycleId": "beginner_cycle_1",
+    "index": 83,
+    "word": "감기약",
+    "originalKr": "감기약을 먹다",
+    "sentenceKr": "감기약을 먹어요.",
+    "sentenceMeaning": "Take cold medicine.",
+    "sentenceZh": "吃感冒药。"
+  },
+  {
+    "cycleId": "beginner_cycle_1",
+    "index": 98,
+    "word": "결석",
+    "originalKr": "결석을 하다",
+    "sentenceKr": "결석을 해요.",
+    "sentenceMeaning": "I'm skipping school.",
+    "sentenceZh": "我要逃学了"
+  },
+  {
+    "cycleId": "beginner_cycle_1",
+    "index": 12,
+    "word": "고등학생",
+    "originalKr": "고등학생이 되다",
+    "sentenceKr": "고등학생이 돼요.",
+    "sentenceMeaning": "I become a high school student.",
+    "sentenceZh": "我成为一名高中生。"
+  },
+  {
+    "cycleId": "beginner_cycle_2",
+    "index": 33,
+    "word": "공휴일",
+    "originalKr": "공휴일로 정하다",
+    "sentenceKr": "공휴일로 정해요.",
+    "sentenceMeaning": "Make it a public holiday.",
+    "sentenceZh": "将其定为公共假期。"
+  },
+  {
+    "cycleId": "beginner_cycle_1",
+    "index": 2,
+    "word": "간장",
+    "originalKr": "간장을 넣다",
+    "sentenceKr": "간장을 넣어요.",
+    "sentenceMeaning": "Add soy sauce.",
+    "sentenceZh": "添加酱油。"
+  },
+  {
+    "cycleId": "beginner_cycle_2",
+    "index": 0,
+    "word": "고추장",
+    "originalKr": "고추장을 넣다",
+    "sentenceKr": "고추장을 넣어요.",
+    "sentenceMeaning": "Add red pepper paste.",
+    "sentenceZh": "加入红辣椒酱。"
+  },
+  {
+    "cycleId": "beginner_cycle_1",
+    "index": 22,
+    "word": "고속버스",
+    "originalKr": "고속버스를 타다",
+    "sentenceKr": "고속버스를 타요.",
+    "sentenceMeaning": "Take the express bus.",
+    "sentenceZh": "乘坐高速巴士。"
+  },
+  {
+    "cycleId": "beginner_cycle_2",
+    "index": 11,
+    "word": "교육",
+    "originalKr": "교육을 받다",
+    "sentenceKr": "교육을 받아요.",
+    "sentenceMeaning": "Get an education.",
+    "sentenceZh": "接受教育。"
+  },
+  {
+    "cycleId": "beginner_cycle_1",
+    "index": 108,
+    "word": "고장",
+    "originalKr": "고장이 나다",
+    "sentenceKr": "고장이 나요.",
+    "sentenceMeaning": "It breaks down.",
+    "sentenceZh": "它崩溃了。"
+  },
+  {
+    "cycleId": "beginner_cycle_1",
+    "index": 33,
+    "word": "고민",
+    "originalKr": "고민을 나누다",
+    "sentenceKr": "고민을 나눠요.",
+    "sentenceMeaning": "Share your concerns.",
+    "sentenceZh": "分享您的担忧。"
+  },
+  {
+    "cycleId": "beginner_cycle_2",
+    "index": 7,
+    "word": "공책",
+    "originalKr": "공책에 쓰다",
+    "sentenceKr": "공책에 써요.",
+    "sentenceMeaning": "I use it in my notebook.",
+    "sentenceZh": "我在笔记本上使用它。"
+  },
+  {
+    "cycleId": "beginner_cycle_2",
+    "index": 73,
+    "word": "공짜",
+    "originalKr": "공짜로 주다",
+    "sentenceKr": "공짜로 줘요.",
+    "sentenceMeaning": "Give it to me for free.",
+    "sentenceZh": "免费给我。"
+  },
+  {
+    "cycleId": "beginner_cycle_2",
+    "index": 70,
+    "word": "공",
+    "originalKr": "공을 굴리다",
+    "sentenceKr": "공을 굴려요.",
+    "sentenceMeaning": "Get the ball rolling.",
+    "sentenceZh": "让球滚动起来。"
+  },
+  {
+    "cycleId": "beginner_cycle_2",
+    "index": 60,
+    "word": "그러므로",
+    "originalKr": "그는 아프다, 그러므로 쉰다.",
+    "sentenceKr": "그는 아프다, 그러므로 쉬어요.",
+    "sentenceMeaning": "He is sick, so rest.",
+    "sentenceZh": "他病了，所以休息吧。"
+  },
+  {
+    "cycleId": "beginner_cycle_3",
+    "index": 93,
+    "word": "김",
+    "originalKr": "김을 먹다",
+    "sentenceKr": "김을 먹어요.",
+    "sentenceMeaning": "Eat seaweed.",
+    "sentenceZh": "吃海藻。"
+  },
+  {
+    "cycleId": "beginner_cycle_3",
+    "index": 28,
+    "word": "꽃다발",
+    "originalKr": "꽃다발을 선물하다",
+    "sentenceKr": "꽃다발을 선물해요.",
+    "sentenceMeaning": "I give you a bouquet of flowers.",
+    "sentenceZh": "我给你一束鲜花。"
+  },
+  {
+    "cycleId": "beginner_cycle_2",
+    "index": 81,
+    "word": "교환",
+    "originalKr": "교환을 하다",
+    "sentenceKr": "교환을 해요.",
+    "sentenceMeaning": "Let's exchange.",
+    "sentenceZh": "我们交换一下吧"
+  },
+  {
+    "cycleId": "beginner_cycle_2",
+    "index": 92,
+    "word": "귀걸이",
+    "originalKr": "귀걸이를 달다",
+    "sentenceKr": "귀걸이를 달아요.",
+    "sentenceMeaning": "Put on earrings.",
+    "sentenceZh": "戴上耳环。"
+  },
+  {
+    "cycleId": "beginner_cycle_2",
+    "index": 106,
+    "word": "글씨",
+    "originalKr": "글씨를 쓰다",
+    "sentenceKr": "글씨를 써요.",
+    "sentenceMeaning": "Write some letters.",
+    "sentenceZh": "写一些信。"
+  },
+  {
+    "cycleId": "beginner_cycle_2",
+    "index": 79,
+    "word": "교통비",
+    "originalKr": "교통비가 들다",
+    "sentenceKr": "교통비가 들어요.",
+    "sentenceMeaning": "There are transportation costs.",
+    "sentenceZh": "有运输费用。"
+  },
+  {
+    "cycleId": "beginner_cycle_2",
+    "index": 103,
+    "word": "글",
+    "originalKr": "글을 쓰다.",
+    "sentenceKr": "글을 써요.",
+    "sentenceMeaning": "I write.",
+    "sentenceZh": "我写的。"
+  },
+  {
+    "cycleId": "beginner_cycle_2",
+    "index": 107,
+    "word": "글자",
+    "originalKr": "글자를 쓰다",
+    "sentenceKr": "글자를 써요.",
+    "sentenceMeaning": "Write letters.",
+    "sentenceZh": "写信。"
+  },
+  {
+    "cycleId": "beginner_cycle_2",
+    "index": 74,
+    "word": "관계",
+    "originalKr": "관계를 맺다",
+    "sentenceKr": "관계를 맺어요.",
+    "sentenceMeaning": "Build relationships.",
+    "sentenceZh": "建立关系。"
+  },
+  {
+    "cycleId": "beginner_cycle_3",
+    "index": 98,
+    "word": "꿈",
+    "originalKr": "꿈을 꾸다",
+    "sentenceKr": "꿈을 꿔요.",
+    "sentenceMeaning": "Have a dream.",
+    "sentenceZh": "做一个梦吧。"
+  },
+  {
+    "cycleId": "beginner_cycle_4",
+    "index": 108,
+    "word": "단추",
+    "originalKr": "단추가 떨어지다",
+    "sentenceKr": "단추가 떨어져요.",
+    "sentenceMeaning": "The button falls off.",
+    "sentenceZh": "按钮脱落。"
+  },
+  {
+    "cycleId": "beginner_cycle_4",
+    "index": 8,
+    "word": "대학",
+    "originalKr": "대학에 들어가다",
+    "sentenceKr": "대학에 들어가요.",
+    "sentenceMeaning": "Enter college.",
+    "sentenceZh": "进入大学。"
+  },
+  {
+    "cycleId": "beginner_cycle_5",
+    "index": 103,
+    "word": "-되다",
+    "originalKr": "-되다 취소되다",
+    "sentenceKr": "-되다 취소돼요.",
+    "sentenceMeaning": "- It gets cancelled.",
+    "sentenceZh": "- 它被取消了。"
+  },
+  {
+    "cycleId": "beginner_cycle_5",
+    "index": 104,
+    "word": "두통",
+    "originalKr": "두통을 앓다",
+    "sentenceKr": "두통을 앓아요.",
+    "sentenceMeaning": "I have a headache.",
+    "sentenceZh": "我头疼。"
+  },
+  {
+    "cycleId": "beginner_cycle_2",
+    "index": 100,
+    "word": "그림",
+    "originalKr": "그림을 그리다",
+    "sentenceKr": "그림을 그려요.",
+    "sentenceMeaning": "Draw a picture.",
+    "sentenceZh": "画一幅画。"
+  },
+  {
+    "cycleId": "beginner_cycle_5",
+    "index": 37,
+    "word": "동시",
+    "originalKr": "동시에 일어나다",
+    "sentenceKr": "동시에 일어나요.",
+    "sentenceMeaning": "wake up at the same time",
+    "sentenceZh": "同时醒来"
+  },
+  {
+    "cycleId": "beginner_cycle_5",
+    "index": 106,
+    "word": "땀",
+    "originalKr": "땀이 나다",
+    "sentenceKr": "땀이 나요.",
+    "sentenceMeaning": "I'm sweating.",
+    "sentenceZh": "我出汗了。"
+  },
+  {
+    "cycleId": "beginner_cycle_5",
+    "index": 107,
+    "word": "마중",
+    "originalKr": "마중을 가다",
+    "sentenceKr": "마중을 가요.",
+    "sentenceMeaning": "Let's meet you.",
+    "sentenceZh": "我们来见见你吧。"
+  },
+  {
+    "cycleId": "beginner_cycle_5",
+    "index": 108,
+    "word": "마트",
+    "originalKr": "마트 에서 사다",
+    "sentenceKr": "마트 에서 사요.",
+    "sentenceMeaning": "I buy it at the supermarket.",
+    "sentenceZh": "我在超市买的。"
+  },
+  {
+    "cycleId": "beginner_cycle_8",
+    "index": 83,
+    "word": "사이",
+    "originalKr": "사이에 놓다.",
+    "sentenceKr": "사이에 놓아요.",
+    "sentenceMeaning": "Put it in between.",
+    "sentenceZh": "把它放在中间。"
+  },
+  {
+    "cycleId": "beginner_cycle_7",
+    "index": 102,
+    "word": "배추",
+    "originalKr": "배추를 다듬다",
+    "sentenceKr": "배추를 다듬어요.",
+    "sentenceMeaning": "Trim the cabbage.",
+    "sentenceZh": "修剪卷心菜。"
+  },
+  {
+    "cycleId": "beginner_cycle_7",
+    "index": 82,
+    "word": "부분",
+    "originalKr": "부분으로 나누다.",
+    "sentenceKr": "부분으로 나눠요.",
+    "sentenceMeaning": "Divide it into parts.",
+    "sentenceZh": "将其分成几部分。"
+  },
+  {
+    "cycleId": "beginner_cycle_7",
+    "index": 103,
+    "word": "배탈",
+    "originalKr": "배탈이 나다",
+    "sentenceKr": "배탈이 나요.",
+    "sentenceMeaning": "I have an upset stomach.",
+    "sentenceZh": "我胃不舒服。"
+  },
+  {
+    "cycleId": "beginner_cycle_7",
+    "index": 76,
+    "word": "보통",
+    "originalKr": "보통 때와 같다.",
+    "sentenceKr": "보통 때와 같아요.",
+    "sentenceMeaning": "It's the same as usual.",
+    "sentenceZh": "和平常一样。"
+  },
+  {
+    "cycleId": "beginner_cycle_7",
+    "index": 2,
+    "word": "분식",
+    "originalKr": "분식을 먹다",
+    "sentenceKr": "분식을 먹어요.",
+    "sentenceMeaning": "I eat snacks.",
+    "sentenceZh": "我吃零食。"
+  },
+  {
+    "cycleId": "beginner_cycle_8",
+    "index": 108,
+    "word": "사실",
+    "originalKr": "사실을 밝히다",
+    "sentenceKr": "사실을 밝혀요.",
+    "sentenceMeaning": "Let's reveal the facts.",
+    "sentenceZh": "让我们来揭晓事实吧。"
+  },
+  {
+    "cycleId": "beginner_cycle_10",
+    "index": 12,
+    "word": "아파트",
+    "originalKr": "우리는 새로 지은 아파트에 산다.",
+    "sentenceKr": "우리는 새로 지은 아파트에 산아요.",
+    "sentenceMeaning": "We live in a newly built apartment.",
+    "sentenceZh": "我们住在新建的公寓里。"
+  },
+  {
+    "cycleId": "beginner_cycle_10",
+    "index": 14,
+    "word": "안경",
+    "originalKr": "그는 책을 볼 때 안경을 쓴다.",
+    "sentenceKr": "그는 책을 볼 때 안경을 쓴어요.",
+    "sentenceMeaning": "He wears glasses when he reads a book.",
+    "sentenceZh": "他看书时戴着眼镜。"
+  },
+  {
+    "cycleId": "beginner_cycle_10",
+    "index": 13,
+    "word": "악기",
+    "originalKr": "여러 가지 악기를 연주하는 것을 좋아한다.",
+    "sentenceKr": "여러 가지 악기를 연주하는 것을 좋아한아요.",
+    "sentenceMeaning": "I like playing various instruments.",
+    "sentenceZh": "我喜欢演奏各种乐器。"
+  },
+  {
+    "cycleId": "beginner_cycle_7",
+    "index": 101,
+    "word": "배달",
+    "originalKr": "배달을 시키다",
+    "sentenceKr": "배달을 시켜요.",
+    "sentenceMeaning": "Have it delivered.",
+    "sentenceZh": "让它交付。"
+  },
+  {
+    "cycleId": "beginner_cycle_6",
+    "index": 105,
+    "word": "메일",
+    "originalKr": "메일을 쓰다",
+    "sentenceKr": "메일을 써요.",
+    "sentenceMeaning": "Write an email.",
+    "sentenceZh": "写一封电子邮件。"
+  },
+  {
+    "cycleId": "beginner_cycle_7",
+    "index": 98,
+    "word": "빨갛다",
+    "originalKr": "사과가 빨갛다.",
+    "sentenceKr": "사과가 빨개요.",
+    "sentenceMeaning": "The apple is red.",
+    "sentenceZh": "苹果是红色的。"
+  },
+  {
+    "cycleId": "beginner_cycle_10",
+    "index": 35,
+    "word": "아르바이트",
+    "originalKr": "방학 동안 할 아르바이트를 구하고 있다.",
+    "sentenceKr": "방학 동안 할 아르바이트를 구하고 있어요.",
+    "sentenceMeaning": "I'm looking for a part-time job during vacation.",
+    "sentenceZh": "我正在寻找假期期间的兼职工作。"
+  },
+  {
+    "cycleId": "beginner_cycle_10",
+    "index": 61,
+    "word": "안전",
+    "originalKr": "운전할 때는 교통 안전을 꼭 지켜야 한다.",
+    "sentenceKr": "운전할 때는 교통 안전을 꼭 지켜야 해요.",
+    "sentenceMeaning": "When driving, you must follow traffic safety.",
+    "sentenceZh": "开车时一定要遵守交通安全。"
+  },
+  {
+    "cycleId": "beginner_cycle_10",
+    "index": 39,
+    "word": "아이",
+    "originalKr": "아이들이 어른보다 더 빨리 배운다.",
+    "sentenceKr": "아이들이 어른보다 더 빨리 배운어요.",
+    "sentenceMeaning": "Children learn faster than adults.",
+    "sentenceZh": "孩子们比成人学得更快。"
+  },
+  {
+    "cycleId": "beginner_cycle_10",
+    "index": 37,
+    "word": "아버지",
+    "originalKr": "우리는 아버지와 함께 여행을 갔다.",
+    "sentenceKr": "우리는 아버지와 함께 여행을 갔아요.",
+    "sentenceMeaning": "We went on a trip with my father.",
+    "sentenceZh": "我们和父亲一起去旅行。"
+  },
+  {
+    "cycleId": "beginner_cycle_10",
+    "index": 24,
+    "word": "안쪽",
+    "originalKr": "교실 안쪽은 바깥쪽보다 조용하다.",
+    "sentenceKr": "교실 안쪽은 바깥쪽보다 조용해요.",
+    "sentenceMeaning": "The inside of the classroom is quieter than the outside.",
+    "sentenceZh": "教室里比外面安静。"
+  },
+  {
+    "cycleId": "beginner_cycle_10",
+    "index": 65,
+    "word": "알아보다",
+    "originalKr": "인터넷으로 여행 정보를 알아보고 있다.",
+    "sentenceKr": "인터넷으로 여행 정보를 알아보고 있어요.",
+    "sentenceMeaning": "I am looking for travel information on the Internet.",
+    "sentenceZh": "我正在互联网上查找旅游信息。"
+  },
+  {
+    "cycleId": "beginner_cycle_10",
+    "index": 58,
+    "word": "안내",
+    "originalKr": "관광 안내를 받으러 안내소에 갔다.",
+    "sentenceKr": "관광 안내를 받으러 안내소에 갔아요.",
+    "sentenceMeaning": "I went to the information center to get tourist information.",
+    "sentenceZh": "我去信息中心获取旅游信息。"
+  },
+  {
+    "cycleId": "beginner_cycle_10",
+    "index": 43,
+    "word": "안되다",
+    "originalKr": "피곤해서 그런지 오늘 공부가 잘 안된다.",
+    "sentenceKr": "피곤해서 그런지 오늘 공부가 잘 안된어요.",
+    "sentenceMeaning": "Maybe it's because I'm tired, but I didn't study well today.",
+    "sentenceZh": "可能是因为累了，今天没好好学习。"
+  },
+  {
+    "cycleId": "beginner_cycle_10",
+    "index": 71,
+    "word": "어울리다",
+    "originalKr": "그는 다른 사람들과 잘 어울린다.",
+    "sentenceKr": "그는 다른 사람들과 잘 어울린어요.",
+    "sentenceMeaning": "He gets along well with other people.",
+    "sentenceZh": "他与其他人相处得很好。"
+  },
+  {
+    "cycleId": "beginner_cycle_10",
+    "index": 79,
+    "word": "아름답다",
+    "originalKr": "그녀의 웃는 모습이 참 아름답다.",
+    "sentenceKr": "그녀의 웃는 모습이 참 아름다워요.",
+    "sentenceMeaning": "Her smile is so beautiful.",
+    "sentenceZh": "她的笑容是如此美丽。"
+  },
+  {
+    "cycleId": "beginner_cycle_10",
+    "index": 85,
+    "word": "아프다",
+    "originalKr": "어제부터 다리가 너무 아프다.",
+    "sentenceKr": "어제부터 다리가 너무 아퍼요.",
+    "sentenceMeaning": "My legs have been sore since yesterday.",
+    "sentenceZh": "我的腿从昨天开始就酸痛。"
+  },
+  {
+    "cycleId": "beginner_cycle_10",
+    "index": 88,
+    "word": "안",
+    "originalKr": "오늘은 날씨가 별로 안 춥다.",
+    "sentenceKr": "오늘은 날씨가 별로 안 추워요.",
+    "sentenceMeaning": "The weather is not very cold today.",
+    "sentenceZh": "今天天气不太冷。"
+  },
+  {
+    "cycleId": "beginner_cycle_10",
+    "index": 41,
+    "word": "아주머니",
+    "originalKr": "식당 아주머니께 인사를 드렸다.",
+    "sentenceKr": "식당 아주머니께 인사를 드렸어요.",
+    "sentenceMeaning": "I said hello to the restaurant lady.",
+    "sentenceZh": "我向餐厅的那位女士打招呼。"
+  },
+  {
+    "cycleId": "beginner_cycle_10",
+    "index": 44,
+    "word": "애",
+    "originalKr": "저 애는 어른처럼 말을 잘한다.",
+    "sentenceKr": "저 애는 어른처럼 말을 잘한아요.",
+    "sentenceMeaning": "That kid speaks well like an adult.",
+    "sentenceZh": "这孩子说话很好，像大人一样。"
+  },
+  {
+    "cycleId": "beginner_cycle_10",
+    "index": 80,
+    "word": "아마",
+    "originalKr": "아마 내일은 비가 올 것 같다.",
+    "sentenceKr": "아마 내일은 비가 올 것 같아요.",
+    "sentenceMeaning": "I think it will probably rain tomorrow.",
+    "sentenceZh": "我想明天可能会下雨。"
+  },
+  {
+    "cycleId": "beginner_cycle_10",
+    "index": 51,
+    "word": "어머님",
+    "originalKr": "친구의 어머님께 인사를 드렸다.",
+    "sentenceKr": "친구의 어머님께 인사를 드렸어요.",
+    "sentenceMeaning": "I said hello to my friend’s mother.",
+    "sentenceZh": "我向朋友的妈妈打了招呼。"
+  },
+  {
+    "cycleId": "beginner_cycle_10",
+    "index": 64,
+    "word": "알리다",
+    "originalKr": "부모님께 합격 사실을 알렸다.",
+    "sentenceKr": "부모님께 합격 사실을 알렸어요.",
+    "sentenceMeaning": "I informed my parents that I passed.",
+    "sentenceZh": "我通知我的父母我通过了。"
+  },
+  {
+    "cycleId": "beginner_cycle_11",
+    "index": 6,
+    "word": "영어",
+    "originalKr": "요즘 매일 영어를 배우고 있다.",
+    "sentenceKr": "요즘 매일 영어를 배우고 있어요.",
+    "sentenceMeaning": "I'm learning English every day these days.",
+    "sentenceZh": "这些天我每天都在学习英语。"
+  },
+  {
+    "cycleId": "beginner_cycle_10",
+    "index": 86,
+    "word": "아홉",
+    "originalKr": "고양이 아홉 마리가 지붕 위에 있다.",
+    "sentenceKr": "고양이 아홉 마리가 지붕 위에 있어요.",
+    "sentenceMeaning": "There are nine cats on the roof.",
+    "sentenceZh": "屋顶上有九只猫。"
+  },
+  {
+    "cycleId": "beginner_cycle_10",
+    "index": 91,
+    "word": "알맞다",
+    "originalKr": "이 상자는 크기가 딱 알맞다.",
+    "sentenceKr": "이 상자는 크기가 딱 알맞아요.",
+    "sentenceMeaning": "This box is just the right size.",
+    "sentenceZh": "这个盒子的尺寸刚刚好。"
+  },
+  {
+    "cycleId": "beginner_cycle_11",
+    "index": 28,
+    "word": "영국",
+    "originalKr": "그는 영국에서 공부하고 돌아왔다.",
+    "sentenceKr": "그는 영국에서 공부하고 돌아왔아요.",
+    "sentenceMeaning": "He came back from studying in England.",
+    "sentenceZh": "他从英国留学回来。"
+  },
+  {
+    "cycleId": "beginner_cycle_11",
+    "index": 39,
+    "word": "연예인",
+    "originalKr": "텔레비전에 나오는 연예인을 실제로 봤다.",
+    "sentenceKr": "텔레비전에 나오는 연예인을 실제로 봤아요.",
+    "sentenceMeaning": "I actually saw a celebrity on television.",
+    "sentenceZh": "我实际上在电视上看到了一位名人。"
+  },
+  {
+    "cycleId": "beginner_cycle_11",
+    "index": 47,
+    "word": "열",
+    "originalKr": "감기에 걸렸는지 몸에서 열이 난다.",
+    "sentenceKr": "감기에 걸렸는지 몸에서 열이 난아요.",
+    "sentenceMeaning": "My body feels feverish as if I have a cold.",
+    "sentenceZh": "我的身体感觉发烧，就像感冒了一样。"
+  },
+  {
+    "cycleId": "beginner_cycle_11",
+    "index": 4,
+    "word": "역사",
+    "originalKr": "한국의 역사를 배우는 것은 흥미롭다.",
+    "sentenceKr": "한국의 역사를 배우는 것은 흥미로워요.",
+    "sentenceMeaning": "Learning Korean history is interesting.",
+    "sentenceZh": "学习韩国历史很有趣。"
+  },
+  {
+    "cycleId": "beginner_cycle_11",
+    "index": 27,
+    "word": "열차",
+    "originalKr": "우리는 다음 역에서 열차를 타야 한다.",
+    "sentenceKr": "우리는 다음 역에서 열차를 타야 해요.",
+    "sentenceMeaning": "We have to catch the train at the next station.",
+    "sentenceZh": "我们必须在下一站赶火车。"
+  },
+  {
+    "cycleId": "beginner_cycle_11",
+    "index": 11,
+    "word": "열쇠",
+    "originalKr": "열쇠로 문을 열고 들어갔다.",
+    "sentenceKr": "열쇠로 문을 열고 들어갔아요.",
+    "sentenceMeaning": "I opened the door with the key and went in.",
+    "sentenceZh": "我用钥匙打开门走了进去。"
+  },
+  {
+    "cycleId": "beginner_cycle_11",
+    "index": 37,
+    "word": "여성",
+    "originalKr": "이 옷은 여성들에게 인기가 많다.",
+    "sentenceKr": "이 옷은 여성들에게 인기가 많아요.",
+    "sentenceMeaning": "This clothing is popular among women.",
+    "sentenceZh": "这种服装很受女性欢迎。"
+  },
+  {
+    "cycleId": "beginner_cycle_11",
+    "index": 25,
+    "word": "여행지",
+    "originalKr": "유명한 여행지로 떠나는 사람들이 많다.",
+    "sentenceKr": "유명한 여행지로 떠나는 사람들이 많아요.",
+    "sentenceMeaning": "There are many people who travel to famous travel destinations.",
+    "sentenceZh": "有很多人去著名的旅游目的地旅行。"
+  },
+  {
+    "cycleId": "beginner_cycle_11",
+    "index": 3,
+    "word": "여학생",
+    "originalKr": "교실에 여학생들이 많이 모여 있다.",
+    "sentenceKr": "교실에 여학생들이 많이 모여 있어요.",
+    "sentenceMeaning": "There are a lot of female students gathered in the classroom.",
+    "sentenceZh": "教室里聚集了很多女学生。"
+  },
+  {
+    "cycleId": "beginner_cycle_10",
+    "index": 97,
+    "word": "어둡다",
+    "originalKr": "조명이 없어서 방이 너무 어둡다.",
+    "sentenceKr": "조명이 없어서 방이 너무 어두워요.",
+    "sentenceMeaning": "The room is very dark because there is no lighting.",
+    "sentenceZh": "房间很暗，因为没有照明。"
+  },
+  {
+    "cycleId": "beginner_cycle_10",
+    "index": 81,
+    "word": "아무",
+    "originalKr": "아무도 그 소식을 모른다.",
+    "sentenceKr": "아무도 그 소식을 모른어요.",
+    "sentenceMeaning": "No one knows about it.",
+    "sentenceZh": "没有人知道这件事。"
+  },
+  {
+    "cycleId": "beginner_cycle_11",
+    "index": 5,
+    "word": "연필",
+    "originalKr": "연필로 이름을 예쁘게 썼다.",
+    "sentenceKr": "연필로 이름을 예쁘게 썼어요.",
+    "sentenceMeaning": "I wrote my name beautifully in pencil.",
+    "sentenceZh": "我用铅笔漂亮地写下了我的名字。"
+  },
+  {
+    "cycleId": "beginner_cycle_12",
+    "index": 27,
+    "word": "일어나다",
+    "originalKr": "아침 일찍 일어나다.",
+    "sentenceKr": "아침 일찍 일어나요.",
+    "sentenceMeaning": "Wake up early in the morning.",
+    "sentenceZh": "早上很早就醒了。"
+  },
+  {
+    "cycleId": "beginner_cycle_11",
+    "index": 96,
+    "word": "예쁘다",
+    "originalKr": "그녀의 얼굴이 참 예쁘다.",
+    "sentenceKr": "그녀의 얼굴이 참 예뻐요.",
+    "sentenceMeaning": "Her face is so pretty.",
+    "sentenceZh": "她的脸真漂亮。"
+  },
+  {
+    "cycleId": "beginner_cycle_11",
+    "index": 50,
+    "word": "없다",
+    "originalKr": "냉장고에 먹을 것이 하나도 없다.",
+    "sentenceKr": "냉장고에 먹을 것이 하나도 없어요.",
+    "sentenceMeaning": "There's nothing to eat in the refrigerator.",
+    "sentenceZh": "冰箱里没有东西可以吃。"
+  },
+  {
+    "cycleId": "beginner_cycle_11",
+    "index": 95,
+    "word": "영하",
+    "originalKr": "오늘 기온이 영하로 떨어졌다.",
+    "sentenceKr": "오늘 기온이 영하로 떨어졌어요.",
+    "sentenceMeaning": "The temperature fell below freezing today.",
+    "sentenceZh": "今天气温降至冰点以下。"
+  },
+  {
+    "cycleId": "beginner_cycle_11",
+    "index": 54,
+    "word": "연휴",
+    "originalKr": "이번 연휴 동안 푹 쉴 계획이다.",
+    "sentenceKr": "이번 연휴 동안 푹 쉴 계획여요.",
+    "sentenceMeaning": "I plan to rest well during this holiday.",
+    "sentenceZh": "我打算在这个假期好好休息。"
+  },
+  {
+    "cycleId": "beginner_cycle_11",
+    "index": 72,
+    "word": "연습",
+    "originalKr": "매일 한 시간씩 피아노 연습을 한다.",
+    "sentenceKr": "매일 한 시간씩 피아노 연습을 해요.",
+    "sentenceMeaning": "I practice piano for an hour every day.",
+    "sentenceZh": "我每天练一个小时钢琴。"
+  },
+  {
+    "cycleId": "beginner_cycle_11",
+    "index": 94,
+    "word": "영",
+    "originalKr": "기온이 영 밑으로 내려갔다.",
+    "sentenceKr": "기온이 영 밑으로 내려갔아요.",
+    "sentenceMeaning": "The temperature went below zero.",
+    "sentenceZh": "温度降到零以下。"
+  },
+  {
+    "cycleId": "beginner_cycle_11",
+    "index": 69,
+    "word": "연결",
+    "originalKr": "전화가 도중에 연결이 끊겼다.",
+    "sentenceKr": "전화가 도중에 연결이 끊겼어요.",
+    "sentenceMeaning": "The call got disconnected midway.",
+    "sentenceZh": "电话中途就挂断了。"
+  },
+  {
+    "cycleId": "beginner_cycle_11",
+    "index": 52,
+    "word": "연말",
+    "originalKr": "벌써 연말이 되어 거리가 화려하다.",
+    "sentenceKr": "벌써 연말이 되어 거리가 화려해요.",
+    "sentenceMeaning": "It's already the end of the year and the streets are colorful.",
+    "sentenceZh": "已经是年末了，大街小巷都是色彩缤纷的。"
+  },
+  {
+    "cycleId": "beginner_cycle_12",
+    "index": 61,
+    "word": "이르다",
+    "originalKr": "지금 포기하기에는 아직 시기가 너무 이르다.",
+    "sentenceKr": "지금 포기하기에는 아직 시기가 너무 일러요.",
+    "sentenceMeaning": "It's too early to give up now.",
+    "sentenceZh": "现在放弃还为时过早。"
+  },
+  {
+    "cycleId": "beginner_cycle_11",
+    "index": 74,
+    "word": "열리다",
+    "originalKr": "바람 때문에 창문이 저절로 열렸다.",
+    "sentenceKr": "바람 때문에 창문이 저절로 열렸어요.",
+    "sentenceMeaning": "The window opened by itself because of the wind.",
+    "sentenceZh": "因为有风，窗户自己打开了。"
+  },
+  {
+    "cycleId": "beginner_cycle_11",
+    "index": 70,
+    "word": "연극",
+    "originalKr": "오랜만에 친구들과 연극을 보러 갔다.",
+    "sentenceKr": "오랜만에 친구들과 연극을 보러 갔아요.",
+    "sentenceMeaning": "It's been a while since I went to see a play with my friends.",
+    "sentenceZh": "好久没有和朋友一起去看戏了。"
+  },
+  {
+    "cycleId": "beginner_cycle_11",
+    "index": 55,
+    "word": "열흘",
+    "originalKr": "방학이 시작된 지 벌써 열흘이 지났다.",
+    "sentenceKr": "방학이 시작된 지 벌써 열흘이 지났아요.",
+    "sentenceMeaning": "It's already been ten days since vacation started.",
+    "sentenceZh": "距离放假已经过去十天了。"
+  },
+  {
+    "cycleId": "beginner_cycle_11",
+    "index": 93,
+    "word": "열심히",
+    "originalKr": "그는 시험 합격을 위해 열심히 공부한다.",
+    "sentenceKr": "그는 시험 합격을 위해 열심히 공부한아요.",
+    "sentenceMeaning": "He studies hard to pass the exam.",
+    "sentenceZh": "他努力学习以通过考试。"
+  },
+  {
+    "cycleId": "beginner_cycle_11",
+    "index": 48,
+    "word": "와",
+    "originalKr": "와! 드디어 주말이다.",
+    "sentenceKr": "와! 드디어 주말여요.",
+    "sentenceMeaning": "and! ",
+    "sentenceZh": "和！终于到周末了。"
+  },
+  {
+    "cycleId": "beginner_cycle_13",
+    "index": 4,
+    "word": "저녁",
+    "originalKr": "저녁이 되다",
+    "sentenceKr": "저녁이 돼요.",
+    "sentenceMeaning": "It's evening.",
+    "sentenceZh": "已经晚上了。"
+  },
+  {
+    "cycleId": "beginner_cycle_13",
+    "index": 16,
+    "word": "잠",
+    "originalKr": "잠을 자다",
+    "sentenceKr": "잠을 자요.",
+    "sentenceMeaning": "sleep.",
+    "sentenceZh": "睡觉。"
+  },
+  {
+    "cycleId": "beginner_cycle_13",
+    "index": 22,
+    "word": "입장권",
+    "originalKr": "입장권을 사다",
+    "sentenceKr": "입장권을 사요.",
+    "sentenceMeaning": "Buy an admission ticket.",
+    "sentenceZh": "购买门票。"
+  },
+  {
+    "cycleId": "beginner_cycle_13",
+    "index": 19,
+    "word": "전화기",
+    "originalKr": "책상 위에서 전화기가 울리다.",
+    "sentenceKr": "책상 위에서 전화기가 울려요.",
+    "sentenceMeaning": "The phone rings on my desk.",
+    "sentenceZh": "我桌上的电话响了。"
+  },
+  {
+    "cycleId": "beginner_cycle_13",
+    "index": 21,
+    "word": "젓가락",
+    "originalKr": "면 요리를 먹을 때 젓가락을 쓰다.",
+    "sentenceKr": "면 요리를 먹을 때 젓가락을 써요.",
+    "sentenceMeaning": "Use chopsticks when eating noodles.",
+    "sentenceZh": "吃面条时要用筷子。"
+  },
+  {
+    "cycleId": "beginner_cycle_12",
+    "index": 95,
+    "word": "이다",
+    "originalKr": "이것은 제가 읽고 싶었던 책이다.",
+    "sentenceKr": "이것은 제가 읽고 싶었던 책여요.",
+    "sentenceMeaning": "This is the book I wanted to read.",
+    "sentenceZh": "这是我想读的书。"
+  },
+  {
+    "cycleId": "beginner_cycle_13",
+    "index": 6,
+    "word": "점심때",
+    "originalKr": "배가 고픈 걸 보니 점심때가 되다.",
+    "sentenceKr": "배가 고픈 걸 보니 점심때가 돼요.",
+    "sentenceMeaning": "I see you're hungry, so it's lunch time.",
+    "sentenceZh": "我看你饿了，所以午餐时间到了。"
+  },
+  {
+    "cycleId": "beginner_cycle_13",
+    "index": 8,
+    "word": "접시",
+    "originalKr": "맛있는 음식을 접시에 담다.",
+    "sentenceKr": "맛있는 음식을 접시에 담아요.",
+    "sentenceMeaning": "Put delicious food on a plate.",
+    "sentenceZh": "把美味的食物放在盘子里。"
+  },
+  {
+    "cycleId": "beginner_cycle_13",
+    "index": 11,
+    "word": "입학시험",
+    "originalKr": "입학시험에 합격하다",
+    "sentenceKr": "입학시험에 합격해요.",
+    "sentenceMeaning": "I pass the entrance exam.",
+    "sentenceZh": "我通过了入学考试。"
+  },
+  {
+    "cycleId": "beginner_cycle_13",
+    "index": 18,
+    "word": "전기",
+    "originalKr": "폭풍 때문에 전기가 끊기다.",
+    "sentenceKr": "폭풍 때문에 전기가 끊겨요.",
+    "sentenceMeaning": "The electricity is cut off because of the storm.",
+    "sentenceZh": "由于暴风雨，电力被切断。"
+  },
+  {
+    "cycleId": "beginner_cycle_13",
+    "index": 7,
+    "word": "점심시간",
+    "originalKr": "회사에서 즐거운 점심시간이 되다.",
+    "sentenceKr": "회사에서 즐거운 점심시간이 돼요.",
+    "sentenceMeaning": "It's a fun lunch time at work.",
+    "sentenceZh": "这是一个有趣的工作午餐时间。"
+  },
+  {
+    "cycleId": "beginner_cycle_12",
+    "index": 81,
+    "word": "인정받다",
+    "originalKr": "그는 회사에서 능력을 인정받다.",
+    "sentenceKr": "그는 회사에서 능력을 인정받아요.",
+    "sentenceMeaning": "He is recognized for his abilities in the company.",
+    "sentenceZh": "他的能力在公司得到认可。"
+  },
+  {
+    "cycleId": "beginner_cycle_13",
+    "index": 24,
+    "word": "장소",
+    "originalKr": "장소를 정하다",
+    "sentenceKr": "장소를 정해요.",
+    "sentenceMeaning": "Decide on a location.",
+    "sentenceZh": "决定一个地点。"
+  },
+  {
+    "cycleId": "beginner_cycle_13",
+    "index": 20,
+    "word": "전화번호",
+    "originalKr": "연락처를 알기 위해 전화번호를 묻다.",
+    "sentenceKr": "연락처를 알기 위해 전화번호를 물어요.",
+    "sentenceMeaning": "Ask for your phone number to get contact information.",
+    "sentenceZh": "询问您的电话号码以获取联系信息。"
+  },
+  {
+    "cycleId": "beginner_cycle_13",
+    "index": 32,
+    "word": "잎",
+    "originalKr": "잎이 떨어지다",
+    "sentenceKr": "잎이 떨어져요.",
+    "sentenceMeaning": "Leaves are falling.",
+    "sentenceZh": "树叶正在飘落。"
+  },
+  {
+    "cycleId": "beginner_cycle_13",
+    "index": 75,
+    "word": "입",
+    "originalKr": "입을 열다",
+    "sentenceKr": "입을 열어요.",
+    "sentenceMeaning": "Open your mouth.",
+    "sentenceZh": "张开嘴。"
+  },
+  {
+    "cycleId": "beginner_cycle_13",
+    "index": 30,
+    "word": "자랑",
+    "originalKr": "자랑을 하다",
+    "sentenceKr": "자랑을 해요.",
+    "sentenceMeaning": "I'm proud of it.",
+    "sentenceZh": "我为此感到自豪。"
+  },
+  {
+    "cycleId": "beginner_cycle_13",
+    "index": 79,
+    "word": "자기소개",
+    "originalKr": "자기소개를 하다",
+    "sentenceKr": "자기소개를 해요.",
+    "sentenceMeaning": "Let me introduce myself.",
+    "sentenceZh": "让我自我介绍一下。"
+  },
+  {
+    "cycleId": "beginner_cycle_13",
+    "index": 23,
+    "word": "자동차",
+    "originalKr": "자동차를 운전하다",
+    "sentenceKr": "자동차를 운전해요.",
+    "sentenceMeaning": "I drive a car.",
+    "sentenceZh": "我开车。"
+  },
+  {
+    "cycleId": "beginner_cycle_13",
+    "index": 33,
+    "word": "자연",
+    "originalKr": "자연으로 돌아가다",
+    "sentenceKr": "자연으로 돌아가요.",
+    "sentenceMeaning": "Go back to nature.",
+    "sentenceZh": "回归自然。"
+  },
+  {
+    "cycleId": "beginner_cycle_13",
+    "index": 71,
+    "word": "전혀",
+    "originalKr": "그 소식에 대해서는 전혀 모르다.",
+    "sentenceKr": "그 소식에 대해서는 전혀 몰라요.",
+    "sentenceMeaning": "I don't know anything about that news.",
+    "sentenceZh": "我对这个消息一无所知。"
+  },
+  {
+    "cycleId": "beginner_cycle_13",
+    "index": 26,
+    "word": "전철",
+    "originalKr": "출퇴근 시간에 전철을 타다.",
+    "sentenceKr": "출퇴근 시간에 전철을 타요.",
+    "sentenceMeaning": "I take the subway during rush hour.",
+    "sentenceZh": "我在高峰时段乘地铁。"
+  },
+  {
+    "cycleId": "beginner_cycle_13",
+    "index": 39,
+    "word": "장마",
+    "originalKr": "장마가 오다",
+    "sentenceKr": "장마가 와요.",
+    "sentenceMeaning": "The rainy season is coming.",
+    "sentenceZh": "雨季即将来临。"
+  },
+  {
+    "cycleId": "beginner_cycle_13",
+    "index": 57,
+    "word": "접다",
+    "originalKr": "편지를 다 쓰고 종이를 접다.",
+    "sentenceKr": "편지를 다 쓰고 종이를 저워요.",
+    "sentenceMeaning": "I finish writing the letter and weigh the paper.",
+    "sentenceZh": "我写完信并称量纸张。"
+  },
+  {
+    "cycleId": "beginner_cycle_13",
+    "index": 42,
+    "word": "잃다",
+    "originalKr": "길에서 소중한 물건을 잃다.",
+    "sentenceKr": "길에서 소중한 물건을 잃어요.",
+    "sentenceMeaning": "I lose something precious on the road.",
+    "sentenceZh": "我在路上丢失了一些珍贵的东西。"
+  },
+  {
+    "cycleId": "beginner_cycle_13",
+    "index": 56,
+    "word": "전화",
+    "originalKr": "친구에게 전화를 걸다.",
+    "sentenceKr": "친구에게 전화를 걸어요.",
+    "sentenceMeaning": "Call your friend.",
+    "sentenceZh": "打电话给你的朋友。"
+  },
+  {
+    "cycleId": "beginner_cycle_13",
+    "index": 80,
+    "word": "자동판매기",
+    "originalKr": "자동판매기를 누르다",
+    "sentenceKr": "자동판매기를 눌러요.",
+    "sentenceMeaning": "Press the vending machine.",
+    "sentenceZh": "按自动售货机。"
+  },
+  {
+    "cycleId": "beginner_cycle_13",
+    "index": 55,
+    "word": "전하다",
+    "originalKr": "고향에 계신 부모님께 편지를 전하다.",
+    "sentenceKr": "고향에 계신 부모님께 편지를 전해요.",
+    "sentenceMeaning": "I am sending a letter to my parents back home.",
+    "sentenceZh": "我正在给家乡的父母写一封信。"
+  },
+  {
+    "cycleId": "beginner_cycle_13",
+    "index": 73,
+    "word": "점점",
+    "originalKr": "겨울이 다가오니 날씨가 점점 추워지다.",
+    "sentenceKr": "겨울이 다가오니 날씨가 점점 추워져요.",
+    "sentenceMeaning": "As winter approaches, the weather gets colder.",
+    "sentenceZh": "随着冬天的临近，天气越来越冷。"
+  },
+  {
+    "cycleId": "beginner_cycle_13",
+    "index": 72,
+    "word": "점수",
+    "originalKr": "열심히 공부해서 시험 점수가 높다.",
+    "sentenceKr": "열심히 공부해서 시험 점수가 높아요.",
+    "sentenceMeaning": "I study hard and get high test scores.",
+    "sentenceZh": "我学习努力，考试成绩很高。"
+  },
+  {
+    "cycleId": "beginner_cycle_13",
+    "index": 97,
+    "word": "재미",
+    "originalKr": "재미가 있다",
+    "sentenceKr": "재미가 있어요.",
+    "sentenceMeaning": "It's fun.",
+    "sentenceZh": "很有趣。"
+  },
+  {
+    "cycleId": "beginner_cycle_13",
+    "index": 81,
+    "word": "자리",
+    "originalKr": "자리에 앉다",
+    "sentenceKr": "자리에 앉아요.",
+    "sentenceMeaning": "Take a seat.",
+    "sentenceZh": "请坐。"
+  },
+  {
+    "cycleId": "beginner_cycle_13",
+    "index": 84,
+    "word": "자유",
+    "originalKr": "자유를 누리다",
+    "sentenceKr": "자유를 누려요.",
+    "sentenceMeaning": "Enjoy freedom.",
+    "sentenceZh": "享受自由。"
+  },
+  {
+    "cycleId": "beginner_cycle_13",
+    "index": 102,
+    "word": "저금",
+    "originalKr": "저금을 하다",
+    "sentenceKr": "저금을 해요.",
+    "sentenceMeaning": "I save money.",
+    "sentenceZh": "我省钱了。"
+  },
+  {
+    "cycleId": "beginner_cycle_13",
+    "index": 82,
+    "word": "자식",
+    "originalKr": "자식을 기르다",
+    "sentenceKr": "자식을 길러요.",
+    "sentenceMeaning": "Raise your children.",
+    "sentenceZh": "抚养你的孩子。"
+  },
+  {
+    "cycleId": "beginner_cycle_13",
+    "index": 85,
+    "word": "자전거",
+    "originalKr": "자전거를 타다",
+    "sentenceKr": "자전거를 타요.",
+    "sentenceMeaning": "I ride a bike.",
+    "sentenceZh": "我骑自行车。"
+  },
+  {
+    "cycleId": "beginner_cycle_13",
+    "index": 88,
+    "word": "잘못",
+    "originalKr": "잘못이 많다",
+    "sentenceKr": "잘못이 많아요.",
+    "sentenceMeaning": "There are a lot of mistakes.",
+    "sentenceZh": "有很多错误。"
+  },
+  {
+    "cycleId": "beginner_cycle_13",
+    "index": 91,
+    "word": "잡지",
+    "originalKr": "잡지를 보다",
+    "sentenceKr": "잡지를 봐요.",
+    "sentenceMeaning": "Look at the magazine.",
+    "sentenceZh": "看看杂志。"
+  },
+  {
+    "cycleId": "beginner_cycle_13",
+    "index": 96,
+    "word": "재료",
+    "originalKr": "재료를 준비하다",
+    "sentenceKr": "재료를 준비해요.",
+    "sentenceMeaning": "Prepare the ingredients.",
+    "sentenceZh": "准备好配料。"
+  },
+  {
+    "cycleId": "beginner_cycle_13",
+    "index": 93,
+    "word": "장갑",
+    "originalKr": "장갑을 끼다",
+    "sentenceKr": "장갑을 껴요.",
+    "sentenceMeaning": "Put on gloves.",
+    "sentenceZh": "戴上手套。"
+  },
+  {
+    "cycleId": "beginner_cycle_13",
+    "index": 98,
+    "word": "재채기",
+    "originalKr": "재채기가 나오다",
+    "sentenceKr": "재채기가 나와요.",
+    "sentenceMeaning": "I'm sneezing.",
+    "sentenceZh": "我打喷嚏了。"
+  },
+  {
+    "cycleId": "beginner_cycle_14",
+    "index": 4,
+    "word": "찌개",
+    "originalKr": "찌개를 끓이다.",
+    "sentenceKr": "찌개를 끓여요.",
+    "sentenceMeaning": "Boil the stew.",
+    "sentenceZh": "将炖菜煮沸。"
+  },
+  {
+    "cycleId": "beginner_cycle_14",
+    "index": 18,
+    "word": "줄",
+    "originalKr": "낚시 줄을 감다.",
+    "sentenceKr": "낚시 줄을 감아요.",
+    "sentenceMeaning": "Wind up the fishing line.",
+    "sentenceZh": "把钓鱼线卷起来。"
+  },
+  {
+    "cycleId": "beginner_cycle_14",
+    "index": 10,
+    "word": "지우개",
+    "originalKr": "지우개로 지우다.",
+    "sentenceKr": "지우개로 지워요.",
+    "sentenceMeaning": "Erase it with an eraser.",
+    "sentenceZh": "用橡皮擦擦掉它。"
+  },
+  {
+    "cycleId": "beginner_cycle_14",
+    "index": 3,
+    "word": "짬뽕",
+    "originalKr": "짬뽕 음식을 먹다.",
+    "sentenceKr": "짬뽕 음식을 먹어요.",
+    "sentenceMeaning": "I eat jjamppong food.",
+    "sentenceZh": "我吃 jjamppong 食物。"
+  },
+  {
+    "cycleId": "beginner_cycle_13",
+    "index": 94,
+    "word": "장난감",
+    "originalKr": "장난감을 가지고 놀다",
+    "sentenceKr": "장난감을 가지고 놀아요.",
+    "sentenceMeaning": "Play with toys.",
+    "sentenceZh": "玩玩具。"
+  },
+  {
+    "cycleId": "beginner_cycle_14",
+    "index": 9,
+    "word": "중학생",
+    "originalKr": "제 동생은 이제 중학생이 되다.",
+    "sentenceKr": "제 동생은 이제 중학생이 돼요.",
+    "sentenceMeaning": "My younger brother is now a middle school student.",
+    "sentenceZh": "我弟弟现在是一名中学生。"
+  },
+  {
+    "cycleId": "beginner_cycle_14",
+    "index": 25,
+    "word": "정형외과",
+    "originalKr": "다리가 아파서 정형외과 에서 치료하다.",
+    "sentenceKr": "다리가 아파서 정형외과 에서 치료해요.",
+    "sentenceMeaning": "My leg hurts, so I get treatment at an orthopedic clinic.",
+    "sentenceZh": "我的腿疼，所以我在骨科诊所接受治疗。"
+  },
+  {
+    "cycleId": "beginner_cycle_14",
+    "index": 12,
+    "word": "정원",
+    "originalKr": "주말에 집 앞 정원을 가꾸다.",
+    "sentenceKr": "주말에 집 앞 정원을 가꿔요.",
+    "sentenceMeaning": "I tend to the garden in front of my house on the weekend.",
+    "sentenceZh": "周末我会照料我家门前的花园。"
+  },
+  {
+    "cycleId": "beginner_cycle_14",
+    "index": 8,
+    "word": "중학교",
+    "originalKr": "내년에 중학교에 입학하다.",
+    "sentenceKr": "내년에 중학교에 입학해요.",
+    "sentenceMeaning": "I will enter middle school next year.",
+    "sentenceZh": "明年进入中学。"
+  },
+  {
+    "cycleId": "beginner_cycle_14",
+    "index": 22,
+    "word": "집들이",
+    "originalKr": "집들이에 초대하다.",
+    "sentenceKr": "집들이에 초대해요.",
+    "sentenceMeaning": "I invite you to a housewarming party.",
+    "sentenceZh": "我邀请你参加乔迁派对。"
+  },
+  {
+    "cycleId": "beginner_cycle_14",
+    "index": 0,
+    "word": "주문",
+    "originalKr": "식당에서 음식 주문을 받다.",
+    "sentenceKr": "식당에서 음식 주문을 받아요.",
+    "sentenceMeaning": "Take food orders at a restaurant.",
+    "sentenceZh": "在餐厅点餐。"
+  },
+  {
+    "cycleId": "beginner_cycle_14",
+    "index": 17,
+    "word": "주소",
+    "originalKr": "봉투에 받는 사람의 주소를 적다.",
+    "sentenceKr": "봉투에 받는 사람의 주소를 적어요.",
+    "sentenceMeaning": "Write the recipient's address on the envelope.",
+    "sentenceZh": "在信封上写下收件人的地址。"
+  },
+  {
+    "cycleId": "beginner_cycle_14",
+    "index": 32,
+    "word": "지도",
+    "originalKr": "모르는 길은 지도를 보다.",
+    "sentenceKr": "모르는 길은 지도를 봐요.",
+    "sentenceMeaning": "If you don't know the route, look at the map.",
+    "sentenceZh": "如果你不知道路线，请查看地图。"
+  },
+  {
+    "cycleId": "beginner_cycle_14",
+    "index": 45,
+    "word": "직원",
+    "originalKr": "새 직원을 모집하다.",
+    "sentenceKr": "새 직원을 모집해요.",
+    "sentenceMeaning": "We are recruiting new employees.",
+    "sentenceZh": "我们正在招聘新员工。"
+  },
+  {
+    "cycleId": "beginner_cycle_14",
+    "index": 37,
+    "word": "지하철역",
+    "originalKr": "지하철역에 도착하다.",
+    "sentenceKr": "지하철역에 도착해요.",
+    "sentenceMeaning": "Arrive at the subway station.",
+    "sentenceZh": "到达地铁站。"
+  },
+  {
+    "cycleId": "beginner_cycle_14",
+    "index": 21,
+    "word": "집",
+    "originalKr": "집에 살다.",
+    "sentenceKr": "집에 살아요.",
+    "sentenceMeaning": "I live at home.",
+    "sentenceZh": "我住在家里。"
+  },
+  {
+    "cycleId": "beginner_cycle_14",
+    "index": 24,
+    "word": "짝",
+    "originalKr": "짝을 맞추다.",
+    "sentenceKr": "짝을 맞춰요.",
+    "sentenceMeaning": "Let's match up.",
+    "sentenceZh": "咱们来比一比吧。"
+  },
+  {
+    "cycleId": "beginner_cycle_14",
+    "index": 48,
+    "word": "좋아하다",
+    "originalKr": "저는 꽃을 정말 좋아하다.",
+    "sentenceKr": "저는 꽃을 정말 좋아해요.",
+    "sentenceMeaning": "I really like flowers.",
+    "sentenceZh": "我真的很喜欢花。"
+  },
+  {
+    "cycleId": "beginner_cycle_14",
+    "index": 23,
+    "word": "집안일",
+    "originalKr": "집안일을 보다.",
+    "sentenceKr": "집안일을 봐요.",
+    "sentenceMeaning": "Look at the housework.",
+    "sentenceZh": "看看家务活。"
+  },
+  {
+    "cycleId": "beginner_cycle_14",
+    "index": 39,
+    "word": "짐",
+    "originalKr": "짐을 싸다.",
+    "sentenceKr": "짐을 싸요.",
+    "sentenceMeaning": "Pack your bags.",
+    "sentenceZh": "收拾好你的行李。"
+  },
+  {
+    "cycleId": "beginner_cycle_14",
+    "index": 44,
+    "word": "직업",
+    "originalKr": "직업을 구하다.",
+    "sentenceKr": "직업을 구해요.",
+    "sentenceMeaning": "I'm looking for a job.",
+    "sentenceZh": "我正在找工作。"
+  },
+  {
+    "cycleId": "beginner_cycle_14",
+    "index": 36,
+    "word": "지하철",
+    "originalKr": "지하철을 타다.",
+    "sentenceKr": "지하철을 타요.",
+    "sentenceMeaning": "Take the subway.",
+    "sentenceZh": "乘坐地铁。"
+  },
+  {
+    "cycleId": "beginner_cycle_14",
+    "index": 46,
+    "word": "직접",
+    "originalKr": "직접 만나다.",
+    "sentenceKr": "직접 만나요.",
+    "sentenceMeaning": "See you in person.",
+    "sentenceZh": "亲自见你。"
+  },
+  {
+    "cycleId": "beginner_cycle_14",
+    "index": 34,
+    "word": "지하",
+    "originalKr": "지하로 내려가다.",
+    "sentenceKr": "지하로 내려가요.",
+    "sentenceMeaning": "Go down to the basement.",
+    "sentenceZh": "下到地下室。"
+  },
+  {
+    "cycleId": "beginner_cycle_14",
+    "index": 67,
+    "word": "주다",
+    "originalKr": "친구의 생일에 선물을 주다.",
+    "sentenceKr": "친구의 생일에 선물을 줘요.",
+    "sentenceMeaning": "Give a gift to your friend on his or her birthday.",
+    "sentenceZh": "在您的朋友生日时给他或她送一份礼物。"
+  },
+  {
+    "cycleId": "beginner_cycle_14",
+    "index": 35,
+    "word": "지하도",
+    "originalKr": "지하도를 건너다.",
+    "sentenceKr": "지하도를 건너요.",
+    "sentenceMeaning": "Cross the underpass.",
+    "sentenceZh": "穿过地下通道。"
+  },
+  {
+    "cycleId": "beginner_cycle_14",
+    "index": 50,
+    "word": "즐거워하다",
+    "originalKr": "아이들이 선물을 받고 매우 즐거워하다.",
+    "sentenceKr": "아이들이 선물을 받고 매우 즐거워해요.",
+    "sentenceMeaning": "The children are very happy to receive the gifts.",
+    "sentenceZh": "孩子们收到礼物非常高兴。"
+  },
+  {
+    "cycleId": "beginner_cycle_14",
+    "index": 68,
+    "word": "주사",
+    "originalKr": "병원에서 예방 주사를 맞다.",
+    "sentenceKr": "병원에서 예방 주사를 맞아요.",
+    "sentenceMeaning": "Get a vaccination at the hospital.",
+    "sentenceZh": "去医院接种疫苗。"
+  },
+  {
+    "cycleId": "beginner_cycle_14",
+    "index": 70,
+    "word": "죽다",
+    "originalKr": "화초가 물을 안 줘서 죽다.",
+    "sentenceKr": "화초가 물을 안 줘서 죽어요.",
+    "sentenceMeaning": "Flowers die because they are not watered.",
+    "sentenceZh": "花因为不浇水而枯死。"
+  },
+  {
+    "cycleId": "beginner_cycle_14",
+    "index": 64,
+    "word": "정하다",
+    "originalKr": "친구와 만날 약속을 정하다.",
+    "sentenceKr": "친구와 만날 약속을 정해요.",
+    "sentenceMeaning": "Make an appointment to meet your friend.",
+    "sentenceZh": "预约与您的朋友见面。"
+  },
+  {
+    "cycleId": "beginner_cycle_14",
+    "index": 73,
+    "word": "줄이다",
+    "originalKr": "텔레비전 소리를 줄이다.",
+    "sentenceKr": "텔레비전 소리를 줄여요.",
+    "sentenceMeaning": "Turn down the television sound.",
+    "sentenceZh": "把电视声音调小。"
+  },
+  {
+    "cycleId": "beginner_cycle_14",
+    "index": 66,
+    "word": "졸다",
+    "originalKr": "피곤해서 수업 시간에 깜빡 졸다.",
+    "sentenceKr": "피곤해서 수업 시간에 깜빡 졸아요.",
+    "sentenceMeaning": "I'm so tired that I doze off in class.",
+    "sentenceZh": "我太累了，上课就打瞌睡。"
+  },
+  {
+    "cycleId": "beginner_cycle_14",
+    "index": 65,
+    "word": "젖다",
+    "originalKr": "비에 옷이 흠뻑 젖다.",
+    "sentenceKr": "비에 옷이 흠뻑 젖어요.",
+    "sentenceMeaning": "My clothes are soaked in the rain.",
+    "sentenceZh": "我的衣服被雨淋湿了。"
+  },
+  {
+    "cycleId": "beginner_cycle_14",
+    "index": 74,
+    "word": "줍다",
+    "originalKr": "길에 떨어진 쓰레기를 줍다.",
+    "sentenceKr": "길에 떨어진 쓰레기를 주워요.",
+    "sentenceMeaning": "Pick up the trash that falls on the road.",
+    "sentenceZh": "捡起落在路上的垃圾。"
+  },
+  {
+    "cycleId": "beginner_cycle_14",
+    "index": 51,
+    "word": "즐겁다",
+    "originalKr": "친구들과 함께 있으면 마음이 즐겁다.",
+    "sentenceKr": "친구들과 함께 있으면 마음이 즐거워요.",
+    "sentenceMeaning": "I feel happy when I am with my friends.",
+    "sentenceZh": "当我和朋友们在一起时，我感到很快乐。"
+  },
+  {
+    "cycleId": "beginner_cycle_14",
+    "index": 53,
+    "word": "짜증",
+    "originalKr": "짜증을 내다.",
+    "sentenceKr": "짜증을 내요.",
+    "sentenceMeaning": "I get irritated.",
+    "sentenceZh": "我很生气。"
+  },
+  {
+    "cycleId": "beginner_cycle_14",
+    "index": 78,
+    "word": "지다",
+    "originalKr": "우리 팀이 이번 경기에서 지다.",
+    "sentenceKr": "우리 팀이 이번 경기에서 져요.",
+    "sentenceMeaning": "Our team loses this game.",
+    "sentenceZh": "这场比赛我们队输了。"
+  },
+  {
+    "cycleId": "beginner_cycle_14",
+    "index": 72,
+    "word": "줄다",
+    "originalKr": "빨래를 했더니 옷의 크기가 줄다.",
+    "sentenceKr": "빨래를 했더니 옷의 크기가 줄어요.",
+    "sentenceMeaning": "After washing, the clothes shrink in size.",
+    "sentenceZh": "洗完后，衣服尺寸会缩水。"
+  },
+  {
+    "cycleId": "beginner_cycle_14",
+    "index": 54,
+    "word": "차다",
+    "originalKr": "바람이 차다.",
+    "sentenceKr": "바람이 차요.",
+    "sentenceMeaning": "The wind is cold.",
+    "sentenceZh": "风很冷。"
+  },
+  {
+    "cycleId": "beginner_cycle_14",
+    "index": 52,
+    "word": "지루하다",
+    "originalKr": "수업이 너무 지루하다.",
+    "sentenceKr": "수업이 너무 지루해요.",
+    "sentenceMeaning": "Class is so boring.",
+    "sentenceZh": "上课真无聊。"
+  },
+  {
+    "cycleId": "beginner_cycle_14",
+    "index": 82,
+    "word": "질문",
+    "originalKr": "질문에 답하다.",
+    "sentenceKr": "질문에 답해요.",
+    "sentenceMeaning": "Answer the questions.",
+    "sentenceZh": "回答问题。"
+  },
+  {
+    "cycleId": "beginner_cycle_14",
+    "index": 83,
+    "word": "짓다",
+    "originalKr": "집을 짓다.",
+    "sentenceKr": "집을 지어요.",
+    "sentenceMeaning": "Build a house.",
+    "sentenceZh": "建造一座房子。"
+  },
+  {
+    "cycleId": "beginner_cycle_14",
+    "index": 77,
+    "word": "지나가다",
+    "originalKr": "버스가 정류장을 그냥 지나가다.",
+    "sentenceKr": "버스가 정류장을 그냥 지나가요.",
+    "sentenceMeaning": "The bus just passes the stop.",
+    "sentenceZh": "公共汽车刚刚经过车站。"
+  },
+  {
+    "cycleId": "beginner_cycle_14",
+    "index": 86,
+    "word": "정신없이",
+    "originalKr": "오늘 하루 종일 정신없이 일하다.",
+    "sentenceKr": "오늘 하루 종일 정신없이 일해요.",
+    "sentenceMeaning": "I'm working hard all day today.",
+    "sentenceZh": "我今天一整天都在努力工作。"
+  },
+  {
+    "cycleId": "beginner_cycle_14",
+    "index": 79,
+    "word": "지르다",
+    "originalKr": "큰 소리를 지르다.",
+    "sentenceKr": "큰 소리를 질러요.",
+    "sentenceMeaning": "Shout out loud.",
+    "sentenceZh": "大声喊出来。"
+  },
+  {
+    "cycleId": "beginner_cycle_14",
+    "index": 80,
+    "word": "지우다",
+    "originalKr": "지우개로 글씨를 지우다.",
+    "sentenceKr": "지우개로 글씨를 지워요.",
+    "sentenceMeaning": "Erase the writing with an eraser.",
+    "sentenceZh": "用橡皮擦掉字迹。"
+  },
+  {
+    "cycleId": "beginner_cycle_14",
+    "index": 93,
+    "word": "좀",
+    "originalKr": "이 옷은 저에게 좀 비싸다.",
+    "sentenceKr": "이 옷은 저에게 좀 비싸요.",
+    "sentenceMeaning": "These clothes are a bit expensive for me.",
+    "sentenceZh": "这些衣服对我来说有点贵。"
+  },
+  {
+    "cycleId": "beginner_cycle_14",
+    "index": 88,
+    "word": "제일",
+    "originalKr": "세상에서 엄마를 제일 좋아하다.",
+    "sentenceKr": "세상에서 엄마를 제일 좋아해요.",
+    "sentenceMeaning": "I like my mom the most in the world.",
+    "sentenceZh": "我是世界上最喜欢我的妈妈。"
+  },
+  {
+    "cycleId": "beginner_cycle_14",
+    "index": 91,
+    "word": "조용하다",
+    "originalKr": "도서관 안이 아주 조용하다.",
+    "sentenceKr": "도서관 안이 아주 조용해요.",
+    "sentenceMeaning": "It's very quiet inside the library.",
+    "sentenceZh": "图书馆内非常安静。"
+  },
+  {
+    "cycleId": "beginner_cycle_14",
+    "index": 89,
+    "word": "조금",
+    "originalKr": "배가 불러서 조금 먹다.",
+    "sentenceKr": "배가 불러서 조금 먹어요.",
+    "sentenceMeaning": "I’m full so I eat a little.",
+    "sentenceZh": "我吃饱了所以就吃一点。"
+  },
+  {
+    "cycleId": "beginner_cycle_14",
+    "index": 84,
+    "word": "찌다",
+    "originalKr": "감자를 찌다.",
+    "sentenceKr": "감자를 쪄요.",
+    "sentenceMeaning": "Steam the potatoes.",
+    "sentenceZh": "将土豆蒸熟。"
+  },
+  {
+    "cycleId": "beginner_cycle_14",
+    "index": 85,
+    "word": "찍다",
+    "originalKr": "도장을 찍다.",
+    "sentenceKr": "도장을 찍어요.",
+    "sentenceMeaning": "Take a stamp.",
+    "sentenceZh": "盖个邮票。"
+  },
+  {
+    "cycleId": "beginner_cycle_14",
+    "index": 81,
+    "word": "지키다",
+    "originalKr": "나라를 지키다.",
+    "sentenceKr": "나라를 지켜요.",
+    "sentenceMeaning": "Protect the country.",
+    "sentenceZh": "保护国家。"
+  },
+  {
+    "cycleId": "beginner_cycle_14",
+    "index": 108,
+    "word": "차갑다",
+    "originalKr": "물이 차갑다.",
+    "sentenceKr": "물이 차가워요.",
+    "sentenceMeaning": "The water is cold.",
+    "sentenceZh": "水很冷。"
+  },
+  {
+    "cycleId": "beginner_cycle_15",
+    "index": 2,
+    "word": "채소",
+    "originalKr": "채소를 먹다.",
+    "sentenceKr": "채소를 먹어요.",
+    "sentenceMeaning": "Eat vegetables.",
+    "sentenceZh": "吃蔬菜。"
+  },
+  {
+    "cycleId": "beginner_cycle_14",
+    "index": 96,
+    "word": "좋다",
+    "originalKr": "오늘은 소풍 가기에 날씨가 아주 좋다.",
+    "sentenceKr": "오늘은 소풍 가기에 날씨가 아주 좋아요.",
+    "sentenceMeaning": "The weather is perfect for a picnic today.",
+    "sentenceZh": "今天的天气非常适合野餐。"
+  },
+  {
+    "cycleId": "beginner_cycle_15",
+    "index": 3,
+    "word": "초콜릿",
+    "originalKr": "초콜릿을 먹다.",
+    "sentenceKr": "초콜릿을 먹어요.",
+    "sentenceMeaning": "Eat chocolate.",
+    "sentenceZh": "吃巧克力。"
+  },
+  {
+    "cycleId": "beginner_cycle_14",
+    "index": 104,
+    "word": "진하다",
+    "originalKr": "안개가 진하다.",
+    "sentenceKr": "안개가 진해요.",
+    "sentenceMeaning": "The fog is thick.",
+    "sentenceZh": "雾很浓。"
+  },
+  {
+    "cycleId": "beginner_cycle_14",
+    "index": 106,
+    "word": "짧다",
+    "originalKr": "다리가 짧다.",
+    "sentenceKr": "다리가 짧아요.",
+    "sentenceMeaning": "My legs are short.",
+    "sentenceZh": "我的腿很短。"
+  },
+  {
+    "cycleId": "beginner_cycle_14",
+    "index": 92,
+    "word": "조용히",
+    "originalKr": "아기가 자고 있으니 조용히 말하다.",
+    "sentenceKr": "아기가 자고 있으니 조용히 말해요.",
+    "sentenceMeaning": "Speak quietly as the baby is sleeping.",
+    "sentenceZh": "宝宝睡觉时小声说话。"
+  },
+  {
+    "cycleId": "beginner_cycle_14",
+    "index": 90,
+    "word": "조금씩",
+    "originalKr": "실력이 조금씩 나아지다.",
+    "sentenceKr": "실력이 조금씩 나아져요.",
+    "sentenceMeaning": "My skills are improving little by little.",
+    "sentenceZh": "我的技术正在一点一点地提高。"
+  },
+  {
+    "cycleId": "beginner_cycle_14",
+    "index": 97,
+    "word": "죄송하다",
+    "originalKr": "약속에 늦어서 마음이 죄송하다.",
+    "sentenceKr": "약속에 늦어서 마음이 죄송해요.",
+    "sentenceMeaning": "I'm sorry I'm late for my appointment.",
+    "sentenceZh": "很抱歉我的约会迟到了。"
+  },
+  {
+    "cycleId": "beginner_cycle_14",
+    "index": 95,
+    "word": "종류",
+    "originalKr": "이 가게에는 빵의 종류 가 다양하다.",
+    "sentenceKr": "이 가게에는 빵의 종류 가 다양해요.",
+    "sentenceMeaning": "There are many different types of bread at this store.",
+    "sentenceZh": "这家店有很多不同类型的面包。"
+  },
+  {
+    "cycleId": "beginner_cycle_15",
+    "index": 7,
+    "word": "칼",
+    "originalKr": "칼로 자르다.",
+    "sentenceKr": "칼로 잘라요.",
+    "sentenceMeaning": "Cut it with a knife.",
+    "sentenceZh": "用刀把它切开。"
+  },
+  {
+    "cycleId": "beginner_cycle_14",
+    "index": 103,
+    "word": "진짜",
+    "originalKr": "진짜 괜찮다.",
+    "sentenceKr": "진짜 괜찮아요.",
+    "sentenceMeaning": "It's really okay.",
+    "sentenceZh": "真的没关系。"
+  },
+  {
+    "cycleId": "beginner_cycle_15",
+    "index": 15,
+    "word": "타다",
+    "originalKr": "커피를 타다.",
+    "sentenceKr": "커피를 타요.",
+    "sentenceMeaning": "I drink coffee.",
+    "sentenceZh": "我喝咖啡。"
+  },
+  {
+    "cycleId": "beginner_cycle_15",
+    "index": 14,
+    "word": "콩",
+    "originalKr": "콩 식물을 심다.",
+    "sentenceKr": "콩 식물을 심어요.",
+    "sentenceMeaning": "Plant soybean plants.",
+    "sentenceZh": "种植大豆植物。"
+  },
+  {
+    "cycleId": "beginner_cycle_15",
+    "index": 11,
+    "word": "컵",
+    "originalKr": "물 컵을 닦다.",
+    "sentenceKr": "물 컵을 닦아요.",
+    "sentenceMeaning": "Clean the water cup.",
+    "sentenceZh": "清洁水杯。"
+  },
+  {
+    "cycleId": "beginner_cycle_15",
+    "index": 21,
+    "word": "창문",
+    "originalKr": "창문을 열다.",
+    "sentenceKr": "창문을 열어요.",
+    "sentenceMeaning": "Open the window.",
+    "sentenceZh": "打开窗户。"
+  },
+  {
+    "cycleId": "beginner_cycle_15",
+    "index": 20,
+    "word": "초등학생",
+    "originalKr": "초등학생이 되다.",
+    "sentenceKr": "초등학생이 돼요.",
+    "sentenceMeaning": "I become an elementary school student.",
+    "sentenceZh": "我成为一名小学生。"
+  },
+  {
+    "cycleId": "beginner_cycle_15",
+    "index": 19,
+    "word": "초등학교",
+    "originalKr": "초등학교에 입학하다.",
+    "sentenceKr": "초등학교에 입학해요.",
+    "sentenceMeaning": "I enter elementary school.",
+    "sentenceZh": "我进入小学。"
+  },
+  {
+    "cycleId": "beginner_cycle_15",
+    "index": 6,
+    "word": "카페",
+    "originalKr": "분위기 좋은 카페 에서 만나다.",
+    "sentenceKr": "분위기 좋은 카페 에서 만나요.",
+    "sentenceMeaning": "Let’s meet at a cafe with a nice atmosphere.",
+    "sentenceZh": "我们在一家气氛不错的咖啡馆见面吧。"
+  },
+  {
+    "cycleId": "beginner_cycle_15",
+    "index": 16,
+    "word": "책",
+    "originalKr": "책을 읽다.",
+    "sentenceKr": "책을 읽어요.",
+    "sentenceMeaning": "I read a book.",
+    "sentenceZh": "我读了一本书。"
+  },
+  {
+    "cycleId": "beginner_cycle_15",
+    "index": 12,
+    "word": "케이크",
+    "originalKr": "생일 케이크를 먹다.",
+    "sentenceKr": "생일 케이크를 먹어요.",
+    "sentenceMeaning": "Eat birthday cake.",
+    "sentenceZh": "吃生日蛋糕。"
+  },
+  {
+    "cycleId": "beginner_cycle_14",
+    "index": 105,
+    "word": "짜다",
+    "originalKr": "국 맛이 짜다.",
+    "sentenceKr": "국 맛이 짜요.",
+    "sentenceMeaning": "The soup tastes salty.",
+    "sentenceZh": "汤的味道是咸的。"
+  },
+  {
+    "cycleId": "beginner_cycle_15",
+    "index": 1,
+    "word": "참외",
+    "originalKr": "참외 과일을 먹다.",
+    "sentenceKr": "참외 과일을 먹어요.",
+    "sentenceMeaning": "Eat melon fruit.",
+    "sentenceZh": "吃瓜果。"
+  },
+  {
+    "cycleId": "beginner_cycle_15",
+    "index": 10,
+    "word": "커피숍",
+    "originalKr": "커피숍 에서 만나다.",
+    "sentenceKr": "커피숍 에서 만나요.",
+    "sentenceMeaning": "See you at the coffee shop.",
+    "sentenceZh": "咖啡店见。"
+  },
+  {
+    "cycleId": "beginner_cycle_15",
+    "index": 18,
+    "word": "책장",
+    "originalKr": "책장 가구에 책을 꽂다.",
+    "sentenceKr": "책장 가구에 책을 꽂아요.",
+    "sentenceMeaning": "Place books on bookshelf furniture.",
+    "sentenceZh": "将书籍放在书架家具上。"
+  },
+  {
+    "cycleId": "beginner_cycle_15",
+    "index": 17,
+    "word": "책상",
+    "originalKr": "책상 가구를 사다.",
+    "sentenceKr": "책상 가구를 사요.",
+    "sentenceMeaning": "Buy desk furniture.",
+    "sentenceZh": "购买办公桌家具。"
+  },
+  {
+    "cycleId": "beginner_cycle_15",
+    "index": 30,
+    "word": "침실",
+    "originalKr": "침실 에서 자다.",
+    "sentenceKr": "침실 에서 자요.",
+    "sentenceMeaning": "Sleep in the bedroom.",
+    "sentenceZh": "睡在卧室里。"
+  },
+  {
+    "cycleId": "beginner_cycle_15",
+    "index": 23,
+    "word": "초대장",
+    "originalKr": "초대장을 보내다.",
+    "sentenceKr": "초대장을 보내요.",
+    "sentenceMeaning": "Send an invitation.",
+    "sentenceZh": "发送邀请。"
+  },
+  {
+    "cycleId": "beginner_cycle_15",
+    "index": 32,
+    "word": "카드",
+    "originalKr": "생일 카드를 쓰다.",
+    "sentenceKr": "생일 카드를 써요.",
+    "sentenceMeaning": "Write a birthday card.",
+    "sentenceZh": "写一张生日贺卡。"
+  },
+  {
+    "cycleId": "beginner_cycle_15",
+    "index": 24,
+    "word": "축구공",
+    "originalKr": "축구공을 차다.",
+    "sentenceKr": "축구공을 차요.",
+    "sentenceMeaning": "kick the soccer ball",
+    "sentenceZh": "踢足球"
+  },
+  {
+    "cycleId": "beginner_cycle_15",
+    "index": 34,
+    "word": "컴퓨터",
+    "originalKr": "컴퓨터로 게임을 하다.",
+    "sentenceKr": "컴퓨터로 게임을 해요.",
+    "sentenceMeaning": "I play games on the computer.",
+    "sentenceZh": "我在电脑上玩游戏。"
+  },
+  {
+    "cycleId": "beginner_cycle_15",
+    "index": 31,
+    "word": "칫솔",
+    "originalKr": "칫솔로 이를 닦다.",
+    "sentenceKr": "칫솔로 이를 닦아요.",
+    "sentenceMeaning": "Brush your teeth with a toothbrush.",
+    "sentenceZh": "用牙刷刷牙。"
+  },
+  {
+    "cycleId": "beginner_cycle_15",
+    "index": 26,
+    "word": "치마",
+    "originalKr": "오늘 예쁜 치마를 입다.",
+    "sentenceKr": "오늘 예쁜 치마를 이워요.",
+    "sentenceMeaning": "I’m tying a pretty skirt today.",
+    "sentenceZh": "今天我要系一条漂亮的裙子。"
+  },
+  {
+    "cycleId": "beginner_cycle_15",
+    "index": 22,
+    "word": "청소",
+    "originalKr": "화장실 청소를 하다.",
+    "sentenceKr": "화장실 청소를 해요.",
+    "sentenceMeaning": "I'm cleaning the bathroom.",
+    "sentenceZh": "我正在打扫浴室。"
+  },
+  {
+    "cycleId": "beginner_cycle_15",
+    "index": 50,
+    "word": "차다",
+    "originalKr": "바람이 차다.",
+    "sentenceKr": "바람이 차요.",
+    "sentenceMeaning": "The wind is cold.",
+    "sentenceZh": "风很冷。"
+  },
+  {
+    "cycleId": "beginner_cycle_15",
+    "index": 33,
+    "word": "카메라",
+    "originalKr": "새 카메라로 사진을 찍다.",
+    "sentenceKr": "새 카메라로 사진을 찍어요.",
+    "sentenceMeaning": "Take pictures with your new camera.",
+    "sentenceZh": "用你的新相机拍照。"
+  },
+  {
+    "cycleId": "beginner_cycle_15",
+    "index": 27,
+    "word": "치약",
+    "originalKr": "칫솔에 치약을 짜다.",
+    "sentenceKr": "칫솔에 치약을 짜요.",
+    "sentenceMeaning": "Squeeze toothpaste onto your toothbrush.",
+    "sentenceZh": "将牙膏挤到牙刷上。"
+  },
+  {
+    "cycleId": "beginner_cycle_15",
+    "index": 28,
+    "word": "칠판",
+    "originalKr": "선생님이 칠판에 쓰다.",
+    "sentenceKr": "선생님이 칠판에 써요.",
+    "sentenceMeaning": "The teacher writes on the blackboard.",
+    "sentenceZh": "老师在黑板上写字。"
+  },
+  {
+    "cycleId": "beginner_cycle_15",
+    "index": 35,
+    "word": "코",
+    "originalKr": "코가 높다.",
+    "sentenceKr": "코가 높아요.",
+    "sentenceMeaning": "My nose is high.",
+    "sentenceZh": "我的鼻子很高。"
+  },
+  {
+    "cycleId": "beginner_cycle_15",
+    "index": 37,
+    "word": "찾아오다",
+    "originalKr": "손님이 찾아오다.",
+    "sentenceKr": "손님이 찾아와요.",
+    "sentenceMeaning": "A guest is coming.",
+    "sentenceZh": "有客人来了。"
+  },
+  {
+    "cycleId": "beginner_cycle_15",
+    "index": 39,
+    "word": "출구",
+    "originalKr": "출구로 나가다.",
+    "sentenceKr": "출구로 나가요.",
+    "sentenceMeaning": "Go to the exit.",
+    "sentenceZh": "走到出口。"
+  },
+  {
+    "cycleId": "beginner_cycle_15",
+    "index": 36,
+    "word": "찾아가다",
+    "originalKr": "교실로 찾아가다.",
+    "sentenceKr": "교실로 찾아가요.",
+    "sentenceMeaning": "Let's go to the classroom.",
+    "sentenceZh": "我们去教室吧。"
+  },
+  {
+    "cycleId": "beginner_cycle_15",
+    "index": 40,
+    "word": "출입국",
+    "originalKr": "출입국 사무소에 가다.",
+    "sentenceKr": "출입국 사무소에 가요.",
+    "sentenceMeaning": "Go to the immigration office.",
+    "sentenceZh": "去出入境管理办公室。"
+  },
+  {
+    "cycleId": "beginner_cycle_15",
+    "index": 38,
+    "word": "체육관",
+    "originalKr": "실내 체육관 에서 운동하다.",
+    "sentenceKr": "실내 체육관 에서 운동해요.",
+    "sentenceMeaning": "I exercise at the indoor gym.",
+    "sentenceZh": "我在室内健身房锻炼。"
+  },
+  {
+    "cycleId": "beginner_cycle_15",
+    "index": 47,
+    "word": "친구",
+    "originalKr": "오랜만에 친구를 만나다.",
+    "sentenceKr": "오랜만에 친구를 만나요.",
+    "sentenceMeaning": "Meeting a friend after a long time.",
+    "sentenceZh": "时隔多年再次见到朋友。"
+  },
+  {
+    "cycleId": "beginner_cycle_15",
+    "index": 54,
+    "word": "청소년",
+    "originalKr": "청소년 시절을 보내다.",
+    "sentenceKr": "청소년 시절을 보내요.",
+    "sentenceMeaning": "Spend your teenage years.",
+    "sentenceZh": "度过你的青少年时期。"
+  },
+  {
+    "cycleId": "beginner_cycle_15",
+    "index": 49,
+    "word": "취미",
+    "originalKr": "취미 생활을 즐기다.",
+    "sentenceKr": "취미 생활을 즐겨요.",
+    "sentenceMeaning": "I enjoy my hobbies.",
+    "sentenceZh": "我很享受我的爱好。"
+  },
+  {
+    "cycleId": "beginner_cycle_15",
+    "index": 61,
+    "word": "초대",
+    "originalKr": "초대를 하다.",
+    "sentenceKr": "초대를 해요.",
+    "sentenceMeaning": "I'm inviting you.",
+    "sentenceZh": "我邀请你。"
+  },
+  {
+    "cycleId": "beginner_cycle_15",
+    "index": 60,
+    "word": "쳐다보다",
+    "originalKr": "하늘을 쳐다보다.",
+    "sentenceKr": "하늘을 쳐다봐요.",
+    "sentenceMeaning": "Look up at the sky.",
+    "sentenceZh": "抬头看看天空。"
+  },
+  {
+    "cycleId": "beginner_cycle_15",
+    "index": 44,
+    "word": "청년",
+    "originalKr": "젊은 청년이 일하다.",
+    "sentenceKr": "젊은 청년이 일해요.",
+    "sentenceMeaning": "A young man works.",
+    "sentenceZh": "一个年轻人工作。"
+  },
+  {
+    "cycleId": "beginner_cycle_15",
+    "index": 41,
+    "word": "출장",
+    "originalKr": "출장을 가다.",
+    "sentenceKr": "출장을 가요.",
+    "sentenceMeaning": "I'm going on a business trip.",
+    "sentenceZh": "我要去出差。"
+  },
+  {
+    "cycleId": "beginner_cycle_15",
+    "index": 51,
+    "word": "청바지",
+    "originalKr": "청바지를 입다.",
+    "sentenceKr": "청바지를 이워요.",
+    "sentenceMeaning": "I tie my jeans.",
+    "sentenceZh": "我系好牛仔裤。"
+  },
+  {
+    "cycleId": "beginner_cycle_15",
+    "index": 46,
+    "word": "취직",
+    "originalKr": "취직이 되다.",
+    "sentenceKr": "취직이 돼요.",
+    "sentenceMeaning": "I can get a job.",
+    "sentenceZh": "我可以找到工作。"
+  },
+  {
+    "cycleId": "beginner_cycle_15",
+    "index": 57,
+    "word": "참다",
+    "originalKr": "기침을 참다.",
+    "sentenceKr": "기침을 참아요.",
+    "sentenceMeaning": "Hold back your cough.",
+    "sentenceZh": "忍住咳嗽。"
+  },
+  {
+    "cycleId": "beginner_cycle_15",
+    "index": 55,
+    "word": "초",
+    "originalKr": "10초 시간을 재다.",
+    "sentenceKr": "10초 시간을 재요.",
+    "sentenceMeaning": "Time it for 10 seconds.",
+    "sentenceZh": "计时10秒。"
+  },
+  {
+    "cycleId": "beginner_cycle_15",
+    "index": 59,
+    "word": "찾아보다",
+    "originalKr": "수첩을 찾아보다.",
+    "sentenceKr": "수첩을 찾아봐요.",
+    "sentenceMeaning": "Look for your notebook.",
+    "sentenceZh": "寻找你的笔记本。"
+  },
+  {
+    "cycleId": "beginner_cycle_15",
+    "index": 71,
+    "word": "취소",
+    "originalKr": "예약 취소를 하다.",
+    "sentenceKr": "예약 취소를 해요.",
+    "sentenceMeaning": "I'm canceling my reservation.",
+    "sentenceZh": "我要取消我的预订。"
+  },
+  {
+    "cycleId": "beginner_cycle_15",
+    "index": 58,
+    "word": "찾다",
+    "originalKr": "지갑을 찾다.",
+    "sentenceKr": "지갑을 찾아요.",
+    "sentenceMeaning": "I'm looking for my wallet.",
+    "sentenceZh": "我正在寻找我的钱包。"
+  },
+  {
+    "cycleId": "beginner_cycle_15",
+    "index": 64,
+    "word": "축하",
+    "originalKr": "축하 파티를 하다.",
+    "sentenceKr": "축하 파티를 해요.",
+    "sentenceMeaning": "Let's have a celebration party.",
+    "sentenceZh": "我们开个庆祝会吧。"
+  },
+  {
+    "cycleId": "beginner_cycle_15",
+    "index": 68,
+    "word": "출퇴근",
+    "originalKr": "출퇴근을 하다.",
+    "sentenceKr": "출퇴근을 해요.",
+    "sentenceMeaning": "I commute to work.",
+    "sentenceZh": "我上下班。"
+  },
+  {
+    "cycleId": "beginner_cycle_15",
+    "index": 67,
+    "word": "출입",
+    "originalKr": "출입을 통제하다.",
+    "sentenceKr": "출입을 통제해요.",
+    "sentenceMeaning": "Control access.",
+    "sentenceZh": "控制访问。"
+  },
+  {
+    "cycleId": "beginner_cycle_15",
+    "index": 62,
+    "word": "추다",
+    "originalKr": "춤을 추다.",
+    "sentenceKr": "춤을 춰요.",
+    "sentenceMeaning": "Let's dance.",
+    "sentenceZh": "我们来跳舞吧。"
+  },
+  {
+    "cycleId": "beginner_cycle_15",
+    "index": 69,
+    "word": "춤",
+    "originalKr": "춤을 추다.",
+    "sentenceKr": "춤을 춰요.",
+    "sentenceMeaning": "Let's dance.",
+    "sentenceZh": "我们来跳舞吧。"
+  },
+  {
+    "cycleId": "beginner_cycle_15",
+    "index": 63,
+    "word": "축구",
+    "originalKr": "축구 운동을 좋아하다.",
+    "sentenceKr": "축구 운동을 좋아해요.",
+    "sentenceMeaning": "I like soccer sports.",
+    "sentenceZh": "我喜欢足球运动。"
+  },
+  {
+    "cycleId": "beginner_cycle_15",
+    "index": 66,
+    "word": "출석",
+    "originalKr": "출석을 부르다.",
+    "sentenceKr": "출석을 불러요.",
+    "sentenceMeaning": "Take attendance.",
+    "sentenceZh": "参加。"
+  },
+  {
+    "cycleId": "beginner_cycle_15",
+    "index": 70,
+    "word": "춤추다",
+    "originalKr": "가수들이 춤추다.",
+    "sentenceKr": "가수들이 춤춰요.",
+    "sentenceMeaning": "Singers dance.",
+    "sentenceZh": "歌手跳舞。"
+  },
+  {
+    "cycleId": "beginner_cycle_15",
+    "index": 85,
+    "word": "천천히",
+    "originalKr": "천천히 가다.",
+    "sentenceKr": "천천히 가요.",
+    "sentenceMeaning": "Go slowly.",
+    "sentenceZh": "慢慢来。"
+  },
+  {
+    "cycleId": "beginner_cycle_15",
+    "index": 82,
+    "word": "처음",
+    "originalKr": "처음 시작하다.",
+    "sentenceKr": "처음 시작해요.",
+    "sentenceMeaning": "Let's start first.",
+    "sentenceZh": "我们先开始吧。"
+  },
+  {
+    "cycleId": "beginner_cycle_15",
+    "index": 77,
+    "word": "큰소리",
+    "originalKr": "밖에서 큰소리가 들리다.",
+    "sentenceKr": "밖에서 큰소리가 들려요.",
+    "sentenceMeaning": "I hear a loud noise outside.",
+    "sentenceZh": "我听到外面有很大的噪音。"
+  },
+  {
+    "cycleId": "beginner_cycle_15",
+    "index": 78,
+    "word": "키우다",
+    "originalKr": "강아지를 키우다.",
+    "sentenceKr": "강아지를 키워요.",
+    "sentenceMeaning": "I raise a puppy.",
+    "sentenceZh": "我养了一只小狗。"
+  },
+  {
+    "cycleId": "beginner_cycle_15",
+    "index": 79,
+    "word": "차례",
+    "originalKr": "차례를 지키다.",
+    "sentenceKr": "차례를 지켜요.",
+    "sentenceMeaning": "Take your turn.",
+    "sentenceZh": "轮到你了。"
+  },
+  {
+    "cycleId": "beginner_cycle_15",
+    "index": 81,
+    "word": "참",
+    "originalKr": "참 좋다.",
+    "sentenceKr": "참 좋아요.",
+    "sentenceMeaning": "I really like it.",
+    "sentenceZh": "我真的很喜欢它。"
+  },
+  {
+    "cycleId": "beginner_cycle_15",
+    "index": 86,
+    "word": "첫",
+    "originalKr": "첫 만남을 기억하다.",
+    "sentenceKr": "첫 만남을 기억해요.",
+    "sentenceMeaning": "I remember our first meeting.",
+    "sentenceZh": "我记得我们第一次见面。"
+  },
+  {
+    "cycleId": "beginner_cycle_15",
+    "index": 88,
+    "word": "체크무늬",
+    "originalKr": "체크무늬 남방을 입다.",
+    "sentenceKr": "체크무늬 남방을 이워요.",
+    "sentenceMeaning": "I'm wearing a checkered pattern.",
+    "sentenceZh": "我穿着格子图案的衣服。"
+  },
+  {
+    "cycleId": "beginner_cycle_15",
+    "index": 84,
+    "word": "천만",
+    "originalKr": "천만 숫자를 쓰다.",
+    "sentenceKr": "천만 숫자를 써요.",
+    "sentenceMeaning": "Use the number 10 million.",
+    "sentenceZh": "使用1000万这个数字。"
+  },
+  {
+    "cycleId": "beginner_cycle_15",
+    "index": 72,
+    "word": "치다",
+    "originalKr": "화가 나서 책상을 치다.",
+    "sentenceKr": "화가 나서 책상을 쳐요.",
+    "sentenceMeaning": "I get angry and hit the desk.",
+    "sentenceZh": "我生气了，摔到桌子上。"
+  },
+  {
+    "cycleId": "beginner_cycle_15",
+    "index": 73,
+    "word": "치료",
+    "originalKr": "병원에서 치료를 받다.",
+    "sentenceKr": "병원에서 치료를 받아요.",
+    "sentenceMeaning": "Get treatment at the hospital.",
+    "sentenceZh": "去医院接受治疗。"
+  },
+  {
+    "cycleId": "beginner_cycle_15",
+    "index": 76,
+    "word": "콘서트",
+    "originalKr": "가수의 콘서트를 보다.",
+    "sentenceKr": "가수의 콘서트를 봐요.",
+    "sentenceMeaning": "Watch a singer's concert.",
+    "sentenceZh": "观看歌手的演唱会。"
+  },
+  {
+    "cycleId": "beginner_cycle_15",
+    "index": 74,
+    "word": "칭찬",
+    "originalKr": "잘했다고 칭찬을 듣다.",
+    "sentenceKr": "잘했다고 칭찬을 들어요.",
+    "sentenceMeaning": "I get praised for doing a good job.",
+    "sentenceZh": "我因工作出色而受到表扬。"
+  },
+  {
+    "cycleId": "beginner_cycle_15",
+    "index": 83,
+    "word": "천",
+    "originalKr": "천 숫자를 세다.",
+    "sentenceKr": "천 숫자를 세요.",
+    "sentenceMeaning": "Count to thousand.",
+    "sentenceZh": "数到千。"
+  },
+  {
+    "cycleId": "beginner_cycle_15",
+    "index": 102,
+    "word": "크다",
+    "originalKr": "집이 아주 크다.",
+    "sentenceKr": "집이 아주 커요.",
+    "sentenceMeaning": "The house is very big.",
+    "sentenceZh": "房子很大。"
+  },
+  {
+    "cycleId": "beginner_cycle_15",
+    "index": 94,
+    "word": "충분하다",
+    "originalKr": "시간이 충분하다.",
+    "sentenceKr": "시간이 충분해요.",
+    "sentenceMeaning": "There's plenty of time.",
+    "sentenceZh": "有的是时间。"
+  },
+  {
+    "cycleId": "beginner_cycle_15",
+    "index": 89,
+    "word": "초록색",
+    "originalKr": "초록색 색깔을 좋아하다.",
+    "sentenceKr": "초록색 색깔을 좋아해요.",
+    "sentenceMeaning": "I like the color green.",
+    "sentenceZh": "我喜欢绿色。"
+  },
+  {
+    "cycleId": "beginner_cycle_15",
+    "index": 75,
+    "word": "켜다",
+    "originalKr": "바이올린을 켜다.",
+    "sentenceKr": "바이올린을 켜요.",
+    "sentenceMeaning": "I play the violin.",
+    "sentenceZh": "我拉小提琴。"
+  },
+  {
+    "cycleId": "beginner_cycle_15",
+    "index": 80,
+    "word": "착하다",
+    "originalKr": "마음이 착하다.",
+    "sentenceKr": "마음이 착해요.",
+    "sentenceMeaning": "I have a good heart.",
+    "sentenceZh": "我有一颗善良的心。"
+  },
+  {
+    "cycleId": "beginner_cycle_15",
+    "index": 93,
+    "word": "춥다",
+    "originalKr": "날씨가 춥다.",
+    "sentenceKr": "날씨가 추워요.",
+    "sentenceMeaning": "The weather is cold.",
+    "sentenceZh": "天气很冷。"
+  },
+  {
+    "cycleId": "beginner_cycle_15",
+    "index": 91,
+    "word": "최근",
+    "originalKr": "최근에 들다.",
+    "sentenceKr": "최근에 들어요.",
+    "sentenceMeaning": "I listened to it recently.",
+    "sentenceZh": "我最近听过。"
+  },
+  {
+    "cycleId": "beginner_cycle_15",
+    "index": 90,
+    "word": "최고",
+    "originalKr": "최고 점수를 받다.",
+    "sentenceKr": "최고 점수를 받아요.",
+    "sentenceMeaning": "Get the highest score.",
+    "sentenceZh": "获得最高分。"
+  },
+  {
+    "cycleId": "beginner_cycle_16",
+    "index": 2,
+    "word": "튀김",
+    "originalKr": "바삭한 튀김을 먹다.",
+    "sentenceKr": "바삭한 튀김을 먹어요.",
+    "sentenceMeaning": "Eat crispy fries.",
+    "sentenceZh": "吃脆薯条。"
+  },
+  {
+    "cycleId": "beginner_cycle_16",
+    "index": 4,
+    "word": "피자",
+    "originalKr": "점심으로 피자를 주문하다.",
+    "sentenceKr": "점심으로 피자를 주문해요.",
+    "sentenceMeaning": "I order pizza for lunch.",
+    "sentenceZh": "我午餐点披萨。"
+  },
+  {
+    "cycleId": "beginner_cycle_15",
+    "index": 95,
+    "word": "친절",
+    "originalKr": "그는 항상 친절로 대하다.",
+    "sentenceKr": "그는 항상 친절로 대해요.",
+    "sentenceMeaning": "He always treats me with kindness.",
+    "sentenceZh": "他总是对我很友善。"
+  },
+  {
+    "cycleId": "beginner_cycle_15",
+    "index": 92,
+    "word": "추석",
+    "originalKr": "추석 명절을 보내다.",
+    "sentenceKr": "추석 명절을 보내요.",
+    "sentenceMeaning": "Have a happy Chuseok holiday.",
+    "sentenceZh": "祝您中秋节假期愉快。"
+  },
+  {
+    "cycleId": "beginner_cycle_16",
+    "index": 10,
+    "word": "필통",
+    "originalKr": "필통에 연필을 넣다.",
+    "sentenceKr": "필통에 연필을 넣어요.",
+    "sentenceMeaning": "Put the pencil in the pencil case.",
+    "sentenceZh": "将铅笔放入铅笔盒中。"
+  },
+  {
+    "cycleId": "beginner_cycle_16",
+    "index": 6,
+    "word": "한식집",
+    "originalKr": "유명한 한식집 음식점에 가다.",
+    "sentenceKr": "유명한 한식집 음식점에 가요.",
+    "sentenceMeaning": "Let's go to a famous Korean restaurant.",
+    "sentenceZh": "我们去一家有名的韩国餐厅吧。"
+  },
+  {
+    "cycleId": "beginner_cycle_15",
+    "index": 101,
+    "word": "크기",
+    "originalKr": "가방의 크기가 크다.",
+    "sentenceKr": "가방의 크기가 커요.",
+    "sentenceMeaning": "The size of the bag is large.",
+    "sentenceZh": "袋子的尺寸很大。"
+  },
+  {
+    "cycleId": "beginner_cycle_16",
+    "index": 16,
+    "word": "태극기",
+    "originalKr": "국경일에 태극기를 달다.",
+    "sentenceKr": "국경일에 태극기를 달아요.",
+    "sentenceMeaning": "We hang the Taegeukgi on national holidays.",
+    "sentenceZh": "国定假日我们会悬挂太极旗。"
+  },
+  {
+    "cycleId": "beginner_cycle_15",
+    "index": 100,
+    "word": "콧물",
+    "originalKr": "감기에 걸려서 콧물이 나오다.",
+    "sentenceKr": "감기에 걸려서 콧물이 나와요.",
+    "sentenceMeaning": "I have a cold and my nose is running.",
+    "sentenceZh": "我感冒了，流鼻涕。"
+  },
+  {
+    "cycleId": "beginner_cycle_15",
+    "index": 103,
+    "word": "크리스마스",
+    "originalKr": "크리스마스 트리를 만들다.",
+    "sentenceKr": "크리스마스 트리를 만들어요.",
+    "sentenceMeaning": "Make a Christmas tree.",
+    "sentenceZh": "制作一棵圣诞树。"
+  },
+  {
+    "cycleId": "beginner_cycle_16",
+    "index": 20,
+    "word": "트럭",
+    "originalKr": "큰 트럭을 타다.",
+    "sentenceKr": "큰 트럭을 타요.",
+    "sentenceMeaning": "I ride a big truck.",
+    "sentenceZh": "我骑大卡车。"
+  },
+  {
+    "cycleId": "beginner_cycle_16",
+    "index": 22,
+    "word": "편지",
+    "originalKr": "친구에게 편지를 쓰다.",
+    "sentenceKr": "친구에게 편지를 써요.",
+    "sentenceMeaning": "Write a letter to your friend.",
+    "sentenceZh": "给你的朋友写一封信。"
+  },
+  {
+    "cycleId": "beginner_cycle_16",
+    "index": 25,
+    "word": "피",
+    "originalKr": "다쳐서 피를 흘리다.",
+    "sentenceKr": "다쳐서 피를 흘려요.",
+    "sentenceMeaning": "I'm injured and bleeding.",
+    "sentenceZh": "我受伤了，还在流血。"
+  },
+  {
+    "cycleId": "beginner_cycle_16",
+    "index": 9,
+    "word": "햄버거",
+    "originalKr": "점심으로 햄버거를 먹다.",
+    "sentenceKr": "점심으로 햄버거를 먹어요.",
+    "sentenceMeaning": "I eat a hamburger for lunch.",
+    "sentenceZh": "我午餐吃一个汉堡。"
+  },
+  {
+    "cycleId": "beginner_cycle_16",
+    "index": 28,
+    "word": "한글",
+    "originalKr": "공책에 한글을 쓰다.",
+    "sentenceKr": "공책에 한글을 써요.",
+    "sentenceMeaning": "I write Korean in my notebook.",
+    "sentenceZh": "我在笔记本上写韩语。"
+  },
+  {
+    "cycleId": "beginner_cycle_16",
+    "index": 14,
+    "word": "학생증",
+    "originalKr": "도서관에서 학생증을 보여주다.",
+    "sentenceKr": "도서관에서 학생증을 보여줘요.",
+    "sentenceMeaning": "Show your student ID at the library.",
+    "sentenceZh": "在图书馆出示您的学生证。"
+  },
+  {
+    "cycleId": "beginner_cycle_16",
+    "index": 13,
+    "word": "학생",
+    "originalKr": "선생님이 학생을 가르치다.",
+    "sentenceKr": "선생님이 학생을 가르쳐요.",
+    "sentenceMeaning": "The teacher teaches the student.",
+    "sentenceZh": "老师教学生。"
+  },
+  {
+    "cycleId": "beginner_cycle_16",
+    "index": 24,
+    "word": "프로그램",
+    "originalKr": "학교 교육 프로그램에 참여하다.",
+    "sentenceKr": "학교 교육 프로그램에 참여해요.",
+    "sentenceMeaning": "Participate in school education programs.",
+    "sentenceZh": "参加学校教育计划。"
+  },
+  {
+    "cycleId": "beginner_cycle_16",
+    "index": 18,
+    "word": "텔레비전",
+    "originalKr": "가족과 텔레비전을 보다.",
+    "sentenceKr": "가족과 텔레비전을 봐요.",
+    "sentenceMeaning": "I watch television with my family.",
+    "sentenceZh": "我和家人一起看电视。"
+  },
+  {
+    "cycleId": "beginner_cycle_16",
+    "index": 21,
+    "word": "티셔츠",
+    "originalKr": "편한 티셔츠를 입다.",
+    "sentenceKr": "편한 티셔츠를 이워요.",
+    "sentenceMeaning": "Wear a comfortable t-shirt.",
+    "sentenceZh": "穿一件舒适的 T 恤。"
+  },
+  {
+    "cycleId": "beginner_cycle_16",
+    "index": 27,
+    "word": "하숙집",
+    "originalKr": "학교 근처 하숙집에 묵다.",
+    "sentenceKr": "학교 근처 하숙집에 묵어요.",
+    "sentenceMeaning": "I stay at a boarding house near the school.",
+    "sentenceZh": "我住在学校附近的寄宿处。"
+  },
+  {
+    "cycleId": "beginner_cycle_16",
+    "index": 23,
+    "word": "프라이팬",
+    "originalKr": "프라이팬에 요리를 볶다.",
+    "sentenceKr": "프라이팬에 요리를 볶아요.",
+    "sentenceMeaning": "Fry the food in a frying pan.",
+    "sentenceZh": "将食物放入煎锅中煎炸。"
+  },
+  {
+    "cycleId": "beginner_cycle_16",
+    "index": 19,
+    "word": "통장",
+    "originalKr": "은행에서 통장을 만들다.",
+    "sentenceKr": "은행에서 통장을 만들어요.",
+    "sentenceMeaning": "Create a bank account at the bank.",
+    "sentenceZh": "在银行创建一个银行账户。"
+  },
+  {
+    "cycleId": "beginner_cycle_16",
+    "index": 17,
+    "word": "테이블",
+    "originalKr": "음식을 테이블에 놓다.",
+    "sentenceKr": "음식을 테이블에 놓아요.",
+    "sentenceMeaning": "Put the food on the table.",
+    "sentenceZh": "把食物放在桌子上。"
+  },
+  {
+    "cycleId": "beginner_cycle_16",
+    "index": 26,
+    "word": "피아노",
+    "originalKr": "어릴 때 피아노를 배우다.",
+    "sentenceKr": "어릴 때 피아노를 배워요.",
+    "sentenceMeaning": "I learned to play the piano when I was young.",
+    "sentenceZh": "我年轻时就学过弹钢琴。"
+  },
+  {
+    "cycleId": "beginner_cycle_16",
+    "index": 29,
+    "word": "한복",
+    "originalKr": "명절에 예쁜 한복을 입다.",
+    "sentenceKr": "명절에 예쁜 한복을 이워요.",
+    "sentenceMeaning": "Wear a pretty hanbok for the holidays.",
+    "sentenceZh": "假期里穿漂亮的韩服。"
+  },
+  {
+    "cycleId": "beginner_cycle_16",
+    "index": 36,
+    "word": "표",
+    "originalKr": "기차 표를 끊다.",
+    "sentenceKr": "기차 표를 끊어요.",
+    "sentenceMeaning": "Buy a train ticket.",
+    "sentenceZh": "买一张火车票。"
+  },
+  {
+    "cycleId": "beginner_cycle_16",
+    "index": 39,
+    "word": "항공",
+    "originalKr": "항공 운항이 취소되다.",
+    "sentenceKr": "항공 운항이 취소돼요.",
+    "sentenceMeaning": "Flights are canceled.",
+    "sentenceZh": "航班被取消。"
+  },
+  {
+    "cycleId": "beginner_cycle_16",
+    "index": 40,
+    "word": "항공권",
+    "originalKr": "비행기 항공권을 예약하다.",
+    "sentenceKr": "비행기 항공권을 예약해요.",
+    "sentenceMeaning": "Book a plane ticket.",
+    "sentenceZh": "预订机票。"
+  },
+  {
+    "cycleId": "beginner_cycle_16",
+    "index": 51,
+    "word": "풍경",
+    "originalKr": "창밖의 아름다운 풍경을 보다.",
+    "sentenceKr": "창밖의 아름다운 풍경을 봐요.",
+    "sentenceMeaning": "Look at the beautiful scenery outside the window.",
+    "sentenceZh": "看看窗外美丽的风景。"
+  },
+  {
+    "cycleId": "beginner_cycle_16",
+    "index": 47,
+    "word": "피곤",
+    "originalKr": "일이 많아서 피곤에 지치다.",
+    "sentenceKr": "일이 많아서 피곤에 지쳐요.",
+    "sentenceMeaning": "I'm tired because I have a lot of work to do.",
+    "sentenceZh": "我很累，因为我有很多工作要做。"
+  },
+  {
+    "cycleId": "beginner_cycle_16",
+    "index": 45,
+    "word": "할아버지",
+    "originalKr": "할아버지와 산책하다.",
+    "sentenceKr": "할아버지와 산책해요.",
+    "sentenceMeaning": "I'm taking a walk with my grandfather.",
+    "sentenceZh": "我要和爷爷一起散步。"
+  },
+  {
+    "cycleId": "beginner_cycle_16",
+    "index": 49,
+    "word": "태풍",
+    "originalKr": "강한 태풍이 불다.",
+    "sentenceKr": "강한 태풍이 불어요.",
+    "sentenceMeaning": "A strong typhoon is blowing.",
+    "sentenceZh": "一场强台风正在吹袭。"
+  },
+  {
+    "cycleId": "beginner_cycle_16",
+    "index": 30,
+    "word": "한옥",
+    "originalKr": "전통 한옥에 살다.",
+    "sentenceKr": "전통 한옥에 살아요.",
+    "sentenceMeaning": "I live in a traditional hanok.",
+    "sentenceZh": "我住在传统的韩屋里。"
+  },
+  {
+    "cycleId": "beginner_cycle_16",
+    "index": 35,
+    "word": "편의점",
+    "originalKr": "편의점 에서 간식을 사다.",
+    "sentenceKr": "편의점 에서 간식을 사요.",
+    "sentenceMeaning": "I buy snacks at the convenience store.",
+    "sentenceZh": "我在便利店买零食。"
+  },
+  {
+    "cycleId": "beginner_cycle_16",
+    "index": 44,
+    "word": "할머니",
+    "originalKr": "할머니 댁에 가다.",
+    "sentenceKr": "할머니 댁에 가요.",
+    "sentenceMeaning": "I'm going to my grandmother's house.",
+    "sentenceZh": "我要去我奶奶家。"
+  },
+  {
+    "cycleId": "beginner_cycle_16",
+    "index": 32,
+    "word": "터미널",
+    "originalKr": "버스 터미널 에서 내리다.",
+    "sentenceKr": "버스 터미널 에서 내려요.",
+    "sentenceMeaning": "Get off at the bus terminal.",
+    "sentenceZh": "在巴士总站下车。"
+  },
+  {
+    "cycleId": "beginner_cycle_16",
+    "index": 41,
+    "word": "해외여행",
+    "originalKr": "방학 때 해외여행을 가다.",
+    "sentenceKr": "방학 때 해외여행을 가요.",
+    "sentenceMeaning": "I go on a trip abroad during vacation.",
+    "sentenceZh": "我假期期间去国外旅行。"
+  },
+  {
+    "cycleId": "beginner_cycle_16",
+    "index": 34,
+    "word": "퇴원",
+    "originalKr": "다 나아서 퇴원 수속을 밟다.",
+    "sentenceKr": "다 나아서 퇴원 수속을 밟아요.",
+    "sentenceMeaning": "I'm all better now and I'm going through the discharge process.",
+    "sentenceZh": "我现在已经好多了，正在办理出院手续。"
+  },
+  {
+    "cycleId": "beginner_cycle_16",
+    "index": 46,
+    "word": "편안",
+    "originalKr": "마음의 편안을 바라다.",
+    "sentenceKr": "마음의 편안을 바라요.",
+    "sentenceMeaning": "I hope you find peace of mind.",
+    "sentenceZh": "我希望你能找到内心的平静。"
+  },
+  {
+    "cycleId": "beginner_cycle_16",
+    "index": 53,
+    "word": "하늘",
+    "originalKr": "파란 하늘이 높다.",
+    "sentenceKr": "파란 하늘이 높아요.",
+    "sentenceMeaning": "The blue sky is high.",
+    "sentenceZh": "蓝天很高。"
+  },
+  {
+    "cycleId": "beginner_cycle_16",
+    "index": 52,
+    "word": "피다",
+    "originalKr": "꽃이 피다.",
+    "sentenceKr": "꽃이 피어요.",
+    "sentenceMeaning": "Flowers are blooming.",
+    "sentenceZh": "鲜花盛开。"
+  },
+  {
+    "cycleId": "beginner_cycle_16",
+    "index": 55,
+    "word": "한강",
+    "originalKr": "한강 지명 유람선을 타다.",
+    "sentenceKr": "한강 지명 유람선을 타요.",
+    "sentenceMeaning": "Take a cruise on the Han River.",
+    "sentenceZh": "乘坐游船游览汉江。"
+  },
+  {
+    "cycleId": "beginner_cycle_16",
+    "index": 56,
+    "word": "해",
+    "originalKr": "해가 뜨다.",
+    "sentenceKr": "해가 떠요.",
+    "sentenceMeaning": "The sun rises.",
+    "sentenceZh": "太阳升起。"
+  },
+  {
+    "cycleId": "beginner_cycle_16",
+    "index": 60,
+    "word": "하루",
+    "originalKr": "즐거운 하루를 보내다.",
+    "sentenceKr": "즐거운 하루를 보내요.",
+    "sentenceMeaning": "Have a nice day.",
+    "sentenceZh": "祝你今天过得愉快。"
+  },
+  {
+    "cycleId": "beginner_cycle_16",
+    "index": 66,
+    "word": "택배",
+    "originalKr": "물건을 택배로 보내다.",
+    "sentenceKr": "물건을 택배로 보내요.",
+    "sentenceMeaning": "Send the item by courier.",
+    "sentenceZh": "通过快递发送物品。"
+  },
+  {
+    "cycleId": "beginner_cycle_16",
+    "index": 62,
+    "word": "해마다",
+    "originalKr": "해마다 만나다 약속을 지키다.",
+    "sentenceKr": "해마다 만나다 약속을 지켜요.",
+    "sentenceMeaning": "We meet every year and keep our promise.",
+    "sentenceZh": "我们每年都会见面并信守诺言。"
+  },
+  {
+    "cycleId": "beginner_cycle_16",
+    "index": 67,
+    "word": "택시",
+    "originalKr": "늦어서 택시를 타다.",
+    "sentenceKr": "늦어서 택시를 타요.",
+    "sentenceMeaning": "It's late so I'm taking a taxi.",
+    "sentenceZh": "时间很晚了，所以我要坐出租车。"
+  },
+  {
+    "cycleId": "beginner_cycle_16",
+    "index": 64,
+    "word": "태권도",
+    "originalKr": "도장에서 태권도를 배우다.",
+    "sentenceKr": "도장에서 태권도를 배워요.",
+    "sentenceMeaning": "Learn Taekwondo at the gym.",
+    "sentenceZh": "在健身房学习跆拳道。"
+  },
+  {
+    "cycleId": "beginner_cycle_16",
+    "index": 63,
+    "word": "탁구",
+    "originalKr": "친구와 탁구를 치다.",
+    "sentenceKr": "친구와 탁구를 쳐요.",
+    "sentenceMeaning": "I play table tennis with my friends.",
+    "sentenceZh": "我和朋友们打乒乓球。"
+  },
+  {
+    "cycleId": "beginner_cycle_16",
+    "index": 57,
+    "word": "해외",
+    "originalKr": "해외에 상품을 수출하다.",
+    "sentenceKr": "해외에 상품을 수출해요.",
+    "sentenceMeaning": "We export products overseas.",
+    "sentenceZh": "我们将产品出口到海外。"
+  },
+  {
+    "cycleId": "beginner_cycle_16",
+    "index": 65,
+    "word": "태어나다",
+    "originalKr": "새로운 아이가 태어나다.",
+    "sentenceKr": "새로운 아이가 태어나요.",
+    "sentenceMeaning": "A new child is born.",
+    "sentenceZh": "一个新孩子出生了。"
+  },
+  {
+    "cycleId": "beginner_cycle_16",
+    "index": 69,
+    "word": "통화",
+    "originalKr": "친구와 전화 통화를 하다.",
+    "sentenceKr": "친구와 전화 통화를 해요.",
+    "sentenceMeaning": "I'm talking on the phone with a friend.",
+    "sentenceZh": "我正在和一个朋友通电话。"
+  },
+  {
+    "cycleId": "beginner_cycle_16",
+    "index": 71,
+    "word": "틀다",
+    "originalKr": "더워서 에어컨을 틀다.",
+    "sentenceKr": "더워서 에어컨을 틀어요.",
+    "sentenceMeaning": "It’s hot so I turn on the air conditioner.",
+    "sentenceZh": "天气很热，所以我打开空调。"
+  },
+  {
+    "cycleId": "beginner_cycle_16",
+    "index": 68,
+    "word": "테니스",
+    "originalKr": "주말에 테니스를 치다.",
+    "sentenceKr": "주말에 테니스를 쳐요.",
+    "sentenceMeaning": "I play tennis on the weekend.",
+    "sentenceZh": "我周末打网球。"
+  },
+  {
+    "cycleId": "beginner_cycle_16",
+    "index": 72,
+    "word": "틀리다",
+    "originalKr": "답이 틀리다.",
+    "sentenceKr": "답이 틀려요.",
+    "sentenceMeaning": "The answer is wrong.",
+    "sentenceZh": "答案是错误的。"
+  },
+  {
+    "cycleId": "beginner_cycle_16",
+    "index": 70,
+    "word": "튀기다",
+    "originalKr": "감자를 기름에 튀기다.",
+    "sentenceKr": "감자를 기름에 튀겨요.",
+    "sentenceMeaning": "Fry the potatoes in oil.",
+    "sentenceZh": "用油煎土豆。"
+  },
+  {
+    "cycleId": "beginner_cycle_16",
+    "index": 80,
+    "word": "하다",
+    "originalKr": "공부를 하다.",
+    "sentenceKr": "공부를 해요.",
+    "sentenceMeaning": "I study.",
+    "sentenceZh": "我学习。"
+  },
+  {
+    "cycleId": "beginner_cycle_16",
+    "index": 79,
+    "word": "피우다",
+    "originalKr": "담배를 피우다.",
+    "sentenceKr": "담배를 피워요.",
+    "sentenceMeaning": "I smoke.",
+    "sentenceZh": "我抽烟。"
+  },
+  {
+    "cycleId": "beginner_cycle_16",
+    "index": 74,
+    "word": "팔다",
+    "originalKr": "가게에서 책을 팔다.",
+    "sentenceKr": "가게에서 책을 팔아요.",
+    "sentenceMeaning": "Sell ​​books at the store.",
+    "sentenceZh": "在商店里卖书。"
+  },
+  {
+    "cycleId": "beginner_cycle_16",
+    "index": 73,
+    "word": "파티",
+    "originalKr": "생일 파티를 열다.",
+    "sentenceKr": "생일 파티를 열어요.",
+    "sentenceMeaning": "Throw a birthday party.",
+    "sentenceZh": "举办生日聚会。"
+  },
+  {
+    "cycleId": "beginner_cycle_16",
+    "index": 75,
+    "word": "팔리다",
+    "originalKr": "물건이 잘 팔리다.",
+    "sentenceKr": "물건이 잘 팔려요.",
+    "sentenceMeaning": "The goods are selling well.",
+    "sentenceZh": "货品卖得很好。"
+  },
+  {
+    "cycleId": "beginner_cycle_16",
+    "index": 94,
+    "word": "편하다",
+    "originalKr": "운동화가 아주 편하다.",
+    "sentenceKr": "운동화가 아주 편해요.",
+    "sentenceMeaning": "The sneakers are very comfortable.",
+    "sentenceZh": "运动鞋非常舒服。"
+  },
+  {
+    "cycleId": "beginner_cycle_16",
+    "index": 91,
+    "word": "팔십",
+    "originalKr": "팔십 숫자를 배우다.",
+    "sentenceKr": "팔십 숫자를 배워요.",
+    "sentenceMeaning": "Learn the numbers eighty.",
+    "sentenceZh": "学习数字八十。"
+  },
+  {
+    "cycleId": "beginner_cycle_16",
+    "index": 93,
+    "word": "편찮다",
+    "originalKr": "할아버지께서 몸이 편찮다.",
+    "sentenceKr": "할아버지께서 몸이 편찮아요.",
+    "sentenceMeaning": "My grandfather is unwell.",
+    "sentenceZh": "我的祖父身体不好。"
+  },
+  {
+    "cycleId": "beginner_cycle_16",
+    "index": 85,
+    "word": "특별히",
+    "originalKr": "엄마를 특별히 좋아하다.",
+    "sentenceKr": "엄마를 특별히 좋아해요.",
+    "sentenceMeaning": "I especially like my mom.",
+    "sentenceZh": "我特别喜欢我的妈妈。"
+  },
+  {
+    "cycleId": "beginner_cycle_16",
+    "index": 78,
+    "word": "풀다",
+    "originalKr": "드라이버로 나사를 풀다.",
+    "sentenceKr": "드라이버로 나사를 풀어요.",
+    "sentenceMeaning": "Unscrew the screw with a screwdriver.",
+    "sentenceZh": "用螺丝刀拧下螺丝。"
+  },
+  {
+    "cycleId": "beginner_cycle_16",
+    "index": 96,
+    "word": "푸르다",
+    "originalKr": "산의 나무가 아주 푸르다.",
+    "sentenceKr": "산의 나무가 아주 푸르러요.",
+    "sentenceMeaning": "The trees on the mountain are very green.",
+    "sentenceZh": "山上的树很绿。"
+  },
+  {
+    "cycleId": "beginner_cycle_16",
+    "index": 77,
+    "word": "포장",
+    "originalKr": "선물 포장을 하다.",
+    "sentenceKr": "선물 포장을 해요.",
+    "sentenceMeaning": "I'm wrapping gifts.",
+    "sentenceZh": "我正在包装礼物。"
+  },
+  {
+    "cycleId": "beginner_cycle_16",
+    "index": 76,
+    "word": "펴다",
+    "originalKr": "공부하려고 책을 펴다.",
+    "sentenceKr": "공부하려고 책을 펴요.",
+    "sentenceMeaning": "I open the book to study.",
+    "sentenceZh": "我打开书学习。"
+  },
+  {
+    "cycleId": "beginner_cycle_16",
+    "index": 82,
+    "word": "태도",
+    "originalKr": "공부하는 태도가 좋다.",
+    "sentenceKr": "공부하는 태도가 좋아요.",
+    "sentenceMeaning": "I like your attitude toward studying.",
+    "sentenceZh": "我喜欢你的学习态度。"
+  },
+  {
+    "cycleId": "beginner_cycle_16",
+    "index": 98,
+    "word": "하나",
+    "originalKr": "사과 하나를 먹다.",
+    "sentenceKr": "사과 하나를 먹어요.",
+    "sentenceMeaning": "Eat one apple.",
+    "sentenceZh": "吃一个苹果。"
+  },
+  {
+    "cycleId": "beginner_cycle_17",
+    "index": 1,
+    "word": "힘들다",
+    "originalKr": "일이 힘들다.",
+    "sentenceKr": "일이 힘들어요.",
+    "sentenceMeaning": "Work is hard.",
+    "sentenceZh": "工作很辛苦。"
+  },
+  {
+    "cycleId": "beginner_cycle_16",
+    "index": 101,
+    "word": "하얗다",
+    "originalKr": "함박눈이 내려서 세상이 하얗다.",
+    "sentenceKr": "함박눈이 내려서 세상이 하얘요.",
+    "sentenceMeaning": "It's snowing heavily and the world is white.",
+    "sentenceZh": "雪下得很大，世界一片洁白。"
+  },
+  {
+    "cycleId": "beginner_cycle_16",
+    "index": 87,
+    "word": "튼튼하다",
+    "originalKr": "몸이 튼튼하다.",
+    "sentenceKr": "몸이 튼튼해요.",
+    "sentenceMeaning": "My body is strong.",
+    "sentenceZh": "我的身体很强壮。"
+  },
+  {
+    "cycleId": "beginner_cycle_16",
+    "index": 89,
+    "word": "파랗다",
+    "originalKr": "하늘이 아주 파랗다.",
+    "sentenceKr": "하늘이 아주 파래요.",
+    "sentenceMeaning": "The sky is very blue.",
+    "sentenceZh": "天空很蓝。"
+  },
+  {
+    "cycleId": "beginner_cycle_17",
+    "index": 10,
+    "word": "휴지통",
+    "originalKr": "휴지통에 버리다.",
+    "sentenceKr": "휴지통에 버려요.",
+    "sentenceMeaning": "Throw it in the trash can.",
+    "sentenceZh": "将其扔进垃圾桶。"
+  },
+  {
+    "cycleId": "beginner_cycle_16",
+    "index": 103,
+    "word": "학기",
+    "originalKr": "새 학기가 시작되다.",
+    "sentenceKr": "새 학기가 시작돼요.",
+    "sentenceMeaning": "A new semester begins.",
+    "sentenceZh": "新的学期开始了。"
+  },
+  {
+    "cycleId": "beginner_cycle_17",
+    "index": 12,
+    "word": "호텔",
+    "originalKr": "호텔에 묵다",
+    "sentenceKr": "호텔에 묵어요.",
+    "sentenceMeaning": "I stay at a hotel.",
+    "sentenceZh": "我住在一家酒店。"
+  },
+  {
+    "cycleId": "beginner_cycle_16",
+    "index": 108,
+    "word": "함께",
+    "originalKr": "친구와 함께 놀다.",
+    "sentenceKr": "친구와 함께 놀아요.",
+    "sentenceMeaning": "Play with friends.",
+    "sentenceZh": "和朋友一起玩。"
+  },
+  {
+    "cycleId": "beginner_cycle_16",
+    "index": 110,
+    "word": "햇빛",
+    "originalKr": "햇빛이 비치다",
+    "sentenceKr": "햇빛이 비쳐요.",
+    "sentenceMeaning": "The sun is shining.",
+    "sentenceZh": "阳光明媚。"
+  },
+  {
+    "cycleId": "beginner_cycle_17",
+    "index": 7,
+    "word": "화장실",
+    "originalKr": "화장실에 가다.",
+    "sentenceKr": "화장실에 가요.",
+    "sentenceMeaning": "Let's go to the bathroom.",
+    "sentenceZh": "我们去洗手间吧。"
+  },
+  {
+    "cycleId": "beginner_cycle_16",
+    "index": 109,
+    "word": "항상",
+    "originalKr": "항상 같다 마음으로 노력하다.",
+    "sentenceKr": "항상 같다 마음으로 노력해요.",
+    "sentenceMeaning": "I always try my best with the same mindset.",
+    "sentenceZh": "我总是以同样的心态尽力而为。"
+  },
+  {
+    "cycleId": "beginner_cycle_16",
+    "index": 105,
+    "word": "한가하다",
+    "originalKr": "오랜만에 마음이 한가하다.",
+    "sentenceKr": "오랜만에 마음이 한가해요.",
+    "sentenceMeaning": "It's been a while since I felt free.",
+    "sentenceZh": "我已经有一段时间没有感到自由了。"
+  },
+  {
+    "cycleId": "beginner_cycle_17",
+    "index": 9,
+    "word": "휴대폰",
+    "originalKr": "휴대폰으로 전화하다.",
+    "sentenceKr": "휴대폰으로 전화해요.",
+    "sentenceMeaning": "Call me on my cell phone.",
+    "sentenceZh": "用我的手机给我打电话。"
+  },
+  {
+    "cycleId": "beginner_cycle_16",
+    "index": 99,
+    "word": "하숙비",
+    "originalKr": "매달 하숙비를 내다.",
+    "sentenceKr": "매달 하숙비를 내요.",
+    "sentenceMeaning": "I pay boarding fees every month.",
+    "sentenceZh": "我每月支付寄宿费。"
+  },
+  {
+    "cycleId": "beginner_cycle_17",
+    "index": 8,
+    "word": "화장품",
+    "originalKr": "화장품을 바르다.",
+    "sentenceKr": "화장품을 발라요.",
+    "sentenceMeaning": "Apply cosmetics.",
+    "sentenceZh": "涂抹化妆品。"
+  },
+  {
+    "cycleId": "beginner_cycle_17",
+    "index": 3,
+    "word": "휴지",
+    "originalKr": "휴지를 줍다.",
+    "sentenceKr": "휴지를 주워요.",
+    "sentenceMeaning": "Pick up the tissues.",
+    "sentenceZh": "拿起纸巾。"
+  },
+  {
+    "cycleId": "beginner_cycle_17",
+    "index": 11,
+    "word": "헬스클럽",
+    "originalKr": "헬스클럽 에서 운동하다.",
+    "sentenceKr": "헬스클럽 에서 운동해요.",
+    "sentenceMeaning": "I work out at the health club.",
+    "sentenceZh": "我在健身俱乐部锻炼身体。"
+  },
+  {
+    "cycleId": "beginner_cycle_17",
+    "index": 20,
+    "word": "행복",
+    "originalKr": "행복을 느끼다.",
+    "sentenceKr": "행복을 느껴요.",
+    "sentenceMeaning": "I feel happy.",
+    "sentenceZh": "我感到很高兴。"
+  },
+  {
+    "cycleId": "beginner_cycle_17",
+    "index": 4,
+    "word": "현금",
+    "originalKr": "현금으로 내다.",
+    "sentenceKr": "현금으로 내요.",
+    "sentenceMeaning": "Pay in cash.",
+    "sentenceZh": "以现金支付。"
+  },
+  {
+    "cycleId": "beginner_cycle_17",
+    "index": 28,
+    "word": "휴일",
+    "originalKr": "휴일에 쉬다.",
+    "sentenceKr": "휴일에 쉬어요.",
+    "sentenceMeaning": "I rest on holidays.",
+    "sentenceZh": "假期我休息。"
+  },
+  {
+    "cycleId": "beginner_cycle_17",
+    "index": 39,
+    "word": "허리",
+    "originalKr": "허리가 아프다.",
+    "sentenceKr": "허리가 아퍼요.",
+    "sentenceMeaning": "My back hurts.",
+    "sentenceZh": "我背疼。"
+  },
+  {
+    "cycleId": "beginner_cycle_17",
+    "index": 21,
+    "word": "화",
+    "originalKr": "화가 나서 소리를 지르다.",
+    "sentenceKr": "화가 나서 소리를 질러요.",
+    "sentenceMeaning": "I get angry and scream.",
+    "sentenceZh": "我生气并尖叫。"
+  },
+  {
+    "cycleId": "beginner_cycle_17",
+    "index": 15,
+    "word": "휴게실",
+    "originalKr": "휴게실 에서 쉬다.",
+    "sentenceKr": "휴게실 에서 쉬어요.",
+    "sentenceMeaning": "Rest in the lounge.",
+    "sentenceZh": "在休息室休息。"
+  },
+  {
+    "cycleId": "beginner_cycle_17",
+    "index": 19,
+    "word": "횡단보도",
+    "originalKr": "횡단보도를 건너다.",
+    "sentenceKr": "횡단보도를 건너요.",
+    "sentenceMeaning": "Cross the crosswalk.",
+    "sentenceZh": "穿过人行横道。"
+  },
+  {
+    "cycleId": "beginner_cycle_17",
+    "index": 23,
+    "word": "희망",
+    "originalKr": "희망 사항을 말하다.",
+    "sentenceKr": "희망 사항을 말해요.",
+    "sentenceMeaning": "Tell me your wishes.",
+    "sentenceZh": "告诉我你的愿望。"
+  },
+  {
+    "cycleId": "beginner_cycle_17",
+    "index": 18,
+    "word": "회원",
+    "originalKr": "회원을 모집하다.",
+    "sentenceKr": "회원을 모집해요.",
+    "sentenceMeaning": "We are recruiting members.",
+    "sentenceZh": "我们正在招募会员。"
+  },
+  {
+    "cycleId": "beginner_cycle_17",
+    "index": 29,
+    "word": "행동",
+    "originalKr": "말보다 행동에 옮기다.",
+    "sentenceKr": "말보다 행동에 옮겨요.",
+    "sentenceMeaning": "Take action rather than words.",
+    "sentenceZh": "采取行动而不是言语。"
+  },
+  {
+    "cycleId": "beginner_cycle_17",
+    "index": 31,
+    "word": "헤어지다",
+    "originalKr": "친구와 아쉽게 헤어지다.",
+    "sentenceKr": "친구와 아쉽게 헤어져요.",
+    "sentenceMeaning": "I regretfully parted ways with my friend.",
+    "sentenceZh": "我很遗憾地和我的朋友分道扬镳。"
+  },
+  {
+    "cycleId": "beginner_cycle_17",
+    "index": 34,
+    "word": "회의",
+    "originalKr": "회의가 열리다.",
+    "sentenceKr": "회의가 열려요.",
+    "sentenceMeaning": "A meeting is held.",
+    "sentenceZh": "召开会议。"
+  },
+  {
+    "cycleId": "beginner_cycle_17",
+    "index": 38,
+    "word": "흘리다",
+    "originalKr": "눈물을 흘리다.",
+    "sentenceKr": "눈물을 흘려요.",
+    "sentenceMeaning": "I shed tears.",
+    "sentenceZh": "我流下了眼泪。"
+  },
+  {
+    "cycleId": "beginner_cycle_17",
+    "index": 36,
+    "word": "흐르다",
+    "originalKr": "물이 흐르다.",
+    "sentenceKr": "물이 흘러요.",
+    "sentenceMeaning": "Water flows.",
+    "sentenceZh": "水流动。"
+  },
+  {
+    "cycleId": "beginner_cycle_17",
+    "index": 37,
+    "word": "흔들다",
+    "originalKr": "손을 흔들다.",
+    "sentenceKr": "손을 흔들어요.",
+    "sentenceMeaning": "Wave your hand.",
+    "sentenceZh": "挥挥手。"
+  },
+  {
+    "cycleId": "beginner_cycle_17",
+    "index": 35,
+    "word": "휴가",
+    "originalKr": "휴가를 가다.",
+    "sentenceKr": "휴가를 가요.",
+    "sentenceMeaning": "Let's go on vacation.",
+    "sentenceZh": "我们去度假吧。"
+  },
+  {
+    "cycleId": "beginner_cycle_17",
+    "index": 53,
+    "word": "환영",
+    "originalKr": "환영을 받다",
+    "sentenceKr": "환영을 받아요.",
+    "sentenceMeaning": "You are welcome.",
+    "sentenceZh": "不客气。"
+  },
+  {
+    "cycleId": "beginner_cycle_17",
+    "index": 43,
+    "word": "혼자",
+    "originalKr": "혼자 있다.",
+    "sentenceKr": "혼자 있어요.",
+    "sentenceMeaning": "I'm alone.",
+    "sentenceZh": "我还是孤单一人。"
+  },
+  {
+    "cycleId": "beginner_cycle_17",
+    "index": 52,
+    "word": "힘",
+    "originalKr": "힘이 세다.",
+    "sentenceKr": "힘이 세요.",
+    "sentenceMeaning": "You are strong.",
+    "sentenceZh": "你很坚强。"
+  },
+  {
+    "cycleId": "beginner_cycle_17",
+    "index": 50,
+    "word": "흐리다",
+    "originalKr": "날씨가 흐리다.",
+    "sentenceKr": "날씨가 흐려요.",
+    "sentenceMeaning": "The weather is cloudy.",
+    "sentenceZh": "天气多云。"
+  },
+  {
+    "cycleId": "beginner_cycle_17",
+    "index": 41,
+    "word": "호수",
+    "originalKr": "호수를 세다.",
+    "sentenceKr": "호수를 세요.",
+    "sentenceMeaning": "Look at the lake.",
+    "sentenceZh": "看看湖。"
+  },
+  {
+    "cycleId": "beginner_cycle_17",
+    "index": 49,
+    "word": "훨씬",
+    "originalKr": "어제보다 훨씬 맵다.",
+    "sentenceKr": "어제보다 훨씬 매워요.",
+    "sentenceMeaning": "It's much spicier than yesterday.",
+    "sentenceZh": "比昨天辣多了。"
+  },
+  {
+    "cycleId": "beginner_cycle_17",
+    "index": 54,
+    "word": "환자",
+    "originalKr": "환자을 돌보다",
+    "sentenceKr": "환자을 돌봐요.",
+    "sentenceMeaning": "Take care of the patient.",
+    "sentenceZh": "照顾病人。"
+  },
+  {
+    "cycleId": "beginner_cycle_17",
+    "index": 40,
+    "word": "혀",
+    "originalKr": "혀를 대다.",
+    "sentenceKr": "혀를 대요.",
+    "sentenceMeaning": "Stick your tongue.",
+    "sentenceZh": "伸出你的舌头。"
+  },
+  {
+    "cycleId": "beginner_cycle_17",
+    "index": 47,
+    "word": "후",
+    "originalKr": "오 분 후에 시작하다.",
+    "sentenceKr": "오 분 후에 시작해요.",
+    "sentenceMeaning": "It starts in five minutes.",
+    "sentenceZh": "五分钟后开始。"
+  },
+  {
+    "cycleId": "beginner_cycle_17",
+    "index": 46,
+    "word": "회색",
+    "originalKr": "회색 색깔 옷을 입다.",
+    "sentenceKr": "회색 색깔 옷을 이워요.",
+    "sentenceMeaning": "Wear gray colored clothes.",
+    "sentenceZh": "穿灰色衣服。"
+  },
+  {
+    "cycleId": "beginner_cycle_17",
+    "index": 48,
+    "word": "훌륭하다",
+    "originalKr": "작품이 아주 훌륭하다.",
+    "sentenceKr": "작품이 아주 훌륭해요.",
+    "sentenceMeaning": "The work is very good.",
+    "sentenceZh": "做工非常好。"
+  }
+]

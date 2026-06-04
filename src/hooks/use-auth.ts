@@ -29,6 +29,7 @@ export interface UserProfile {
         isUsed?: boolean;
     }[];
     challengeAttempts?: { [cycleId: string]: number };
+    lastCompletedDate?: string;
 }
 
 export function useAuth() {

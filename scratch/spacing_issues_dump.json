@@ -1,0 +1,2586 @@
+[
+  {
+    "cycleId": "beginner_cycle_1",
+    "word": "간장",
+    "sentenceKr": "간장 을 넣다",
+    "particle": "을",
+    "context": "간장 을 넣다",
+    "index": 2
+  },
+  {
+    "cycleId": "beginner_cycle_1",
+    "word": "고등학생",
+    "sentenceKr": "고등학생 이 되다",
+    "particle": "이",
+    "context": "고등학생 이 되다",
+    "index": 4
+  },
+  {
+    "cycleId": "beginner_cycle_1",
+    "word": "고속버스",
+    "sentenceKr": "고속버스 를 타다",
+    "particle": "를",
+    "context": "고속버스 를 타다",
+    "index": 4
+  },
+  {
+    "cycleId": "beginner_cycle_1",
+    "word": "고민",
+    "sentenceKr": "고민 을 나누다",
+    "particle": "을",
+    "context": "고민 을 나누다",
+    "index": 2
+  },
+  {
+    "cycleId": "beginner_cycle_1",
+    "word": "고개",
+    "sentenceKr": "고개 를 들다",
+    "particle": "를",
+    "context": "고개 를 들다",
+    "index": 2
+  },
+  {
+    "cycleId": "beginner_cycle_1",
+    "word": "감기약",
+    "sentenceKr": "감기약 을 먹다",
+    "particle": "을",
+    "context": "감기약 을 먹다",
+    "index": 3
+  },
+  {
+    "cycleId": "beginner_cycle_1",
+    "word": "결석",
+    "sentenceKr": "결석 을 하다",
+    "particle": "을",
+    "context": "결석 을 하다",
+    "index": 2
+  },
+  {
+    "cycleId": "beginner_cycle_1",
+    "word": "고장",
+    "sentenceKr": "고장 이 나다",
+    "particle": "이",
+    "context": "고장 이 나다",
+    "index": 2
+  },
+  {
+    "cycleId": "beginner_cycle_2",
+    "word": "고추장",
+    "sentenceKr": "고추장 을 넣다",
+    "particle": "을",
+    "context": "고추장 을 넣다",
+    "index": 3
+  },
+  {
+    "cycleId": "beginner_cycle_2",
+    "word": "공책",
+    "sentenceKr": "공책 에 쓰다",
+    "particle": "에",
+    "context": "공책 에 쓰다",
+    "index": 2
+  },
+  {
+    "cycleId": "beginner_cycle_2",
+    "word": "교육",
+    "sentenceKr": "교육 을 받다",
+    "particle": "을",
+    "context": "교육 을 받다",
+    "index": 2
+  },
+  {
+    "cycleId": "beginner_cycle_2",
+    "word": "공휴일",
+    "sentenceKr": "공휴일 로 정하다",
+    "particle": "로",
+    "context": "공휴일 로 정하다",
+    "index": 3
+  },
+  {
+    "cycleId": "beginner_cycle_2",
+    "word": "공",
+    "sentenceKr": "공 을 굴리다",
+    "particle": "을",
+    "context": "공 을 굴리다",
+    "index": 1
+  },
+  {
+    "cycleId": "beginner_cycle_2",
+    "word": "공짜",
+    "sentenceKr": "공짜 로 주다",
+    "particle": "로",
+    "context": "공짜 로 주다",
+    "index": 2
+  },
+  {
+    "cycleId": "beginner_cycle_2",
+    "word": "관계",
+    "sentenceKr": "관계 를 맺다",
+    "particle": "를",
+    "context": "관계 를 맺다",
+    "index": 2
+  },
+  {
+    "cycleId": "beginner_cycle_2",
+    "word": "교통비",
+    "sentenceKr": "교통비 가 들다",
+    "particle": "가",
+    "context": "교통비 가 들다",
+    "index": 3
+  },
+  {
+    "cycleId": "beginner_cycle_2",
+    "word": "교환",
+    "sentenceKr": "교환 을 하다",
+    "particle": "을",
+    "context": "교환 을 하다",
+    "index": 2
+  },
+  {
+    "cycleId": "beginner_cycle_2",
+    "word": "귀걸이",
+    "sentenceKr": "귀걸이 를  달다",
+    "particle": "를",
+    "context": "귀걸이 를  달다",
+    "index": 3
+  },
+  {
+    "cycleId": "beginner_cycle_2",
+    "word": "그림",
+    "sentenceKr": "그림 을 그리다",
+    "particle": "을",
+    "context": "그림 을 그리다",
+    "index": 2
+  },
+  {
+    "cycleId": "beginner_cycle_2",
+    "word": "글씨",
+    "sentenceKr": "글씨 를 쓰다",
+    "particle": "를",
+    "context": "글씨 를 쓰다",
+    "index": 2
+  },
+  {
+    "cycleId": "beginner_cycle_2",
+    "word": "글자",
+    "sentenceKr": "글자 를 쓰다",
+    "particle": "를",
+    "context": "글자 를 쓰다",
+    "index": 2
+  },
+  {
+    "cycleId": "beginner_cycle_3",
+    "word": "꽃다발",
+    "sentenceKr": "꽃다발 을 선물하다",
+    "particle": "을",
+    "context": "꽃다발 을 선물하다",
+    "index": 3
+  },
+  {
+    "cycleId": "beginner_cycle_3",
+    "word": "김",
+    "sentenceKr": "김 을 먹다",
+    "particle": "을",
+    "context": "김 을 먹다",
+    "index": 1
+  },
+  {
+    "cycleId": "beginner_cycle_3",
+    "word": "꿈",
+    "sentenceKr": "꿈 을 꾸다",
+    "particle": "을",
+    "context": "꿈 을 꾸다",
+    "index": 1
+  },
+  {
+    "cycleId": "beginner_cycle_4",
+    "word": "대학",
+    "sentenceKr": "대학 에 들어가다",
+    "particle": "에",
+    "context": "대학 에 들어가다",
+    "index": 2
+  },
+  {
+    "cycleId": "beginner_cycle_4",
+    "word": "단추",
+    "sentenceKr": "단추 가 떨어지다",
+    "particle": "가",
+    "context": "단추 가 떨어지다",
+    "index": 2
+  },
+  {
+    "cycleId": "beginner_cycle_5",
+    "word": "동시",
+    "sentenceKr": "동시 에 일어나다",
+    "particle": "에",
+    "context": "동시 에 일어나다",
+    "index": 2
+  },
+  {
+    "cycleId": "beginner_cycle_5",
+    "word": "만",
+    "sentenceKr": "이 가방은 만 원이에요.",
+    "particle": "만",
+    "context": "이 가방은 만 원이에요.",
+    "index": 5
+  },
+  {
+    "cycleId": "beginner_cycle_5",
+    "word": "두통",
+    "sentenceKr": "두통 을 앓다",
+    "particle": "을",
+    "context": "두통 을 앓다",
+    "index": 2
+  },
+  {
+    "cycleId": "beginner_cycle_5",
+    "word": "땀",
+    "sentenceKr": "땀 이 나다",
+    "particle": "이",
+    "context": "땀 이 나다",
+    "index": 1
+  },
+  {
+    "cycleId": "beginner_cycle_5",
+    "word": "마중",
+    "sentenceKr": "마중 을 가다",
+    "particle": "을",
+    "context": "마중 을 가다",
+    "index": 2
+  },
+  {
+    "cycleId": "beginner_cycle_5",
+    "word": "마중",
+    "sentenceKr": "마중 을 가다",
+    "particle": "가",
+    "context": "마중 을 가다",
+    "index": 4
+  },
+  {
+    "cycleId": "beginner_cycle_6",
+    "word": "메일",
+    "sentenceKr": "메일 을 쓰다",
+    "particle": "을",
+    "context": "메일 을 쓰다",
+    "index": 2
+  },
+  {
+    "cycleId": "beginner_cycle_6",
+    "word": "방금",
+    "sentenceKr": "방금 방금 가다",
+    "particle": "가",
+    "context": "방금 방금 가다",
+    "index": 5
+  },
+  {
+    "cycleId": "beginner_cycle_7",
+    "word": "분식",
+    "sentenceKr": "분식 을 먹다",
+    "particle": "을",
+    "context": "분식 을 먹다",
+    "index": 2
+  },
+  {
+    "cycleId": "beginner_cycle_7",
+    "word": "배달",
+    "sentenceKr": "배달 을 시키다",
+    "particle": "을",
+    "context": "배달 을 시키다",
+    "index": 2
+  },
+  {
+    "cycleId": "beginner_cycle_7",
+    "word": "배추",
+    "sentenceKr": "배추 를 다듬다",
+    "particle": "를",
+    "context": "배추 를 다듬다",
+    "index": 2
+  },
+  {
+    "cycleId": "beginner_cycle_7",
+    "word": "배탈",
+    "sentenceKr": "배탈 이 나다",
+    "particle": "이",
+    "context": "배탈 이 나다",
+    "index": 2
+  },
+  {
+    "cycleId": "beginner_cycle_8",
+    "word": "성",
+    "sentenceKr": "제 성은 이 씨입니다.",
+    "particle": "이",
+    "context": "제 성은 이 씨입니다.",
+    "index": 4
+  },
+  {
+    "cycleId": "beginner_cycle_8",
+    "word": "서다",
+    "sentenceKr": "길가에 차가 서 있습니다.",
+    "particle": "서",
+    "context": "길가에 차가 서 있습니다.",
+    "index": 6
+  },
+  {
+    "cycleId": "beginner_cycle_8",
+    "word": "사실",
+    "sentenceKr": "사실 을 밝히다",
+    "particle": "을",
+    "context": "사실 을 밝히다",
+    "index": 2
+  },
+  {
+    "cycleId": "beginner_cycle_10",
+    "word": "약",
+    "sentenceKr": "식후 30분에 이 약을 드세요.",
+    "particle": "이",
+    "context": "식후 30분에 이 약을 드세요.",
+    "index": 7
+  },
+  {
+    "cycleId": "beginner_cycle_10",
+    "word": "약",
+    "sentenceKr": "식후 30분에 이 약을 드세요.",
+    "particle": "이",
+    "context": "식후 30분에 이 약을 드세요.",
+    "index": 7
+  },
+  {
+    "cycleId": "beginner_cycle_12",
+    "word": "일",
+    "sentenceKr": "오늘은 중요한 일 이 있는 날이에요.",
+    "particle": "이",
+    "context": "오늘은 중요한 일 이 있는 날이에요.",
+    "index": 9
+  },
+  {
+    "cycleId": "beginner_cycle_12",
+    "word": "일",
+    "sentenceKr": "오늘은 중요한 일 이 있는 날이에요.",
+    "particle": "이",
+    "context": "오늘은 중요한 일 이 있는 날이에요.",
+    "index": 9
+  },
+  {
+    "cycleId": "beginner_cycle_12",
+    "word": "일",
+    "sentenceKr": "오늘은 중요한 일 이 있는 날이에요.",
+    "particle": "이",
+    "context": "오늘은 중요한 일 이 있는 날이에요.",
+    "index": 9
+  },
+  {
+    "cycleId": "beginner_cycle_12",
+    "word": "이",
+    "sentenceKr": "사과 이 킬로그램을 샀어요.",
+    "particle": "이",
+    "context": "사과 이 킬로그램을 샀어",
+    "index": 2
+  },
+  {
+    "cycleId": "beginner_cycle_12",
+    "word": "이",
+    "sentenceKr": "사과 이 킬로그램을 샀어요.",
+    "particle": "이",
+    "context": "사과 이 킬로그램을 샀어",
+    "index": 2
+  },
+  {
+    "cycleId": "beginner_cycle_12",
+    "word": "이",
+    "sentenceKr": "사과 이 킬로그램을 샀어요.",
+    "particle": "이",
+    "context": "사과 이 킬로그램을 샀어",
+    "index": 2
+  },
+  {
+    "cycleId": "beginner_cycle_13",
+    "word": "저녁",
+    "sentenceKr": "저녁 이 되다",
+    "particle": "이",
+    "context": "저녁 이 되다",
+    "index": 2
+  },
+  {
+    "cycleId": "beginner_cycle_13",
+    "word": "점심",
+    "sentenceKr": "친구와 점심 에 만나다 약속을 했어요.",
+    "particle": "에",
+    "context": "친구와 점심 에 만나다 약속을",
+    "index": 6
+  },
+  {
+    "cycleId": "beginner_cycle_13",
+    "word": "점심때",
+    "sentenceKr": "배가 고픈 걸 보니 점심때 가 되다.",
+    "particle": "가",
+    "context": "픈 걸 보니 점심때 가 되다.",
+    "index": 14
+  },
+  {
+    "cycleId": "beginner_cycle_13",
+    "word": "점심시간",
+    "sentenceKr": "회사에서 즐거운 점심시간 이 되다.",
+    "particle": "이",
+    "context": "서 즐거운 점심시간 이 되다.",
+    "index": 13
+  },
+  {
+    "cycleId": "beginner_cycle_13",
+    "word": "접시",
+    "sentenceKr": "맛있는 음식을 접시 에 담다.",
+    "particle": "에",
+    "context": "맛있는 음식을 접시 에 담다.",
+    "index": 10
+  },
+  {
+    "cycleId": "beginner_cycle_13",
+    "word": "입학시험",
+    "sentenceKr": "입학시험 에 합격하다",
+    "particle": "에",
+    "context": "입학시험 에 합격하다",
+    "index": 4
+  },
+  {
+    "cycleId": "beginner_cycle_13",
+    "word": "잠",
+    "sentenceKr": "잠 을 자다",
+    "particle": "을",
+    "context": "잠 을 자다",
+    "index": 1
+  },
+  {
+    "cycleId": "beginner_cycle_13",
+    "word": "전기",
+    "sentenceKr": "폭풍 때문에 전기 가 끊기다.",
+    "particle": "가",
+    "context": "폭풍 때문에 전기 가 끊기다.",
+    "index": 9
+  },
+  {
+    "cycleId": "beginner_cycle_13",
+    "word": "전화기",
+    "sentenceKr": "책상 위에서 전화기 가 울리다.",
+    "particle": "가",
+    "context": "책상 위에서 전화기 가 울리다.",
+    "index": 10
+  },
+  {
+    "cycleId": "beginner_cycle_13",
+    "word": "전화번호",
+    "sentenceKr": "연락처를 알기 위해 전화번호 를 묻다.",
+    "particle": "를",
+    "context": "알기 위해 전화번호 를 묻다.",
+    "index": 15
+  },
+  {
+    "cycleId": "beginner_cycle_13",
+    "word": "젓가락",
+    "sentenceKr": "면 요리를 먹을 때 젓가락 을 쓰다.",
+    "particle": "을",
+    "context": "를 먹을 때 젓가락 을 쓰다.",
+    "index": 14
+  },
+  {
+    "cycleId": "beginner_cycle_13",
+    "word": "입장권",
+    "sentenceKr": "입장권 을 사다",
+    "particle": "을",
+    "context": "입장권 을 사다",
+    "index": 3
+  },
+  {
+    "cycleId": "beginner_cycle_13",
+    "word": "자동차",
+    "sentenceKr": "자동차 를 운전하다",
+    "particle": "를",
+    "context": "자동차 를 운전하다",
+    "index": 3
+  },
+  {
+    "cycleId": "beginner_cycle_13",
+    "word": "장소",
+    "sentenceKr": "장소 를 정하다",
+    "particle": "를",
+    "context": "장소 를 정하다",
+    "index": 2
+  },
+  {
+    "cycleId": "beginner_cycle_13",
+    "word": "전철",
+    "sentenceKr": "출퇴근 시간에 전철 을 타다.",
+    "particle": "을",
+    "context": "출퇴근 시간에 전철 을 타다.",
+    "index": 10
+  },
+  {
+    "cycleId": "beginner_cycle_13",
+    "word": "자랑",
+    "sentenceKr": "자랑 을 하다",
+    "particle": "을",
+    "context": "자랑 을 하다",
+    "index": 2
+  },
+  {
+    "cycleId": "beginner_cycle_13",
+    "word": "잎",
+    "sentenceKr": "잎 이 떨어지다",
+    "particle": "이",
+    "context": "잎 이 떨어지다",
+    "index": 1
+  },
+  {
+    "cycleId": "beginner_cycle_13",
+    "word": "자연",
+    "sentenceKr": "자연 으로 돌아가다",
+    "particle": "으로",
+    "context": "자연 으로 돌아가다",
+    "index": 2
+  },
+  {
+    "cycleId": "beginner_cycle_13",
+    "word": "장마",
+    "sentenceKr": "장마 가 오다",
+    "particle": "가",
+    "context": "장마 가 오다",
+    "index": 2
+  },
+  {
+    "cycleId": "beginner_cycle_13",
+    "word": "전공",
+    "sentenceKr": "대학교에서 전공 을 결정하다 정했어요.",
+    "particle": "을",
+    "context": "대학교에서 전공 을 결정하다 정했어",
+    "index": 8
+  },
+  {
+    "cycleId": "beginner_cycle_13",
+    "word": "전하다",
+    "sentenceKr": "고향에 계신 부모님께 편지 를 전하다.",
+    "particle": "를",
+    "context": "계신 부모님께 편지 를 전하다.",
+    "index": 14
+  },
+  {
+    "cycleId": "beginner_cycle_13",
+    "word": "전화",
+    "sentenceKr": "친구에게 전화 를 걸다.",
+    "particle": "를",
+    "context": "친구에게 전화 를 걸다.",
+    "index": 7
+  },
+  {
+    "cycleId": "beginner_cycle_13",
+    "word": "정리",
+    "sentenceKr": "공부를 시작하기 전에 책상 정리 를 해요.",
+    "particle": "를",
+    "context": "기 전에 책상 정리 를 해요.",
+    "index": 17
+  },
+  {
+    "cycleId": "beginner_cycle_13",
+    "word": "일흔",
+    "sentenceKr": "우리 할머니께서는 올해 일흔 이 되셨어요.",
+    "particle": "이",
+    "context": "니께서는 올해 일흔 이 되셨어요.",
+    "index": 15
+  },
+  {
+    "cycleId": "beginner_cycle_13",
+    "word": "점수",
+    "sentenceKr": "열심히 공부해서 시험 점수 가 높다.",
+    "particle": "가",
+    "context": "공부해서 시험 점수 가 높다.",
+    "index": 14
+  },
+  {
+    "cycleId": "beginner_cycle_13",
+    "word": "입",
+    "sentenceKr": "입 을 열다",
+    "particle": "을",
+    "context": "입 을 열다",
+    "index": 1
+  },
+  {
+    "cycleId": "beginner_cycle_13",
+    "word": "자기소개",
+    "sentenceKr": "자기소개 를 하다",
+    "particle": "를",
+    "context": "자기소개 를 하다",
+    "index": 4
+  },
+  {
+    "cycleId": "beginner_cycle_13",
+    "word": "자동판매기",
+    "sentenceKr": "자동판매기 를 누르다",
+    "particle": "를",
+    "context": "자동판매기 를 누르다",
+    "index": 5
+  },
+  {
+    "cycleId": "beginner_cycle_13",
+    "word": "자리",
+    "sentenceKr": "자리 에 앉다",
+    "particle": "에",
+    "context": "자리 에 앉다",
+    "index": 2
+  },
+  {
+    "cycleId": "beginner_cycle_13",
+    "word": "자식",
+    "sentenceKr": "자식 을 기르다",
+    "particle": "을",
+    "context": "자식 을 기르다",
+    "index": 2
+  },
+  {
+    "cycleId": "beginner_cycle_13",
+    "word": "자유",
+    "sentenceKr": "자유 를 누리다",
+    "particle": "를",
+    "context": "자유 를 누리다",
+    "index": 2
+  },
+  {
+    "cycleId": "beginner_cycle_13",
+    "word": "자전거",
+    "sentenceKr": "자전거 를 타다",
+    "particle": "를",
+    "context": "자전거 를 타다",
+    "index": 3
+  },
+  {
+    "cycleId": "beginner_cycle_13",
+    "word": "잘못",
+    "sentenceKr": "잘못 이 많다",
+    "particle": "이",
+    "context": "잘못 이 많다",
+    "index": 2
+  },
+  {
+    "cycleId": "beginner_cycle_13",
+    "word": "잡지",
+    "sentenceKr": "잡지 를 보다",
+    "particle": "를",
+    "context": "잡지 를 보다",
+    "index": 2
+  },
+  {
+    "cycleId": "beginner_cycle_13",
+    "word": "장갑",
+    "sentenceKr": "장갑 을 끼다",
+    "particle": "을",
+    "context": "장갑 을 끼다",
+    "index": 2
+  },
+  {
+    "cycleId": "beginner_cycle_13",
+    "word": "장난감",
+    "sentenceKr": "장난감 을 가지고 놀다",
+    "particle": "을",
+    "context": "장난감 을 가지고 놀다",
+    "index": 3
+  },
+  {
+    "cycleId": "beginner_cycle_13",
+    "word": "재료",
+    "sentenceKr": "재료 를 준비하다",
+    "particle": "를",
+    "context": "재료 를 준비하다",
+    "index": 2
+  },
+  {
+    "cycleId": "beginner_cycle_13",
+    "word": "재미",
+    "sentenceKr": "재미 가 있다",
+    "particle": "가",
+    "context": "재미 가 있다",
+    "index": 2
+  },
+  {
+    "cycleId": "beginner_cycle_13",
+    "word": "재채기",
+    "sentenceKr": "재채기 가 나오다",
+    "particle": "가",
+    "context": "재채기 가 나오다",
+    "index": 3
+  },
+  {
+    "cycleId": "beginner_cycle_13",
+    "word": "저금",
+    "sentenceKr": "저금 을 하다",
+    "particle": "을",
+    "context": "저금 을 하다",
+    "index": 2
+  },
+  {
+    "cycleId": "beginner_cycle_14",
+    "word": "주문",
+    "sentenceKr": "식당에서 음식 주문 을 받다.",
+    "particle": "을",
+    "context": "식당에서 음식 주문 을 받다.",
+    "index": 10
+  },
+  {
+    "cycleId": "beginner_cycle_14",
+    "word": "주스",
+    "sentenceKr": "시원한 오렌지 주스 를 마시다.",
+    "particle": "를",
+    "context": "시원한 오렌지 주스 를 마시다.",
+    "index": 10
+  },
+  {
+    "cycleId": "beginner_cycle_14",
+    "word": "중국집",
+    "sentenceKr": "오늘 점심은 중국집 에 주문하다 해서 먹을까요?",
+    "particle": "에",
+    "context": "오늘 점심은 중국집 에 주문하다 해서",
+    "index": 10
+  },
+  {
+    "cycleId": "beginner_cycle_14",
+    "word": "짬뽕",
+    "sentenceKr": "짬뽕 음식 을 먹다.",
+    "particle": "을",
+    "context": "짬뽕 음식 을 먹다.",
+    "index": 5
+  },
+  {
+    "cycleId": "beginner_cycle_14",
+    "word": "찌개",
+    "sentenceKr": "찌개 를 끓이다.",
+    "particle": "를",
+    "context": "찌개 를 끓이다.",
+    "index": 2
+  },
+  {
+    "cycleId": "beginner_cycle_14",
+    "word": "차",
+    "sentenceKr": "차 를 마시다.",
+    "particle": "를",
+    "context": "차 를 마시다.",
+    "index": 1
+  },
+  {
+    "cycleId": "beginner_cycle_14",
+    "word": "차",
+    "sentenceKr": "차 를 마시다.",
+    "particle": "를",
+    "context": "차 를 마시다.",
+    "index": 1
+  },
+  {
+    "cycleId": "beginner_cycle_14",
+    "word": "종이",
+    "sentenceKr": "종이 에 쓰다 중요한 내용을 메모했어요.",
+    "particle": "에",
+    "context": "종이 에 쓰다 중요한 내",
+    "index": 2
+  },
+  {
+    "cycleId": "beginner_cycle_14",
+    "word": "중학교",
+    "sentenceKr": "내년에 중학교 에 입학하다.",
+    "particle": "에",
+    "context": "내년에 중학교 에 입학하다.",
+    "index": 7
+  },
+  {
+    "cycleId": "beginner_cycle_14",
+    "word": "중학생",
+    "sentenceKr": "제 동생은 이제 중학생 이 되다.",
+    "particle": "이",
+    "context": "동생은 이제 중학생 이 되다.",
+    "index": 12
+  },
+  {
+    "cycleId": "beginner_cycle_14",
+    "word": "지우개",
+    "sentenceKr": "지우개 로 지우다.",
+    "particle": "로",
+    "context": "지우개 로 지우다.",
+    "index": 3
+  },
+  {
+    "cycleId": "beginner_cycle_14",
+    "word": "정문",
+    "sentenceKr": "학교 정문 으로 다니는 학생들이 많아요.",
+    "particle": "으로",
+    "context": "학교 정문 으로 다니는 학생들이",
+    "index": 5
+  },
+  {
+    "cycleId": "beginner_cycle_14",
+    "word": "정원",
+    "sentenceKr": "주말에 집 앞 정원 을 가꾸다.",
+    "particle": "을",
+    "context": "주말에 집 앞 정원 을 가꾸다.",
+    "index": 10
+  },
+  {
+    "cycleId": "beginner_cycle_14",
+    "word": "제목",
+    "sentenceKr": "노래의 제목 을 짓다 정했어요.",
+    "particle": "을",
+    "context": "노래의 제목 을 짓다 정했어요.",
+    "index": 6
+  },
+  {
+    "cycleId": "beginner_cycle_14",
+    "word": "주머니",
+    "sentenceKr": "코트 주머니 에 손을 넣다 넣었어요.",
+    "particle": "에",
+    "context": "코트 주머니 에 손을 넣다 넣었",
+    "index": 6
+  },
+  {
+    "cycleId": "beginner_cycle_14",
+    "word": "주부",
+    "sentenceKr": "그녀는 전업 주부 로 살다 일하고 있어요.",
+    "particle": "로",
+    "context": "그녀는 전업 주부 로 살다 일하고 있",
+    "index": 9
+  },
+  {
+    "cycleId": "beginner_cycle_14",
+    "word": "주소",
+    "sentenceKr": "봉투에 받는 사람의 주소 를 적다.",
+    "particle": "를",
+    "context": "받는 사람의 주소 를 적다.",
+    "index": 13
+  },
+  {
+    "cycleId": "beginner_cycle_14",
+    "word": "줄",
+    "sentenceKr": "낚시 줄 을 감다.",
+    "particle": "을",
+    "context": "낚시 줄 을 감다.",
+    "index": 4
+  },
+  {
+    "cycleId": "beginner_cycle_14",
+    "word": "지갑",
+    "sentenceKr": "가방에 지갑 을 넣다 넣었어요.",
+    "particle": "을",
+    "context": "가방에 지갑 을 넣다 넣었어요.",
+    "index": 6
+  },
+  {
+    "cycleId": "beginner_cycle_14",
+    "word": "집",
+    "sentenceKr": "집 에 살다.",
+    "particle": "에",
+    "context": "집 에 살다.",
+    "index": 1
+  },
+  {
+    "cycleId": "beginner_cycle_14",
+    "word": "집들이",
+    "sentenceKr": "집들이 에 초대하다.",
+    "particle": "에",
+    "context": "집들이 에 초대하다.",
+    "index": 3
+  },
+  {
+    "cycleId": "beginner_cycle_14",
+    "word": "집안일",
+    "sentenceKr": "집안일 을 보다.",
+    "particle": "을",
+    "context": "집안일 을 보다.",
+    "index": 3
+  },
+  {
+    "cycleId": "beginner_cycle_14",
+    "word": "짝",
+    "sentenceKr": "짝 을 맞추다.",
+    "particle": "을",
+    "context": "짝 을 맞추다.",
+    "index": 1
+  },
+  {
+    "cycleId": "beginner_cycle_14",
+    "word": "제주도",
+    "sentenceKr": "제주도 는 한국의 아름다운 섬이에요.",
+    "particle": "는",
+    "context": "제주도 는 한국의 아름다운",
+    "index": 3
+  },
+  {
+    "cycleId": "beginner_cycle_14",
+    "word": "주변",
+    "sentenceKr": "우리 학교 주변 환경 이 아주 좋아요.",
+    "particle": "이",
+    "context": "리 학교 주변 환경 이 아주 좋아요.",
+    "index": 11
+  },
+  {
+    "cycleId": "beginner_cycle_14",
+    "word": "주위",
+    "sentenceKr": "눈 주위 가 부어올랐어요.",
+    "particle": "가",
+    "context": "눈 주위 가 부어올랐어요.",
+    "index": 4
+  },
+  {
+    "cycleId": "beginner_cycle_14",
+    "word": "주차장",
+    "sentenceKr": "차를 주차장 에 세우다 세웠어요.",
+    "particle": "에",
+    "context": "차를 주차장 에 세우다 세웠어요",
+    "index": 6
+  },
+  {
+    "cycleId": "beginner_cycle_14",
+    "word": "중국",
+    "sentenceKr": "중국 은 땅이 아주 넓은 나라 예요.",
+    "particle": "은",
+    "context": "중국 은 땅이 아주 넓은",
+    "index": 2
+  },
+  {
+    "cycleId": "beginner_cycle_14",
+    "word": "중앙",
+    "sentenceKr": "가수는 무대 중앙 에 서서 노래를 불렀어요.",
+    "particle": "에",
+    "context": "가수는 무대 중앙 에 서서 노래를 불",
+    "index": 9
+  },
+  {
+    "cycleId": "beginner_cycle_14",
+    "word": "지도",
+    "sentenceKr": "모르는 길은 지도 를 보다.",
+    "particle": "를",
+    "context": "모르는 길은 지도 를 보다.",
+    "index": 9
+  },
+  {
+    "cycleId": "beginner_cycle_14",
+    "word": "지방",
+    "sentenceKr": "남쪽 지방 은 따뜻해요.",
+    "particle": "은",
+    "context": "남쪽 지방 은 따뜻해요.",
+    "index": 5
+  },
+  {
+    "cycleId": "beginner_cycle_14",
+    "word": "지하",
+    "sentenceKr": "지하 로 내려가다.",
+    "particle": "로",
+    "context": "지하 로 내려가다.",
+    "index": 2
+  },
+  {
+    "cycleId": "beginner_cycle_14",
+    "word": "지하도",
+    "sentenceKr": "지하도 를 건너다.",
+    "particle": "를",
+    "context": "지하도 를 건너다.",
+    "index": 3
+  },
+  {
+    "cycleId": "beginner_cycle_14",
+    "word": "지하철",
+    "sentenceKr": "지하철 을 타다.",
+    "particle": "을",
+    "context": "지하철 을 타다.",
+    "index": 3
+  },
+  {
+    "cycleId": "beginner_cycle_14",
+    "word": "지하철역",
+    "sentenceKr": "지하철역 에 도착하다.",
+    "particle": "에",
+    "context": "지하철역 에 도착하다.",
+    "index": 4
+  },
+  {
+    "cycleId": "beginner_cycle_14",
+    "word": "직장",
+    "sentenceKr": "직장 에 다니다.",
+    "particle": "에",
+    "context": "직장 에 다니다.",
+    "index": 2
+  },
+  {
+    "cycleId": "beginner_cycle_14",
+    "word": "짐",
+    "sentenceKr": "짐 을 싸다.",
+    "particle": "을",
+    "context": "짐 을 싸다.",
+    "index": 1
+  },
+  {
+    "cycleId": "beginner_cycle_14",
+    "word": "조카",
+    "sentenceKr": "우리 조카 는 아주 귀여워요.",
+    "particle": "는",
+    "context": "우리 조카 는 아주 귀여워요.",
+    "index": 5
+  },
+  {
+    "cycleId": "beginner_cycle_14",
+    "word": "종업원",
+    "sentenceKr": "식당 종업원 이 아주 친절해요.",
+    "particle": "이",
+    "context": "식당 종업원 이 아주 친절해요.",
+    "index": 6
+  },
+  {
+    "cycleId": "beginner_cycle_14",
+    "word": "주인",
+    "sentenceKr": "가게 주인 이 아주 친절하시네요.",
+    "particle": "이",
+    "context": "가게 주인 이 아주 친절하시네",
+    "index": 5
+  },
+  {
+    "cycleId": "beginner_cycle_14",
+    "word": "직업",
+    "sentenceKr": "직업 을 구하다.",
+    "particle": "을",
+    "context": "직업 을 구하다.",
+    "index": 2
+  },
+  {
+    "cycleId": "beginner_cycle_14",
+    "word": "직원",
+    "sentenceKr": "새 직원 을 모집하다.",
+    "particle": "을",
+    "context": "새 직원 을 모집하다.",
+    "index": 4
+  },
+  {
+    "cycleId": "beginner_cycle_14",
+    "word": "조심",
+    "sentenceKr": "빗길에는 항상 운전 조심 을 해야 해요.",
+    "particle": "을",
+    "context": "는 항상 운전 조심 을 해야 해요.",
+    "index": 13
+  },
+  {
+    "cycleId": "beginner_cycle_14",
+    "word": "짜증",
+    "sentenceKr": "짜증 을 내다.",
+    "particle": "을",
+    "context": "짜증 을 내다.",
+    "index": 2
+  },
+  {
+    "cycleId": "beginner_cycle_14",
+    "word": "주말",
+    "sentenceKr": "즐거운 주말 을 보내다 보내세요.",
+    "particle": "을",
+    "context": "즐거운 주말 을 보내다 보내세요",
+    "index": 6
+  },
+  {
+    "cycleId": "beginner_cycle_14",
+    "word": "주일",
+    "sentenceKr": "이번 주일 에 교회에 가요.",
+    "particle": "에",
+    "context": "이번 주일 에 교회에 가요.",
+    "index": 5
+  },
+  {
+    "cycleId": "beginner_cycle_14",
+    "word": "지난달",
+    "sentenceKr": "지난달 에 가족들과 여행을 다녀왔어요.",
+    "particle": "에",
+    "context": "지난달 에 가족들과 여행을",
+    "index": 3
+  },
+  {
+    "cycleId": "beginner_cycle_14",
+    "word": "지난번",
+    "sentenceKr": "지난번 에 만났던 친구를 또 만났어요.",
+    "particle": "에",
+    "context": "지난번 에 만났던 친구를",
+    "index": 3
+  },
+  {
+    "cycleId": "beginner_cycle_14",
+    "word": "주다",
+    "sentenceKr": "친구의 생일에 선물 을 주다.",
+    "particle": "을",
+    "context": "친구의 생일에 선물 을 주다.",
+    "index": 10
+  },
+  {
+    "cycleId": "beginner_cycle_14",
+    "word": "주사",
+    "sentenceKr": "병원에서 예방 주사 를 맞다.",
+    "particle": "를",
+    "context": "병원에서 예방 주사 를 맞다.",
+    "index": 10
+  },
+  {
+    "cycleId": "beginner_cycle_14",
+    "word": "준비",
+    "sentenceKr": "내일 출근 준비 를 미리 해둬요.",
+    "particle": "를",
+    "context": "내일 출근 준비 를 미리 해둬요.",
+    "index": 8
+  },
+  {
+    "cycleId": "beginner_cycle_14",
+    "word": "줄이다",
+    "sentenceKr": "텔레비전 소리 를 줄이다.",
+    "particle": "를",
+    "context": "텔레비전 소리 를 줄이다.",
+    "index": 7
+  },
+  {
+    "cycleId": "beginner_cycle_14",
+    "word": "지각",
+    "sentenceKr": "학교에 지각 을 하다 해서 선생님께 혼났어요.",
+    "particle": "을",
+    "context": "학교에 지각 을 하다 해서 선생",
+    "index": 6
+  },
+  {
+    "cycleId": "beginner_cycle_14",
+    "word": "질문",
+    "sentenceKr": "질문 에 답하다.",
+    "particle": "에",
+    "context": "질문 에 답하다.",
+    "index": 2
+  },
+  {
+    "cycleId": "beginner_cycle_14",
+    "word": "종류",
+    "sentenceKr": "이 가게에는 빵의 종류 가 다양하다.",
+    "particle": "가",
+    "context": "가게에는 빵의 종류 가 다양하다.",
+    "index": 12
+  },
+  {
+    "cycleId": "beginner_cycle_14",
+    "word": "주황색",
+    "sentenceKr": "그녀는 주황색 색깔 을 좋아해요.",
+    "particle": "을",
+    "context": "그녀는 주황색 색깔 을 좋아해요.",
+    "index": 10
+  },
+  {
+    "cycleId": "beginner_cycle_14",
+    "word": "중요",
+    "sentenceKr": "회의를 위해 중요 자료 를 챙겼어요.",
+    "particle": "를",
+    "context": "를 위해 중요 자료 를 챙겼어요.",
+    "index": 12
+  },
+  {
+    "cycleId": "beginner_cycle_14",
+    "word": "쪽",
+    "sentenceKr": "왼쪽 방향 으로 가세요.",
+    "particle": "으로",
+    "context": "왼쪽 방향 으로 가세요.",
+    "index": 5
+  },
+  {
+    "cycleId": "beginner_cycle_15",
+    "word": "찬물",
+    "sentenceKr": "찬물 을 마시다.",
+    "particle": "을",
+    "context": "찬물 을 마시다.",
+    "index": 2
+  },
+  {
+    "cycleId": "beginner_cycle_15",
+    "word": "참외",
+    "sentenceKr": "참외 과일 을 먹다.",
+    "particle": "을",
+    "context": "참외 과일 을 먹다.",
+    "index": 5
+  },
+  {
+    "cycleId": "beginner_cycle_15",
+    "word": "채소",
+    "sentenceKr": "채소 를 먹다.",
+    "particle": "를",
+    "context": "채소 를 먹다.",
+    "index": 2
+  },
+  {
+    "cycleId": "beginner_cycle_15",
+    "word": "초콜릿",
+    "sentenceKr": "초콜릿 을 먹다.",
+    "particle": "을",
+    "context": "초콜릿 을 먹다.",
+    "index": 3
+  },
+  {
+    "cycleId": "beginner_cycle_15",
+    "word": "치킨",
+    "sentenceKr": "저녁으로 맛있는 치킨 음식 을 먹어요.",
+    "particle": "을",
+    "context": "맛있는 치킨 음식 을 먹어요.",
+    "index": 14
+  },
+  {
+    "cycleId": "beginner_cycle_15",
+    "word": "칼",
+    "sentenceKr": "칼 로 자르다.",
+    "particle": "로",
+    "context": "칼 로 자르다.",
+    "index": 1
+  },
+  {
+    "cycleId": "beginner_cycle_15",
+    "word": "칼국수",
+    "sentenceKr": "따뜻한 칼국수 음식 을 먹고 싶어요.",
+    "particle": "을",
+    "context": "따뜻한 칼국수 음식 을 먹고 싶어요.",
+    "index": 10
+  },
+  {
+    "cycleId": "beginner_cycle_15",
+    "word": "커피",
+    "sentenceKr": "모닝 커피 를 마시다.",
+    "particle": "를",
+    "context": "모닝 커피 를 마시다.",
+    "index": 5
+  },
+  {
+    "cycleId": "beginner_cycle_15",
+    "word": "컵",
+    "sentenceKr": "물 컵 을 닦다.",
+    "particle": "을",
+    "context": "물 컵 을 닦다.",
+    "index": 3
+  },
+  {
+    "cycleId": "beginner_cycle_15",
+    "word": "케이크",
+    "sentenceKr": "생일 케이크 를 먹다.",
+    "particle": "를",
+    "context": "생일 케이크 를 먹다.",
+    "index": 6
+  },
+  {
+    "cycleId": "beginner_cycle_15",
+    "word": "콜라",
+    "sentenceKr": "피자와 콜라 를 마시다.",
+    "particle": "를",
+    "context": "피자와 콜라 를 마시다.",
+    "index": 6
+  },
+  {
+    "cycleId": "beginner_cycle_15",
+    "word": "콩",
+    "sentenceKr": "콩 식물 을 심다.",
+    "particle": "을",
+    "context": "콩 식물 을 심다.",
+    "index": 4
+  },
+  {
+    "cycleId": "beginner_cycle_15",
+    "word": "책",
+    "sentenceKr": "책 을 읽다.",
+    "particle": "을",
+    "context": "책 을 읽다.",
+    "index": 1
+  },
+  {
+    "cycleId": "beginner_cycle_15",
+    "word": "책상",
+    "sentenceKr": "책상 가구 를 사다.",
+    "particle": "를",
+    "context": "책상 가구 를 사다.",
+    "index": 5
+  },
+  {
+    "cycleId": "beginner_cycle_15",
+    "word": "책장",
+    "sentenceKr": "책장 가구 에 책을 꽂다.",
+    "particle": "에",
+    "context": "책장 가구 에 책을 꽂다.",
+    "index": 5
+  },
+  {
+    "cycleId": "beginner_cycle_15",
+    "word": "초등학교",
+    "sentenceKr": "초등학교 에 입학하다.",
+    "particle": "에",
+    "context": "초등학교 에 입학하다.",
+    "index": 4
+  },
+  {
+    "cycleId": "beginner_cycle_15",
+    "word": "초등학생",
+    "sentenceKr": "초등학생 이 되다.",
+    "particle": "이",
+    "context": "초등학생 이 되다.",
+    "index": 4
+  },
+  {
+    "cycleId": "beginner_cycle_15",
+    "word": "창문",
+    "sentenceKr": "창문 을 열다.",
+    "particle": "을",
+    "context": "창문 을 열다.",
+    "index": 2
+  },
+  {
+    "cycleId": "beginner_cycle_15",
+    "word": "청소",
+    "sentenceKr": "화장실 청소 를 하다.",
+    "particle": "를",
+    "context": "화장실 청소 를 하다.",
+    "index": 6
+  },
+  {
+    "cycleId": "beginner_cycle_15",
+    "word": "초대장",
+    "sentenceKr": "초대장 을 보내다.",
+    "particle": "을",
+    "context": "초대장 을 보내다.",
+    "index": 3
+  },
+  {
+    "cycleId": "beginner_cycle_15",
+    "word": "축구공",
+    "sentenceKr": "축구공 을 차다.",
+    "particle": "을",
+    "context": "축구공 을 차다.",
+    "index": 3
+  },
+  {
+    "cycleId": "beginner_cycle_15",
+    "word": "층",
+    "sentenceKr": "우리 사무실은 건물의 10층 에 있어요.",
+    "particle": "에",
+    "context": "실은 건물의 10층 에 있어요.",
+    "index": 15
+  },
+  {
+    "cycleId": "beginner_cycle_15",
+    "word": "치마",
+    "sentenceKr": "오늘 예쁜 치마 를 입다.",
+    "particle": "를",
+    "context": "오늘 예쁜 치마 를 입다.",
+    "index": 8
+  },
+  {
+    "cycleId": "beginner_cycle_15",
+    "word": "치약",
+    "sentenceKr": "칫솔에 치약 을 짜다.",
+    "particle": "을",
+    "context": "칫솔에 치약 을 짜다.",
+    "index": 6
+  },
+  {
+    "cycleId": "beginner_cycle_15",
+    "word": "칠판",
+    "sentenceKr": "선생님이 칠판 에 쓰다.",
+    "particle": "에",
+    "context": "선생님이 칠판 에 쓰다.",
+    "index": 7
+  },
+  {
+    "cycleId": "beginner_cycle_15",
+    "word": "침대",
+    "sentenceKr": "폭신한 침대 가구 를 샀어요.",
+    "particle": "를",
+    "context": "폭신한 침대 가구 를 샀어요.",
+    "index": 9
+  },
+  {
+    "cycleId": "beginner_cycle_15",
+    "word": "칫솔",
+    "sentenceKr": "칫솔 로 이를 닦다.",
+    "particle": "로",
+    "context": "칫솔 로 이를 닦다.",
+    "index": 2
+  },
+  {
+    "cycleId": "beginner_cycle_15",
+    "word": "카드",
+    "sentenceKr": "생일 카드 를 쓰다.",
+    "particle": "를",
+    "context": "생일 카드 를 쓰다.",
+    "index": 5
+  },
+  {
+    "cycleId": "beginner_cycle_15",
+    "word": "카메라",
+    "sentenceKr": "새 카메라 로 사진을 찍다.",
+    "particle": "로",
+    "context": "새 카메라 로 사진을 찍다.",
+    "index": 5
+  },
+  {
+    "cycleId": "beginner_cycle_15",
+    "word": "컴퓨터",
+    "sentenceKr": "컴퓨터 로 게임을 하다.",
+    "particle": "로",
+    "context": "컴퓨터 로 게임을 하다.",
+    "index": 3
+  },
+  {
+    "cycleId": "beginner_cycle_15",
+    "word": "코",
+    "sentenceKr": "코 가 높다.",
+    "particle": "가",
+    "context": "코 가 높다.",
+    "index": 1
+  },
+  {
+    "cycleId": "beginner_cycle_15",
+    "word": "출구",
+    "sentenceKr": "출구 로 나가다.",
+    "particle": "로",
+    "context": "출구 로 나가다.",
+    "index": 2
+  },
+  {
+    "cycleId": "beginner_cycle_15",
+    "word": "출입국",
+    "sentenceKr": "출입국 사무소 에 가다.",
+    "particle": "가",
+    "context": "출입국 사무소 에 가다.",
+    "index": 9
+  },
+  {
+    "cycleId": "beginner_cycle_15",
+    "word": "출입국",
+    "sentenceKr": "출입국 사무소 에 가다.",
+    "particle": "에",
+    "context": "출입국 사무소 에 가다.",
+    "index": 7
+  },
+  {
+    "cycleId": "beginner_cycle_15",
+    "word": "출장",
+    "sentenceKr": "출장 을 가다.",
+    "particle": "을",
+    "context": "출장 을 가다.",
+    "index": 2
+  },
+  {
+    "cycleId": "beginner_cycle_15",
+    "word": "출장",
+    "sentenceKr": "출장 을 가다.",
+    "particle": "가",
+    "context": "출장 을 가다.",
+    "index": 4
+  },
+  {
+    "cycleId": "beginner_cycle_15",
+    "word": "치과",
+    "sentenceKr": "이빨이 아파서 치과 병원 에 갔어요.",
+    "particle": "에",
+    "context": "아파서 치과 병원 에 갔어요.",
+    "index": 13
+  },
+  {
+    "cycleId": "beginner_cycle_15",
+    "word": "캐나다",
+    "sentenceKr": "캐나다 나라 에 여행을 가고 싶어요.",
+    "particle": "에",
+    "context": "캐나다 나라 에 여행을 가고 싶",
+    "index": 6
+  },
+  {
+    "cycleId": "beginner_cycle_15",
+    "word": "청년",
+    "sentenceKr": "젊은 청년 이 일하다.",
+    "particle": "이",
+    "context": "젊은 청년 이 일하다.",
+    "index": 5
+  },
+  {
+    "cycleId": "beginner_cycle_15",
+    "word": "출근",
+    "sentenceKr": "출근 과 퇴근 시간.",
+    "particle": "과",
+    "context": "출근 과 퇴근 시간.",
+    "index": 2
+  },
+  {
+    "cycleId": "beginner_cycle_15",
+    "word": "취직",
+    "sentenceKr": "취직 이 되다.",
+    "particle": "이",
+    "context": "취직 이 되다.",
+    "index": 2
+  },
+  {
+    "cycleId": "beginner_cycle_15",
+    "word": "친구",
+    "sentenceKr": "오랜만에 친구 를 만나다.",
+    "particle": "를",
+    "context": "오랜만에 친구 를 만나다.",
+    "index": 7
+  },
+  {
+    "cycleId": "beginner_cycle_15",
+    "word": "친척",
+    "sentenceKr": "명절에 친척 이 모이다.",
+    "particle": "이",
+    "context": "명절에 친척 이 모이다.",
+    "index": 6
+  },
+  {
+    "cycleId": "beginner_cycle_15",
+    "word": "취미",
+    "sentenceKr": "취미 생활 을 즐기다.",
+    "particle": "을",
+    "context": "취미 생활 을 즐기다.",
+    "index": 5
+  },
+  {
+    "cycleId": "beginner_cycle_15",
+    "word": "청바지",
+    "sentenceKr": "청바지 를 입다.",
+    "particle": "를",
+    "context": "청바지 를 입다.",
+    "index": 3
+  },
+  {
+    "cycleId": "beginner_cycle_15",
+    "word": "코끼리",
+    "sentenceKr": "동물원 에서 코끼리 를 봤어요.",
+    "particle": "를",
+    "context": "동물원 에서 코끼리 를 봤어요.",
+    "index": 10
+  },
+  {
+    "cycleId": "beginner_cycle_15",
+    "word": "첫날",
+    "sentenceKr": "새해 첫날 에 만나요.",
+    "particle": "에",
+    "context": "새해 첫날 에 만나요.",
+    "index": 5
+  },
+  {
+    "cycleId": "beginner_cycle_15",
+    "word": "청소년",
+    "sentenceKr": "청소년 시절 을 보내다.",
+    "particle": "을",
+    "context": "청소년 시절 을 보내다.",
+    "index": 6
+  },
+  {
+    "cycleId": "beginner_cycle_15",
+    "word": "초",
+    "sentenceKr": "10초 시간 을 재다.",
+    "particle": "을",
+    "context": "10초 시간 을 재다.",
+    "index": 6
+  },
+  {
+    "cycleId": "beginner_cycle_15",
+    "word": "초",
+    "sentenceKr": "10초 시간 을 재다.",
+    "particle": "을",
+    "context": "10초 시간 을 재다.",
+    "index": 6
+  },
+  {
+    "cycleId": "beginner_cycle_15",
+    "word": "초대",
+    "sentenceKr": "초대 를 하다.",
+    "particle": "를",
+    "context": "초대 를 하다.",
+    "index": 2
+  },
+  {
+    "cycleId": "beginner_cycle_15",
+    "word": "축구",
+    "sentenceKr": "축구 운동 을 좋아하다.",
+    "particle": "을",
+    "context": "축구 운동 을 좋아하다.",
+    "index": 5
+  },
+  {
+    "cycleId": "beginner_cycle_15",
+    "word": "축하",
+    "sentenceKr": "축하 파티 를 하다.",
+    "particle": "를",
+    "context": "축하 파티 를 하다.",
+    "index": 5
+  },
+  {
+    "cycleId": "beginner_cycle_15",
+    "word": "출발",
+    "sentenceKr": "출발 과 도착.",
+    "particle": "과",
+    "context": "출발 과 도착.",
+    "index": 2
+  },
+  {
+    "cycleId": "beginner_cycle_15",
+    "word": "출석",
+    "sentenceKr": "출석 을 부르다.",
+    "particle": "을",
+    "context": "출석 을 부르다.",
+    "index": 2
+  },
+  {
+    "cycleId": "beginner_cycle_15",
+    "word": "출입",
+    "sentenceKr": "출입 을 통제하다.",
+    "particle": "을",
+    "context": "출입 을 통제하다.",
+    "index": 2
+  },
+  {
+    "cycleId": "beginner_cycle_15",
+    "word": "출퇴근",
+    "sentenceKr": "출퇴근 을 하다.",
+    "particle": "을",
+    "context": "출퇴근 을 하다.",
+    "index": 3
+  },
+  {
+    "cycleId": "beginner_cycle_15",
+    "word": "춤",
+    "sentenceKr": "춤 을 추다.",
+    "particle": "을",
+    "context": "춤 을 추다.",
+    "index": 1
+  },
+  {
+    "cycleId": "beginner_cycle_15",
+    "word": "취소",
+    "sentenceKr": "예약 취소 를 하다.",
+    "particle": "를",
+    "context": "예약 취소 를 하다.",
+    "index": 5
+  },
+  {
+    "cycleId": "beginner_cycle_15",
+    "word": "치료",
+    "sentenceKr": "병원에서 치료 를 받다.",
+    "particle": "를",
+    "context": "병원에서 치료 를 받다.",
+    "index": 7
+  },
+  {
+    "cycleId": "beginner_cycle_15",
+    "word": "칭찬",
+    "sentenceKr": "잘했다고 칭찬 을 듣다.",
+    "particle": "을",
+    "context": "잘했다고 칭찬 을 듣다.",
+    "index": 7
+  },
+  {
+    "cycleId": "beginner_cycle_15",
+    "word": "켜다",
+    "sentenceKr": "바이올린 을 켜다.",
+    "particle": "을",
+    "context": "바이올린 을 켜다.",
+    "index": 4
+  },
+  {
+    "cycleId": "beginner_cycle_15",
+    "word": "켜다",
+    "sentenceKr": "바이올린 을 켜다.",
+    "particle": "을",
+    "context": "바이올린 을 켜다.",
+    "index": 4
+  },
+  {
+    "cycleId": "beginner_cycle_15",
+    "word": "콘서트",
+    "sentenceKr": "가수의 콘서트 를 보다.",
+    "particle": "를",
+    "context": "가수의 콘서트 를 보다.",
+    "index": 7
+  },
+  {
+    "cycleId": "beginner_cycle_15",
+    "word": "큰소리",
+    "sentenceKr": "밖에서 큰소리 가 들리다.",
+    "particle": "가",
+    "context": "밖에서 큰소리 가 들리다.",
+    "index": 7
+  },
+  {
+    "cycleId": "beginner_cycle_15",
+    "word": "차례",
+    "sentenceKr": "차례 를 지키다.",
+    "particle": "를",
+    "context": "차례 를 지키다.",
+    "index": 2
+  },
+  {
+    "cycleId": "beginner_cycle_15",
+    "word": "천",
+    "sentenceKr": "천 숫자 를 세다.",
+    "particle": "를",
+    "context": "천 숫자 를 세다.",
+    "index": 4
+  },
+  {
+    "cycleId": "beginner_cycle_15",
+    "word": "천만",
+    "sentenceKr": "천만 숫자 를 쓰다.",
+    "particle": "를",
+    "context": "천만 숫자 를 쓰다.",
+    "index": 5
+  },
+  {
+    "cycleId": "beginner_cycle_15",
+    "word": "천천히",
+    "sentenceKr": "천천히 가다.",
+    "particle": "가",
+    "context": "천천히 가다.",
+    "index": 3
+  },
+  {
+    "cycleId": "beginner_cycle_15",
+    "word": "첫",
+    "sentenceKr": "첫 만남 을 기억하다.",
+    "particle": "을",
+    "context": "첫 만남 을 기억하다.",
+    "index": 4
+  },
+  {
+    "cycleId": "beginner_cycle_15",
+    "word": "첫째",
+    "sentenceKr": "첫째 시간 에 공부해요.",
+    "particle": "에",
+    "context": "첫째 시간 에 공부해요.",
+    "index": 5
+  },
+  {
+    "cycleId": "beginner_cycle_15",
+    "word": "체크무늬",
+    "sentenceKr": "체크무늬 남방 을 입다.",
+    "particle": "을",
+    "context": "체크무늬 남방 을 입다.",
+    "index": 7
+  },
+  {
+    "cycleId": "beginner_cycle_15",
+    "word": "초록색",
+    "sentenceKr": "초록색 색깔 을 좋아하다.",
+    "particle": "을",
+    "context": "초록색 색깔 을 좋아하다.",
+    "index": 6
+  },
+  {
+    "cycleId": "beginner_cycle_15",
+    "word": "최고",
+    "sentenceKr": "최고 점수 를 받다.",
+    "particle": "를",
+    "context": "최고 점수 를 받다.",
+    "index": 5
+  },
+  {
+    "cycleId": "beginner_cycle_15",
+    "word": "최근",
+    "sentenceKr": "최근 에 들다.",
+    "particle": "에",
+    "context": "최근 에 들다.",
+    "index": 2
+  },
+  {
+    "cycleId": "beginner_cycle_15",
+    "word": "추석",
+    "sentenceKr": "추석 명절 을 보내다.",
+    "particle": "을",
+    "context": "추석 명절 을 보내다.",
+    "index": 5
+  },
+  {
+    "cycleId": "beginner_cycle_15",
+    "word": "친절",
+    "sentenceKr": "그는 항상 친절 로 대하다.",
+    "particle": "로",
+    "context": "그는 항상 친절 로 대하다.",
+    "index": 8
+  },
+  {
+    "cycleId": "beginner_cycle_15",
+    "word": "칠",
+    "sentenceKr": "칠 숫자 를 써 보세요.",
+    "particle": "를",
+    "context": "칠 숫자 를 써 보세요.",
+    "index": 4
+  },
+  {
+    "cycleId": "beginner_cycle_15",
+    "word": "켤레",
+    "sentenceKr": "운동화 한 켤레 를 샀어요.",
+    "particle": "를",
+    "context": "운동화 한 켤레 를 샀어요.",
+    "index": 8
+  },
+  {
+    "cycleId": "beginner_cycle_15",
+    "word": "콧물",
+    "sentenceKr": "감기에 걸려서 콧물 이 나오다.",
+    "particle": "이",
+    "context": "감기에 걸려서 콧물 이 나오다.",
+    "index": 10
+  },
+  {
+    "cycleId": "beginner_cycle_15",
+    "word": "크기",
+    "sentenceKr": "가방의 크기 가 크다.",
+    "particle": "가",
+    "context": "가방의 크기 가 크다.",
+    "index": 6
+  },
+  {
+    "cycleId": "beginner_cycle_15",
+    "word": "크리스마스",
+    "sentenceKr": "크리스마스 트리 를 만들다.",
+    "particle": "를",
+    "context": "크리스마스 트리 를 만들다.",
+    "index": 8
+  },
+  {
+    "cycleId": "beginner_cycle_15",
+    "word": "키",
+    "sentenceKr": "키 가 큰 사람.",
+    "particle": "가",
+    "context": "키 가 큰 사람.",
+    "index": 1
+  },
+  {
+    "cycleId": "beginner_cycle_16",
+    "word": "탕수육",
+    "sentenceKr": "중국집에서 탕수육 음식 을 시켰어요.",
+    "particle": "을",
+    "context": "집에서 탕수육 음식 을 시켰어요.",
+    "index": 12
+  },
+  {
+    "cycleId": "beginner_cycle_16",
+    "word": "토마토",
+    "sentenceKr": "싱싱한 토마토 채소 를 샀어요.",
+    "particle": "를",
+    "context": "싱싱한 토마토 채소 를 샀어요.",
+    "index": 10
+  },
+  {
+    "cycleId": "beginner_cycle_16",
+    "word": "튀김",
+    "sentenceKr": "바삭한 튀김 을 먹다.",
+    "particle": "을",
+    "context": "바삭한 튀김 을 먹다.",
+    "index": 6
+  },
+  {
+    "cycleId": "beginner_cycle_16",
+    "word": "포도",
+    "sentenceKr": "달콤한 보라색 포도 과일 을 좋아해요.",
+    "particle": "을",
+    "context": "보라색 포도 과일 을 좋아해요.",
+    "index": 13
+  },
+  {
+    "cycleId": "beginner_cycle_16",
+    "word": "피자",
+    "sentenceKr": "점심으로 피자 를 주문하다.",
+    "particle": "를",
+    "context": "점심으로 피자 를 주문하다.",
+    "index": 7
+  },
+  {
+    "cycleId": "beginner_cycle_16",
+    "word": "한식집",
+    "sentenceKr": "유명한 한식집 음식점 에 가다.",
+    "particle": "가",
+    "context": "한식집 음식점 에 가다.",
+    "index": 13
+  },
+  {
+    "cycleId": "beginner_cycle_16",
+    "word": "한식집",
+    "sentenceKr": "유명한 한식집 음식점 에 가다.",
+    "particle": "에",
+    "context": "명한 한식집 음식점 에 가다.",
+    "index": 11
+  },
+  {
+    "cycleId": "beginner_cycle_16",
+    "word": "햄버거",
+    "sentenceKr": "점심으로 햄버거 를 먹다.",
+    "particle": "를",
+    "context": "점심으로 햄버거 를 먹다.",
+    "index": 8
+  },
+  {
+    "cycleId": "beginner_cycle_16",
+    "word": "필통",
+    "sentenceKr": "필통 에 연필을 넣다.",
+    "particle": "에",
+    "context": "필통 에 연필을 넣다.",
+    "index": 2
+  },
+  {
+    "cycleId": "beginner_cycle_16",
+    "word": "학교",
+    "sentenceKr": "아침 일찍 학교 에 다니다.",
+    "particle": "에",
+    "context": "아침 일찍 학교 에 다니다.",
+    "index": 8
+  },
+  {
+    "cycleId": "beginner_cycle_16",
+    "word": "학생",
+    "sentenceKr": "선생님이 학생 을 가르치다.",
+    "particle": "을",
+    "context": "선생님이 학생 을 가르치다.",
+    "index": 7
+  },
+  {
+    "cycleId": "beginner_cycle_16",
+    "word": "학생증",
+    "sentenceKr": "도서관에서 학생증 을 보여주다.",
+    "particle": "을",
+    "context": "도서관에서 학생증 을 보여주다.",
+    "index": 9
+  },
+  {
+    "cycleId": "beginner_cycle_16",
+    "word": "학원",
+    "sentenceKr": "방과 후에 영어 학원 에 가요.",
+    "particle": "에",
+    "context": "과 후에 영어 학원 에 가요.",
+    "index": 11
+  },
+  {
+    "cycleId": "beginner_cycle_16",
+    "word": "태극기",
+    "sentenceKr": "국경일에 태극기 를 달다.",
+    "particle": "를",
+    "context": "국경일에 태극기 를 달다.",
+    "index": 8
+  },
+  {
+    "cycleId": "beginner_cycle_16",
+    "word": "테이블",
+    "sentenceKr": "음식을 테이블 에 놓다.",
+    "particle": "에",
+    "context": "음식을 테이블 에 놓다.",
+    "index": 7
+  },
+  {
+    "cycleId": "beginner_cycle_16",
+    "word": "텔레비전",
+    "sentenceKr": "가족과 텔레비전 을 보다.",
+    "particle": "을",
+    "context": "가족과 텔레비전 을 보다.",
+    "index": 8
+  },
+  {
+    "cycleId": "beginner_cycle_16",
+    "word": "통장",
+    "sentenceKr": "은행에서 통장 을 만들다.",
+    "particle": "을",
+    "context": "은행에서 통장 을 만들다.",
+    "index": 7
+  },
+  {
+    "cycleId": "beginner_cycle_16",
+    "word": "트럭",
+    "sentenceKr": "큰 트럭 을 타다.",
+    "particle": "을",
+    "context": "큰 트럭 을 타다.",
+    "index": 4
+  },
+  {
+    "cycleId": "beginner_cycle_16",
+    "word": "티셔츠",
+    "sentenceKr": "편한 티셔츠 를 입다.",
+    "particle": "를",
+    "context": "편한 티셔츠 를 입다.",
+    "index": 6
+  },
+  {
+    "cycleId": "beginner_cycle_16",
+    "word": "편지",
+    "sentenceKr": "친구에게 편지 를 쓰다.",
+    "particle": "를",
+    "context": "친구에게 편지 를 쓰다.",
+    "index": 7
+  },
+  {
+    "cycleId": "beginner_cycle_16",
+    "word": "프라이팬",
+    "sentenceKr": "프라이팬 에 요리를 볶다.",
+    "particle": "에",
+    "context": "프라이팬 에 요리를 볶다.",
+    "index": 4
+  },
+  {
+    "cycleId": "beginner_cycle_16",
+    "word": "프로그램",
+    "sentenceKr": "학교 교육 프로그램 에 참여하다.",
+    "particle": "에",
+    "context": "학교 교육 프로그램 에 참여하다.",
+    "index": 10
+  },
+  {
+    "cycleId": "beginner_cycle_16",
+    "word": "피",
+    "sentenceKr": "다쳐서 피 를 흘리다.",
+    "particle": "를",
+    "context": "다쳐서 피 를 흘리다.",
+    "index": 5
+  },
+  {
+    "cycleId": "beginner_cycle_16",
+    "word": "피아노",
+    "sentenceKr": "어릴 때 피아노 를 배우다.",
+    "particle": "를",
+    "context": "어릴 때 피아노 를 배우다.",
+    "index": 8
+  },
+  {
+    "cycleId": "beginner_cycle_16",
+    "word": "하숙집",
+    "sentenceKr": "학교 근처 하숙집 에 묵다.",
+    "particle": "에",
+    "context": "학교 근처 하숙집 에 묵다.",
+    "index": 9
+  },
+  {
+    "cycleId": "beginner_cycle_16",
+    "word": "한글",
+    "sentenceKr": "공책에 한글 을 쓰다.",
+    "particle": "을",
+    "context": "공책에 한글 을 쓰다.",
+    "index": 6
+  },
+  {
+    "cycleId": "beginner_cycle_16",
+    "word": "한복",
+    "sentenceKr": "명절에 예쁜 한복 을 입다.",
+    "particle": "을",
+    "context": "명절에 예쁜 한복 을 입다.",
+    "index": 9
+  },
+  {
+    "cycleId": "beginner_cycle_16",
+    "word": "한옥",
+    "sentenceKr": "전통 한옥 에 살다.",
+    "particle": "에",
+    "context": "전통 한옥 에 살다.",
+    "index": 5
+  },
+  {
+    "cycleId": "beginner_cycle_16",
+    "word": "태국",
+    "sentenceKr": "태국 나라 로 여행을 가요.",
+    "particle": "로",
+    "context": "태국 나라 로 여행을 가요.",
+    "index": 5
+  },
+  {
+    "cycleId": "beginner_cycle_16",
+    "word": "표",
+    "sentenceKr": "기차 표 를 끊다.",
+    "particle": "를",
+    "context": "기차 표 를 끊다.",
+    "index": 4
+  },
+  {
+    "cycleId": "beginner_cycle_16",
+    "word": "프랑스",
+    "sentenceKr": "프랑스 나라 에 가보고 싶어요.",
+    "particle": "에",
+    "context": "프랑스 나라 에 가보고 싶어요.",
+    "index": 6
+  },
+  {
+    "cycleId": "beginner_cycle_16",
+    "word": "항공",
+    "sentenceKr": "항공 운항 이 취소되다.",
+    "particle": "이",
+    "context": "항공 운항 이 취소되다.",
+    "index": 5
+  },
+  {
+    "cycleId": "beginner_cycle_16",
+    "word": "항공권",
+    "sentenceKr": "비행기 항공권 을 예약하다.",
+    "particle": "을",
+    "context": "비행기 항공권 을 예약하다.",
+    "index": 7
+  },
+  {
+    "cycleId": "beginner_cycle_16",
+    "word": "해외여행",
+    "sentenceKr": "방학 때 해외여행 을 가다.",
+    "particle": "을",
+    "context": "방학 때 해외여행 을 가다.",
+    "index": 9
+  },
+  {
+    "cycleId": "beginner_cycle_16",
+    "word": "해외여행",
+    "sentenceKr": "방학 때 해외여행 을 가다.",
+    "particle": "가",
+    "context": "학 때 해외여행 을 가다.",
+    "index": 11
+  },
+  {
+    "cycleId": "beginner_cycle_16",
+    "word": "팀",
+    "sentenceKr": "우리 팀 이 이겼어요.",
+    "particle": "이",
+    "context": "우리 팀 이 이겼어요.",
+    "index": 4
+  },
+  {
+    "cycleId": "beginner_cycle_16",
+    "word": "할머니",
+    "sentenceKr": "할머니 댁에 가다.",
+    "particle": "가",
+    "context": "할머니 댁에 가다.",
+    "index": 6
+  },
+  {
+    "cycleId": "beginner_cycle_16",
+    "word": "할아버지",
+    "sentenceKr": "할아버지 와 산책하다.",
+    "particle": "와",
+    "context": "할아버지 와 산책하다.",
+    "index": 4
+  },
+  {
+    "cycleId": "beginner_cycle_16",
+    "word": "편안",
+    "sentenceKr": "마음의 편안 을 바라다.",
+    "particle": "을",
+    "context": "마음의 편안 을 바라다.",
+    "index": 6
+  },
+  {
+    "cycleId": "beginner_cycle_16",
+    "word": "피곤",
+    "sentenceKr": "일이 많아서 피곤 에 지치다.",
+    "particle": "에",
+    "context": "일이 많아서 피곤 에 지치다.",
+    "index": 9
+  },
+  {
+    "cycleId": "beginner_cycle_16",
+    "word": "태풍",
+    "sentenceKr": "강한 태풍 이 불다.",
+    "particle": "이",
+    "context": "강한 태풍 이 불다.",
+    "index": 5
+  },
+  {
+    "cycleId": "beginner_cycle_16",
+    "word": "토끼",
+    "sentenceKr": "귀여운 토끼 동물 이 뛰어요.",
+    "particle": "이",
+    "context": "귀여운 토끼 동물 이 뛰어요.",
+    "index": 9
+  },
+  {
+    "cycleId": "beginner_cycle_16",
+    "word": "풍경",
+    "sentenceKr": "창밖의 아름다운 풍경 을 보다.",
+    "particle": "을",
+    "context": "밖의 아름다운 풍경 을 보다.",
+    "index": 11
+  },
+  {
+    "cycleId": "beginner_cycle_16",
+    "word": "하늘",
+    "sentenceKr": "파란 하늘 이 높다.",
+    "particle": "이",
+    "context": "파란 하늘 이 높다.",
+    "index": 5
+  },
+  {
+    "cycleId": "beginner_cycle_16",
+    "word": "해",
+    "sentenceKr": "해 가 뜨다.",
+    "particle": "가",
+    "context": "해 가 뜨다.",
+    "index": 1
+  },
+  {
+    "cycleId": "beginner_cycle_16",
+    "word": "해외",
+    "sentenceKr": "해외 에 상품을 수출하다.",
+    "particle": "에",
+    "context": "해외 에 상품을 수출하다",
+    "index": 2
+  },
+  {
+    "cycleId": "beginner_cycle_16",
+    "word": "평소",
+    "sentenceKr": "평소 와 다름없는 날이에요.",
+    "particle": "와",
+    "context": "평소 와 다름없는 날이에",
+    "index": 2
+  },
+  {
+    "cycleId": "beginner_cycle_16",
+    "word": "하루",
+    "sentenceKr": "즐거운 하루 를 보내다.",
+    "particle": "를",
+    "context": "즐거운 하루 를 보내다.",
+    "index": 6
+  },
+  {
+    "cycleId": "beginner_cycle_16",
+    "word": "탁구",
+    "sentenceKr": "친구와 탁구 를 치다.",
+    "particle": "를",
+    "context": "친구와 탁구 를 치다.",
+    "index": 6
+  },
+  {
+    "cycleId": "beginner_cycle_16",
+    "word": "태권도",
+    "sentenceKr": "도장에서 태권도 를 배우다.",
+    "particle": "를",
+    "context": "도장에서 태권도 를 배우다.",
+    "index": 8
+  },
+  {
+    "cycleId": "beginner_cycle_16",
+    "word": "택배",
+    "sentenceKr": "물건을 택배 로 보내다.",
+    "particle": "로",
+    "context": "물건을 택배 로 보내다.",
+    "index": 6
+  },
+  {
+    "cycleId": "beginner_cycle_16",
+    "word": "택시",
+    "sentenceKr": "늦어서 택시 를 타다.",
+    "particle": "를",
+    "context": "늦어서 택시 를 타다.",
+    "index": 6
+  },
+  {
+    "cycleId": "beginner_cycle_16",
+    "word": "테니스",
+    "sentenceKr": "주말에 테니스 를 치다.",
+    "particle": "를",
+    "context": "주말에 테니스 를 치다.",
+    "index": 7
+  },
+  {
+    "cycleId": "beginner_cycle_16",
+    "word": "통화",
+    "sentenceKr": "친구와 전화 통화 를 하다.",
+    "particle": "를",
+    "context": "친구와 전화 통화 를 하다.",
+    "index": 9
+  },
+  {
+    "cycleId": "beginner_cycle_16",
+    "word": "파티",
+    "sentenceKr": "생일 파티 를 열다.",
+    "particle": "를",
+    "context": "생일 파티 를 열다.",
+    "index": 5
+  },
+  {
+    "cycleId": "beginner_cycle_16",
+    "word": "포장",
+    "sentenceKr": "선물 포장 을 하다.",
+    "particle": "을",
+    "context": "선물 포장 을 하다.",
+    "index": 5
+  },
+  {
+    "cycleId": "beginner_cycle_16",
+    "word": "태도",
+    "sentenceKr": "공부하는 태도 가 좋다.",
+    "particle": "가",
+    "context": "공부하는 태도 가 좋다.",
+    "index": 7
+  },
+  {
+    "cycleId": "beginner_cycle_16",
+    "word": "팔",
+    "sentenceKr": "팔 숫자 를 쓰세요.",
+    "particle": "를",
+    "context": "팔 숫자 를 쓰세요.",
+    "index": 4
+  },
+  {
+    "cycleId": "beginner_cycle_16",
+    "word": "팔",
+    "sentenceKr": "팔 숫자 를 쓰세요.",
+    "particle": "를",
+    "context": "팔 숫자 를 쓰세요.",
+    "index": 4
+  },
+  {
+    "cycleId": "beginner_cycle_16",
+    "word": "팔십",
+    "sentenceKr": "팔십 숫자 를 배우다.",
+    "particle": "를",
+    "context": "팔십 숫자 를 배우다.",
+    "index": 5
+  },
+  {
+    "cycleId": "beginner_cycle_16",
+    "word": "하나",
+    "sentenceKr": "사과 하나 를 먹다.",
+    "particle": "를",
+    "context": "사과 하나 를 먹다.",
+    "index": 5
+  },
+  {
+    "cycleId": "beginner_cycle_16",
+    "word": "하숙비",
+    "sentenceKr": "매달 하숙비 를 내다.",
+    "particle": "를",
+    "context": "매달 하숙비 를 내다.",
+    "index": 6
+  },
+  {
+    "cycleId": "beginner_cycle_16",
+    "word": "학기",
+    "sentenceKr": "새 학기 가 시작되다.",
+    "particle": "가",
+    "context": "새 학기 가 시작되다.",
+    "index": 4
+  },
+  {
+    "cycleId": "beginner_cycle_16",
+    "word": "햇빛",
+    "sentenceKr": "햇빛 이 비치다",
+    "particle": "이",
+    "context": "햇빛 이 비치다",
+    "index": 2
+  },
+  {
+    "cycleId": "beginner_cycle_17",
+    "word": "홍차",
+    "sentenceKr": "홍차 를 마시다",
+    "particle": "를",
+    "context": "홍차 를 마시다",
+    "index": 2
+  },
+  {
+    "cycleId": "beginner_cycle_17",
+    "word": "휴지",
+    "sentenceKr": "휴지 를 줍다.",
+    "particle": "를",
+    "context": "휴지 를 줍다.",
+    "index": 2
+  },
+  {
+    "cycleId": "beginner_cycle_17",
+    "word": "현금",
+    "sentenceKr": "현금 으로 내다.",
+    "particle": "으로",
+    "context": "현금 으로 내다.",
+    "index": 2
+  },
+  {
+    "cycleId": "beginner_cycle_17",
+    "word": "화가",
+    "sentenceKr": "유명한 화가 의 그림.",
+    "particle": "의",
+    "context": "유명한 화가 의 그림.",
+    "index": 6
+  },
+  {
+    "cycleId": "beginner_cycle_17",
+    "word": "화장실",
+    "sentenceKr": "화장실 에 가다.",
+    "particle": "가",
+    "context": "화장실 에 가다.",
+    "index": 5
+  },
+  {
+    "cycleId": "beginner_cycle_17",
+    "word": "화장실",
+    "sentenceKr": "화장실 에 가다.",
+    "particle": "에",
+    "context": "화장실 에 가다.",
+    "index": 3
+  },
+  {
+    "cycleId": "beginner_cycle_17",
+    "word": "화장품",
+    "sentenceKr": "화장품 을 바르다.",
+    "particle": "을",
+    "context": "화장품 을 바르다.",
+    "index": 3
+  },
+  {
+    "cycleId": "beginner_cycle_17",
+    "word": "휴대폰",
+    "sentenceKr": "휴대폰 으로 전화하다.",
+    "particle": "으로",
+    "context": "휴대폰 으로 전화하다.",
+    "index": 3
+  },
+  {
+    "cycleId": "beginner_cycle_17",
+    "word": "휴지통",
+    "sentenceKr": "휴지통 에 버리다.",
+    "particle": "에",
+    "context": "휴지통 에 버리다.",
+    "index": 3
+  },
+  {
+    "cycleId": "beginner_cycle_17",
+    "word": "호텔",
+    "sentenceKr": "호텔 에 묵다",
+    "particle": "에",
+    "context": "호텔 에 묵다",
+    "index": 2
+  },
+  {
+    "cycleId": "beginner_cycle_17",
+    "word": "회사",
+    "sentenceKr": "회사 에 다니다.",
+    "particle": "에",
+    "context": "회사 에 다니다.",
+    "index": 2
+  },
+  {
+    "cycleId": "beginner_cycle_17",
+    "word": "회원",
+    "sentenceKr": "회원 을 모집하다.",
+    "particle": "을",
+    "context": "회원 을 모집하다.",
+    "index": 2
+  },
+  {
+    "cycleId": "beginner_cycle_17",
+    "word": "횡단보도",
+    "sentenceKr": "횡단보도 를 건너다.",
+    "particle": "를",
+    "context": "횡단보도 를 건너다.",
+    "index": 4
+  },
+  {
+    "cycleId": "beginner_cycle_17",
+    "word": "행복",
+    "sentenceKr": "행복 을 느끼다.",
+    "particle": "을",
+    "context": "행복 을 느끼다.",
+    "index": 2
+  },
+  {
+    "cycleId": "beginner_cycle_17",
+    "word": "화",
+    "sentenceKr": "화 가 나서 소리를 지르다.",
+    "particle": "가",
+    "context": "화 가 나서 소리를 지",
+    "index": 1
+  },
+  {
+    "cycleId": "beginner_cycle_17",
+    "word": "희망",
+    "sentenceKr": "희망 사항 을 말하다.",
+    "particle": "을",
+    "context": "희망 사항 을 말하다.",
+    "index": 5
+  },
+  {
+    "cycleId": "beginner_cycle_17",
+    "word": "화요일",
+    "sentenceKr": "화요일 에 만나요.",
+    "particle": "에",
+    "context": "화요일 에 만나요.",
+    "index": 3
+  },
+  {
+    "cycleId": "beginner_cycle_17",
+    "word": "휴일",
+    "sentenceKr": "휴일 에 쉬다.",
+    "particle": "에",
+    "context": "휴일 에 쉬다.",
+    "index": 2
+  },
+  {
+    "cycleId": "beginner_cycle_17",
+    "word": "행동",
+    "sentenceKr": "말보다 행동 에 옮기다.",
+    "particle": "에",
+    "context": "말보다 행동 에 옮기다.",
+    "index": 6
+  },
+  {
+    "cycleId": "beginner_cycle_17",
+    "word": "회의",
+    "sentenceKr": "회의 가 열리다.",
+    "particle": "가",
+    "context": "회의 가 열리다.",
+    "index": 2
+  },
+  {
+    "cycleId": "beginner_cycle_17",
+    "word": "휴가",
+    "sentenceKr": "휴가 를 가다.",
+    "particle": "를",
+    "context": "휴가 를 가다.",
+    "index": 2
+  },
+  {
+    "cycleId": "beginner_cycle_17",
+    "word": "휴가",
+    "sentenceKr": "휴가 를 가다.",
+    "particle": "가",
+    "context": "휴가 를 가다.",
+    "index": 4
+  },
+  {
+    "cycleId": "beginner_cycle_17",
+    "word": "허리",
+    "sentenceKr": "허리 가 아프다.",
+    "particle": "가",
+    "context": "허리 가 아프다.",
+    "index": 2
+  },
+  {
+    "cycleId": "beginner_cycle_17",
+    "word": "혀",
+    "sentenceKr": "혀 를 대다.",
+    "particle": "를",
+    "context": "혀 를 대다.",
+    "index": 1
+  },
+  {
+    "cycleId": "beginner_cycle_17",
+    "word": "호수",
+    "sentenceKr": "호수 를 세다.",
+    "particle": "를",
+    "context": "호수 를 세다.",
+    "index": 2
+  },
+  {
+    "cycleId": "beginner_cycle_17",
+    "word": "후",
+    "sentenceKr": "오 분 후 에 시작하다.",
+    "particle": "에",
+    "context": "오 분 후 에 시작하다.",
+    "index": 5
+  },
+  {
+    "cycleId": "beginner_cycle_17",
+    "word": "힘",
+    "sentenceKr": "힘 이 세다.",
+    "particle": "이",
+    "context": "힘 이 세다.",
+    "index": 1
+  },
+  {
+    "cycleId": "beginner_cycle_17",
+    "word": "환영",
+    "sentenceKr": "환영 을 받다",
+    "particle": "을",
+    "context": "환영 을 받다",
+    "index": 2
+  },
+  {
+    "cycleId": "beginner_cycle_17",
+    "word": "환자",
+    "sentenceKr": "환자 을 돌보다",
+    "particle": "을",
+    "context": "환자 을 돌보다",
+    "index": 2
+  }
+]

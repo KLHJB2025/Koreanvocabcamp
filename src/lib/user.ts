@@ -11,11 +11,15 @@ export async function addXp(uid: string, amount: number) {
     });
 }
 
-export async function completeDay(uid: string) {
+export async function completeDay(uid: string, lastCompletedDate?: string) {
     const userRef = doc(db, 'users', uid);
-    await updateDoc(userRef, {
+    const updates: Record<string, any> = {
         dayOfCamp: increment(1)
-    });
+    };
+    if (lastCompletedDate) {
+        updates.lastCompletedDate = lastCompletedDate;
+    }
+    await updateDoc(userRef, updates);
 }
 
 /**

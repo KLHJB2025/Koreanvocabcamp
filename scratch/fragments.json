@@ -1,0 +1,462 @@
+[
+  {
+    "cycle": "beginner_cycle_1",
+    "word": "감자",
+    "sentenceKr": "감자 채소",
+    "sentenceMeaning": "I like potatoes.",
+    "sentenceZh": "我喜欢土豆。"
+  },
+  {
+    "cycle": "beginner_cycle_1",
+    "word": "검사",
+    "sentenceKr": "검사 숙제 검사",
+    "sentenceMeaning": "I got a medical examination.",
+    "sentenceZh": "我做了一个身体检查。"
+  },
+  {
+    "cycle": "beginner_cycle_1",
+    "word": "고모",
+    "sentenceKr": "고모 친척",
+    "sentenceMeaning": "My aunt lives in Seoul.",
+    "sentenceZh": "我姑姑住在首尔。"
+  },
+  {
+    "cycle": "beginner_cycle_1",
+    "word": "개월",
+    "sentenceKr": "개월 삼 개월",
+    "sentenceMeaning": "I learned Korean for 3 months.",
+    "sentenceZh": "我学了三个月韩语。"
+  },
+  {
+    "cycle": "beginner_cycle_1",
+    "word": "간단히",
+    "sentenceKr": "간단히 간단히 끝내다",
+    "sentenceMeaning": "Please explain it simply.",
+    "sentenceZh": "请简单地解释一下。"
+  },
+  {
+    "cycle": "beginner_cycle_1",
+    "word": "검은색",
+    "sentenceKr": "검은색 색깔",
+    "sentenceMeaning": "I bought a black shirt.",
+    "sentenceZh": "我买了一件黑色的衬衫。"
+  },
+  {
+    "cycle": "beginner_cycle_1",
+    "word": "검정",
+    "sentenceKr": "검정 색깔",
+    "sentenceMeaning": "I like black.",
+    "sentenceZh": "我喜欢黑色。"
+  },
+  {
+    "cycle": "beginner_cycle_1",
+    "word": "겉",
+    "sentenceKr": "겉 안과 겉",
+    "sentenceMeaning": "The outside is hard.",
+    "sentenceZh": "表面很硬。"
+  },
+  {
+    "cycle": "beginner_cycle_1",
+    "word": "게임",
+    "sentenceKr": "게임 컴퓨터 게임",
+    "sentenceMeaning": "I play computer games.",
+    "sentenceZh": "我玩电脑游戏。"
+  },
+  {
+    "cycle": "beginner_cycle_2",
+    "word": "교사",
+    "sentenceKr": "교사 수학 교사",
+    "sentenceMeaning": "My dream is to be a teacher.",
+    "sentenceZh": "我的梦想是当一名教师。"
+  },
+  {
+    "cycle": "beginner_cycle_2",
+    "word": "관광객",
+    "sentenceKr": "관광객 외국인 관광객",
+    "sentenceMeaning": "There are many tourists.",
+    "sentenceZh": "有很多游客。"
+  },
+  {
+    "cycle": "beginner_cycle_2",
+    "word": "관광지",
+    "sentenceKr": "관광지 국내 관광지",
+    "sentenceMeaning": "It's a famous tourist attraction.",
+    "sentenceZh": "这是一个著名的旅游胜地。"
+  },
+  {
+    "cycle": "beginner_cycle_2",
+    "word": "광주",
+    "sentenceKr": "광주 지명",
+    "sentenceMeaning": "I live in Gwangju.",
+    "sentenceZh": "我住在光州。"
+  },
+  {
+    "cycle": "beginner_cycle_2",
+    "word": "그러나",
+    "sentenceKr": "그러나 −",
+    "sentenceMeaning": "It rained, but I went out.",
+    "sentenceZh": "虽然下雨了，但是我还是出门了。"
+  },
+  {
+    "cycle": "beginner_cycle_2",
+    "word": "그럼",
+    "sentenceKr": "그럼 그러면",
+    "sentenceMeaning": "Then I will go first.",
+    "sentenceZh": "那么我先走了。"
+  },
+  {
+    "cycle": "beginner_cycle_2",
+    "word": "관광",
+    "sentenceKr": "관광 국내 관광",
+    "sentenceMeaning": "I went sightseeing.",
+    "sentenceZh": "我去观光了。"
+  },
+  {
+    "cycle": "beginner_cycle_2",
+    "word": "구",
+    "sentenceKr": "구 숫자",
+    "sentenceMeaning": "I live in this district.",
+    "sentenceZh": "我住在这个区。"
+  },
+  {
+    "cycle": "beginner_cycle_2",
+    "word": "국적",
+    "sentenceKr": "국적 대한민국 국적",
+    "sentenceMeaning": "What is your nationality?",
+    "sentenceZh": "你的国籍是什么？"
+  },
+  {
+    "cycle": "beginner_cycle_2",
+    "word": "그거",
+    "sentenceKr": "그거 그것",
+    "sentenceMeaning": "What is that?",
+    "sentenceZh": "那是什么？"
+  },
+  {
+    "cycle": "beginner_cycle_2",
+    "word": "그럼",
+    "sentenceKr": "그럼 \"그럼",
+    "sentenceMeaning": "Then I will go first.",
+    "sentenceZh": "那么我先走了。"
+  },
+  {
+    "cycle": "beginner_cycle_3",
+    "word": "남학생",
+    "sentenceKr": "남학생 여학생",
+    "sentenceMeaning": "He is a male student.",
+    "sentenceZh": "他是个男学生。"
+  },
+  {
+    "cycle": "beginner_cycle_3",
+    "word": "깊이",
+    "sentenceKr": "깊이 깊이 묻다",
+    "sentenceMeaning": "I thought deeply.",
+    "sentenceZh": "我深深地思考了。"
+  },
+  {
+    "cycle": "beginner_cycle_3",
+    "word": "깜짝",
+    "sentenceKr": "깜짝 깜짝 놀라다",
+    "sentenceMeaning": "I was really surprised.",
+    "sentenceZh": "我吓了一大跳。"
+  },
+  {
+    "cycle": "beginner_cycle_3",
+    "word": "낫다",
+    "sentenceKr": "낫다 더 낫다",
+    "sentenceMeaning": "My cold got better.",
+    "sentenceZh": "我的感冒好了。"
+  },
+  {
+    "cycle": "beginner_cycle_3",
+    "word": "까만색",
+    "sentenceKr": "까만색 색깔",
+    "sentenceMeaning": "I wear black shoes.",
+    "sentenceZh": "我穿黑色的鞋子。"
+  },
+  {
+    "cycle": "beginner_cycle_5",
+    "word": "둘째",
+    "sentenceKr": "둘째 둘째 딸",
+    "sentenceMeaning": "This is my second child.",
+    "sentenceZh": "这是我的第二个孩子。"
+  },
+  {
+    "cycle": "beginner_cycle_5",
+    "word": "뒤쪽",
+    "sentenceKr": "뒤쪽 방향",
+    "sentenceMeaning": "Please go to the back.",
+    "sentenceZh": "请走到后面。"
+  },
+  {
+    "cycle": "beginner_cycle_6",
+    "word": "발바닥",
+    "sentenceKr": "발바닥 신체",
+    "sentenceMeaning": "My foot sole hurts.",
+    "sentenceZh": "我的脚底疼。"
+  },
+  {
+    "cycle": "beginner_cycle_6",
+    "word": "방금",
+    "sentenceKr": "방금 방금 가다",
+    "sentenceMeaning": "He just left.",
+    "sentenceZh": "他刚刚离开。"
+  },
+  {
+    "cycle": "beginner_cycle_7",
+    "word": "방학",
+    "sentenceKr": "방학 겨울 방학",
+    "sentenceMeaning": "Summer vacation started.",
+    "sentenceZh": "放暑假了。"
+  },
+  {
+    "cycle": "beginner_cycle_13",
+    "word": "자장면",
+    "sentenceKr": "자장면 음식",
+    "sentenceMeaning": "I ate jajangmyeon.",
+    "sentenceZh": "我吃了炸酱面。"
+  },
+  {
+    "cycle": "beginner_cycle_13",
+    "word": "잔",
+    "sentenceKr": "잔 커피 잔",
+    "sentenceMeaning": "Give me a cup of coffee.",
+    "sentenceZh": "请给我一杯咖啡。"
+  },
+  {
+    "cycle": "beginner_cycle_13",
+    "word": "잡채",
+    "sentenceKr": "잡채 음식",
+    "sentenceMeaning": "Japchae is delicious.",
+    "sentenceZh": "杂菜很好吃。"
+  },
+  {
+    "cycle": "beginner_cycle_13",
+    "word": "입학",
+    "sentenceKr": "입학 대학 입학",
+    "sentenceMeaning": "Congratulations on your school admission.",
+    "sentenceZh": "祝贺你入学。"
+  },
+  {
+    "cycle": "beginner_cycle_13",
+    "word": "입원",
+    "sentenceKr": "입원 입원 환자",
+    "sentenceMeaning": "My friend is hospitalized.",
+    "sentenceZh": "我朋友住院了。"
+  },
+  {
+    "cycle": "beginner_cycle_13",
+    "word": "잠자다",
+    "sentenceKr": "잠자다 새근새근 잠자다",
+    "sentenceMeaning": "The baby is sleeping.",
+    "sentenceZh": "宝宝正在睡觉。"
+  },
+  {
+    "cycle": "beginner_cycle_13",
+    "word": "저곳",
+    "sentenceKr": "저곳 장소",
+    "sentenceMeaning": "I want to go there.",
+    "sentenceZh": "我想去那个地方。"
+  },
+  {
+    "cycle": "beginner_cycle_13",
+    "word": "저분",
+    "sentenceKr": "저분 이분",
+    "sentenceMeaning": "Who is that person?",
+    "sentenceZh": "那位是谁？"
+  },
+  {
+    "cycle": "beginner_cycle_13",
+    "word": "작년",
+    "sentenceKr": "작년 시간",
+    "sentenceMeaning": "I met him last year.",
+    "sentenceZh": "我去年遇见了他。"
+  },
+  {
+    "cycle": "beginner_cycle_13",
+    "word": "저번",
+    "sentenceKr": "저번 저번 주",
+    "sentenceMeaning": "Like we did last time.",
+    "sentenceZh": "就像上次那样。"
+  },
+  {
+    "cycle": "beginner_cycle_13",
+    "word": "자꾸",
+    "sentenceKr": "자꾸 자꾸 반복하다",
+    "sentenceMeaning": "You keep making mistakes.",
+    "sentenceZh": "你总是犯错。"
+  },
+  {
+    "cycle": "beginner_cycle_13",
+    "word": "자세히",
+    "sentenceKr": "자세히 자세히 알다",
+    "sentenceMeaning": "Please explain in detail.",
+    "sentenceZh": "请仔细说明一下。"
+  },
+  {
+    "cycle": "beginner_cycle_13",
+    "word": "자주",
+    "sentenceKr": "자주 자주 만나다",
+    "sentenceMeaning": "I often go to the library.",
+    "sentenceZh": "我经常去图书馆。"
+  },
+  {
+    "cycle": "beginner_cycle_13",
+    "word": "잘",
+    "sentenceKr": "잘 잘 알다",
+    "sentenceMeaning": "Sleep well.",
+    "sentenceZh": "好好睡觉。"
+  },
+  {
+    "cycle": "beginner_cycle_13",
+    "word": "입구",
+    "sentenceKr": "입구 지하철",
+    "sentenceMeaning": "Let's meet at the entrance.",
+    "sentenceZh": "我们在入口处见吧。"
+  },
+  {
+    "cycle": "beginner_cycle_13",
+    "word": "입술",
+    "sentenceKr": "입술 신체",
+    "sentenceMeaning": "My lips are dry.",
+    "sentenceZh": "我的嘴唇很干。"
+  },
+  {
+    "cycle": "beginner_cycle_13",
+    "word": "자신",
+    "sentenceKr": "자신 나 자신",
+    "sentenceMeaning": "Have confidence in yourself.",
+    "sentenceZh": "对自己要有自信。"
+  },
+  {
+    "cycle": "beginner_cycle_13",
+    "word": "자판기",
+    "sentenceKr": "자판기 커피 자판기",
+    "sentenceMeaning": "The vending machine is broken.",
+    "sentenceZh": "自动售货机坏了。"
+  },
+  {
+    "cycle": "beginner_cycle_13",
+    "word": "잔치",
+    "sentenceKr": "잔치 생일 잔치",
+    "sentenceMeaning": "We threw a party.",
+    "sentenceZh": "我们举办了一个宴会。"
+  },
+  {
+    "cycle": "beginner_cycle_13",
+    "word": "잠깐",
+    "sentenceKr": "잠깐 잠깐 기다리다",
+    "sentenceMeaning": "Wait a moment.",
+    "sentenceZh": "请稍等一会儿。"
+  },
+  {
+    "cycle": "beginner_cycle_13",
+    "word": "잠시",
+    "sentenceKr": "잠시 잠시 기다리다",
+    "sentenceMeaning": "Please wait here for a while.",
+    "sentenceZh": "请在这里稍等片刻。"
+  },
+  {
+    "cycle": "beginner_cycle_13",
+    "word": "장",
+    "sentenceKr": "장 한 장",
+    "sentenceMeaning": "Two tickets, please.",
+    "sentenceZh": "请给我两张票。"
+  },
+  {
+    "cycle": "beginner_cycle_13",
+    "word": "장미",
+    "sentenceKr": "장미 꽃",
+    "sentenceMeaning": "I bought a red rose.",
+    "sentenceZh": "我买了一朵红玫瑰。"
+  },
+  {
+    "cycle": "beginner_cycle_13",
+    "word": "저",
+    "sentenceKr": "저 사람(1인칭)",
+    "sentenceMeaning": "I am a student.",
+    "sentenceZh": "我是一名学生。"
+  },
+  {
+    "cycle": "beginner_cycle_13",
+    "word": "저",
+    "sentenceKr": "저 \"저",
+    "sentenceMeaning": "I am a student.",
+    "sentenceZh": "我是一名学生。"
+  },
+  {
+    "cycle": "beginner_cycle_13",
+    "word": "저거",
+    "sentenceKr": "저거 저것",
+    "sentenceMeaning": "Give me that one.",
+    "sentenceZh": "请给我那个。"
+  },
+  {
+    "cycle": "beginner_cycle_13",
+    "word": "저것",
+    "sentenceKr": "저것 −",
+    "sentenceMeaning": "What is that?",
+    "sentenceZh": "那是什么？"
+  },
+  {
+    "cycle": "beginner_cycle_13",
+    "word": "저기",
+    "sentenceKr": "저기 장소",
+    "sentenceMeaning": "He is over there.",
+    "sentenceZh": "他在那里。"
+  },
+  {
+    "cycle": "beginner_cycle_13",
+    "word": "저런",
+    "sentenceKr": "저런 그런",
+    "sentenceMeaning": "Don't say such things.",
+    "sentenceZh": "别说那样的话。"
+  },
+  {
+    "cycle": "beginner_cycle_13",
+    "word": "저쪽",
+    "sentenceKr": "저쪽 방향",
+    "sentenceMeaning": "Please go that way.",
+    "sentenceZh": "请往那边走。"
+  },
+  {
+    "cycle": "beginner_cycle_13",
+    "word": "저희",
+    "sentenceKr": "저희 저희 회사",
+    "sentenceMeaning": "Please visit our company.",
+    "sentenceZh": "请来我们公司。"
+  },
+  {
+    "cycle": "beginner_cycle_13",
+    "word": "전",
+    "sentenceKr": "전 전 세계",
+    "sentenceMeaning": "I met him before.",
+    "sentenceZh": "我以前见过他。"
+  },
+  {
+    "cycle": "beginner_cycle_13",
+    "word": "전",
+    "sentenceKr": "전 오래 전",
+    "sentenceMeaning": "I met him before.",
+    "sentenceZh": "我以前见过他。"
+  },
+  {
+    "cycle": "beginner_cycle_17",
+    "word": "호랑이",
+    "sentenceKr": "호랑이 동물",
+    "sentenceMeaning": "Tigers are scary.",
+    "sentenceZh": "老虎很可怕。"
+  },
+  {
+    "cycle": "beginner_cycle_17",
+    "word": "활발히",
+    "sentenceKr": "활발히 활발히 활동하다",
+    "sentenceMeaning": "They participate actively.",
+    "sentenceZh": "他们积极活跃地参与。"
+  },
+  {
+    "cycle": "beginner_cycle_17",
+    "word": "흰색",
+    "sentenceKr": "흰색 색깔."
+  }
+]

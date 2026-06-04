@@ -89,16 +89,17 @@ function cleanPrompt(text) {
 }
 
 function getIllustrationUrl(word) {
-    const isConcrete = isConcreteWord(word);
-
-    if (!isConcrete && word.sentenceMeaning && word.sentenceMeaning !== 'TBD') {
-        const cleanScene = cleanPrompt(word.sentenceMeaning);
-        return `https://image.pollinations.ai/prompt/realistic%20photography%20representing%20the%20scene:%20${encodeURIComponent(cleanScene)}?width=400&height=400&nologo=true&model=sana`;
-    }
-
     const enMeaning = word.en || '';
     const cleanEn = cleanPrompt(enMeaning);
-    return `https://image.pollinations.ai/prompt/realistic%20photography%20of%20${encodeURIComponent(cleanEn)}?width=400&height=400&nologo=true&model=sana`;
+    
+    let promptBase = `cute friendly cartoon illustration of: ${cleanEn}`;
+    if (word.sentenceMeaning && word.sentenceMeaning !== 'TBD') {
+        const cleanScene = cleanPrompt(word.sentenceMeaning);
+        promptBase += `, representing the scene: ${cleanScene}`;
+    }
+    
+    const finalPrompt = promptBase + ", without any text, letters, words, or Korean characters in the image";
+    return `https://image.pollinations.ai/prompt/${encodeURIComponent(finalPrompt)}?width=400&height=400&nologo=true&model=sana`;
 }
 
 function downloadImage(url, dest) {
@@ -161,15 +162,11 @@ async function run() {
     const vocabPath = path.join(__dirname, '..', 'src', 'lib', 'vocabulary-data.ts');
     const content = fs.readFileSync(vocabPath, 'utf8');
 
-    const jsContent = content
-        .replace(/export interface Word[\s\S]*?\}/g, '')
-        .replace(/export const MOCK_VOCABULARY: Record<string, Word\[\]> =/g, 'module.exports =')
-        .replace(/any/g, '');
-
-    const tempFile = path.join(__dirname, 'temp-vocab-dl-seq.js');
-    fs.writeFileSync(tempFile, jsContent);
-    const mockVocab = require(tempFile);
-    fs.unlinkSync(tempFile);
+    const match = content.match(/(?:export\s+const\s+MOCK_VOCABULARY(?::\s*Record<string,\s*Word\[\]>)?\s*=\s*)(\{[\s\S]*?\});/);
+    if (!match) {
+        throw new Error("Could not find MOCK_VOCABULARY in vocabulary-data.ts");
+    }
+    const mockVocab = eval('(' + match[1] + ')');
 
     const outputDir = path.join(__dirname, '..', 'public', 'illustrations', 'words');
     if (!fs.existsSync(outputDir)) {
