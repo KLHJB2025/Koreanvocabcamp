@@ -93,15 +93,15 @@ export function CertificateCard({ userName, campTitle, date, score, tier }: Cert
                         <Award size={48} className="text-white" />
                     </div>
 
-                    <p className="text-[10px] font-black uppercase tracking-[0.5em] mb-4 opacity-60">Completion Excellence</p>
+                    <p className="text-[10px] font-black uppercase tracking-[0.3em] mb-4 opacity-60">✦ MILESTONE ACCOMPLISHED ✦</p>
                     <h2 className="text-4xl font-black italic tracking-tighter uppercase mb-2">TOPIK BOOTCAMP</h2>
                     <h3 className="text-xl font-bold uppercase tracking-widest mb-12 opacity-80">{campTitle}</h3>
 
                     <div className="w-full h-[1px] bg-white/20 mb-12" />
 
-                    <p className="text-sm font-medium uppercase tracking-[0.2em] mb-4 opacity-60">This certifies that</p>
+                    <p className="text-sm font-medium uppercase tracking-[0.2em] mb-4 opacity-60">In recognition of the outstanding dedication of</p>
                     <h4 className="text-5xl font-noto-kr font-black italic mb-4 drop-shadow-lg">{userName}</h4>
-                    <p className="text-lg font-medium opacity-80 mb-12">Has successfully triumphed in the Day 15 Boss Battle<br />with a combat accuracy of <span className="font-black underline">{score}%</span></p>
+                    <p className="text-lg font-medium opacity-80 mb-12">Who has successfully completed the intensive 14-day vocabulary training program<br />and demonstrated a strong command of core vocabulary with a final score of <span className="font-black underline">{score}%</span></p>
 
                     <div className="grid grid-cols-3 gap-8 w-full border-t border-white/10 pt-12">
                         <div className="flex flex-col gap-1">
