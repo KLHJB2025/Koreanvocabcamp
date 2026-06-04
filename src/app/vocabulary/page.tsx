@@ -10,7 +10,7 @@ import {
 } from 'lucide-react';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
-import { getUserLearnedWords } from '@/lib/vocabulary';
+import { getUserLearnedWords, getIllustrationUrl } from '@/lib/vocabulary';
 import { MOCK_VOCABULARY, Word } from '@/lib/vocabulary-data';
 import { formatNextReview } from '@/lib/srs';
 import { useState, useEffect } from 'react';
@@ -714,6 +714,23 @@ export default function VocabularyLibrary() {
                                                                                 <Lock size={8} />
                                                                                 {language === 'zh' ? '未学习' : 'Locked'}
                                                                             </span>
+                                                                        )}
+                                                                    </div>
+
+                                                                    {/* Word Illustration image */}
+                                                                    <div className="w-full aspect-square rounded-2xl overflow-hidden mb-4 bg-strawberry/5 border border-strawberry/10 relative shadow-inner">
+                                                                        <img 
+                                                                            src={getIllustrationUrl(word)} 
+                                                                            alt={word.kr} 
+                                                                            className={`w-full h-full object-cover transition-all duration-300 ${
+                                                                                isLearned ? '' : 'filter grayscale opacity-60'
+                                                                            }`}
+                                                                            loading="lazy"
+                                                                        />
+                                                                        {!isLearned && (
+                                                                            <div className="absolute inset-0 bg-charcoal/5 flex items-center justify-center">
+                                                                                <Lock className="text-charcoal/30" size={20} />
+                                                                            </div>
                                                                         )}
                                                                     </div>
 
