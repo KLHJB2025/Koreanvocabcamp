@@ -237,6 +237,14 @@ export function DictionaryLookup() {
         return parts;
     };
 
+    // Helper to extract individual words if search query contains multiple words
+    const getWords = (term: string) => {
+        return term
+            .split(/[\s,/\&]+/)
+            .map(w => w.trim())
+            .filter(w => w.length > 0);
+    };
+
     // Dictionary links generator
     const getNaverDictUrl = (term: string) => {
         return `https://dict.naver.com/kozhdict/#/search?query=${encodeURIComponent(term)}`;
@@ -331,26 +339,66 @@ export function DictionaryLookup() {
                                                 <ExternalLink size={12} />
                                                 {language === 'zh' ? '官方权威词典直达' : 'Authoritative Reference Links'}
                                             </h4>
-                                            <div className="grid grid-cols-2 gap-3">
-                                                <a
-                                                    href={getNaverDictUrl(searchTerm)}
-                                                    target="_blank"
-                                                    rel="noopener noreferrer"
-                                                    className="flex items-center justify-between p-3.5 bg-emerald-50 hover:bg-emerald-100/80 border border-emerald-100 rounded-2xl font-black text-xs text-emerald-700 shadow-sm transition-all group"
-                                                >
-                                                    <span>Naver 词典</span>
-                                                    <ExternalLink size={12} className="group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
-                                                </a>
-                                                <a
-                                                    href={getKrDictUrl(searchTerm)}
-                                                    target="_blank"
-                                                    rel="noopener noreferrer"
-                                                    className="flex items-center justify-between p-3.5 bg-blue-50 hover:bg-blue-100/80 border border-blue-100 rounded-2xl font-black text-xs text-blue-700 shadow-sm transition-all group"
-                                                >
-                                                    <span>国立国语院</span>
-                                                    <ExternalLink size={12} className="group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
-                                                </a>
-                                            </div>
+                                            {(() => {
+                                                const wordsList = getWords(searchTerm);
+                                                if (wordsList.length <= 1) {
+                                                    const queryWord = wordsList[0] || searchTerm;
+                                                    return (
+                                                        <div className="grid grid-cols-2 gap-3">
+                                                            <a
+                                                                href={getNaverDictUrl(queryWord)}
+                                                                target="_blank"
+                                                                rel="noopener noreferrer"
+                                                                className="flex items-center justify-between p-3.5 bg-emerald-50 hover:bg-emerald-100/80 border border-emerald-100 rounded-2xl font-black text-xs text-emerald-700 shadow-sm transition-all group"
+                                                            >
+                                                                <span>Naver 词典</span>
+                                                                <ExternalLink size={12} className="group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
+                                                            </a>
+                                                            <a
+                                                                href={getKrDictUrl(queryWord)}
+                                                                target="_blank"
+                                                                rel="noopener noreferrer"
+                                                                className="flex items-center justify-between p-3.5 bg-blue-50 hover:bg-blue-100/80 border border-blue-100 rounded-2xl font-black text-xs text-blue-700 shadow-sm transition-all group"
+                                                            >
+                                                                <span>国立国语院</span>
+                                                                <ExternalLink size={12} className="group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
+                                                            </a>
+                                                        </div>
+                                                    );
+                                                }
+
+                                                return (
+                                                    <div className="space-y-3">
+                                                        {wordsList.map((word, idx) => (
+                                                            <div key={idx} className="bg-strawberry/5/20 border border-strawberry/10 rounded-2xl p-3">
+                                                                <p className="text-[10px] font-black text-charcoal/40 uppercase mb-2">
+                                                                    {language === 'zh' ? `查询单词: ${word}` : `Word: ${word}`}
+                                                                </p>
+                                                                <div className="grid grid-cols-2 gap-2">
+                                                                    <a
+                                                                        href={getNaverDictUrl(word)}
+                                                                        target="_blank"
+                                                                        rel="noopener noreferrer"
+                                                                        className="flex items-center justify-between p-2.5 bg-emerald-50 hover:bg-emerald-100/80 border border-emerald-100 rounded-xl font-black text-xs text-emerald-700 shadow-sm transition-all group"
+                                                                    >
+                                                                        <span>Naver ({word})</span>
+                                                                        <ExternalLink size={10} className="group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
+                                                                    </a>
+                                                                    <a
+                                                                        href={getKrDictUrl(word)}
+                                                                        target="_blank"
+                                                                        rel="noopener noreferrer"
+                                                                        className="flex items-center justify-between p-2.5 bg-blue-50 hover:bg-blue-100/80 border border-blue-100 rounded-xl font-black text-xs text-blue-700 shadow-sm transition-all group"
+                                                                    >
+                                                                        <span>国立国语院 ({word})</span>
+                                                                        <ExternalLink size={10} className="group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
+                                                                    </a>
+                                                                </div>
+                                                            </div>
+                                                        ))}
+                                                    </div>
+                                                );
+                                            })()}
                                         </div>
 
                                         {/* AI Deep Explanation Section */}
