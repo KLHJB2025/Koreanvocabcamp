@@ -20,11 +20,12 @@ export function CertificateCard({ userName, campTitle, date, score, tier }: Cert
         setVerificationId(Math.random().toString(36).substring(7).toUpperCase());
     }, []);
 
+    // Fully opaque pastel colors to prevent dark background bleed-through
     const tierColors = {
-        Legendary: 'from-pink-50 via-amber-50 to-rose-100/50 text-charcoal border-rose-200/60 border-dashed border-4',
-        Gold: 'from-amber-50 to-orange-50/70 text-charcoal border-amber-200/60 border-dashed border-4',
-        Silver: 'from-sky-50 to-indigo-50/70 text-charcoal border-sky-200/60 border-dashed border-4',
-        Bronze: 'from-emerald-50 to-teal-50/70 text-charcoal border-emerald-200/60 border-dashed border-4'
+        Legendary: 'from-[#FFF0F3] via-[#FFFDF5] to-[#FFE5EC] border-[#FFC2D1]',
+        Gold: 'from-[#FFFDF0] via-[#FFFDF9] to-[#FFEFE5] border-[#FFE3A8]',
+        Silver: 'from-[#F0F7FF] via-[#FFFDF9] to-[#EBF0FF] border-[#C3DAFF]',
+        Bronze: 'from-[#F0FDF4] via-[#FFFDF9] to-[#ECFDF5] border-[#A7F3D0]'
     };
 
     const handleDownload = async () => {
@@ -80,71 +81,83 @@ export function CertificateCard({ userName, campTitle, date, score, tier }: Cert
             animate={{ scale: 1, opacity: 1 }}
             className="w-full max-w-2xl mx-auto"
         >
+            {/* Outer card shell with solid thick border & shadow */}
             <div 
                 ref={certificateRef}
-                className={`relative p-8 sm:p-12 rounded-[52px] bg-gradient-to-br ${tierColors[tier]} shadow-xl overflow-hidden`}
+                className={`relative p-2 rounded-[48px] bg-white border-8 ${tier === 'Legendary' ? 'border-[#FFC2D1]' : 'border-white'} shadow-2xl overflow-hidden`}
             >
-                {/* Decorative background bubbles */}
-                <div className="absolute top-10 left-10 w-24 h-24 bg-strawberry/5 rounded-full blur-xl pointer-events-none" />
-                <div className="absolute bottom-10 right-10 w-32 h-32 bg-amber-200/10 rounded-full blur-xl pointer-events-none" />
-                <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-64 h-64 bg-strawberry/3 rounded-full blur-2xl pointer-events-none" />
+                {/* Inner card with gradient background and dashed line border */}
+                <div className={`p-8 sm:p-12 rounded-[38px] bg-gradient-to-br ${tierColors[tier]} border-4 border-dashed flex flex-col items-center text-center relative`}>
+                    
+                    {/* Decorative background bubbles */}
+                    <div className="absolute top-10 left-10 w-24 h-24 bg-strawberry/5 rounded-full blur-xl pointer-events-none" />
+                    <div className="absolute bottom-10 right-10 w-32 h-32 bg-amber-200/10 rounded-full blur-xl pointer-events-none" />
 
-                <div className="relative z-10 flex flex-col items-center text-center">
-                    {/* Cute Mascot Header */}
-                    <div className="mb-6 transform hover:scale-105 transition-transform duration-300 select-none pointer-events-none">
+                    {/* Cute Mascot Circular Avatar Frame */}
+                    <div className="w-24 h-24 rounded-full border-4 border-white shadow-md overflow-hidden bg-white mb-6 flex items-center justify-center animate-bounce" style={{ animationDuration: '3s' }}>
                         <img 
                             src="/illustrations/mascot.png" 
                             alt="Mascot" 
-                            className="w-24 h-24 object-contain animate-bounce" 
-                            style={{ animationDuration: '3s' }}
+                            className="w-full h-full object-cover scale-110"
                         />
                     </div>
 
-                    <p className="text-[10px] font-black uppercase tracking-[0.3em] mb-3 text-primary">✦ MILESTONE ACCOMPLISHED ✦</p>
-                    <h2 className="text-4xl font-black italic tracking-tighter uppercase mb-1 text-primary drop-shadow-sm">CONGRATULATIONS!</h2>
-                    <h3 className="text-sm font-bold uppercase tracking-widest mb-8 text-charcoal/60">TOPIK BOOTCAMP • {campTitle}</h3>
+                    {/* Header Wording */}
+                    <p className="text-[10px] font-black uppercase tracking-[0.25em] mb-2 text-[#FF4E8D]">✦ MILESTONE ACCOMPLISHED ✦</p>
+                    <h2 
+                        className="text-4xl sm:text-5xl font-black italic tracking-tight uppercase mb-2 text-primary drop-shadow-[0_2px_4px_rgba(255,78,141,0.15)]"
+                        style={{ textShadow: '1px 1px 0px #FFF' }}
+                    >
+                        CONGRATULATIONS!
+                    </h2>
+                    <h3 className="text-xs sm:text-sm font-bold uppercase tracking-widest mb-6 text-charcoal/50">TOPIK BOOTCAMP • {campTitle}</h3>
 
-                    {/* Cute Dotted Divider */}
-                    <div className="w-full border-t-2 border-dashed border-strawberry/20 mb-8" />
+                    {/* Dotted Divider */}
+                    <div className="w-full border-t border-dashed border-[#FFC2D1] mb-6" />
 
-                    <p className="text-xs font-black uppercase tracking-[0.2em] mb-3 text-charcoal/40">In recognition of the outstanding dedication of</p>
-                    <h4 className="text-4xl font-noto-kr font-black italic mb-4 text-charcoal drop-shadow-sm select-all">{userName}</h4>
+                    {/* Recipient Section */}
+                    <p className="text-[10px] font-black uppercase tracking-[0.2em] mb-2 text-charcoal/30">In recognition of the outstanding dedication of</p>
+                    <h4 className="text-4xl sm:text-5xl font-serif font-black text-charcoal mb-4 tracking-tight select-all">
+                        {userName}
+                    </h4>
                     
                     {/* Bubbly Description with Accuracy Badge */}
-                    <div className="max-w-md mx-auto text-sm sm:text-base font-bold text-charcoal/70 leading-relaxed mb-8 select-all">
+                    <div className="max-w-md mx-auto text-xs sm:text-sm font-bold text-charcoal/60 leading-relaxed mb-6 select-all">
                         Who has successfully completed the intensive 14-day vocabulary training program and demonstrated a strong command of core vocabulary with a final score of{' '}
-                        <span className="inline-block bg-strawberry/15 border border-strawberry/25 text-primary font-black px-4 py-1 rounded-full scale-105 mx-1 shadow-sm select-none">
+                        <span className="inline-block bg-[#FF4E8D] text-white font-black px-4 py-1 rounded-full scale-105 mx-1 shadow-md shadow-[#FF4E8D]/20 select-none">
                             {score}%
                         </span>
                     </div>
 
                     {/* Sub labels in rounded pills */}
-                    <div className="grid grid-cols-3 gap-4 sm:gap-6 w-full border-t border-strawberry/15 pt-8 mt-4 select-none">
-                        <div className="flex flex-col gap-1 bg-white/60 backdrop-blur-sm border border-strawberry/5 p-3 rounded-2xl shadow-sm">
+                    <div className="grid grid-cols-3 gap-3 sm:gap-4 w-full border-t border-dashed border-[#FFC2D1] pt-6 mt-2 select-none">
+                        <div className="flex flex-col gap-1 bg-white/70 backdrop-blur-sm border border-strawberry/10 p-2.5 rounded-2xl shadow-sm">
                             <span className="text-[8px] font-black uppercase tracking-widest text-charcoal/30">Date Issued</span>
                             <span className="text-xs font-black text-charcoal">{date}</span>
                         </div>
-                        <div className="flex flex-col items-center justify-center gap-1 bg-white/60 backdrop-blur-sm border border-strawberry/5 p-3 rounded-2xl shadow-sm">
+                        <div className="flex flex-col items-center justify-center gap-1 bg-white/70 backdrop-blur-sm border border-strawberry/10 p-2.5 rounded-2xl shadow-sm">
                             <div className="flex gap-0.5 text-amber-400">
-                                <Star size={10} fill="currentColor" />
-                                <Star size={10} fill="currentColor" />
-                                <Star size={10} fill="currentColor" />
+                                <Star size={8} fill="currentColor" />
+                                <Star size={8} fill="currentColor" />
+                                <Star size={8} fill="currentColor" />
                             </div>
                             <span className="text-[9px] font-black uppercase tracking-widest text-charcoal">{tier} GRADE</span>
                         </div>
-                        <div className="flex flex-col gap-1 bg-white/60 backdrop-blur-sm border border-strawberry/5 p-3 rounded-2xl shadow-sm">
+                        <div className="flex flex-col gap-1 bg-white/70 backdrop-blur-sm border border-strawberry/10 p-2.5 rounded-2xl shadow-sm">
                             <span className="text-[8px] font-black uppercase tracking-widest text-charcoal/30">Verification ID</span>
-                            <span className="text-[8px] font-mono font-bold text-charcoal/60 select-all">{verificationId}</span>
+                            <span className="text-[8px] font-mono font-bold text-charcoal/50 select-all">{verificationId}</span>
                         </div>
                     </div>
-                </div>
 
-                {/* Decorative Soft Wax Seal */}
-                <div className="absolute top-8 right-8 w-16 h-16 bg-strawberry text-white rounded-full border-2 border-white/40 flex items-center justify-center rotate-12 shadow-md pointer-events-none select-none">
-                    <ShieldCheck size={28} className="text-white" />
+                    {/* Decorative Soft Wax Seal */}
+                    <div className="absolute top-6 right-6 w-16 h-16 bg-gradient-to-br from-primary to-[#FF8EA9] text-white rounded-full border-4 border-white flex items-center justify-center rotate-12 shadow-lg shadow-primary/20 pointer-events-none select-none">
+                        <ShieldCheck size={28} className="text-white drop-shadow" />
+                    </div>
+
                 </div>
             </div>
 
+            {/* Buttons */}
             <div className="flex justify-center gap-4 mt-8">
                 <button 
                     onClick={handleDownload}
