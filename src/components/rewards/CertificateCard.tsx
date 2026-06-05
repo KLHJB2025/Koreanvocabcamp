@@ -20,19 +20,60 @@ export function CertificateCard({ userName, campTitle, date, score, tier }: Cert
         setVerificationId(Math.random().toString(36).substring(7).toUpperCase());
     }, []);
 
-    // Fully opaque pastel colors to prevent dark background bleed-through
-    const tierColors = {
-        Legendary: 'from-[#FFF0F3] via-[#FFFDF5] to-[#FFE5EC] border-[#FFC2D1]',
-        Gold: 'from-[#FFFDF0] via-[#FFFDF9] to-[#FFEFE5] border-[#FFE3A8]',
-        Silver: 'from-[#F0F7FF] via-[#FFFDF9] to-[#EBF0FF] border-[#C3DAFF]',
-        Bronze: 'from-[#F0FDF4] via-[#FFFDF9] to-[#ECFDF5] border-[#A7F3D0]'
+    // Color theme mappings to align strictly with the approved mockup design
+    const themes = {
+        Legendary: {
+            outerBg: 'bg-[#FFF2F4]',
+            cardBg: 'from-[#FFFDFD] via-[#FFF9FA] to-[#FFF0F2]',
+            borderPink: 'border-[#FFB3C6]',
+            dashedBorder: 'border-[#FFC2D1]',
+            accentText: 'text-[#FF4E8D]',
+            accentBg: 'bg-[#FF4E8D]',
+            accentBorder: 'border-[#FFB3C6]',
+            stampBg: 'bg-[#FFF0F2]',
+            ribbonBg: 'bg-[#FF4E8D]'
+        },
+        Gold: {
+            outerBg: 'bg-[#FFFDF3]',
+            cardBg: 'from-[#FFFDF9] via-[#FFFBF0] to-[#FFF8E7]',
+            borderPink: 'border-[#FFE3A8]',
+            dashedBorder: 'border-[#FFE8B7]',
+            accentText: 'text-[#E28A00]',
+            accentBg: 'bg-[#FF9F00]',
+            accentBorder: 'border-[#FFE3A8]',
+            stampBg: 'bg-[#FFFDF0]',
+            ribbonBg: 'bg-[#E28A00]'
+        },
+        Silver: {
+            outerBg: 'bg-[#F5F8FF]',
+            cardBg: 'from-[#FCFDFF] via-[#F6F9FF] to-[#EDF2FF]',
+            borderPink: 'border-[#C3DAFF]',
+            dashedBorder: 'border-[#D2E4FF]',
+            accentText: 'text-[#3B82F6]',
+            accentBg: 'bg-[#3B82F6]',
+            accentBorder: 'border-[#C3DAFF]',
+            stampBg: 'bg-[#F5F8FF]',
+            ribbonBg: 'bg-[#3B82F6]'
+        },
+        Bronze: {
+            outerBg: 'bg-[#F6FDF9]',
+            cardBg: 'from-[#FDFEFF] via-[#F7FDFB] to-[#EEFBF4]',
+            borderPink: 'border-[#A7F3D0]',
+            dashedBorder: 'border-[#BDF7DC]',
+            accentText: 'text-[#10B981]',
+            accentBg: 'bg-[#10B981]',
+            accentBorder: 'border-[#A7F3D0]',
+            stampBg: 'bg-[#F6FDF9]',
+            ribbonBg: 'bg-[#10B981]'
+        }
     };
+
+    const currentTheme = themes[tier] || themes.Legendary;
 
     const handleDownload = async () => {
         if (!certificateRef.current) return;
         setIsDownloading(true);
         try {
-            // Import html-to-image dynamically to prevent server-side compilation issues in Next.js
             const { toPng } = await import('html-to-image');
             const dataUrl = await toPng(certificateRef.current, {
                 pixelRatio: 2, // High resolution scale
@@ -64,7 +105,6 @@ export function CertificateCard({ userName, campTitle, date, score, tier }: Cert
                 console.error('Sharing failed', err);
             }
         } else {
-            // Fallback: Copy to clipboard
             try {
                 await navigator.clipboard.writeText(`${shareText}\nCheck it out here: ${window.location.origin}`);
                 alert('Share text copied to clipboard! You can paste and share it now.');
@@ -79,22 +119,18 @@ export function CertificateCard({ userName, campTitle, date, score, tier }: Cert
         <motion.div
             initial={{ scale: 0.9, opacity: 0 }}
             animate={{ scale: 1, opacity: 1 }}
-            className="w-full max-w-2xl mx-auto"
+            className="w-full max-w-2xl mx-auto overflow-visible"
         >
-            {/* Outer card shell with solid thick border & shadow */}
+            {/* The wrapper that will be captured as PNG. Padding ensures popping elements are NOT cut off. */}
             <div 
                 ref={certificateRef}
-                className={`relative p-2 rounded-[48px] bg-white border-8 ${tier === 'Legendary' ? 'border-[#FFC2D1]' : 'border-white'} shadow-2xl overflow-hidden`}
+                className={`relative pt-16 pb-12 px-8 ${currentTheme.outerBg} rounded-[56px] border-4 ${currentTheme.borderPink} max-w-2xl mx-auto overflow-visible select-none`}
             >
-                {/* Inner card with gradient background and dashed line border */}
-                <div className={`p-8 sm:p-12 rounded-[38px] bg-gradient-to-br ${tierColors[tier]} border-4 border-dashed flex flex-col items-center text-center relative`}>
+                {/* Main Card Frame with Solid Outline Border */}
+                <div className={`relative p-2 bg-white rounded-[40px] border-8 ${currentTheme.borderPink} shadow-lg overflow-visible`}>
                     
-                    {/* Decorative background bubbles */}
-                    <div className="absolute top-10 left-10 w-24 h-24 bg-strawberry/5 rounded-full blur-xl pointer-events-none" />
-                    <div className="absolute bottom-10 right-10 w-32 h-32 bg-amber-200/10 rounded-full blur-xl pointer-events-none" />
-
-                    {/* Cute Mascot Circular Avatar Frame */}
-                    <div className="w-24 h-24 rounded-full border-4 border-white shadow-md overflow-hidden bg-white mb-6 flex items-center justify-center animate-bounce" style={{ animationDuration: '3s' }}>
+                    {/* Cute Mascot popping from top-left */}
+                    <div className="absolute -top-16 left-6 w-24 h-24 rounded-full border-4 border-white shadow-xl overflow-hidden bg-white z-20 flex items-center justify-center animate-bounce-subtle">
                         <img 
                             src="/illustrations/mascot.png" 
                             alt="Mascot" 
@@ -102,62 +138,122 @@ export function CertificateCard({ userName, campTitle, date, score, tier }: Cert
                         />
                     </div>
 
-                    {/* Header Wording */}
-                    <p className="text-[10px] font-black uppercase tracking-[0.25em] mb-2 text-[#FF4E8D]">✦ MILESTONE ACCOMPLISHED ✦</p>
-                    <h2 
-                        className="text-4xl sm:text-5xl font-black italic tracking-tight uppercase mb-2 text-primary drop-shadow-[0_2px_4px_rgba(255,78,141,0.15)]"
-                        style={{ textShadow: '1px 1px 0px #FFF' }}
-                    >
-                        CONGRATULATIONS!
-                    </h2>
-                    <h3 className="text-xs sm:text-sm font-bold uppercase tracking-widest mb-6 text-charcoal/50">TOPIK BOOTCAMP • {campTitle}</h3>
+                    {/* Serial/Verification badge on top right */}
+                    <span className="absolute top-5 right-8 text-[10px] font-mono font-bold text-charcoal/40 tracking-wider">
+                        Certificate #{verificationId}
+                    </span>
 
-                    {/* Dotted Divider */}
-                    <div className="w-full border-t border-dashed border-[#FFC2D1] mb-6" />
+                    {/* Inner Card Background with Gradient and Dashed Border */}
+                    <div className={`p-8 sm:p-12 rounded-[30px] bg-gradient-to-br ${currentTheme.cardBg} border-4 ${currentTheme.dashedBorder} border-dashed flex flex-col items-center text-center relative overflow-hidden`}>
+                        
+                        {/* Inner frame helper outline */}
+                        <div className={`absolute inset-1.5 border border-dashed ${currentTheme.dashedBorder} rounded-[22px] pointer-events-none opacity-40`} />
 
-                    {/* Recipient Section */}
-                    <p className="text-[10px] font-black uppercase tracking-[0.2em] mb-2 text-charcoal/30">In recognition of the outstanding dedication of</p>
-                    <h4 className="text-4xl sm:text-5xl font-serif font-black text-charcoal mb-4 tracking-tight select-all">
-                        {userName}
-                    </h4>
-                    
-                    {/* Bubbly Description with Accuracy Badge */}
-                    <div className="max-w-md mx-auto text-xs sm:text-sm font-bold text-charcoal/60 leading-relaxed mb-6 select-all">
-                        Who has successfully completed the intensive 14-day vocabulary training program and demonstrated a strong command of core vocabulary with a final score of{' '}
-                        <span className="inline-block bg-[#FF4E8D] text-white font-black px-4 py-1 rounded-full scale-105 mx-1 shadow-md shadow-[#FF4E8D]/20 select-none">
-                            {score}%
-                        </span>
-                    </div>
+                        {/* Floating Sparkles & Cute Decals */}
+                        <span className="absolute top-4 left-4 text-amber-400 animate-pulse text-lg">✦</span>
+                        <span className="absolute top-4 right-4 text-amber-400 animate-pulse text-lg">✦</span>
+                        <span className="absolute left-6 top-[28%] text-2xl text-amber-300 opacity-60">🌙</span>
+                        <span className="absolute right-6 top-[28%] text-2xl text-rose-300 opacity-60">💖</span>
+                        <span className="absolute left-6 bottom-[28%] text-lg text-amber-400 opacity-50">✦</span>
+                        <span className="absolute right-6 bottom-[28%] text-lg text-amber-400 opacity-50">✦</span>
 
-                    {/* Sub labels in rounded pills */}
-                    <div className="grid grid-cols-3 gap-3 sm:gap-4 w-full border-t border-dashed border-[#FFC2D1] pt-6 mt-2 select-none">
-                        <div className="flex flex-col gap-1 bg-white/70 backdrop-blur-sm border border-strawberry/10 p-2.5 rounded-2xl shadow-sm">
-                            <span className="text-[8px] font-black uppercase tracking-widest text-charcoal/30">Date Issued</span>
-                            <span className="text-xs font-black text-charcoal">{date}</span>
+                        {/* Milestones label */}
+                        <p className={`text-[9px] font-black uppercase tracking-[0.25em] mb-1.5 ${currentTheme.accentText}`}>
+                            ✦ MILESTONE ACCOMPLISHED ✦
+                        </p>
+                        
+                        {/* Major Congrats Header (Outlined bubbly text shadow) */}
+                        <h2 
+                            className="text-4xl sm:text-5xl font-black italic tracking-tight text-[#FF4E8D] uppercase mb-1 drop-shadow-[0_2px_4px_rgba(255,78,141,0.15)]"
+                            style={{ textShadow: '2.5px 2.5px 0px #FFF, -2.5px -2.5px 0px #FFF, 2.5px -2.5px 0px #FFF, -2.5px 2.5px 0px #FFF, 3.5px 3.5px 0px #FFCCD5' }}
+                        >
+                            CONGRATULATIONS!
+                        </h2>
+
+                        {/* Korean styled bubble sub-heading */}
+                        <h3 
+                            className={`text-xl sm:text-2xl font-black ${currentTheme.accentText} tracking-wide mb-6`}
+                            style={{ textShadow: '1.5px 1.5px 0px #FFF, -1.5px -1.5px 0px #FFF, 1.5px -1.5px 0px #FFF, -1.5px 1.5px 0px #FFF, 2.5px 2.5px 0px #E5E7EB' }}
+                        >
+                            토픽 부트캠프 수료증
+                        </h3>
+
+                        {/* Cloud Container for Recipient Name */}
+                        <div className="relative w-full max-w-md my-4 px-8 py-6 bg-white/95 border-4 border-dashed border-[#FFC2D1] rounded-[32px] shadow-sm flex flex-col items-center justify-center">
+                            
+                            {/* Floating hearts on borders */}
+                            <span className="absolute -left-3.5 top-1/2 -translate-y-1/2 text-2xl animate-pulse">❤️</span>
+                            <span className="absolute -right-3.5 top-1/2 -translate-y-1/2 text-2xl animate-pulse" style={{ animationDelay: '0.5s' }}>❤️</span>
+
+                            <span className="text-[10px] font-black uppercase tracking-widest text-charcoal/30 mb-2">
+                                In recognition of the outstanding dedication of
+                            </span>
+
+                            <h4 
+                                className="text-3xl sm:text-4xl font-serif font-black text-charcoal tracking-wide select-all"
+                                style={{ textShadow: '1.5px 1.5px 0px #FFF, -1.5px -1.5px 0px #FFF, 1.5px -1.5px 0px #FFF, -1.5px 1.5px 0px #FFF' }}
+                            >
+                                {userName}
+                            </h4>
                         </div>
-                        <div className="flex flex-col items-center justify-center gap-1 bg-white/70 backdrop-blur-sm border border-strawberry/10 p-2.5 rounded-2xl shadow-sm">
-                            <div className="flex gap-0.5 text-amber-400">
-                                <Star size={8} fill="currentColor" />
-                                <Star size={8} fill="currentColor" />
-                                <Star size={8} fill="currentColor" />
+
+                        {/* Descriptive narrative */}
+                        <p className="text-xs sm:text-sm font-bold text-charcoal/60 leading-relaxed max-w-md mx-auto my-4 select-all">
+                            🎉 Who has successfully completed the intensive 14-day vocabulary training program on <span className="text-charcoal font-black">{campTitle}</span> and demonstrated a strong command of core vocabulary! 🎉
+                        </p>
+
+                        {/* Signatures, Grade Stars, and Stamp */}
+                        <div className="grid grid-cols-3 gap-4 w-full border-t border-dashed border-[#FFC2D1] pt-6 mt-4 items-center">
+                            
+                            {/* Left Signature column */}
+                            <div className="flex flex-col items-center">
+                                <span className="font-serif italic text-base text-charcoal/80">TOPIK Bootcamp</span>
+                                <div className="w-20 border-b border-charcoal/20 my-1" />
+                                <span className="text-[9px] uppercase font-black text-charcoal/30 tracking-wider">Date: {date}</span>
                             </div>
-                            <span className="text-[9px] font-black uppercase tracking-widest text-charcoal">{tier} GRADE</span>
+
+                            {/* Middle Grade Stars column */}
+                            <div className="flex flex-col items-center justify-center gap-1">
+                                <div className="flex items-center justify-center gap-1">
+                                    <Star size={14} fill="#FBBF24" className="text-amber-400 drop-shadow-sm animate-pulse" />
+                                    <Star size={18} fill="#FBBF24" className="text-amber-400 drop-shadow-sm animate-pulse" style={{ animationDelay: '0.2s' }} />
+                                    <Star size={14} fill="#FBBF24" className="text-amber-400 drop-shadow-sm animate-pulse" style={{ animationDelay: '0.4s' }} />
+                                </div>
+                                <span className="text-[9px] font-black uppercase tracking-widest text-[#FF4E8D]">{tier} Grade</span>
+                            </div>
+
+                            {/* Right Stamp column */}
+                            <div className="flex justify-center">
+                                <div className="w-20 h-20 rounded-full border-4 border-double border-[#FF8EA9] bg-[#FFFDF2] flex flex-col items-center justify-center text-[#FF4E8D] rotate-12 shadow-md relative scale-105">
+                                    {/* Inner dashed circle */}
+                                    <div className="absolute inset-1 rounded-full border border-dashed border-[#FFC2D1]" />
+                                    <span className="text-[7px] font-black tracking-widest uppercase text-charcoal/40 z-10">BOOTCAMP</span>
+                                    <span className="text-sm font-black tracking-wide text-[#FF4E8D] z-10" style={{ textShadow: '1px 1px 0px #FFF' }}>합격</span>
+                                    <span className="text-[6px] font-mono font-bold text-charcoal/50 z-10">{verificationId}</span>
+                                </div>
+                            </div>
                         </div>
-                        <div className="flex flex-col gap-1 bg-white/70 backdrop-blur-sm border border-strawberry/10 p-2.5 rounded-2xl shadow-sm">
-                            <span className="text-[8px] font-black uppercase tracking-widest text-charcoal/30">Verification ID</span>
-                            <span className="text-[8px] font-mono font-bold text-charcoal/50 select-all">{verificationId}</span>
+
+                        {/* Bottom Score Badge (overlapping inner frame) */}
+                        <div className="relative mt-8 -mb-4 bg-gradient-to-br from-[#FF8EA9] to-[#FF4E8D] text-white rounded-[24px] px-8 py-3 shadow-lg flex flex-col items-center justify-center border-4 border-white select-none z-10">
+                            <span className="text-[9px] font-black uppercase tracking-widest text-[#FFF0F3] mb-0.5">FINAL ACCURACY SCORE</span>
+                            <span className="text-2xl font-black italic tracking-wide text-white drop-shadow-sm">{score}%</span>
                         </div>
+
                     </div>
 
-                    {/* Decorative Soft Wax Seal */}
-                    <div className="absolute top-6 right-6 w-16 h-16 bg-gradient-to-br from-primary to-[#FF8EA9] text-white rounded-full border-4 border-white flex items-center justify-center rotate-12 shadow-lg shadow-primary/20 pointer-events-none select-none">
-                        <ShieldCheck size={28} className="text-white drop-shadow" />
+                    {/* Ribbon tags at bottom corners */}
+                    <div className="absolute -bottom-3.5 left-6 sm:left-12 bg-[#FF4E8D] text-white text-[9px] font-black uppercase tracking-wider px-3.5 py-1.5 rounded-md shadow-md rotate-[-3deg] border border-white z-10">
+                        CONGRATULATIONS!
+                    </div>
+                    <div className="absolute -bottom-3.5 right-6 sm:right-12 bg-[#FF4E8D] text-white text-[9px] font-black uppercase tracking-wider px-3.5 py-1.5 rounded-md shadow-md rotate-[3deg] border border-white z-10">
+                        수고하셨습니다!
                     </div>
 
                 </div>
             </div>
 
-            {/* Buttons */}
+            {/* User Interaction Action Buttons */}
             <div className="flex justify-center gap-4 mt-8">
                 <button 
                     onClick={handleDownload}
