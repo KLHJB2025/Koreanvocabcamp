@@ -93,24 +93,47 @@ export function CertificateCard({ userName, campTitle, date, score, tier }: Cert
     };
 
     const handleShare = async () => {
+        if (!certificateRef.current) return;
         const shareText = `🎉 I completed the ${campTitle} final challenge on TOPIK BOOTCAMP with ${score}% accuracy! Join the next camp to improve your Korean vocabularies!`;
-        if (navigator.share) {
-            try {
+        
+        try {
+            // Import html-to-image dynamically to prevent server-side compilation issues in Next.js
+            const { toPng } = await import('html-to-image');
+            const dataUrl = await toPng(certificateRef.current, {
+                pixelRatio: 2, // High resolution scale
+                cacheBust: true,
+            });
+
+            // Convert dataURL to file blob
+            const response = await fetch(dataUrl);
+            const blob = await response.blob();
+            const file = new File([blob], `TOPIK_Congratulations_${userName.replace(/\s+/g, '_')}.png`, { type: 'image/png' });
+
+            // Check if file sharing is supported
+            if (navigator.canShare && navigator.canShare({ files: [file] })) {
+                await navigator.share({
+                    files: [file],
+                    title: 'TOPIK BOOTCAMP Accomplishment',
+                    text: shareText,
+                });
+            } else if (navigator.share) {
+                // Fallback to text/url sharing
                 await navigator.share({
                     title: 'TOPIK BOOTCAMP Accomplishment',
                     text: shareText,
                     url: window.location.origin
                 });
-            } catch (err) {
-                console.error('Sharing failed', err);
+            } else {
+                throw new Error('Sharing not supported on this browser');
             }
-        } else {
+        } catch (err) {
+            console.error('Sharing failed, copying to clipboard instead:', err);
             try {
                 await navigator.clipboard.writeText(`${shareText}\nCheck it out here: ${window.location.origin}`);
                 alert('Share text copied to clipboard! You can paste and share it now.');
-            } catch (err) {
-                console.error('Failed to copy text:', err);
-                alert('Failed to copy link. Please copy the URL manually.');
+            } catch (clipErr) {
+                console.error('Clipboard copy failed:', clipErr);
+                alert('Sharing not supported. Please take a screenshot to share.');
             }
         }
     };
