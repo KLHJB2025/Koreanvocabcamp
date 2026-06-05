@@ -105,8 +105,12 @@ export default function ChallengePage() {
 
             // Mark cycle as completed if accuracy is at least 60%
             if (accuracy >= 60) {
+                const cycleId = profile.currentCycleId || 'beginner_cycle_1';
+                const currentBest = profile.challengeScores?.[cycleId] || 0;
+                const newBest = Math.max(currentBest, accuracy);
                 await updateDoc(userRef, {
-                    completedCycles: arrayUnion(profile.currentCycleId || 'beginner_cycle_1')
+                    completedCycles: arrayUnion(cycleId),
+                    [`challengeScores.${cycleId}`]: newBest
                 });
             }
 
@@ -367,6 +371,7 @@ export default function ChallengePage() {
                                     date={new Date().toLocaleDateString()}
                                     score={accuracy}
                                     tier={tier as any}
+                                    uid={profile?.uid}
                                 />
 
                                 {accuracy === 100 && (

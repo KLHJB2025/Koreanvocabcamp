@@ -29,6 +29,7 @@ export interface UserProfile {
         isUsed?: boolean;
     }[];
     challengeAttempts?: { [cycleId: string]: number };
+    challengeScores?: { [cycleId: string]: number };
     lastCompletedDate?: string;
 }
 

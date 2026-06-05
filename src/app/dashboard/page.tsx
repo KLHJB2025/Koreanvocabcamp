@@ -7,8 +7,9 @@ import { motion } from 'framer-motion';
 import { Trophy, Flame, Star, ChevronRight, Play, ShieldCheck, Loader2, LogOut, Map as MapIcon, GraduationCap, Heart, Target, Sparkles, BookMarked } from 'lucide-react';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
-import { auth } from '@/lib/firebase';
+import { auth, db } from '@/lib/firebase';
 import { signOut } from 'firebase/auth';
+import { collection, query, where, onSnapshot } from 'firebase/firestore';
 import { MissionRoadmap } from '@/components/learning/MissionRoadmap';
 import { getRankInfo } from '@/lib/ranks';
 import { getDailyEncouragement } from '@/lib/encouragement';
@@ -37,6 +38,51 @@ export default function Dashboard() {
     const [isPreloading, setIsPreloading] = useState(false);
     const [isPreloaded, setIsPreloaded] = useState(false);
     const [savedProgress, setSavedProgress] = useState<any>(null);
+    const [honorStudents, setHonorStudents] = useState<any[]>([]);
+
+    useEffect(() => {
+        const q = query(
+            collection(db, 'users'), 
+            where('role', '==', 'student'), 
+            where('status', '==', 'approved')
+        );
+        const unsubscribe = onSnapshot(q, (snapshot) => {
+            const students = snapshot.docs.map(doc => ({
+                uid: doc.id,
+                ...doc.data()
+            })) as any[];
+            
+            const completed = students.filter(s => s.completedCycles && s.completedCycles.length > 0);
+            const mapped = completed.map(s => {
+                let maxScore = 0;
+                let bestCycleId = 'beginner_cycle_1';
+                if (s.completedCycles && s.completedCycles.length > 0) {
+                    s.completedCycles.forEach((cId: string) => {
+                        const score = s.challengeScores?.[cId] || 0;
+                        if (score >= maxScore) {
+                            maxScore = score;
+                            bestCycleId = cId;
+                        }
+                    });
+                }
+                return {
+                    ...s,
+                    activeCycleScore: maxScore,
+                    bestCycleId
+                };
+            });
+            
+            mapped.sort((a, b) => {
+                if (b.activeCycleScore !== a.activeCycleScore) {
+                    return b.activeCycleScore - a.activeCycleScore;
+                }
+                return (b.totalXp || 0) - (a.totalXp || 0);
+            });
+            
+            setHonorStudents(mapped);
+        });
+        return () => unsubscribe();
+    }, []);
 
     useEffect(() => {
         if (profile?.uid) {
@@ -233,6 +279,46 @@ export default function Dashboard() {
                         <Link href="/admin" className="btn-primary-cute w-full sm:w-auto text-center bg-white text-charcoal border-white relative z-10">
                             {t('dashboard.commandCenter.launch')}
                         </Link>
+                    </motion.div>
+                )}
+
+                {/* Celebratory Banner for Completing Cycle 1 */}
+                {profile?.completedCycles?.includes('beginner_cycle_1') && (
+                    <motion.div
+                        initial={{ opacity: 0, scale: 0.95 }}
+                        animate={{ opacity: 1, scale: 1 }}
+                        className="p-6 sm:p-10 bg-gradient-to-r from-amber-400 via-strawberry to-rose-500 text-white rounded-[32px] sm:rounded-[48px] shadow-2xl relative overflow-hidden flex flex-col md:flex-row items-center justify-between gap-6 animate-fade-in"
+                    >
+                        <div className="absolute top-0 right-0 w-64 h-64 bg-white/10 rounded-full blur-[80px] -mr-32 -mt-32" />
+                        <div className="relative z-10 flex flex-col md:flex-row items-center gap-6 text-center md:text-left flex-1">
+                            <div className="w-20 h-20 bg-white rounded-3xl flex items-center justify-center text-primary shadow-lg rotate-3 shrink-0 animate-bounce-subtle">
+                                <Trophy size={40} className="text-amber-500" />
+                            </div>
+                            <div>
+                                <h2 className="text-2xl sm:text-3xl font-black italic uppercase leading-none mb-3">
+                                    {language === 'zh' ? '🎉 恭喜达成终极里程碑！' : '🎉 Ultimate Milestone Achieved!'}
+                                </h2>
+                                <p className="text-sm sm:text-base font-bold text-white/90 leading-relaxed max-w-xl">
+                                    {language === 'zh'
+                                        ? '你已经成功在 14 天内掌握了 100 个核心词汇，并顺利通过了新手特训营的最终决斗！你太棒了！继续保持热度，挑战下一个难度，让我们开始解锁 Cycle 2 吧！🔥'
+                                        : 'You have successfully mastered 100 core words in just 14 days and cleared the final duel of the Beginner Cycle 1 camp! You are amazing! Keep up the momentum and challenge yourself by unlocking Cycle 2! 🔥'}
+                                </p>
+                            </div>
+                        </div>
+                        <div className="flex flex-col sm:flex-row gap-3 relative z-10 w-full md:w-auto shrink-0">
+                            <Link 
+                                href="/certificate" 
+                                className="btn-primary-cute text-center bg-white text-charcoal border-none px-6 py-3.5 text-sm rounded-2xl w-full sm:w-auto shadow-lg hover:scale-105 transition-transform"
+                            >
+                                {language === 'zh' ? '查看我的荣誉奖状 🎓' : 'View My Award 🎓'}
+                            </Link>
+                            <Link 
+                                href="/camps" 
+                                className="btn-primary-cute text-center bg-charcoal text-white border-none px-6 py-3.5 text-sm rounded-2xl w-full sm:w-auto shadow-lg hover:scale-105 transition-transform"
+                            >
+                                {language === 'zh' ? '解锁下一轮训练营 🚀' : 'Unlock Next Camp 🚀'}
+                            </Link>
+                        </div>
                     </motion.div>
                 )}
 
@@ -542,6 +628,58 @@ export default function Dashboard() {
                                     </div>
                                 ))}
                             </div>
+                        </div>
+
+                        {/* Camp Honor Roll */}
+                        <div className="puffy-card p-6 sm:p-8 rounded-[32px] sm:rounded-[48px] border-2 border-amber-300 bg-amber-50/20 animate-fade-in">
+                            <div className="flex items-center justify-between mb-8">
+                                <h4 className="text-xl font-black italic uppercase tracking-tight text-amber-600 flex items-center gap-2">
+                                    <Trophy size={20} className="text-amber-500 animate-pulse" />
+                                    {language === 'zh' ? '营地荣誉榜' : 'Camp Honor Roll'}
+                                </h4>
+                                <span className="bg-amber-100 text-amber-800 text-[8px] font-black uppercase tracking-widest px-2.5 py-1 rounded-full border border-amber-200">
+                                    {language === 'zh' ? '实时更新' : 'Live'}
+                                </span>
+                            </div>
+                            
+                            {honorStudents.length === 0 ? (
+                                <p className="text-xs font-bold text-charcoal/40 text-center py-4">
+                                    {language === 'zh' ? '暂无学员通关，快来争夺首名吧！' : 'No graduates yet. Be the first!'}
+                                </p>
+                            ) : (
+                                <div className="space-y-4">
+                                    {honorStudents.map((student, idx) => (
+                                        <Link 
+                                            href={`/certificate?uid=${student.uid}`}
+                                            key={student.uid} 
+                                            className={`flex items-center justify-between p-4 rounded-3xl gap-2 bg-white border cursor-pointer hover:scale-[1.02] active:scale-[0.98] transition-all duration-200 ${idx === 0 ? 'border-amber-300 shadow-md bg-amber-50/10 hover:shadow-lg' : 'border-strawberry/10 shadow-sm hover:border-primary/20 hover:shadow-md'}`}
+                                        >
+                                            <div className="flex items-center gap-3 min-w-0">
+                                                <div className={`relative w-10 h-10 rounded-2xl flex items-center justify-center font-black shrink-0 ${idx === 0 ? 'bg-amber-400 text-white shadow-lg' : 'bg-strawberry/10 text-primary'}`}>
+                                                    {student.displayName?.[0] || 'Y'}
+                                                    {idx === 0 && (
+                                                        <span className="absolute -top-3 -right-2 text-lg drop-shadow rotate-12">👑</span>
+                                                    )}
+                                                </div>
+                                                <div className="min-w-0">
+                                                    <p className={`text-xs font-black italic truncate flex items-center gap-1 ${idx === 0 ? 'text-amber-700 font-bold' : 'text-charcoal'}`}>
+                                                        {student.displayName}
+                                                    </p>
+                                                    <p className="text-[8px] font-black text-charcoal/30 uppercase tracking-widest truncate">
+                                                        {student.bestCycleId?.replace(/_/g, ' ').toUpperCase() || 'BEGINNER CYCLE 1'} GRADUATE
+                                                    </p>
+                                                </div>
+                                            </div>
+                                            <div className="text-right shrink-0">
+                                                <span className={`text-xs font-black italic block ${idx === 0 ? 'text-amber-500' : 'text-primary'}`}>
+                                                    {student.activeCycleScore}%
+                                                </span>
+                                                <span className="text-[7px] font-bold text-charcoal/30 uppercase">ACCURACY</span>
+                                            </div>
+                                        </Link>
+                                    ))}
+                                </div>
+                            )}
                         </div>
                     </div>
                 </div>

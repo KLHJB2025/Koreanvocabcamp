@@ -9,9 +9,10 @@ interface CertificateProps {
     date: string;
     score: number;
     tier: 'Gold' | 'Silver' | 'Bronze' | 'Legendary';
+    uid?: string;
 }
 
-export function CertificateCard({ userName, campTitle, date, score, tier }: CertificateProps) {
+export function CertificateCard({ userName, campTitle, date, score, tier, uid }: CertificateProps) {
     const [verificationId, setVerificationId] = useState('');
     const [isDownloading, setIsDownloading] = useState(false);
     const certificateRef = useRef<HTMLDivElement>(null);
@@ -95,6 +96,7 @@ export function CertificateCard({ userName, campTitle, date, score, tier }: Cert
     const handleShare = async () => {
         if (!certificateRef.current) return;
         const shareText = `🎉 I completed the ${campTitle} final challenge on TOPIK BOOTCAMP with ${score}% accuracy! Join the next camp to improve your Korean vocabularies!`;
+        const shareUrl = uid ? `${window.location.origin}/certificate?uid=${uid}` : window.location.origin;
         
         try {
             // Import html-to-image dynamically to prevent server-side compilation issues in Next.js
@@ -121,7 +123,7 @@ export function CertificateCard({ userName, campTitle, date, score, tier }: Cert
                 await navigator.share({
                     title: 'TOPIK BOOTCAMP Accomplishment',
                     text: shareText,
-                    url: window.location.origin
+                    url: shareUrl
                 });
             } else {
                 throw new Error('Sharing not supported on this browser');
@@ -129,7 +131,7 @@ export function CertificateCard({ userName, campTitle, date, score, tier }: Cert
         } catch (err) {
             console.error('Sharing failed, copying to clipboard instead:', err);
             try {
-                await navigator.clipboard.writeText(`${shareText}\nCheck it out here: ${window.location.origin}`);
+                await navigator.clipboard.writeText(`${shareText}\nCheck it out here: ${shareUrl}`);
                 alert('Share text copied to clipboard! You can paste and share it now.');
             } catch (clipErr) {
                 console.error('Clipboard copy failed:', clipErr);
