@@ -224,7 +224,8 @@ export default function MissionPage() {
         </div>
     );
 
-    const isLockedToday = profile && profile.role !== 'admin' && profile.lastCompletedDate === getTodayDateString();
+    const isTrialBypass = profile?.email === 'carrinecares@gmail.com';
+    const isLockedToday = profile && profile.role !== 'admin' && !isTrialBypass && profile.lastCompletedDate === getTodayDateString();
 
     if (isLockedToday) {
         return (

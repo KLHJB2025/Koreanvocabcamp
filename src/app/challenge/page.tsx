@@ -34,8 +34,9 @@ export default function ChallengePage() {
     const startChallenge = useCallback(async () => {
         const cycleId = profile?.currentCycleId || 'beginner_cycle_1';
         const attempts = profile?.challengeAttempts?.[cycleId] || 0;
+        const isTrialBypass = profile?.email === 'carrinecares@gmail.com';
 
-        if (attempts >= 2) {
+        if (attempts >= 2 && !isTrialBypass) {
             alert(language === 'zh' ? '您已達到該營地的最大嘗試次數（2次）。' : 'You have reached the maximum number of attempts (2) for this camp.');
             return;
         }
@@ -180,7 +181,11 @@ export default function ChallengePage() {
 
     const cycleId = profile?.currentCycleId || 'beginner_cycle_1';
     const attempts = profile?.challengeAttempts?.[cycleId] || 0;
-    const attemptsLeft = Math.max(0, 2 - attempts);
+    const isTrialBypass = profile?.email === 'carrinecares@gmail.com';
+    const attemptsLeft = isTrialBypass ? 999 : Math.max(0, 2 - attempts);
+    const attemptsLeftText = isTrialBypass 
+        ? (language === 'zh' ? '無限' : 'Unlimited') 
+        : `${attemptsLeft} / 2`;
 
     if (authLoading) return (
         <div className="min-h-screen flex items-center justify-center bg-charcoal">
@@ -211,18 +216,18 @@ export default function ChallengePage() {
                             {t('challenge.title').split(' ')[0]}<br /><span className="text-primary italic">{t('challenge.title').split(' ')[1]}</span>
                         </h1>
                         <p className="text-white/40 font-bold uppercase tracking-[0.3em] mb-12 text-sm">
-                            Target: 30 Words | Time: 90s | {language === 'zh' ? `剩餘嘗試次數: ${attemptsLeft} / 2` : `Attempts Remaining: ${attemptsLeft} / 2`}
+                            Target: 30 Words | Time: 90s | {language === 'zh' ? `剩餘嘗試次數: ${attemptsLeftText}` : `Attempts Remaining: ${attemptsLeftText}`}
                         </p>
 
                         <div className="flex flex-col gap-6 w-full max-w-sm">
                             <button 
                                 onClick={startChallenge} 
-                                disabled={attemptsLeft === 0}
+                                disabled={attemptsLeft === 0 && !isTrialBypass}
                                 className={`btn-primary-cute text-xl py-6 rounded-[32px] bg-white text-charcoal transition-all border-none shadow-2xl disabled:opacity-50 disabled:cursor-not-allowed ${
-                                    attemptsLeft > 0 ? 'hover:bg-primary hover:text-white' : ''
+                                    (attemptsLeft > 0 || isTrialBypass) ? 'hover:bg-primary hover:text-white' : ''
                                 }`}
                             >
-                                {attemptsLeft === 0 
+                                {(attemptsLeft === 0 && !isTrialBypass)
                                     ? (language === 'zh' ? '無剩餘嘗試次數' : 'NO ATTEMPTS LEFT') 
                                     : t('challenge.commence')}
                             </button>

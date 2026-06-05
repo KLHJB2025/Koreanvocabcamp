@@ -29,7 +29,8 @@ export default function Dashboard() {
     const { profile, loading } = useAuth();
     const router = useRouter();
     
-    const isLockedToday = profile && profile.role !== 'admin' && profile.lastCompletedDate === getTodayDateString();
+    const isTrialBypass = profile?.email === 'carrinecares@gmail.com';
+    const isLockedToday = profile && profile.role !== 'admin' && !isTrialBypass && profile.lastCompletedDate === getTodayDateString();
     const [reviewCount, setReviewCount] = useState(0);
     const [words, setWords] = useState<any[]>([]);
     const [preloadProgress, setPreloadProgress] = useState(0);
