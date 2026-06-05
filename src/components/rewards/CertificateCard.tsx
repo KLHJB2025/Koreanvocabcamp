@@ -175,7 +175,7 @@ export function CertificateCard({ userName, campTitle, date, score, tier }: Cert
                             className={`text-xl sm:text-2xl font-black ${currentTheme.accentText} tracking-wide mb-6`}
                             style={{ textShadow: '1.5px 1.5px 0px #FFF, -1.5px -1.5px 0px #FFF, 1.5px -1.5px 0px #FFF, -1.5px 1.5px 0px #FFF, 2.5px 2.5px 0px #E5E7EB' }}
                         >
-                            토픽 부트캠프 수료증
+                            토픽 부트캠프
                         </h3>
 
                         {/* Cloud Container for Recipient Name */}
@@ -228,7 +228,7 @@ export function CertificateCard({ userName, campTitle, date, score, tier }: Cert
                                     {/* Inner dashed circle */}
                                     <div className="absolute inset-1 rounded-full border border-dashed border-[#FFC2D1]" />
                                     <span className="text-[7px] font-black tracking-widest uppercase text-charcoal/40 z-10">BOOTCAMP</span>
-                                    <span className="text-sm font-black tracking-wide text-[#FF4E8D] z-10" style={{ textShadow: '1px 1px 0px #FFF' }}>합격</span>
+                                    <span className="text-xs font-black tracking-wide text-[#FF4E8D] z-10" style={{ textShadow: '1px 1px 0px #FFF' }}>AMAZING!</span>
                                     <span className="text-[6px] font-mono font-bold text-charcoal/50 z-10">{verificationId}</span>
                                 </div>
                             </div>
