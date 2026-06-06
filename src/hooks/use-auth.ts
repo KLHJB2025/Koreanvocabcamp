@@ -44,9 +44,17 @@ export function useAuth() {
                 if (firebaseUser) {
                     setUser(firebaseUser);
 
-                    // Fetch extended profile from Firestore
+                    // Fetch extended profile from Firestore with timeout protection
                     const docRef = doc(db, 'users', firebaseUser.uid);
-                    const docSnap = await getDoc(docRef);
+                    
+                    const timeoutPromise = new Promise((_, reject) => 
+                        setTimeout(() => reject(new Error('Firestore fetch timeout')), 3500)
+                    );
+                    
+                    const docSnap = await Promise.race([
+                        getDoc(docRef),
+                        timeoutPromise
+                    ]) as any;
 
                     if (docSnap.exists()) {
                         setProfile(docSnap.data() as UserProfile);
