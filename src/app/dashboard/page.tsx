@@ -80,6 +80,8 @@ export default function Dashboard() {
             });
             
             setHonorStudents(mapped);
+        }, (error) => {
+            console.error("Firestore onSnapshot error in dashboard:", error);
         });
         return () => unsubscribe();
     }, []);
@@ -209,6 +211,11 @@ export default function Dashboard() {
 
     if (!profile) {
         router.push('/login');
+        return null;
+    }
+
+    if (profile.status === 'pending' && profile.role !== 'admin') {
+        router.push('/pending-approval');
         return null;
     }
 

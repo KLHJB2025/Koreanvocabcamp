@@ -40,21 +40,48 @@ export function useAuth() {
 
     useEffect(() => {
         const unsubscribe = onAuthStateChanged(auth, async (firebaseUser) => {
-            if (firebaseUser) {
-                setUser(firebaseUser);
+            try {
+                if (firebaseUser) {
+                    setUser(firebaseUser);
 
-                // Fetch extended profile from Firestore
-                const docRef = doc(db, 'users', firebaseUser.uid);
-                const docSnap = await getDoc(docRef);
+                    // Fetch extended profile from Firestore
+                    const docRef = doc(db, 'users', firebaseUser.uid);
+                    const docSnap = await getDoc(docRef);
 
-                if (docSnap.exists()) {
-                    setProfile(docSnap.data() as UserProfile);
+                    if (docSnap.exists()) {
+                        setProfile(docSnap.data() as UserProfile);
+                    } else {
+                        // Fallback if profile doesn't exist yet
+                        setProfile({
+                            uid: firebaseUser.uid,
+                            email: firebaseUser.email,
+                            displayName: firebaseUser.displayName,
+                            role: 'student',
+                            status: 'pending',
+                            totalXp: 0,
+                            currentRank: 'Hangeul Survivor',
+                            streakCount: 0,
+                            dayOfCamp: 1,
+                            currentCycleId: null,
+                            level: 'beginner',
+                            campCredits: 0,
+                            unlockedCycles: [],
+                            completedCycles: []
+                        });
+                    }
                 } else {
-                    // Fallback if profile doesn't exist yet
+                    setUser(null);
+                    setProfile(null);
+                }
+            } catch (err) {
+                console.error("Error in useAuth onAuthStateChanged:", err);
+                // In case of error, still set user and fallback profile if firebaseUser exists
+                if (firebaseUser) {
+                    setUser(firebaseUser);
                     setProfile({
                         uid: firebaseUser.uid,
                         email: firebaseUser.email,
-                        displayName: firebaseUser.displayName,
+                        displayName: firebaseUser.displayName || 'Agent',
                         role: 'student',
                         status: 'pending',
                         totalXp: 0,
@@ -67,12 +94,13 @@ export function useAuth() {
                         unlockedCycles: [],
                         completedCycles: []
                     });
+                } else {
+                    setUser(null);
+                    setProfile(null);
                 }
-            } else {
-                setUser(null);
-                setProfile(null);
+            } finally {
+                setLoading(false);
             }
-            setLoading(false);
         });
 
         return () => unsubscribe();
