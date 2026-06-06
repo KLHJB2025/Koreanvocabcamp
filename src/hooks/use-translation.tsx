@@ -1,6 +1,6 @@
 'use client';
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import React, { createContext, useContext, useState } from 'react';
+import React, { createContext, useContext, useState, useEffect } from 'react';
 import en from '@/translations/en.json';
 import zh from '@/translations/zh.json';
 
@@ -18,13 +18,14 @@ const translations: Record<Language, Translations> = { en, zh };
 const TranslationContext = createContext<TranslationContextType | undefined>(undefined);
 
 export function TranslationProvider({ children }: { children: React.ReactNode }) {
-  const [language, setLanguage] = useState<Language>(() => {
-    if (typeof window !== 'undefined') {
-      const saved = localStorage.getItem('language');
-      if (saved === 'en' || saved === 'zh') return saved as Language;
+  const [language, setLanguage] = useState<Language>('zh');
+
+  useEffect(() => {
+    const saved = localStorage.getItem('language');
+    if (saved === 'en' || saved === 'zh') {
+      setLanguage(saved as Language);
     }
-    return 'zh';
-  });
+  }, []);
 
   const handleSetLanguage = (lang: Language) => {
     setLanguage(lang);
